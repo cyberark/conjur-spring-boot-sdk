@@ -1,0 +1,2 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.db.cso.conjur.spring.ConjurPropertySourceEnvironmentPostProcessor
