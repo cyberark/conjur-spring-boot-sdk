@@ -1,5 +1,5 @@
-# {Your project name}
-TODO: Insert brief description of your project
+# Conjur Spring Boot Plugin
+This plugin allows to inject secrets provided by Conjur/DAP via Annotations into sprint boot applications.
 
 ## Certification level
 TODO: Select the appropriate certification level section below, and remove all others.
@@ -16,13 +16,6 @@ by CyberArk**. For more detailed information on our certification levels, see [o
 This repo is a **Trusted** level project. It's been reviewed by CyberArk to verify that it will securely
 work with Conjur OSS as documented. For more detailed  information on our certification levels, see
 [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#community).
-
-{Certified}
-![](https://img.shields.io/badge/Certification%20Level-Certified-6C757D?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
-
-This repo is a **Certified** level project. It's been reviewed by CyberArk to verify that it will securely
-work with CyberArk DAP as documented. In addition, CyberArk offers Enterprise-level support for these features. For
-more detailed  information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#community).
 
 ## Requirements
 
