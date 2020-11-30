@@ -1,5 +1,5 @@
 # Conjur Spring Boot Plugin
-This plugin allows to inject secrets provided by Conjur/DAP via Annotations into sprint boot applications.
+This plugin allows to inject secrets provided by Conjur/DAP via Annotations into Spring Boot applications.
 
 ## Certification level
 TODO: Select the appropriate certification level section below, and remove all others.
