@@ -1,0 +1,9 @@
+META-INF/spring-configuration-metadata.json
+com/annotation/secret/service/MyProperty.class
+com/annotation/secret/service/ConjurConnectionManager.class
+com/annotation/config/processor/SpringBootConjurAutoConfiguration.class
+com/annotation/config/annotations/ConjurValue.class
+com/annotation/config/processor/ConjurValueClassProcessor.class
+com/annotation/config/annotations/ConjurValues.class
+com/annotation/config/processor/ConjurValuesClassProcessor.class
+com/annotation/secret/service/ConjurRetrieveSecretManager.class
