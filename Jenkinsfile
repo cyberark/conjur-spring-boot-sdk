@@ -3,7 +3,12 @@ pipeline {
   stages {
     stage('Whats in my workspace?') {
       steps {
-	sh 'ls'
+	      sh 'ls'
+      }
+    }
+    stage('install Java') {
+      steps {
+	      sh 'docker build --build-arg java-version=11 .'
       }
     }
   }
