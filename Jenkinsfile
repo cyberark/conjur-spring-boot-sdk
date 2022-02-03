@@ -8,7 +8,7 @@ pipeline {
     }
     stage('install Java') {
       steps {
-	      sh 'docker build --build-arg java-version=11 .'
+	      sh 'docker build --build-arg java_version=11 .'
       }
     }
   }
