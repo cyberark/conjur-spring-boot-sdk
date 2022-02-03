@@ -1,6 +1,6 @@
-ARG java-version
-ARG maven-version
+ARG java_version
+ARG maven_version
 
-FROM  openjdk:$java-version
+FROM  openjdk:$java_version
  
 
