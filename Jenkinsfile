@@ -85,7 +85,7 @@ pipeline {
 
       steps {
         release { billOfMaterialsDirectory, assetDirectory ->
-          sh './publish.sh'
+          sh 'summon -e artifactory ./publish.sh'
           // Publish release artifacts to all the appropriate locations
           // Copy any artifacts to assetDirectory to attach them to the Github release
         }
