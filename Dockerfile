@@ -10,7 +10,7 @@ FROM maven:${maven_version}-openjdk-${java_version}-slim
 #WORKDIR .
 #RUN javac Main.java
 
-RUN mvn -f pom.xml  package
+RUN mvn -f $workspace/pom.xml  package
 
 #COPY  *.jar .
 
