@@ -62,7 +62,11 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh './build.sh'
+        // Build Docker Image for tools (eg mvn)
+        sh './build-tools-image.sh'
+
+        // Run Docker Image to compile code and build jar
+        sh './build-package.sh'
       }
     }
 
