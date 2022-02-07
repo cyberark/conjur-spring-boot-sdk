@@ -67,6 +67,9 @@ pipeline {
 
         // Run Docker Image to compile code and build jar
         sh './build-package.sh'
+
+        // Build Docker image and push to internal artifactory
+        sh './build-app-image.sh'
       }
     }
 
