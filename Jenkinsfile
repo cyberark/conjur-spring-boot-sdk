@@ -67,12 +67,32 @@ pipeline {
 
         // Run Docker Image to compile code and build jar
         sh './build-package.sh'
+
+        // Build Docker image and push to internal artifactory
+        sh './build-app-image.sh'
       }
     }
 
-    stage('Test') {
+    stage('UnitTest') {
       steps {
         sh './run-tests.sh'
+      }
+    }
+
+    stage('functionalTests') {
+      steps {
+        dir ('functionaltests') {
+          sh './start'
+        }
+        
+      }
+
+      post {
+        always {
+          dir ('functionaltests') {
+            sh './stop'
+          }
+        }
       }
     }
 

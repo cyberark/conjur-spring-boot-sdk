@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+rm -rf .env
+docker-compose down -v
