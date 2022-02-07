@@ -73,9 +73,21 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('UnitTest') {
       steps {
         sh './run-tests.sh'
+      }
+    }
+
+    stage('functionalTests') {
+      steps {
+        sh './functionaltests/start'
+      }
+
+      post {
+        always {
+          sh './functionaltests/stop'
+        }
       }
     }
 

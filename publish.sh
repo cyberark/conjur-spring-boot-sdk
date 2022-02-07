@@ -42,9 +42,9 @@ fi
 
 
 #Create docker image for conjur-spring-boot-plugin
-docker tag conjur-spring-boot-plugin registry.tld/conjur-spring-boot-plugin
+#docker tag conjur-spring-boot-plugin registry.tld/conjur-spring-boot-plugin
 
 #push the image to internal registry
-docker push registry.tld/conjur-spring-boot-plugin
+#docker push registry.tld/conjur-spring-boot-plugin
 
 
