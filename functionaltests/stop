@@ -1,3 +1,4 @@
 #!/bin/bash -e
 
-../../../util/stop
+rm -rf .env
+docker-compose down -v

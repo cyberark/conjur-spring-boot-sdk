@@ -81,12 +81,17 @@ pipeline {
 
     stage('functionalTests') {
       steps {
-        sh './functionaltests/start'
+        dir ('functionaltests') {
+          sh './start'
+        }
+        
       }
 
       post {
         always {
-          sh './functionaltests/stop'
+          dir ('functionaltests') {
+            sh './stop'
+          }
         }
       }
     }
