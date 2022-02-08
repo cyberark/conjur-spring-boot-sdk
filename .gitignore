@@ -25,3 +25,5 @@ replay_pid*
 
 target/
 maven_cache/
+VERSION
+pom.xml.*

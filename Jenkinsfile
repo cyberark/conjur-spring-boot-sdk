@@ -17,6 +17,13 @@ if (params.MODE == "PROMOTE") {
     // Any version number updates from sourceVersion to targetVersion occur here
     // Any publishing of targetVersion artifacts occur here
     // Anything added to assetDirectory will be attached to the Github Release
+    env.ASSET_DIR = assetDirectory
+
+    // This call downloads the pre-release jar from artifactory, modifies its version
+    // and publishes it to the releases repo in artifactory.
+    // It also copies the release jar to ASSET_DIR for inclusion in the Github
+    // Release
+    release.publishJava('spring-boot-conjur', sourceVersion, targetVersion)
   }
   return
 }
@@ -84,7 +91,6 @@ pipeline {
         dir ('functionaltests') {
           sh './start'
         }
-        
       }
 
       post {
@@ -105,9 +111,9 @@ pipeline {
 
       steps {
         release { billOfMaterialsDirectory, assetDirectory ->
-          sh 'summon -e artifactory ./publish.sh'
           // Publish release artifacts to all the appropriate locations
           // Copy any artifacts to assetDirectory to attach them to the Github release
+          sh "ASSET_DIR=\"${assetDirectory}\" summon -e artifactory ./publish.sh"
         }
       }
     }

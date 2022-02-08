@@ -2,23 +2,8 @@
 
 set -euo pipefail
 
-# Run the artifactory subcommand of the jfrog cli within docker
-docker_rt(){
-    action="${1}"
-    shift
-    docker run \
-        --rm \
-        --volume "$(pwd)":"$(pwd)" \
-        --workdir "$(pwd)" \
-        --env JFROG_CLI_OFFER_CONFIG \
-        --env CI="true" \
-        docker.bintray.io/jfrog/jfrog-cli-go:latest \
-        jfrog rt "${action}" \
-            --url "${JFROG_URL}" \
-            --user "${JFROG_USERNAME}" \
-            --apikey "${JFROG_APIKEY}" \
-            "${@}"
-}
+# Load docker_rt function from utils.sh
+. "$(dirname ${0})/utils.sh"
 
 target_package="$(ls -1tr target/*.jar |tail -n 1)"
 
@@ -40,11 +25,8 @@ else
     exit 1
 fi
 
-
-#Create docker image for conjur-spring-boot-plugin
-#docker tag conjur-spring-boot-plugin registry.tld/conjur-spring-boot-plugin
-
-#push the image to internal registry
-#docker push registry.tld/conjur-spring-boot-plugin
-
-
+# Push image to internal registry when running in Jenkins, but not when running locally.
+if [[ -r VERSION ]] && [[ -n "${BUILD_NUMBER}" ]]; then
+    #push the image to internal registry
+    docker push "registry.tld/conjur-spring-boot-plugin:$(<VERSION)"
+fi

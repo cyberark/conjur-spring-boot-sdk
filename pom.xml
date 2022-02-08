@@ -2,6 +2,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.conjurSecretValue</groupId>
 	<artifactId>spring-boot-conjur</artifactId>
+    <!-- This version will be overidden by build-package.sh during the build pipeline -->
+	<!-- Please add a new version to CHANGELOG.md, instead of updating this -->
 	<version>0.0.1-SNAPSHOT</version>
 	<name>conjur-annotation-example</name>
 
