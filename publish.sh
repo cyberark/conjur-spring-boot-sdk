@@ -3,8 +3,10 @@
 set -euo pipefail
 
 # Load docker_rt function from utils.sh
-. "$(dirname ${0})/utils.sh"
+# shellcheck source=/dev/null
+. "$(dirname "${0}")/utils.sh"
 
+# shellcheck disable=SC2012
 target_package="$(ls -1tr target/*.jar |tail -n 1)"
 
 # Copy built jar to ASSET_DIR so it will be attached to the Github Release
