@@ -1,0 +1,41 @@
+#!/bin/bash -ex
+
+rm -rf .env
+docker-compose down -v
+
+docker-compose build
+docker-compose up -d conjur
+docker-compose exec -T conjur conjurctl wait -r 240
+
+admin_api_key=$(docker-compose exec -T conjur conjurctl role retrieve-key dev:user:admin | tr -d '\r')
+export CONJUR_AUTHN_API_KEY=$admin_api_key
+
+conjur_host_port=$(docker-compose port conjur 80)
+conjur_port="${conjur_host_port##*:}"
+
+# Remove files from tmp but avoid recreating the folder to
+# avoid cache busting
+mkdir -p tmp
+rm -rf tmp/*
+
+cat <<ENV > .env
+CONJUR_APPLIANCE_URL=http://localhost:$conjur_port
+CONJUR_ACCOUNT=dev
+CONJUR_AUTHN_LOGIN=admin
+CONJUR_AUTHN_API_KEY=$admin_api_key
+ENV
+
+docker-compose up \
+  -d \
+  app
+
+sleep 2
+
+docker-compose run \
+  --rm \
+  --no-deps \
+  client \
+  -ec '
+   conjur variable values add db/password secret
+   conjur variable values add "my var" othersecret
+  '
