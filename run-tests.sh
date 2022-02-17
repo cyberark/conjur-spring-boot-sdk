@@ -2,5 +2,10 @@
 
 set -euo pipefail
 
-
-echo "Insert code to run tests here"
+mkdir -p maven_cache
+docker run \
+    --volume "${PWD}:${PWD}" \
+    --volume "maven_cache":/root/.m2 \
+    --workdir "${PWD}" \
+    tools \
+        mvn -f pom.xml test

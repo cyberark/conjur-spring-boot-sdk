@@ -10,11 +10,23 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.sorce>1.8</maven.compiler.sorce>
+		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring-boot.version>2.5.7</spring-boot.version>
 		<spring.version>5.3.13</spring.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>5.8.2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -43,17 +55,26 @@
 			<artifactId>conjur-sdk-java</artifactId>
 			<version>4.0.0</version>
 		</dependency>
-	</dependencies>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+</dependencies>
+
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.0</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+		</plugins>
 	</build>
 
 
