@@ -73,9 +73,36 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
+				<configuration>
+                    <!-- for jacoco -->
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${argLine}</argLine>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
 			</plugin>
 		</plugins>
 	</build>
-
+	<reporting>
+		<plugins>
+		  <plugin>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<reportSets>
+			  <reportSet>
+				<reports>
+				  <!-- select non-aggregate reports -->
+				  <report>report</report>
+				</reports>
+			  </reportSet>
+			</reportSets>
+		  </plugin>
+		</plugins>
+	  </reporting>
 
 </project>

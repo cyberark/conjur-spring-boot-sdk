@@ -27,3 +27,5 @@ target/
 maven_cache/
 VERSION
 pom.xml.*
+jacoco.xml
+jacoco.html
