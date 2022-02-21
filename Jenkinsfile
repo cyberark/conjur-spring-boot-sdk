@@ -101,6 +101,14 @@ pipeline {
         }
       }
     }
+    stage('Report Test Coverage to Code Climate'){
+      steps {
+        archiveArtifacts(artifacts:'jacoco.html')
+        dir('src/main/java'){
+          ccCoverage('jacoco')
+        }
+      }
+    }
 
     stage('Release') {
       when {
