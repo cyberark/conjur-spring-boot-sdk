@@ -13,8 +13,10 @@ import org.springframework.context.annotation.Import;
 @Repeatable(ConjurPropertySources.class)
 @Import(Registrar.class)
 public @interface ConjurPropertySource {
-	
+
 	String name() default "";
+
 	String[] value();
+
 	boolean ignoreResourceNotFound() default false;
 }

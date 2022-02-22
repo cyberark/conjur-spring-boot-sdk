@@ -60,7 +60,7 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 						.setRole(BeanDefinition.ROLE_INFRASTRUCTURE).getBeanDefinition());
 		}
 		
-		//find container annotations
+		// find container annotations
 		MultiValueMap<String, Object> attributesCont = importingClassMetadata
 				.getAllAnnotationAttributes(
 						ConjurPropertySources.class.getName(), false);
