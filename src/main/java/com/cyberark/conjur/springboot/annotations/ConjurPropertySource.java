@@ -1,4 +1,4 @@
-package com.cyberark.annotations;
+package com.cyberark.conjur.springboot.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
@@ -13,10 +13,8 @@ import org.springframework.context.annotation.Import;
 @Repeatable(ConjurPropertySources.class)
 @Import(Registrar.class)
 public @interface ConjurPropertySource {
-
+	
 	String name() default "";
-
 	String[] value();
-
 	boolean ignoreResourceNotFound() default false;
 }

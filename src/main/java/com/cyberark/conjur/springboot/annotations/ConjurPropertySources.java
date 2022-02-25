@@ -1,4 +1,4 @@
-package com.cyberark.annotations;
+package com.cyberark.conjur.springboot.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
