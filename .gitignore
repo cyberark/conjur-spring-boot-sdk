@@ -23,9 +23,17 @@
 hs_err_pid*
 replay_pid*
 
+**/target/
 target/
 maven_cache/
 VERSION
 pom.xml.*
 jacoco.xml
 jacoco.html
+mvn-settings.xml
+settings.xml
+.env
+cc-test-reporter
+conjur-dev.pem
+nginx.crt
+nginx.key

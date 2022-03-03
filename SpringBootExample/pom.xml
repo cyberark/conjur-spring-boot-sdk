@@ -25,15 +25,15 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 
 		</dependency>
-
 
 		<dependency>
 			<groupId>com.cyberark.conjur.springboot</groupId>
 			<artifactId>Spring-boot-conjur</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<!-- This will be updated by build-sampleapp-image.sh -->
+			<version>0.0.0-dev</version>
 		</dependency>
 
 <dependency>
@@ -72,7 +72,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 
 </project>

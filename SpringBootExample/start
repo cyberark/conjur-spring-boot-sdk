@@ -5,6 +5,7 @@ docker-compose down -v
 
 docker-compose build
 docker-compose up -d conjur
+docker-compose up -d proxy
 docker-compose exec -T conjur conjurctl wait -r 240
 
 admin_api_key=$(docker-compose exec -T conjur conjurctl role retrieve-key dev:user:admin | tr -d '\r')
@@ -19,23 +20,26 @@ mkdir -p tmp
 rm -rf tmp/*
 
 cat <<ENV > .env
-CONJUR_APPLIANCE_URL=http://localhost:$conjur_port
+CONJUR_APPLIANCE_URL=https://proxy
 CONJUR_ACCOUNT=dev
 CONJUR_AUTHN_LOGIN=admin
 CONJUR_AUTHN_API_KEY=$admin_api_key
 ENV
 
-docker-compose up \
-  -d \
-  app
-
-sleep 2
-
 docker-compose run \
+  --volume "${PWD}:${PWD}" \
+  --workdir "${PWD}" \
   --rm \
   --no-deps \
   client \
   -ec '
+   yes yes | conjur init -a dev -u https://proxy
+   cp /root/conjur-dev.pem .
    conjur variable values add db/password secret
    conjur variable values add "my var" othersecret
   '
+
+sleep 2
+
+docker-compose up app
+

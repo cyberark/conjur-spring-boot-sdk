@@ -3,7 +3,7 @@
 
 	<groupId>com.cyberark.conjur.springboot</groupId>
 	<artifactId>Spring-boot-conjur</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.0-dev</version>
 	<packaging>jar</packaging>
 
 	<name>Spring Boot Plugin Project </name>
@@ -83,6 +83,10 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				  </configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -111,6 +115,17 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+				<configuration>
+                    <!-- for jacoco -->
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${argLine}</argLine>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<reporting>
@@ -129,5 +144,18 @@
 		  </plugin>
 		</plugins>
 	  </reporting>
-
+	<distributionManagement>
+		<snapshotRepository>
+			<id>artifactory-libs-snapshot-local</id>
+			<name>conjurinc-snapshots</name>
+			<url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+		<repository>
+			<id>artifactory-libs-release-local</id>
+			<name>conjurinc-releases</name>
+			<url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
+			<uniqueVersion>false</uniqueVersion>
+		</repository>
+	</distributionManagement>
 </project>

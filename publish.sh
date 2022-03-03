@@ -19,16 +19,21 @@ else
     exit 1
 fi
 
-if [[ -n "${JFROG_REPO:-}" ]]; then
-    echo "Uploading ${target_package} to Artifcatory: ${JFROG_REPO}"
-    docker_rt upload --flat "${target_package}" "${JFROG_REPO}/"
-else
-    echo "JFROG_REPO is unset, unable to upload ${target_package} to Artifactory. ❌"
+# Use Tools image to package code
+if [[ ! -f mvn-settings.xml ]]; then
+    echo "Please run summon -e artifactory ./generate-maven-settings.sh before publish.sh"
     exit 1
 fi
-
-# Push image to internal registry when running in Jenkins, but not when running locally.
-if [[ -r VERSION ]] && [[ -n "${BUILD_NUMBER}" ]]; then
-    #push the image to internal registry
-    docker push "registry.tld/conjur-spring-boot-plugin:$(<VERSION)"
-fi
+mkdir -p maven_cache
+docker run \
+    --volume "${PWD}:${PWD}" \
+    --volume "${PWD}/maven_cache":/root/.m2 \
+    --workdir "${PWD}" \
+    tools \
+        cp mvn-settings.xml maven_cache/settings.xml
+docker run \
+    --volume "${PWD}:${PWD}" \
+    --volume "${PWD}/maven_cache":/root/.m2 \
+    --workdir "${PWD}" \
+    tools \
+        mvn -f pom.xml deploy -Dmaven.test.skip
