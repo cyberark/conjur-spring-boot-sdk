@@ -37,3 +37,4 @@ cc-test-reporter
 conjur-dev.pem
 nginx.crt
 nginx.key
+api_key

@@ -12,25 +12,32 @@ import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
 
 @SpringBootApplication
-@ConjurPropertySource("jenkinsapp/") 
-@ConjurPropertySource(value={"jenkinsapp1/"})
+//@ConjurPropertySource("jenkinsapp/") 
+@ConjurPropertySource(value={"db/"})
 //@ConjurPropertySource(value={"jenkinsapp1/", "jenkinsapp2/", "jenkinsapp3/", "jenkinsapp4/"}, name="vault2")//multi vault support to be added later
 public class ConjurClient implements CommandLineRunner{
 	
 	private static Logger logger = LoggerFactory.getLogger(ConjurClient.class);
 
 	
-	@Value("${uid}")
-	private String value;
+
 
 	@Value("${password}")
 	private String pass;
-	
+
+	@Value("${dbuserName}")
+	private String pass1;
+
+	@Value("${dbpassWord}")
+	private String pass2;
+
+	@Value("${key}")
+	private String pass3;
 	 
 //	@Value("${keyVal}")
 //	private String keyVal;
 	
-	@ConjurValue(key="jenkinsapp/dbuserName")
+	@ConjurValue(key="db/password")
 	private String customVal;
 	
     public static void main(String[] args) {
@@ -41,8 +48,20 @@ public class ConjurClient implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("By Using Standard Spring annotation --> " + value + " " + pass + "  " );
+		logger.info("By Using Standard Spring annotation -->  " + pass + "  " );
 		logger.info("By Using Custom annotation -->"+customVal);
+		System.out.println("By Using Custom annotation -->"+pass);
+		System.out.println("By Using Custom annotation -->"+customVal);
+
+		System.out.println("By Using Custom annotation -->"+pass1);
+		System.out.println("By Using Custom annotation -->"+customVal);
+
+		System.out.println("By Using Custom annotation -->"+pass2);
+		System.out.println("By Using Custom annotation -->"+customVal);
+
+		System.out.println("By Using Custom annotation -->"+pass3);
+		System.out.println("By Using Custom annotation -->"+customVal);
 
 	}
 }
+

@@ -27,6 +27,13 @@ docker run \
     tools \
         mvn -f pom.xml versions:use-dep-version -Dincludes=com.cyberark.conjur.springboot:Spring-boot-conjur -DdepVersion="$(<../VERSION)"
 
+docker run \
+    --volume "${PWD}:${PWD}" \
+    --volume "${PWD}/maven_cache":/root/.m2 \
+    --workdir "${PWD}" \
+    tools \
+        mvn -f pom.xml dependency:tree
+
 # Use Tools image to package code
 docker run \
     --volume "${PWD}:${PWD}" \

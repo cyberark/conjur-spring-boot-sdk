@@ -21,7 +21,19 @@
 		<rest.assured.version>2.3.3</rest.assured.version>
 	</properties>
 
+	
+
+
 	<dependencies>
+
+	<dependency>
+    <groupId>org.testcontainers</groupId>
+    <artifactId>testcontainers</artifactId>
+    <version>1.16.3</version>
+    <scope>test</scope>
+</dependency>
+
+	
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -33,10 +45,12 @@
 			<groupId>com.cyberark.conjur.springboot</groupId>
 			<artifactId>Spring-boot-conjur</artifactId>
 			<!-- This will be updated by build-sampleapp-image.sh -->
-			<version>0.0.0-dev</version>
+			<version>4.5.7</version>
 		</dependency>
 
-<dependency>
+	
+
+		<dependency>
 			<groupId>com.jayway.restassured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<version>${rest.assured.version}</version>
@@ -49,6 +63,13 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.cyberark</groupId>
+			<artifactId>conjur-sdk-java</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -58,6 +79,7 @@
 	</dependencies>
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -69,8 +91,12 @@
 						<version>1.2.8.RELEASE</version>
 					</dependency>
 				</dependencies>
+
 			</plugin>
+
 		</plugins>
 	</build>
+
+
 
 </project>

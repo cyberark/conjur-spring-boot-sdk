@@ -17,7 +17,8 @@ import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 @SpringBootTest(classes = ConjurPluginTests.class)
 //@ConjurPropertySource("jenkinsapp/")
 //@ConjurPropertySource("jenkinsapp1/")
-@ConjurPropertySource(value = { "jenkinsapp/", "jenkinsapp1/", "jenkinsapp3/", "jenkinsapp4/" }, name = "vault2")
+//@ConjurPropertySource(value = { "jenkinsapp/", "jenkinsapp1/", "jenkinsapp3/", "jenkinsapp4/" }, name = "vault2")
+@ConjurPropertySource("db/")
 public class ConjurPluginTests {
 
 	@Value("${dbuserName}")

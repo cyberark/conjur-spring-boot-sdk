@@ -88,11 +88,11 @@ pipeline {
       }
     }
 
-    stage('UnitTest') {
-      steps {
-        sh './run-tests.sh'
-      }
-    }
+  //   stage('UnitTest') {
+  //     steps {
+  //       sh './run-tests.sh'
+  //     }
+  //   }
 
     stage('functionalTests') {
       steps {
@@ -100,11 +100,12 @@ pipeline {
           sh './build-sampleapp-image.sh'
           sh './start'
         }
+        sh './run-tests.sh'
       }
 
       post {
         always {
-          dir ('sampleapp') {
+          dir ('SpringBootExample') {
             sh './stop'
           }
         }

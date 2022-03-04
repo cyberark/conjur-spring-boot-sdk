@@ -76,6 +76,7 @@ services:
       CONJUR_CERT_FILE: /conjur-dev.pem
     volumes:
       - ./conjur-dev.pem:/conjur-dev.pem
+    tty: true
 
     ports:
       - 8076

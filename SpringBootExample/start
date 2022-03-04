@@ -19,12 +19,19 @@ conjur_port="${conjur_host_port##*:}"
 mkdir -p tmp
 rm -rf tmp/*
 
+echo "${admin_api_key}" > api_key
+export CONJUR_AUTHN_TOKEN_FILE="/api_key"
+
 cat <<ENV > .env
 CONJUR_APPLIANCE_URL=https://proxy
 CONJUR_ACCOUNT=dev
 CONJUR_AUTHN_LOGIN=admin
 CONJUR_AUTHN_API_KEY=$admin_api_key
+CONJUR_CERT_FILE="/conjur-dev.pem"
+CONJUR_AUTHN_TOKEN_FILE="/api_key"
 ENV
+
+source .env
 
 docker-compose run \
   --volume "${PWD}:${PWD}" \
@@ -36,10 +43,63 @@ docker-compose run \
    yes yes | conjur init -a dev -u https://proxy
    cp /root/conjur-dev.pem .
    conjur variable values add db/password secret
+   conjur variable values add db/dbuserName 123456
+   conjur variable values add db/dbpassWord 7890123
+   conjur variable values add db/key 456789
    conjur variable values add "my var" othersecret
   '
 
 sleep 2
 
-docker-compose up app
+#docker-compose up --exit-code-from app app 
 
+#docker-compose up --exit-code-from app app 
+
+docker-compose run \
+  --volume "$(git rev-parse --show-toplevel):/repo" \
+  --volume "${PWD}/maven_cache":/root/.m2 \
+  --volume "${PWD}/api_key:/api_key" \
+  --volume "${PWD}/conjur-dev.pem:/conjur-dev.pem" \
+  -e CONJUR_AUTHN_TOKEN_FILE \
+  --workdir "/repo" \
+  --no-deps \
+  --rm \
+  --entrypoint /bin/bash \
+app \
+-ec 'mvn -f pom.xml jacoco:prepare-agent test jacoco:report'
+
+#--volume "$(git rev-parse --show-toplevel):/repo"  --entrypoint /bin/bash app -ec 'mvn -f pom.xml test'
+
+#docker-compose up  app
+
+
+#docker-compose run \
+#  --volume "$(git rev-parse --show-toplevel):/repo" \
+#  --volume "${PWD}/maven_cache":/root/.m2 \
+#  --volume "${PWD}/api_key:/api_key" \
+#  --volume "${PWD}/conjur-dev.pem:/conjur-dev.pem" \
+#  -e CONJUR_AUTHN_TOKEN_FILE \
+#  -e CONJUR_CERT_FILE \
+#  -e CONJUR_AUTHN_API_KEY \
+#  -e CONJUR_AUTHN_LOGIN \
+#  -e CONJUR_ACCOUNT \
+#  -e CONJUR_APPLIANCE_URL \
+#  --workdir "/repo" \
+#  --rm \
+#  --no-deps \
+#  --entrypoint /bin/bash \
+#  app \
+#  -ec '
+   
+#   mvn -f pom.xml  test
+#  '
+  
+  # mvn -f pom.xml  test
+  #'
+# Jacoco fails because the plugin depends on it, but SpringBootExample does not.
+# Copy jacoco config from plugin pom to example pom to fix issue, then
+# add jacoco targets to call on line 73.
+#mvn -f pom.xml jacoco:prepare-agent test jacoco:report
+
+ cp ../target/site/jacoco/jacoco.xml ../src/main/java
+ cp ../target/site/jacoco/index.html ../jacoco.html
