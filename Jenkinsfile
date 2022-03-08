@@ -85,9 +85,17 @@ pipeline {
 
         // Run Docker Image to compile code and build jar
         sh './build-package.sh'
+
+        publishHTML (target : [allowMissing: false,
+          alwaysLinkToLastBuild: false,
+          keepAll: true,
+          reportDir: 'target/apidocs',
+          reportFiles: 'index.html',
+          reportName: 'Java Doc',
+          reportTitles: 'Conjur Spring Boot SDK'])
       }
     }
-
+  // Unit tests are now running from start.sh
   //   stage('UnitTest') {
   //     steps {
   //       sh './run-tests.sh'
@@ -113,10 +121,16 @@ pipeline {
     }
     stage('Report Test Coverage to Code Climate'){
       steps {
-        archiveArtifacts(artifacts:'jacoco.html')
         dir('src/main/java'){
           ccCoverage('jacoco')
         }
+        publishHTML (target : [allowMissing: false,
+          alwaysLinkToLastBuild: false,
+          keepAll: true,
+          reportDir: 'target/site/jacoco/',
+          reportFiles: 'index.html',
+          reportName: 'Coverage Report',
+          reportTitles: 'Conjur Spring Boot SDK Code Coverage Jacoco report'])
       }
     }
 
