@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.0.1] 2022-02-03
 
 ### Added
+- Initial Code Import
+- Sample Application
+- Test Cases & Infrastructure
 
 ### Changed
 
