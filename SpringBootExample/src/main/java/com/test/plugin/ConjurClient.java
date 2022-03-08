@@ -12,15 +12,10 @@ import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
 
 @SpringBootApplication
-//@ConjurPropertySource("jenkinsapp/") 
 @ConjurPropertySource(value={"db/"})
-//@ConjurPropertySource(value={"jenkinsapp1/", "jenkinsapp2/", "jenkinsapp3/", "jenkinsapp4/"}, name="vault2")//multi vault support to be added later
 public class ConjurClient implements CommandLineRunner{
-	
+
 	private static Logger logger = LoggerFactory.getLogger(ConjurClient.class);
-
-	
-
 
 	@Value("${password}")
 	private String pass;
@@ -33,16 +28,11 @@ public class ConjurClient implements CommandLineRunner{
 
 	@Value("${key}")
 	private String pass3;
-	 
-//	@Value("${keyVal}")
-//	private String keyVal;
-	
+
 	@ConjurValue(key="db/password")
 	private String customVal;
-	
+
     public static void main(String[] args) {
-    	
-    	
         SpringApplication.run(ConjurClient.class, args);
     }
 
@@ -61,7 +51,6 @@ public class ConjurClient implements CommandLineRunner{
 
 		System.out.println("By Using Custom annotation -->"+pass3);
 		System.out.println("By Using Custom annotation -->"+customVal);
-
 	}
 }
 

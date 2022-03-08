@@ -68,38 +68,4 @@ docker-compose run \
 app \
 -ec 'mvn -f pom.xml jacoco:prepare-agent test jacoco:report'
 
-#--volume "$(git rev-parse --show-toplevel):/repo"  --entrypoint /bin/bash app -ec 'mvn -f pom.xml test'
-
-#docker-compose up  app
-
-
-#docker-compose run \
-#  --volume "$(git rev-parse --show-toplevel):/repo" \
-#  --volume "${PWD}/maven_cache":/root/.m2 \
-#  --volume "${PWD}/api_key:/api_key" \
-#  --volume "${PWD}/conjur-dev.pem:/conjur-dev.pem" \
-#  -e CONJUR_AUTHN_TOKEN_FILE \
-#  -e CONJUR_CERT_FILE \
-#  -e CONJUR_AUTHN_API_KEY \
-#  -e CONJUR_AUTHN_LOGIN \
-#  -e CONJUR_ACCOUNT \
-#  -e CONJUR_APPLIANCE_URL \
-#  --workdir "/repo" \
-#  --rm \
-#  --no-deps \
-#  --entrypoint /bin/bash \
-#  app \
-#  -ec '
-   
-#   mvn -f pom.xml  test
-#  '
-  
-  # mvn -f pom.xml  test
-  #'
-# Jacoco fails because the plugin depends on it, but SpringBootExample does not.
-# Copy jacoco config from plugin pom to example pom to fix issue, then
-# add jacoco targets to call on line 73.
-#mvn -f pom.xml jacoco:prepare-agent test jacoco:report
-
  cp ../target/site/jacoco/jacoco.xml ../src/main/java
- cp ../target/site/jacoco/index.html ../jacoco.html
