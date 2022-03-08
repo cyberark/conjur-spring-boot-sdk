@@ -67,8 +67,10 @@ pipeline {
       steps {
         updateVersion("CHANGELOG.md", "${BUILD_NUMBER}")
         sh '''
+          cp VERSION VERSION.original
           version="$(<VERSION)"
           echo "${version}-SNAPSHOT" >> VERSION
+          cp VERSION VERSION.snapshot
         '''
       }
     }
@@ -134,7 +136,7 @@ pipeline {
       }
     }
 
-    stage('SpringBootExample') {
+    stage('Release') {
       when {
         expression {
           MODE == "RELEASE"
@@ -142,6 +144,8 @@ pipeline {
       }
 
       steps {
+        // VERSION-SNAPSHOT is not valid for the release process.
+        sh 'cp VERSION.original VERSION'
         release { billOfMaterialsDirectory, assetDirectory ->
           // Publish release artifacts to all the appropriate locations
           // Copy any artifacts to assetDirectory to attach them to the Github release
