@@ -1,45 +1,102 @@
-# {Your project name}
-TODO: Insert brief description of your project
 
-## Certification level
-TODO: Select the appropriate certification level section below, and remove all others.
+# Conjur Spring Boot Plugin
 
-{Community}
-![](https://img.shields.io/badge/Certification%20Level-Community-28A745?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
+Conjur Spring Boot Plugin provides client-side support for externalized configuration in a distributed system. With [Conjur’s Vault](https://www.conjur.org/) you have a central place to manage external secret properties for applications across all environments. Vault can manage static and dynamic secrets such as username/password for remote applications/resources and provide credentials for external services such as MySQL, PostgreSQL, Apache Cassandra, Couchbase, MongoDB, Consul, AWS and more.
 
-This repo is a **Community** level project. It's a community contributed project that **is not reviewed or supported
-by CyberArk**. For more detailed information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#community).
 
-{Trusted}
-![](https://img.shields.io/badge/Certification%20Level-Trusted-007BFF?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
+## Features
+* JavaConfig for Vault Client.
+* Retrieve the single secret for the given vault's path.
+* Retrieve secrets from Vault and initialize Spring Environment with remote property sources.
+* Retrieves the multi secrets for the given vault's paths.
 
-This repo is a **Trusted** level project. It's been reviewed by CyberArk to verify that it will securely
-work with Conjur OSS as documented. For more detailed  information on our certification levels, see
-[our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#community).
 
-{Certified}
-![](https://img.shields.io/badge/Certification%20Level-Certified-6C757D?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
+## Quick Start
 
-This repo is a **Certified** level project. It's been reviewed by CyberArk to verify that it will securely
-work with CyberArk DAP as documented. In addition, CyberArk offers Enterprise-level support for these features. For
-more detailed  information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#community).
+Maven configuration
 
-## Requirements
+Add the Maven dependency
 
-TODO: Add any requirements that apply to your project here. Which Conjur / DAP versions is it
-compatible with? Does it integrate with other tools / projects - and if so, what versions of those
-does it require?
 
-## Usage instructions
 
-TODO: add details for how to use your project. Examples can be quite nice here. You should have
-a high level overview of the benefit of your project and its main use cases.
+---
+   
+         <dependency>
+         <groupId>com.cyberark.conjur.springboot</groupId>
+         <artifactId>Spring-boot-conjur</artifactId>
+         <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
-## Contributing
+ ---   
 
-We welcome contributions of all kinds to this repository. For instructions on how to get started and descriptions
-of our development workflows, please see our [contributing guide](https://github.com/cyberark/conjur-api-go/blob/master/CONTRIBUTING.md).
+## Environment Setup
 
-## License
+* At least Java 11 and a properly configured JAVA_HOME environment variable.
+* [At least Conjur OSS version 1.9+ shall be installed.](https://www.conjur.org/get-started/quick-start/oss-environment/)
+* Spring boot conjur library utilizes conjur sdk java client to connect and retrieve secrets from conjur vault, which require the following connection properties to set at environment variables-
 
-This repository is licensed under Apache License 2.0 - see [`LICENSE`](LICENSE) for more details.
+|            Name   | Environment ID           |   Field Type    | Description                     | 
+| ------------------ | ------------------       |   ------------- | -----------------------     |
+| Conjur Account     | CONJUR_ACCOUNT           |   STRING        | Account to connect          |
+| API key            | CONJUR_AUTHN_API_KEY     |   PASSWORD      | User/host API Key/password  |
+| Connection url     | CONJUR_APPLIANCE_URL     |   STRING        | Conjur instance to connect  |
+| User/host identity | CONJUR_AUTHN_LOGIN       |   STRING        | User /host identity         |
+| ca.cert            | CONJUR_CERT_FILE         |   STRING        |   ca.cert file              |              
+| SSL Certificate    | CONJUR_SSL_CERTIFICATE   |   INPUT STREAM  | Certificate Text            |
+| Token File         | CONJUR_AUTHN_TOKEN_FILE  |   STRING        | Directoty path of token file      |
+## Using Plugin
+
+
+1. `@ConjurPropertySource` provides a convenient and declarative mechanism for adding a `PropertySource` to Spring’s `Environment`.
+
+To be used in conjunction with @Configuration classes.
+Example usage
+
+Given a Vault path `secret/my-application` containing the configuration data pair `database.password=mysecretpassword`, the following `@Configuration`
+class uses `@VaultPropertySource` to contribute `secret/my-application` to the `Environment`'s set of `PropertySources`
+
+
+----
+    @Configuration
+    @ConjurPropertySource("secret/my-application")
+    public class AppConfig {
+
+    @Autowired 
+    Environment env;
+
+    @Value("${database.password:notFound}")
+	private String password;
+
+    @Bean
+    public TestBean testBean() {
+        TestBean testBean = new TestBean();
+        testBean.setPassword(env.getProperty("database.password"));
+        return testBean;
+          }
+     }
+----
+
+2. `@ConjurValue` and `@ConjurValues` provides another way to fetching secret
+
+----
+    @Configuration
+    public class AppConfig {
+
+    @ConjurValue("secret/my-application/database.password")
+	private String password;
+
+    @ConjurValues({"secret/my-application","my-secret/my-application1","my-secret/my-application"2})
+    private Object secrets;
+
+    @Bean
+    public TestBean testBean() {
+        TestBean testBean = new TestBean();
+        testBean.setPassword(password);
+        return testBean;
+          }
+     }
+----
+
+
+
+

@@ -12,15 +12,24 @@ fi
 # Use tools image to update version in pom file to match the version in CHANGELOG.md
 docker run \
     --volume "${PWD}:${PWD}" \
-    --volume "maven_cache":/root/.m2 \
+    --volume "${PWD}/maven_cache":/root/.m2 \
     --workdir "${PWD}" \
     tools \
-        mvn versions:set -DnewVersion="$(<VERSION)"
+        mvn versions:set -DnewVersion="$(<VERSION)" -Dmaven.test.skip
+# TODO: Update sample app dependency to use this version.
 
 # Use Tools image to package code
 docker run \
     --volume "${PWD}:${PWD}" \
-    --volume "maven_cache":/root/.m2 \
+    --volume "${PWD}/maven_cache":/root/.m2 \
     --workdir "${PWD}" \
     tools \
-        mvn -f pom.xml package
+        mvn -f pom.xml package -Dmaven.test.skip
+
+# Remove javadoc jar so only the target jar remains.
+docker run \
+    --volume "${PWD}:${PWD}" \
+    --volume "${PWD}/maven_cache":/root/.m2 \
+    --workdir "${PWD}" \
+    tools \
+        rm -f target/*-javadoc.jar

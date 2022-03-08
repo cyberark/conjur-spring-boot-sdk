@@ -17,13 +17,15 @@ if (params.MODE == "PROMOTE") {
     // Any version number updates from sourceVersion to targetVersion occur here
     // Any publishing of targetVersion artifacts occur here
     // Anything added to assetDirectory will be attached to the Github Release
-    env.ASSET_DIR = assetDirectory
 
-    // This call downloads the pre-release jar from artifactory, modifies its version
-    // and publishes it to the releases repo in artifactory.
-    // It also copies the release jar to ASSET_DIR for inclusion in the Github
-    // Release
-    release.publishJava('spring-boot-conjur', sourceVersion, targetVersion)
+    sh """
+      set -exuo pipefail
+      git checkout "${sourceVersion}"
+      echo "${targetVersion}" > VERSION
+      ./build-package.sh
+      summon -e artifactory ./publish.sh
+      cp target/*.jar "${assetDirectory}"
+    """
   }
   return
 }
@@ -64,38 +66,54 @@ pipeline {
     stage('Validate Changelog and set version') {
       steps {
         updateVersion("CHANGELOG.md", "${BUILD_NUMBER}")
+        sh '''
+          version="$(<VERSION)"
+          echo "${version}-SNAPSHOT" >> VERSION
+        '''
       }
     }
 
     stage('Build') {
       steps {
+
+        // create mvn settings.xml with repo creds pulled
+        // from conjurops
+        sh 'summon -e artifactory ./generate-maven-settings.sh'
+
         // Build Docker Image for tools (eg mvn)
         sh './build-tools-image.sh'
 
         // Run Docker Image to compile code and build jar
         sh './build-package.sh'
 
-        // Build Docker image and push to internal artifactory
-        sh './build-app-image.sh'
+        publishHTML (target : [allowMissing: false,
+          alwaysLinkToLastBuild: false,
+          keepAll: true,
+          reportDir: 'target/apidocs',
+          reportFiles: 'index.html',
+          reportName: 'Java Doc',
+          reportTitles: 'Conjur Spring Boot SDK'])
       }
     }
-
-    stage('UnitTest') {
-      steps {
-        sh './run-tests.sh'
-      }
-    }
+  // Unit tests are now running from start.sh
+  //   stage('UnitTest') {
+  //     steps {
+  //       sh './run-tests.sh'
+  //     }
+  //   }
 
     stage('functionalTests') {
       steps {
-        dir ('functionaltests') {
+        dir ('SpringBootExample') {
+          sh './build-sampleapp-image.sh'
           sh './start'
         }
+        sh './run-tests.sh'
       }
 
       post {
         always {
-          dir ('functionaltests') {
+          dir ('SpringBootExample') {
             sh './stop'
           }
         }
@@ -103,14 +121,20 @@ pipeline {
     }
     stage('Report Test Coverage to Code Climate'){
       steps {
-        archiveArtifacts(artifacts:'jacoco.html')
         dir('src/main/java'){
           ccCoverage('jacoco')
         }
+        publishHTML (target : [allowMissing: false,
+          alwaysLinkToLastBuild: false,
+          keepAll: true,
+          reportDir: 'target/site/jacoco/',
+          reportFiles: 'index.html',
+          reportName: 'Coverage Report',
+          reportTitles: 'Conjur Spring Boot SDK Code Coverage Jacoco report'])
       }
     }
 
-    stage('Release') {
+    stage('SpringBootExample') {
       when {
         expression {
           MODE == "RELEASE"

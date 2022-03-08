@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.cyberark.core.env.ConjurConfig;
+import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 
 // This class doesn't contain real tests, just placeholders
 // so the test pipeline could be configured.
