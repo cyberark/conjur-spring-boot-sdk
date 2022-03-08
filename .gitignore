@@ -38,3 +38,5 @@ conjur-dev.pem
 nginx.crt
 nginx.key
 api_key
+.settings/
+**/.settings/
