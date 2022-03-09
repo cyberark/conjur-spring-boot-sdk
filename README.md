@@ -58,7 +58,7 @@ Following is the technology stack that is used for the development of the librar
 ## Using Plugin
 
 
-1. `@ConjurPropertySource` provides a convenient and declarative mechanism for adding a `PropertySource` to Spring’s `Environment`.
+1. `@ConjurPropertySource` provides a convenient and declarative mechanism for adding a `PropertySource` to Spring’s `Environment` and also by adding optional file with name `conjur.properties` in a spring boot discoverable location `(/src/main/resources/)`.
 
 To be used in conjunction with @Configuration classes.
 Example usage
