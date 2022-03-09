@@ -28,6 +28,17 @@ Add the Maven dependency
 
  ---   
 
+## Technical Stack
+
+Following is the technology stack that is used for the development of the library.
+
+*	Java 11(JDK 11 and JRE 11)  (For more info of java version Please refer given link-https://www.oracle.com/java/technologies/java-se-support-roadmap.html )
+
+*	Conjur OSS version 1.9+
+
+*	Conjur sdk  java version 4.0.0
+*	Conjur api version 5.1.
+
 ## Environment Setup
 
 * At least Java 11 and a properly configured JAVA_HOME environment variable.
