@@ -58,7 +58,7 @@ class uses `@ConjurPropertySource` to contribute `policy/my-application` to the 
 
 ----
     @Configuration
-    @ConjurPropertySource("p/my-application")
+    @ConjurPropertySource("policy/my-application")
     public class AppConfig {
 
     @Autowired 
@@ -70,7 +70,7 @@ class uses `@ConjurPropertySource` to contribute `policy/my-application` to the 
     @Bean
     public TestBean testBean() {
         TestBean testBean = new TestBean();
-        testBean.setPassword(env.getProperty("database.password"));
+        testBean.setPassword(password);
         return testBean;
           }
      }
