@@ -52,13 +52,13 @@ Add the Maven dependency
 To be used in conjunction with @Configuration classes.
 Example usage
 
-Given a Vault path `secret/my-application` containing the configuration data pair `database.password=mysecretpassword`, the following `@Configuration`
-class uses `@ConfigPropertySource` to contribute `secret/my-application` to the `Environment`'s set of `PropertySources`
+Given a Vault path `policy/my-application` containing the configuration data pair `database.password=mysecretpassword`, the following `@Configuration`
+class uses `@ConjurPropertySource` to contribute `policy/my-application` to the `Environment`'s set of `PropertySources`
 
 
 ----
     @Configuration
-    @ConjurPropertySource("secret/my-application")
+    @ConjurPropertySource("p/my-application")
     public class AppConfig {
 
     @Autowired 
@@ -82,11 +82,11 @@ class uses `@ConfigPropertySource` to contribute `secret/my-application` to the 
     @Configuration
     public class AppConfig {
 
-    @ConjurValue("secret/my-application/database.password")
+    @ConjurValue("policy/my-application/database.password")
 	private String password;
 
-    @ConjurValues({"secret/my-application","my-secret/my-application1","my-secret/my-application"})
-    private Object secrets;
+    @ConjurValues({"policy/my-application/db.userName","policy/my-application/db.password","policy/my-application/db.name"})
+    private String [] secrets;
 
     @Bean
     public TestBean testBean() {
