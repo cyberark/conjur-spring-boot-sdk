@@ -6,10 +6,10 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
 /**
- * 
- * This interface represents the custom annotation which takes the key as input and 
- * returns the secret value from the conjur vault.
+ * Annotation providing a convenient and declarative mechanism for adding a
+ * {@link ConjurValues} to Spring Boot Application.
  *
  */
 @Documented
@@ -17,6 +17,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface ConjurValues {
 
+	/**
+	 * Indicates the complete path for multiple keys.
+	 * 
+	 */
 	String[] keys();
 
 }

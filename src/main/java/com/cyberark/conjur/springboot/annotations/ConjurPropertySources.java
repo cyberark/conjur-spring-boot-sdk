@@ -6,9 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
+
 /**
- * 
- * This interface represents Custom annotation, which receives the array of different vault paths.    
+ * Container annotation that aggregates several {@link ConjurPropertySource}
+ * annotations.
  * 
  */
 @Target(ElementType.TYPE)
