@@ -20,6 +20,12 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.MultiValueMap;
 
+/**
+ * 
+ * This class helps to get the all variables define at custom annotation side
+ * and registers these with ConjurPropertySource class for further processing.
+ *
+ */
 public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPostProcessor, EnvironmentAware {
 
 	private Environment environment;
@@ -33,6 +39,9 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 		return environment;
 	}
 
+	/**
+	 * Processes the annotations data.
+	 */
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 
@@ -51,6 +60,11 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 			propertySources.addLast(ps);
 		}
 	}
+
+	/**
+	 * This method finds all variables values defined at annotation side and
+	 * registers then with give bean.
+	 */
 
 	@Override
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
@@ -72,11 +86,13 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 		// resolve repeatable / container annotations
 		if (attributesCont != null) {
 			for (Object attribs : attributesCont.get("value")) {
-				//for (AnnotationAttributes a : ((AnnotationAttributes[])((Object[])attribs))) {
-					makeAndRegisterBean(registry, (String[]) ((LinkedHashMap<String, Object>) attribs).get("value"), ((AnnotationAttributes) attribs).getString("name"));
-				//}
+				// for (AnnotationAttributes a : ((AnnotationAttributes[])((Object[])attribs)))
+				// {
+				makeAndRegisterBean(registry, (String[]) ((LinkedHashMap<String, Object>) attribs).get("value"),
+						((AnnotationAttributes) attribs).getString("name"));
+				// }
 			}
-			}
+		}
 
 		// resolve single annotations
 		if (attributes != null)

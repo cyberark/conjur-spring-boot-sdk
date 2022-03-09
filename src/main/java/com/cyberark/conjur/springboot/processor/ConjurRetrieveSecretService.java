@@ -16,6 +16,13 @@ public class ConjurRetrieveSecretService {
 
 	private SecretsApi secretsApi;
 
+	/**
+	 * This method retrieves multiple secrets for custom annotation's keys.
+	 * 
+	 * @param keys - query to vault.
+	 * @return secrets - output from the vault.
+	 * @throws ApiException - Exception thrown from conjur java sdk.
+	 */
 	public String retriveMultipleSecretsForCustomAnnotation(String[] keys) throws ApiException {
 
 		Object result = null;
@@ -34,6 +41,13 @@ public class ConjurRetrieveSecretService {
 
 	}
 
+	/**
+	 * This method retrieves single secret for custom annotation's key value.
+	 * 
+	 * @param keys - query to vault.
+	 * @return secrets - output from the vault.
+	 * @throws ApiException - Exception thrown from conjur java sdk.
+	 */
 	public String retriveSingleSecretForCustomAnnotation(String key) throws ApiException {
 		String result = null;
 		secretsApi = new SecretsApi();

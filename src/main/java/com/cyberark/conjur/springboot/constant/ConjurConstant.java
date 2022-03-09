@@ -1,5 +1,9 @@
 package com.cyberark.conjur.springboot.constant;
-
+/**
+ * 
+ * Conjur Spring boot plugin constant file.
+ *
+ */
 public class ConjurConstant {
 
 	public static final String CONJUR_MAPPING = "conjur.mapping.";

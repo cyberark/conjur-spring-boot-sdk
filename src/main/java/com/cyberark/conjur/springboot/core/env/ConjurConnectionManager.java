@@ -6,7 +6,12 @@ import org.slf4j.LoggerFactory;
 import com.cyberark.conjur.sdk.AccessToken;
 import com.cyberark.conjur.sdk.ApiClient;
 import com.cyberark.conjur.sdk.Configuration;
-
+/**
+ * 
+ * This is the connection creation singleton class with conjur vault by using
+ * the conjur java sdk.
+ *
+ */
 public final class ConjurConnectionManager {
 
 	private static ConjurConnectionManager conjurConnectionInstance = null;
@@ -37,7 +42,10 @@ public final class ConjurConnectionManager {
 
 	}
 
-	// Static method to create instance of class and checking for multiple threads
+	/**
+	 * method to create instance of class and checking for multiple threads.
+	 * @return unique instance of class. 
+	 */
 	public static ConjurConnectionManager getInstance() {
 		if (conjurConnectionInstance == null) {
 			synchronized (ConjurConnectionManager.class) {
