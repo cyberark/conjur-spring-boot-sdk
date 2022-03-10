@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
  * <p>
  * Given a Vault path {@code policy/my-application} containing the configuration
  * data pair {@code database.password=mysecretpassword}, the following
- * {@code @Configuration} class uses {@code ConjurPropertySource).
+ * {@code @Configuration} class uses {@code ConjurPropertySource)}.
  *
  * 
  *

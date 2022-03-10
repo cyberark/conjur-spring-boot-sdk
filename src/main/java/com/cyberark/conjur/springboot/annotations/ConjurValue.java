@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * <p>
  * Given a Vault path {@code policy/my-application/database.password} containing
  * the configuration data pair {@code database.password=mysecretpassword}, the
- * following {@code @Configuration} class uses {@code ConjurValue).
+ * following {@code @Configuration} class uses {@code ConjurValue)}.
  *
  * 
  *  <pre class="code">
