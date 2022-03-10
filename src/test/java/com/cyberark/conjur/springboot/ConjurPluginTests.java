@@ -32,7 +32,7 @@ public class ConjurPluginTests {
 	private String key;
 	
 	@ConjurValue(key = "db/dbuserName")
-	private String userIdFromCustomAnnotation;
+	private String dbuserNameFromCustomAnnotation;
 	
 	@ConjurValues(keys = { "db/dbuserName", "db/dbpassWord" })
 	private String multipleSecrets;
@@ -70,7 +70,7 @@ public class ConjurPluginTests {
 		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
 		assertNotNull(System.getenv().getOrDefault("CONJUR_ACCOUNT", null));
 		assertNotNull(System.getenv().getOrDefault("CONJUR_CERT_FILE", null));
-		assertNotNull(System.getenv().getOrDefault("CONJUR_SSL_CERTIFICATE", null));
+		//assertNotNull(System.getenv().getOrDefault("CONJUR_SSL_CERTIFICATE", null));
 		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
 		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_TOKEN_FILE", null));
 
@@ -84,9 +84,9 @@ public class ConjurPluginTests {
 
 	@Test
 	void testForCustomAnnotations() {
-		assertNotNull(userIdFromCustomAnnotation);
+		assertNotNull(dbuserNameFromCustomAnnotation);
 		assertNotNull(multipleSecrets);
-		assertEquals(props.getProperty("dbuserName"), userIdFromCustomAnnotation);
+		assertEquals(props.getProperty("dbuserName"), dbuserNameFromCustomAnnotation);
 
 	}
 
