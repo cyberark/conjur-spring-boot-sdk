@@ -13,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
+import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.annotations.ConjurValues;
+import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 
 @SpringBootTest(classes = ConjurPluginTests.class)
 @ConjurPropertySource("db/")
@@ -27,6 +30,12 @@ public class ConjurPluginTests {
 
 	@Value("${key}")
 	private String key;
+	
+	@ConjurValue(key = "db/dbuserName")
+	private String userIdFromCustomAnnotation;
+	
+	@ConjurValues(keys = { "db/dbuserName", "db/dbpassWord" })
+	private String multipleSecrets;
 
 	// private static Properties properties;
 	private static Properties props = new Properties();
@@ -53,6 +62,34 @@ public class ConjurPluginTests {
 		}
 
 	}
+	
+	@Test
+	void testForAllEnvVariables() {
+
+		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_LOGIN", null));
+		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
+		assertNotNull(System.getenv().getOrDefault("CONJUR_ACCOUNT", null));
+		assertNotNull(System.getenv().getOrDefault("CONJUR_CERT_FILE", null));
+		assertNotNull(System.getenv().getOrDefault("CONJUR_SSL_CERTIFICATE", null));
+		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
+		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_TOKEN_FILE", null));
+
+	}
+
+	@Test
+	void testForConnection() {
+		assertNotNull(ConjurConnectionManager.getInstance());
+
+	}
+
+	@Test
+	void testForCustomAnnotations() {
+		assertNotNull(userIdFromCustomAnnotation);
+		assertNotNull(multipleSecrets);
+		assertEquals(props.getProperty("dbuserName"), userIdFromCustomAnnotation);
+
+	}
+
 
 	@Test
 	void testForSinglePath() throws ApiException {
