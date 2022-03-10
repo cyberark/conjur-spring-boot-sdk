@@ -1,22 +1,30 @@
 
 # Conjur Spring Boot Plugin
 
-Conjur Spring Boot Plugin provides client-side support for externalized configuration in a distributed system. With [Conjur’s Vault](https://www.conjur.org/) you have a central place to manage external secret properties for applications across all environments. Vault can manage static and dynamic secrets such as username/password for remote applications/resources and provide credentials for external services such as MySQL, PostgreSQL, Apache Cassandra, Couchbase, MongoDB, Consul, AWS and more.
+The Conjur Spring Boot Plugin provides client-side support for externalized configuration in a distributed system and is intended for Spring Boot applications built prior to the availability of CyberArk Conjur. Using the Conjur Spring Boot Plugin requires minimal changes to your Spring Boot application code, supports CyberArk secrets in the code, and maintains the names of your application's secrets and passwords. Your application’s secrets are stored in [Conjur’s Vault](https://www.conjur.org/), which offers the following benefits:
+
+* Provides one central location to store and retrieve secrets for applications across all environments. 
+* Supports the management of static and dynamic secrets such as username and password for remote applications and resources.  
+* Provides credentials for external services like MySQL, PostgreSQL, Apache Cassandra, Couchbase, MongoDB, Consul, AWS, and more. 
 
 
 ## Features
-* Retrieve the single secret for the given vault's path.
-* Retrieve secrets from Vault and initialize Spring Environment with remote property sources.
-* Retrieves the multi secrets for the given vault's paths.
+
+The following features are available with the Conjur Spring Boot Plugin: 
+
+* Retrieve a single secret from the Conjur Vault by specifying the vault's path.
+* Retrieve multiple secrets from the Conjur Vault by specifying the vault's paths.
+* Retrieve secrets from the Conjur Vault and initialize the Spring environment with remote property sources.
 
 
-## Quick Start
+## Limitations
 
-Maven configuration
-
-Add the Maven dependency
+The Spring Boot integration does not support creating, deleting, or updating secrets.
 
 
+## Maven Configuration
+
+Maven is a requirement for using the Conjur Spring Boot Plugin. You must have the Maven tool and add the following Maven dependency to your code.   
 
 ---
    
@@ -30,20 +38,21 @@ Add the Maven dependency
 
 ## Technical Stack
 
-Following is the technology stack that is used for the development of the library.
+The following is the technology stack used for the development of the library. 
 
-*	Java 11(JDK 11 and JRE 11)  (For more info of java version Please refer given link-https://www.oracle.com/java/technologies/java-se-support-roadmap.html )
-
-*	Conjur OSS version 1.9+
-
-*	Conjur sdk  java version 4.0.0
-*	Conjur api version 5.1.
+*	Java 11 (JDK 11 and JRE 11)   
+	For more information, refer to the [Oracle Java SE Support Roadmap](https://www.oracle.com/java/technologies/java-se-support-roadmap.html).
+*	Conjur Open Source Suite (OSS) version 1.9+
+*	Conjur SDK Java version 4.0.0
+*	Conjur API version 5.1
 
 ## Environment Setup
 
-* At least Java 11 and a properly configured JAVA_HOME environment variable.
-* [At least Conjur OSS version 1.9+ shall be installed.](https://www.conjur.org/get-started/quick-start/oss-environment/)
-* Spring boot conjur library utilizes conjur sdk java client to connect and retrieve secrets from conjur vault, which require the following connection properties to set at environment variables-
+The following is the list of environment requirements.
+
+* Java 11 or higher and a properly configured [JAVA_HOME environment variable](https://docs.oracle.com/en/cloud/saas/enterprise-performance-management-common/diepm/epm_set_java_home_104x6dd63633_106x6dd6441c.html)      
+* [Conjur OSS version 1.9 or higher](https://www.conjur.org/get-started/quick-start/oss-environment/)
+* The Spring Boot Conjur library uses the Conjur SDK Java client to connect and retrieve secrets from the Conjur Vault. You must set the following connection properties as environment variables.
 
 |            Name   | Environment ID            |   Description                 | 
 | ------------------ | ------------------       |   -----------------------     |
@@ -55,16 +64,13 @@ Following is the technology stack that is used for the development of the librar
 | SSL Certificate    | CONJUR_SSL_CERTIFICATE   |   Certificate Text            |
 | Token File         | CONJUR_AUTHN_TOKEN_FILE  |   Directoty path of token file|
 
-## Using Plugin
+## Using the Conjur Spring Boot Plugin
 
+The following information is provided as guidance for using the plugin.
 
-1. `@ConjurPropertySource` provides a convenient and declarative mechanism for adding a `PropertySource` to Spring’s `Environment` and also by adding optional file with name `conjur.properties` in a spring boot discoverable location `(/src/main/resources/)`.
+1. `@ConjurPropertySource` provides a convenient and declarative mechanism for adding a `PropertySource` to Spring’s `Environment` by adding an optional file with the name `conjur.properties` in a Spring Boot discoverable location `(/src/main/resources/)`. Use `@ConjurPropertySource`in conjunction with @Configuration classes. 
 
-To be used in conjunction with @Configuration classes.
-Example usage
-
-Given a Vault path `policy/my-application` containing the configuration data pair `database.password=mysecretpassword`, the following `@Configuration`
-class uses `@ConjurPropertySource` to contribute `policy/my-application` to the `Environment`'s set of `PropertySources`
+ Here's an example use case: Given the following vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the `Environment`'s set of `PropertySources`
 
 
 ----
@@ -87,7 +93,7 @@ class uses `@ConjurPropertySource` to contribute `policy/my-application` to the 
      }
 ----
 
-2. `@ConjurValue` and `@ConjurValues` provides another way to fetching secret
+2. `@ConjurValue` and `@ConjurValues` provide another way to retrieve secrets.
 
 ----
     @Configuration
