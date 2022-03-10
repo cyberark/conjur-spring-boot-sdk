@@ -7,6 +7,11 @@ import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
 
+/**
+ * Container annotation that aggregates several {@link ConjurPropertySource}
+ * annotations.
+ * 
+ */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Import(Registrar.class)

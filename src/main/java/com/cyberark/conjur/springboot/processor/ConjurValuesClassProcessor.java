@@ -17,7 +17,11 @@ import org.springframework.util.ReflectionUtils;
 import com.cyberark.conjur.springboot.annotations.ConjurValues;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
-
+/**
+ * 
+ * Custom annotation ConjurValues class processor.
+ *
+ */
 @Configuration
 public class ConjurValuesClassProcessor implements BeanPostProcessor {
 

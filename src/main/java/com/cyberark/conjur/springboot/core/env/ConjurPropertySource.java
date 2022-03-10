@@ -16,6 +16,12 @@ import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 
 
+/**
+ * 
+ * This class resolves the secret value for give vault path at application load
+ * time from the conjur vault.
+ *
+ */
 public class ConjurPropertySource
 //extends PropertySource<Object> {
 //consider the following alternative if miss rates are excessive
@@ -31,6 +37,10 @@ public class ConjurPropertySource
 	
 	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
 	private static String apiKeyAuth=System.getenv("CONJUR_AUTHN_API_KEY");
+	/**
+	 * a hack to support seeding environment for the file based api token support in
+	 * downstream java
+	 */
 	static {
 
 		// a hack to support seeding environment for the file based api token support in
@@ -68,6 +78,19 @@ public class ConjurPropertySource
 	}
 	}
 
+	/**
+	 * Sets the external environment variable.
+	 * 
+	 * @param newenv - setting for API_KEY
+	 * @throws NoSuchFieldException     -- class doesn't have a field of a specified
+	 *                                  name
+	 * @throws SecurityException        --indicate a security violation.
+	 * @throws IllegalArgumentException -- a method has been passed an illegal or
+	 *                                  inappropriate argument.
+	 * @throws IllegalAccessException   -- excuting method does not have access to
+	 *                                  the definition of the specified class,
+	 *                                  field, method or constructor.
+	 */
 	public static void loadEnvironmentParameters(Map<String, String> newenv)
 			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		Class[] classes = Collections.class.getDeclaredClasses();
@@ -100,6 +123,10 @@ public class ConjurPropertySource
 	public String[] getPropertyNames() {
 		return new String[0];
 	}
+
+	/**
+	 * Method which resolves @value annotation queries.
+	 */
 
 	@Override
 	public Object getProperty(String key) {

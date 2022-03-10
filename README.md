@@ -28,6 +28,17 @@ Add the Maven dependency
 
  ---   
 
+## Technical Stack
+
+Following is the technology stack that is used for the development of the library.
+
+*	Java 11(JDK 11 and JRE 11)  (For more info of java version Please refer given link-https://www.oracle.com/java/technologies/java-se-support-roadmap.html )
+
+*	Conjur OSS version 1.9+
+
+*	Conjur sdk  java version 4.0.0
+*	Conjur api version 5.1.
+
 ## Environment Setup
 
 * At least Java 11 and a properly configured JAVA_HOME environment variable.
@@ -47,18 +58,18 @@ Add the Maven dependency
 ## Using Plugin
 
 
-1. `@ConjurPropertySource` provides a convenient and declarative mechanism for adding a `PropertySource` to Spring’s `Environment`.
+1. `@ConjurPropertySource` provides a convenient and declarative mechanism for adding a `PropertySource` to Spring’s `Environment` and also by adding optional file with name `conjur.properties` in a spring boot discoverable location `(/src/main/resources/)`.
 
 To be used in conjunction with @Configuration classes.
 Example usage
 
-Given a Vault path `secret/my-application` containing the configuration data pair `database.password=mysecretpassword`, the following `@Configuration`
-class uses `@ConfigPropertySource` to contribute `secret/my-application` to the `Environment`'s set of `PropertySources`
+Given a Vault path `policy/my-application` containing the configuration data pair `database.password=mysecretpassword`, the following `@Configuration`
+class uses `@ConjurPropertySource` to contribute `policy/my-application` to the `Environment`'s set of `PropertySources`
 
 
 ----
     @Configuration
-    @ConjurPropertySource("secret/my-application")
+    @ConjurPropertySource("policy/my-application")
     public class AppConfig {
 
     @Autowired 
@@ -70,7 +81,7 @@ class uses `@ConfigPropertySource` to contribute `secret/my-application` to the 
     @Bean
     public TestBean testBean() {
         TestBean testBean = new TestBean();
-        testBean.setPassword(env.getProperty("database.password"));
+        testBean.setPassword(password);
         return testBean;
           }
      }
@@ -82,11 +93,11 @@ class uses `@ConfigPropertySource` to contribute `secret/my-application` to the 
     @Configuration
     public class AppConfig {
 
-    @ConjurValue("secret/my-application/database.password")
+    @ConjurValue("policy/my-application/database.password")
 	private String password;
 
-    @ConjurValues({"secret/my-application","my-secret/my-application1","my-secret/my-application"})
-    private Object secrets;
+    @ConjurValues({"policy/my-application/db.userName","policy/my-application/db.password","policy/my-application/db.name"})
+    private String [] secrets;
 
     @Bean
     public TestBean testBean() {

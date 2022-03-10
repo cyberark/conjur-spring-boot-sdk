@@ -6,6 +6,12 @@ import java.util.Properties;
 
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 
+/**
+ * 
+ * This class loads the external configured conjur.properties file and resolves
+ * the keys values defined in properties file.
+ *
+ */
 public class ConjurConfig {
 
 	private static Properties props = new Properties();
@@ -32,10 +38,19 @@ public class ConjurConfig {
 
 	}
 
+	/**
+	 * 
+	 * @return unique instance of class.
+	 */
 	public static ConjurConfig getInstance() {
 		return uniqueInstance;
 	}
 
+	/**
+	 * 
+	 * @param name - key define at given property file.
+	 * @return - corresponding value of key defined at given property file.
+	 */
 	public String mapProperty(String name) {
 		String mapped = props.getProperty(ConjurConstant.CONJUR_MAPPING + name);
 
