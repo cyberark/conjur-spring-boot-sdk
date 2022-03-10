@@ -15,10 +15,11 @@ import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 
+
 public class ConjurPropertySource
 //extends PropertySource<Object> {
 //consider the following alternative if miss rates are excessive
-		extends EnumerablePropertySource<Object> {
+		extends EnumerablePropertySource<Object>{
 
 	private String vaultInfo = "";
 
@@ -26,17 +27,19 @@ public class ConjurPropertySource
 
 	private SecretsApi secretsApi;
 
+	private static String authTokenFile=System.getenv("CONJUR_AUTHN_TOKEN_FILE");
+	
 	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
-
+	private static String apiKeyAuth=System.getenv("CONJUR_AUTHN_API_KEY");
 	static {
 
 		// a hack to support seeding environment for the file based api token support in
 		// downstream java
-
+	
+		if(authTokenFile!=null && apiKeyAuth==null) {
 		Map<String, String> conjurParameters = new HashMap<String, String>();
 		String apiKey = "";
-
-		try (BufferedReader br = new BufferedReader(new FileReader(System.getenv("CONJUR_AUTHN_TOKEN_FILE")))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(authTokenFile))){
 			StringBuilder sb = new StringBuilder();
 			String line = br.readLine();
 
@@ -46,7 +49,6 @@ public class ConjurPropertySource
 				line = br.readLine();
 			}
 			apiKey = sb.toString();
-			logger.info("apiKey-->" + apiKey);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 
@@ -54,10 +56,16 @@ public class ConjurPropertySource
 
 		conjurParameters.put("CONJUR_AUTHN_API_KEY", apiKey.trim());
 		try {
-	//		loadEnvironmentParameters(conjurParameters);
+		loadEnvironmentParameters(conjurParameters);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	
+	}
+	else if(apiKeyAuth==null || authTokenFile==null) {
+		 logger.error(ConjurConstant.CONJUR_APIKEY_ERROR);
+
+	}
 	}
 
 	public static void loadEnvironmentParameters(Map<String, String> newenv)
@@ -67,10 +75,11 @@ public class ConjurPropertySource
 		for (Class cl : classes) {
 			if ("java.util.Collections$UnmodifiableMap".equals(cl.getName())) {
 				Field field = cl.getDeclaredField("m");
-				field.setAccessible(false);
+				field.setAccessible(true);
 				Object obj = field.get(env);
 				Map<String, String> map = (Map<String, String>) obj;
 				map.putAll(newenv);
+				
 			}
 		}
 	}
@@ -105,11 +114,9 @@ public class ConjurPropertySource
 		try {
 			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, vaultPath + key);
 
-		} catch (ApiException e) {
-
+		} catch (ApiException ae) {
 		}
 		return result;
-
 	}
-
+	
 }
