@@ -44,7 +44,7 @@ public class ConjurRetrieveSecretService {
 	/**
 	 * This method retrieves single secret for custom annotation's key value.
 	 * 
-	 * @param keys - query to vault.
+	 * @param key - query to vault.
 	 * @return secrets - output from the vault.
 	 * @throws ApiException - Exception thrown from conjur java sdk.
 	 */
