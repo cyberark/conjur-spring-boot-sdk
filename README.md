@@ -93,10 +93,13 @@ Option 1. `@ConjurPropertySource` annotation provides a convenient and declarati
           }
      }
 ----
+
 ----
+
 conjur.properties:
 
 conjur.mapping.database.password=MyConjurOraclePassword
+
 ----
 
 
