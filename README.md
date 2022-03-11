@@ -1,7 +1,7 @@
 
 # Conjur Spring Boot Plugin
 
-The Conjur Spring Boot Plugin provides client-side support for externalized configuration in a distributed system and is intended for Spring Boot applications built prior to the availability of CyberArk Conjur. Using the Conjur Spring Boot Plugin requires minimal changes to your Spring Boot application code, supports CyberArk secrets in the code, and maintains the names of your application's secrets and passwords. Your application’s secrets are stored in [Conjur’s Vault](https://www.conjur.org/), which offers the following benefits:
+The Conjur Spring Boot Plugin provides client-side support for externalized configuration of secrets in a distributed system and is intended for Spring Boot applications built prior to the availability of CyberArk Conjur <<new built aps can alo use this plugin>>. Using the Conjur Spring Boot Plugin requires minimal changes to your Spring Boot application code, supports CyberArk secrets in the code, and maintains the names of your application's secrets and passwords. Your application’s secrets are stored in [Conjur’s Vault](https://www.conjur.org/), which offers the following benefits:
 
 * Provides one central location to store and retrieve secrets for applications across all environments. 
 * Supports the management of static and dynamic secrets such as username and password for remote applications and resources.  
@@ -66,9 +66,9 @@ The following is the list of environment requirements.
 
 ## Using the Conjur Spring Boot Plugin
 
-The following information is provided as guidance for using the plugin.
+The following information is provided as guidance for using the plugin. There are 2 alternative models in which the plugin can be used by an application. The firstone is based on a standard springboot @Value annotation and an optional conjur.priperties file to enable sectets name mapping. And the second one is based on Conjur native annotations, @ConjurValue and @ConjurValues enabling individual and bulk secrets retrieval.
 
-1. `@ConjurPropertySource` provides a convenient and declarative mechanism for adding a `PropertySource` to Spring’s `Environment` by adding an optional file with the name `conjur.properties` in a Spring Boot discoverable location `(/src/main/resources/)`. Use `@ConjurPropertySource`in conjunction with @Configuration classes. 
+Option 1. `@ConjurPropertySource` annotation provides a convenient and declarative mechanism for adding a Conjur vault based `PropertySource` to Spring’s `Environment`. COnjur manage secrets can be feched using standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location e.g. `(<a path>/resources/)` user can map the names of secrets as specified in the application code to the names stored in the Vault. Please make sure to use `@ConjurPropertySource`in conjunction with @Configuration classes. 
 
  Here's an example use case: Given the following vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the `Environment`'s set of `PropertySources`
 
@@ -93,7 +93,7 @@ The following information is provided as guidance for using the plugin.
      }
 ----
 
-2. `@ConjurValue` and `@ConjurValues` provide another way to retrieve secrets.
+Option 2. `@ConjurValue` and `@ConjurValues` provide another way to retrieve secrets.
 
 ----
     @Configuration
