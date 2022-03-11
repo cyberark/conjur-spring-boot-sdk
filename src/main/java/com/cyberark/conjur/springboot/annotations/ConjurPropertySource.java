@@ -1,5 +1,6 @@
 package com.cyberark.conjur.springboot.annotations;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
@@ -36,7 +37,7 @@ import org.springframework.context.annotation.Import;
  * }
  * </pre>
  */
-
+@Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Repeatable(ConjurPropertySources.class)
