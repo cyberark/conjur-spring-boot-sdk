@@ -1,7 +1,7 @@
 
 # Conjur Spring Boot Plugin
 
-The Conjur Spring Boot Plugin provides client-side support for externalized configuration of secrets in a distributed system and is intended for Spring Boot applications built prior to the availability of CyberArk Conjur <<new built aps can alo use this plugin>>. Using the Conjur Spring Boot Plugin requires minimal changes to your Spring Boot application code, supports CyberArk secrets in the code, and maintains the names of your application's secrets and passwords. Your application’s secrets are stored in [Conjur’s Vault](https://www.conjur.org/), which offers the following benefits:
+The Conjur Spring Boot Plugin provides client-side support for externalized configuration of secrets in a distributed system and is intended for Spring Boot applications built prior to the availability of CyberArk Conjur ( new built aps can alo use this plugin ). Using the Conjur Spring Boot Plugin requires minimal changes to your Spring Boot application code, supports CyberArk secrets in the code, and maintains the names of your application's secrets and passwords. Your application’s secrets are stored in [Conjur’s Vault](https://www.conjur.org/), which offers the following benefits:
 
 * Provides one central location to store and retrieve secrets for applications across all environments. 
 * Supports the management of static and dynamic secrets such as username and password for remote applications and resources.  
@@ -24,7 +24,7 @@ The Spring Boot integration does not support creating, deleting, or updating sec
 
 ## Maven Configuration
 
-Maven is a requirement for using the Conjur Spring Boot Plugin. You must have the Maven tool and add the following Maven dependency to your code.   
+Maven is a requirement for using the Conjur Spring Boot Plugin. You must have the Maven tool and add the following Maven dependency to your pom.xml file.   
 
 ---
    
@@ -76,6 +76,7 @@ Option 1. `@ConjurPropertySource` annotation provides a convenient and declarati
 ----
     @Configuration
     @ConjurPropertySource("policy/my-application")
+    @ConjurPropertySource("policy/my-other-application")
     public class AppConfig {
 
     @Autowired 
@@ -92,6 +93,12 @@ Option 1. `@ConjurPropertySource` annotation provides a convenient and declarati
           }
      }
 ----
+----
+conjur.properties:
+
+conjur.mapping.database.password=MyConjurOraclePassword
+----
+
 
 Option 2. `@ConjurValue` and `@ConjurValues` provide another way to retrieve secrets.
 
