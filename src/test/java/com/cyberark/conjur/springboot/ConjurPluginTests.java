@@ -82,14 +82,6 @@ public class ConjurPluginTests {
 
 	}
 
-//	@Test
-//	void testForCustomAnnotations() {
-//		assertNotNull(dbuserNameFromCustomAnnotation);
-//		assertNotNull(multipleSecrets);
-//		assertEquals(props.getProperty("dbuserName"), dbuserNameFromCustomAnnotation);
-//
-//	}
-
 
 	@Test
 	void testForSinglePath() throws ApiException {
