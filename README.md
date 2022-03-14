@@ -40,7 +40,7 @@ Maven is a requirement for using the Conjur Spring Boot Plugin. You must have th
 
 ## Technical Stack
 
-The following is the technology stack used for the development of the Conjur SDK, which provides APIs to access the Conjur Vault. 
+The following is the technology stack used for the development of the Conjur Spring Boot SDK, which provides APIs to access the Conjur Vault. 
 
 *	Java 11 (JDK 11 and JRE 11)   
 	For more information, refer to the [Oracle Java SE Support Roadmap](https://www.oracle.com/java/technologies/java-se-support-roadmap.html).
@@ -54,7 +54,7 @@ The following is the list of environment requirements.
 
 * Java 11 or higher and a properly configured [JAVA_HOME environment variable](https://docs.oracle.com/en/cloud/saas/enterprise-performance-management-common/diepm/epm_set_java_home_104x6dd63633_106x6dd6441c.html)      
 * [Conjur OSS version 1.9 or higher](https://www.conjur.org/get-started/quick-start/oss-environment/)
-* The Conjur SDK uses the Conjur SDK Java client to connect and retrieve secrets from the Conjur Vault. You must set the following connection properties as environment variables.
+* The Conjur Spring Boot SDK uses the Conjur SDK Java client to connect and retrieve secrets from the Conjur Vault. You must set the following connection properties as environment variables.
 
 |            Name   | Environment ID            |   Description                 | 
 | ------------------ | ------------------       |   -----------------------     |
