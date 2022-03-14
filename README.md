@@ -26,7 +26,7 @@ The Conjur Spring Boot Plugin does not support creating, deleting, or updating s
 
 ## Maven Configuration
 
-Maven is a requirement for using the Conjur Spring Boot Plugin. You must have the Maven tool and add the following Maven dependency to your pom.xml file.   
+Maven version 3.0 and above is a requirement for using the Conjur Spring Boot Plugin. You must have the Maven tool and add the following Maven dependency to your pom.xml file.   
 
 ---
    
