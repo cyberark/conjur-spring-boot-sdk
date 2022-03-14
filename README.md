@@ -21,7 +21,7 @@ The following features are available with the Conjur Spring Boot Plugin:
 
 ## Limitations
 
-The Spring Boot integration does not support creating, deleting, or updating secrets.
+The Conjur Spring Boot Plugin does not support creating, deleting, or updating secrets.
 
 
 ## Maven Configuration
