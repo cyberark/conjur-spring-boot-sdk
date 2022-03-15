@@ -70,9 +70,9 @@ The following is the list of environment requirements.
 
 Applications have two alternative methods for using the plugin. The first method is based on a standard Spring Boot @Value annotation and an optional conjur.properties file that enables the mapping of secret names. The second method is based on @ConjurValue and @ConjurValues, which are Conjur native annotations that enable individual and bulk secret retrieval.
 
-Option 1. `@ConjurPropertySource` annotation: Provides a convenient and declarative mechanism for adding a Conjur vault-based `PropertySource` to Spring’s `Environment`. Conjur managed secrets can be feched using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the Conjur Vault. Make sure to use `@ConjurPropertySource`in conjunction with @Configuration classes. 
+Option 1. The `@ConjurPropertySource` annotation provides a convenient and declarative mechanism for adding a Conjur vault-based `PropertySource` to Spring’s environment. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the Conjur Vault. Make sure to use `@ConjurPropertySource`in conjunction with @Configuration classes. 
 
- Here's an example use case: Given the following vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the `Environment`'s set of `PropertySources`
+ Example use case: Given the following vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
 
 
 ----
