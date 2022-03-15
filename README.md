@@ -68,7 +68,7 @@ The following is the list of environment requirements.
 
 ## Using the Conjur Spring Boot Plugin
 
-Applications have two alternative methods for using the plugin. The first method is based on a standard Spring Boot @Value annotation and an optional conjur.priperties file that enables the mapping of secret names. The second method is based on @ConjurValue and @ConjurValues, which are Conjur native annotations that enable individual and bulk secret retrieval.
+Applications have two alternative methods for using the plugin. The first method is based on a standard Spring Boot @Value annotation and an optional conjur.properties file that enables the mapping of secret names. The second method is based on @ConjurValue and @ConjurValues, which are Conjur native annotations that enable individual and bulk secret retrieval.
 
 Option 1. `@ConjurPropertySource` annotation: Provides a convenient and declarative mechanism for adding a Conjur vault-based `PropertySource` to Spring’s `Environment`. Conjur managed secrets can be feched using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the Conjur Vault. Make sure to use `@ConjurPropertySource`in conjunction with @Configuration classes. 
 
