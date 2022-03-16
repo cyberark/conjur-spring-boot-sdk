@@ -8,9 +8,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * Annotation providing a convenient and declarative mechanism for adding a
- * {@link ConjurValues} to Spring Boot Application.
- *
+ * The @ConjurValues annotation is a Conjur native annotation intended for new Spring Boot applications.
+ * Injecting the annotation into your Spring Boot code allows you to retrieve multiple secrets from the Conjur Vault by passing the complete path 
+ * to multiple keys in comma separated format.
  */
 @Documented
 @Retention(RUNTIME)
