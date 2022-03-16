@@ -7,11 +7,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation providing a convenient and declarative mechanism for adding a
- * {@link ConjurValue} to Spring Boot Application.
- * <h3>Example usage</h3>
+ * The @ConjurValue annotation is a Conjur native annotation intended for new Spring Boot applications.
+ * Injecting the annotation into your Spring Boot code allows you to retrieve a single secret from the Conjur Vault.
+ * <h3>Example usage:</h3>
  * <p>
- * Given a Vault path {@code policy/my-application/database.password} containing
+ * Given the path {@code policy/my-application/database.password} containing
  * the configuration data pair {@code database.password=mysecretpassword}, the
  * following {@code @Configuration} class uses {@code ConjurValue)}.
  *
