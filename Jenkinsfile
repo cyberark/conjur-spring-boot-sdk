@@ -115,6 +115,7 @@ pipeline {
 
       post {
         always {
+          junit 'target/surefire-reports/*.xml'
           dir ('SpringBootExample') {
             sh './stop'
           }

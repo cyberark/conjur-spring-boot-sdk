@@ -68,4 +68,5 @@ docker-compose run \
 app \
 -ec 'mvn -f pom.xml jacoco:prepare-agent test jacoco:report'
 
+ 
  cp ../target/site/jacoco/jacoco.xml ../src/main/java
