@@ -10,11 +10,13 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Import;
 
 /**
- * Annotation providing a convenient and declarative mechanism for adding a
- * {@link ConjurPropertySource} to Spring Boot Application.
+ * The @ConjurPropertySource annotation allows you to specify the root of a policy to look up. 
+ * The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API that we expose.
+ * Using @ConjurPropertySource in conjunction with @Configuration classes is required.
+ * The names of secrets, passwords, and user IDs all remain as originally specified.
  * <h3>Example usage</h3>
  * <p>
- * Given a Vault path {@code policy/my-application} containing the configuration
+ * Given a vault's path {@code policy/my-application} containing the configuration
  * data pair {@code database.password=mysecretpassword}, the following
  * {@code @Configuration} class uses {@code ConjurPropertySource)}.
  *
