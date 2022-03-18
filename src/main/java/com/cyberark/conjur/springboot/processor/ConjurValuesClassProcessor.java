@@ -43,7 +43,7 @@ public class ConjurValuesClassProcessor implements BeanPostProcessor {
 			if (field.isAnnotationPresent(ConjurValues.class)) {
 				ReflectionUtils.makeAccessible(field);
 				String[] variableId = field.getDeclaredAnnotation(ConjurValues.class).keys();
-				String result = null;
+				byte[] result = null;
 				try {
 					result = conjurRetrieveSecretService.retriveMultipleSecretsForCustomAnnotation(variableId);
 
