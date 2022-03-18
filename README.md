@@ -103,7 +103,8 @@ Conjur Properties (conjur.properties)
 ----
 
 
-Option 2. `@ConjurValue` and `@ConjurValues` provide another way to retrieve secrets.
+Option 2. The `@ConjurValue` and `@ConjurValues` annotations are intended for new Spring Boot applications. Injecting `@ConjurValue` 
+into your Spring Boot code allows you to retrieve a single secret from the Conjur Vault. `@ConjurValues` allows you to retrieve multiple secrets from the Conjur Vault.
 
 ----
     @Configuration
