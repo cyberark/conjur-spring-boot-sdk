@@ -12,11 +12,9 @@ The Conjur Spring Boot Plugin provides client-side support for externalized conf
 
 The following features are available with the Conjur Spring Boot Plugin: 
 
-* Retrieve a single secret from the Conjur Vault by specifying the path to the secret in the vault. Refer to the below example.
-* Retrieve multiple secrets from the Conjur Vault by specifying the paths to the secrets in the vault. Refer to the below example.
+* Retrieve a single secret from the Conjur Vault by specifying the path to the secret in the vault. 
+* Retrieve multiple secrets from the Conjur Vault by specifying the paths to the secrets in the vault. 
 * Retrieve secrets from the Conjur Vault and initialize the Spring environment with remote property sources.
-
-[Place an example of the first 2 bullet points here]
 
 
 ## Limitations
