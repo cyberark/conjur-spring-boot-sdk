@@ -55,7 +55,9 @@ public class ConjurRetrieveSecretService {
 		byte[] result = null;
 		secretsApi = new SecretsApi();
 		try {
-			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key).getBytes();
+			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key) != null
+					? secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key).getBytes()
+					: null; 
 		} catch (ApiException e) {
 			logger.error(e.getMessage());
 		}

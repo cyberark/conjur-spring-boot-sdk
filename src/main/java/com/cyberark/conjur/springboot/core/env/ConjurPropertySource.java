@@ -123,7 +123,7 @@ public class ConjurPropertySource
 	}
 
 	/**
-	 * Method which resolves @value annotation queries.
+	 * Method which resolves @value annotation queries and return result in the form of byte array.
 	 */
 
 	@Override
@@ -137,7 +137,8 @@ public class ConjurPropertySource
 		}
 		byte[]result = null;
 		try {
-			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, vaultPath + key).getBytes();
+			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, vaultPath + key)!=null?secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, vaultPath + key).getBytes():null;
+
 
 		} catch (ApiException ae) {
 		}
