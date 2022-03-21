@@ -1,6 +1,7 @@
 package com.cyberark.conjur.springboot;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
 import com.cyberark.conjur.springboot.annotations.ConjurValues;
+import com.cyberark.conjur.springboot.constant.ConjurConstant;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 
 @SpringBootTest(classes = ConjurPluginTests.class)
@@ -29,7 +31,11 @@ public class ConjurPluginTests {
 	@Value("${dbuserName}")
 	private byte[] dbuserName;
 	
-	
+	@Value("${dbPort:notFound}")
+	private byte[] dbPort;
+
+	@ConjurValue(key = "db/dbPort")
+	private byte[] ddbPortFromCustomAnnotation;
 
 
 	@Value("${key}")
@@ -80,6 +86,14 @@ public class ConjurPluginTests {
 	@Test
 	void testForConnection() {
 		assertNotNull(ConjurConnectionManager.getInstance());
+
+	}
+	
+	@Test
+	void testForNotExistingSecretNames() {
+		assertNull(getDdbPortFromCustomAnnotation());
+		assertNotNull(getDbPort());
+		assertEquals(ConjurConstant.NOT_FOUND, getDbPort());
 
 	}
 
@@ -163,6 +177,34 @@ public class ConjurPluginTests {
 
 	public void setDbuserName(byte[] dbuserName) {
 		this.dbuserName = dbuserName;
+	}
+
+	/**
+	 * @return the dbPort
+	 */
+	public String getDbPort() {
+		return new String(dbPort);
+	}
+
+	/**
+	 * @param dbPort the dbPort to set
+	 */
+	public void setDbPort(byte[] dbPort) {
+		this.dbPort = dbPort;
+	}
+
+	/**
+	 * @return the ddbPortFromCustomAnnotation
+	 */
+	public byte[] getDdbPortFromCustomAnnotation() {
+		return ddbPortFromCustomAnnotation;
+	}
+
+	/**
+	 * @param ddbPortFromCustomAnnotation the ddbPortFromCustomAnnotation to set
+	 */
+	public void setDdbPortFromCustomAnnotation(byte[] ddbPortFromCustomAnnotation) {
+		this.ddbPortFromCustomAnnotation = ddbPortFromCustomAnnotation;
 	}
 
 
