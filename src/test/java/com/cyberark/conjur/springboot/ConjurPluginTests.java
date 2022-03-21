@@ -21,15 +21,19 @@ import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 @ConjurPropertySource("db/")
 public class ConjurPluginTests {
 
-	@Value("${dbuserName}")
-	private String dbuserName;
+	
 
 	@Value("${dbpassWord}")
-	private String dbpassWord;
+	private byte[] dbpassWord;
+
+	@Value("${dbuserName}")
+	private byte[] dbuserName;
+	
+	
 
 
 	@Value("${key}")
-	private String key;
+	private byte[] key;
 	
 	@ConjurValue(key = "db/dbuserName")
 	private String dbuserNameFromCustomAnnotation;
@@ -123,28 +127,19 @@ public class ConjurPluginTests {
 	/**
 	 * @return the dbuserName
 	 */
-	public String getDbuserName() {
-		return dbuserName;
-	}
-
-	/**
-	 * @param dbuserName the dbuserName to set
-	 */
-	public void setDbuserName(String dbuserName) {
-		this.dbuserName = dbuserName;
-	}
+	
 
 	/**
 	 * @return the dbpassWord
 	 */
 	public String getDbpassWord() {
-		return dbpassWord;
+		return new String(dbpassWord);
 	}
 
 	/**
 	 * @param dbpassWord the dbpassWord to set
 	 */
-	public void setDbpassWord(String dbpassWord) {
+	public void setDbpassWord(byte[] dbpassWord) {
 		this.dbpassWord = dbpassWord;
 	}
 
@@ -152,14 +147,25 @@ public class ConjurPluginTests {
 	 * @return the key
 	 */
 	public String getKey() {
-		return key;
+		return new String(key);
 	}
 
 	/**
 	 * @param key the key to set
 	 */
-	public void setKey(String key) {
+	public void setKey(byte[] key) {
 		this.key = key;
+	}
+
+	public String getDbuserName() {
+		return new String(dbuserName);
+	}
+	/**
+		* @param dbuserName the dbuserName to set
+	*/
+
+	public void setDbuserName(byte[] dbuserName) {
+		this.dbuserName = dbuserName;
 	}
 
 
