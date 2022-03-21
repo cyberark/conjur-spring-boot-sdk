@@ -16,4 +16,6 @@ public class ConjurConstant {
 	
 	public static final String CONJUR_APIKEY_ERROR="Please provide Conjur Authn Token file or else api Key in environment Variable";
 
+	public static final String NOT_FOUND = "notFound";
+
 }
