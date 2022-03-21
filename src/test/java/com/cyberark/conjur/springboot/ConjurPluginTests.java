@@ -182,8 +182,8 @@ public class ConjurPluginTests {
 	/**
 	 * @return the dbPort
 	 */
-	public byte[] getDbPort() {
-		return dbPort;
+	public String getDbPort() {
+		return new String(dbPort);
 	}
 
 	/**
