@@ -23,7 +23,7 @@ public class ConjurRetrieveSecretService {
 	 * @return secrets - output from the vault.
 	 * @throws ApiException - Exception thrown from conjur java sdk.
 	 */
-	public String retriveMultipleSecretsForCustomAnnotation(String[] keys) throws ApiException {
+	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys) throws ApiException {
 
 		Object result = null;
 		secretsApi = new SecretsApi();
@@ -35,8 +35,11 @@ public class ConjurRetrieveSecretService {
 				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + "");
 			}
 		}
-		result = secretsApi.getSecrets(new String(kind));
-
+		try {
+			result = secretsApi.getSecrets(new String(kind));
+		} catch (ApiException e) {
+			logger.error(e.getMessage());
+		}
 		return processMultipleSecretResult(result);
 
 	}
@@ -48,18 +51,20 @@ public class ConjurRetrieveSecretService {
 	 * @return secrets - output from the vault.
 	 * @throws ApiException - Exception thrown from conjur java sdk.
 	 */
-	public String retriveSingleSecretForCustomAnnotation(String key) throws ApiException {
-		String result = null;
+	public byte[] retriveSingleSecretForCustomAnnotation(String key) throws ApiException {
+		byte[] result = null;
 		secretsApi = new SecretsApi();
 		try {
-			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key);
+			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key) != null
+					? secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key).getBytes()
+					: null; 
 		} catch (ApiException e) {
 			logger.error(e.getMessage());
 		}
 		return result;
 	}
 
-	private String processMultipleSecretResult(Object result) {
+	private byte[] processMultipleSecretResult(Object result) {
 		Map<String, String> map = new HashMap<String, String>();
 		String[] parts = result.toString().split(",");
 		{
@@ -71,6 +76,7 @@ public class ConjurRetrieveSecretService {
 				}
 			}
 		}
-		return map.toString();
+		return map.toString().getBytes();
 	}
+
 }

@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.annotations.ConjurValues;
 
 @SpringBootApplication
 @ConjurPropertySource(value={"db/"})
@@ -18,19 +19,22 @@ public class ConjurClient implements CommandLineRunner{
 	private static Logger logger = LoggerFactory.getLogger(ConjurClient.class);
 
 	@Value("${password}")
-	private String pass;
+	private byte[] pass;
 
 	@Value("${dbuserName}")
-	private String pass1;
+	private byte[] pass1;
 
 	@Value("${dbpassWord}")
-	private String pass2;
+	private byte[] pass2;
 
 	@Value("${key}")
-	private String pass3;
+	private byte[] pass3;
 
 	@ConjurValue(key="db/password")
-	private String customVal;
+	private byte[] customVal;
+
+	@ConjurValues(keys={"db/password","db/password"})
+	private byte[] keys;
 
     public static void main(String[] args) {
         SpringApplication.run(ConjurClient.class, args);
@@ -38,19 +42,16 @@ public class ConjurClient implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("By Using Standard Spring annotation -->  " + pass + "  " );
-		logger.info("By Using Custom annotation -->"+customVal);
-		System.out.println("By Using Custom annotation -->"+pass);
-		System.out.println("By Using Custom annotation -->"+customVal);
+		logger.info("By Using Standard Spring annotation -->  " + new String(pass) + "  " );
+		logger.info("By Using Custom annotation -->"+new String(customVal));
 
-		System.out.println("By Using Custom annotation -->"+pass1);
-		System.out.println("By Using Custom annotation -->"+customVal);
+		logger.info("By Using Standard Spring annotation -->  " + new String(pass1) + "  " );
+		logger.info("By Using Standard Spring annotation -->  " + new String(pass2) + "  " );
+		logger.info("By Using Standard Spring annotation -->  " + new String(pass3) + "  " );
 
-		System.out.println("By Using Custom annotation -->"+pass2);
-		System.out.println("By Using Custom annotation -->"+customVal);
-
-		System.out.println("By Using Custom annotation -->"+pass3);
-		System.out.println("By Using Custom annotation -->"+customVal);
+		logger.info("By Using Custom annotation for multiple retrieval -->"+new String(keys));
+		
+		
 	}
 }
 

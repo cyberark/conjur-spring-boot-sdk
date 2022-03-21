@@ -85,7 +85,7 @@ Option 1. The `@ConjurPropertySource` annotation allows you to specify the root 
     Environment env;
 
     @Value("${database.password}")
-	private String password;
+	private byte[] password;
 
     @Bean
     public TestBean testBean() {
@@ -110,10 +110,10 @@ Option 2. `@ConjurValue` and `@ConjurValues` provide another way to retrieve sec
     public class AppConfig {
 
     @ConjurValue("policy/my-application/database.password")
-	private String password;
+	private byte[] password;
 
     @ConjurValues({"policy/my-application/db.userName","policy/my-application/db.password","policy/my-application/db.name"})
-    private String [] secrets;
+    private byte[] secrets;
 
     @Bean
     public TestBean testBean() {
