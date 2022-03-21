@@ -36,11 +36,8 @@ public class ConjurPluginTests {
 	private byte[] key;
 	
 	@ConjurValue(key = "db/dbuserName")
-	private String dbuserNameFromCustomAnnotation;
+	private byte[] dbuserNameFromCustomAnnotation;
 	
-	@ConjurValues(keys = { "db/dbuserName", "db/dbpassWord" })
-	private String multipleSecrets;
-
 	// private static Properties properties;
 	private static Properties props = new Properties();
 
