@@ -12,11 +12,9 @@ The Conjur Spring Boot Plugin provides client-side support for externalized conf
 
 The following features are available with the Conjur Spring Boot Plugin: 
 
-* Retrieve a single secret from the Conjur Vault by specifying the path to the secret in the vault. Refer to the below example.
-* Retrieve multiple secrets from the Conjur Vault by specifying the paths to the secrets in the vault. Refer to the below example.
+* Retrieve a single secret from the Conjur Vault by specifying the path to the secret in the vault. 
+* Retrieve multiple secrets from the Conjur Vault by specifying the paths to the secrets in the vault. 
 * Retrieve secrets from the Conjur Vault and initialize the Spring environment with remote property sources.
-
-[Place an example of the first 2 bullet points here]
 
 
 ## Limitations
@@ -56,7 +54,7 @@ The following is the list of environment requirements.
 * [Conjur OSS version 1.9 or higher](https://www.conjur.org/get-started/quick-start/oss-environment/)
 * The Conjur Spring Boot SDK uses the Conjur SDK Java client to connect and retrieve secrets from the Conjur Vault. You must set the following connection properties as environment variables.
 
-|            Name   | Environment ID            |   Description                 | 
+| Name               | Environment ID           |   Description                 | 
 | ------------------ | ------------------       |   -----------------------     |
 | Conjur Account     | CONJUR_ACCOUNT           |   Account to connect          |
 | API key            | CONJUR_AUTHN_API_KEY     |   User/host API Key/password  |
@@ -64,7 +62,6 @@ The following is the list of environment requirements.
 | User/host identity | CONJUR_AUTHN_LOGIN       |   User /host identity         |
 | ca.cert            | CONJUR_CERT_FILE         |   ca.cert file                |              
 | SSL Certificate    | CONJUR_SSL_CERTIFICATE   |   Certificate Text            |
-| Token File         | CONJUR_AUTHN_TOKEN_FILE  |   Directoty path of token file|
 
 ## Using the Conjur Spring Boot Plugin
 
@@ -103,7 +100,8 @@ Conjur Properties (conjur.properties)
 ----
 
 
-Option 2. `@ConjurValue` and `@ConjurValues` provide another way to retrieve secrets.
+Option 2. The `@ConjurValue` and `@ConjurValues` annotations are intended for new Spring Boot applications. Injecting `@ConjurValue` 
+into your Spring Boot code allows you to retrieve a single secret from the Conjur Vault. `@ConjurValues` allows you to retrieve multiple secrets from the Conjur Vault.
 
 ----
     @Configuration
