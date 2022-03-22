@@ -22,8 +22,8 @@ import org.springframework.util.MultiValueMap;
 
 /**
  * 
- * This class helps to get the all variables define at custom annotation side
- * and registers these with ConjurPropertySource class for further processing.
+ * This class helps to get all variables defined on the custom annotation side
+ * and registers them with the ConjurPropertySource class for further processing.
  *
  */
 public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPostProcessor, EnvironmentAware {
