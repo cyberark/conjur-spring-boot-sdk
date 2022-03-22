@@ -54,7 +54,7 @@ The following is the list of environment requirements.
 * [Conjur OSS version 1.9 or higher](https://www.conjur.org/get-started/quick-start/oss-environment/)
 * The Conjur Spring Boot SDK uses the Conjur SDK Java client to connect and retrieve secrets from the Conjur Vault. You must set the following connection properties as environment variables.
 
-|            Name   | Environment ID            |   Description                 | 
+| Name               | Environment ID           |   Description                 | 
 | ------------------ | ------------------       |   -----------------------     |
 | Conjur Account     | CONJUR_ACCOUNT           |   Account to connect          |
 | API key            | CONJUR_AUTHN_API_KEY     |   User/host API Key/password  |
@@ -62,7 +62,6 @@ The following is the list of environment requirements.
 | User/host identity | CONJUR_AUTHN_LOGIN       |   User /host identity         |
 | ca.cert            | CONJUR_CERT_FILE         |   ca.cert file                |              
 | SSL Certificate    | CONJUR_SSL_CERTIFICATE   |   Certificate Text            |
-| Token File         | CONJUR_AUTHN_TOKEN_FILE  |   Directoty path of token file|
 
 ## Using the Conjur Spring Boot Plugin
 
