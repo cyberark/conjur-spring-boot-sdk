@@ -2,7 +2,9 @@
 
 # Conjur Spring Boot Plugin
 
-The Conjur Spring Boot Plugin provides client-side support for externalized configuration of secrets in a distributed system. The plugin is intended for both newly built Spring Boot applications and those built prior to the availability of CyberArk Conjur. Using the Conjur Spring Boot Plugin requires minimal changes to your Spring Boot application code, supports CyberArk secrets in the code, and maintains the names of your application's secrets and passwords. Your application’s secrets are stored in [Conjur’s Vault](https://www.conjur.org/), which offers the following benefits:
+The Conjur Spring Boot Plugin provides client-side support for externalized configuration of secrets in a distributed system. The plugin can be integrated with exisiting and new Spring Boot applications to retrieve the secrets from Conjur. Application credentials/secrets stored in Conjur can be retrieved with minimal code changes to the existing Spring Boot application code using Conjur Spring Boot Plugin.
+
+#Benefits of storing application’s secrets in [Conjur’s Vault](https://www.conjur.org/):
 
 * Provides one central location to store and retrieve secrets for applications across all environments. 
 * Supports the management of static and dynamic secrets such as username and password for remote applications and resources.  
@@ -21,26 +23,29 @@ The following features are available with the Conjur Spring Boot Plugin:
 ## Limitations
 
 The Conjur Spring Boot Plugin does not support creating, deleting, or updating secrets.
-## Technical Stack
 
-Following is the technology stack that is used for the development of the library.
+## Technical Requirements
 
-*	Java 11(JDK 11 and JRE 11)  (For more info of java version Please refer given link-https://www.oracle.com/java/technologies/java-se-support-roadmap.html )
+|  Technology    |  Version |
+|----------------|----------|
+| Java           |  11      |
+|----------------|----------|
+ Conjur OSS      |  1.9+    |
+|--------------- |----------|
+|ConjurSDK(Java) |  4.0.0  |
+|----------------|----------|
+|Conjur API.     |  5.1.    |
+|----------------|----------|
 
-*	Conjur OSS version 1.9+
+#Prerequisites
 
-*	Conjur sdk  java version 4.0.0
-*	Conjur api version 5.1.
+## [Conjur OSS setup]
 
-## Configuring the Plugin
-It is assumed that Conjur (OSS or Enterprise) and the Conjur CLI have already been
-installed in the environment and running in the background. If you haven't done so,
-follow these instructions for installation of the [OSS](https://docs.conjur.org/Latest/en/Content/OSS/Installation/Install_methods.htm)
-and these for installation of [Enterprise](https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/HomeTilesLPs/LP-Tile2.htm).
+It is assumed that Conjur (Enterprise) and the Conjur CLI have already been installed in the environment and running in the background. 
+If you haven't done so,follow these instructions doucmented 
+for [Enterprise](https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/HomeTilesLPs/LP-Tile2.htm).
 
-Once Conjur and the Conjur CLI are running in the background, you are ready to start
-setting up your Java app to work with our Conjur Spring Boot Plugin.
-
+Once Conjur and the Conjur CLI are running in the background, you are ready to start setting up your Spring Boot applcation to work with our Conjur Spring Boot Plugin.
 
 ### Setup
 The Conjur Spring Boot Plugin can be imported manually through building the source code locally, 
@@ -49,8 +54,7 @@ the following instructions for your specific use case.
 
 #### Using the Source Code
 
-You can grab the library's dependencies from the source by using Maven **or** locally
-by generating a JAR file and adding it to the project manually.
+You can grab the library's dependencies from the source by using Maven
 
 To do so from the source using Maven, following the setup steps below:
 
@@ -96,6 +100,14 @@ to the project manually by following the setup steps below:
 
 4b. For Eclipse you `Right click project > Build Path > Configure Build Path > Library > Add External JARs`.
 
+####Set Up Trust Between App and Conjur
+
+By default, the Conjur  generates and uses self-signed SSL certificates. Without trusting them, Java app will not be able to connect to the Conjur server using the Conjur APIs and . This is accomplished by  following steps:
+*Copy the .pem certificate created while setting up the Conjur
+*Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
+*In the Select Configuration popup click the Java App
+*In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
+*In the New Environment Variable window , enter 'CONJUR_SSL_CERTIFICATE' in the name field and the copied certificate in the value field
 
 ## Environment Setup
 
@@ -126,11 +138,30 @@ CLI parameters):
 | ca.cert            | CONJUR_CERT_FILE         |   STRING        |   ca.cert file              |              
 | SSL Certificate    | CONJUR_SSL_CERTIFICATE   |   INPUT STREAM  | Certificate Text            |
 
+##### Steps to set the environment variables in the Eclipse IDE
+
+Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
+*In the Select Configuration popup click the Java App
+*In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
+*In the New Environment Variable window , enter the properties with the corresponding name and vale one at a time by clciking the Add button->Click Apply &Close
+
+######Environment variables to add:
+
+*Enter CONJUR_ACCOUNT in the name field and the Account Id (created during the Conjur OSS setup. Ex: myConjurAccount) as value 
+*CONJUR_APPLIANCE_URL in the name field and the https://localhost:8443 as value
+*CONJUR_AUTHN_LOGIN in the name field and the host/fileName1(created during the Conjur OSS setup Ex:host/<file name where grant permission is defined for the user)/userName( for whom the access is granted in fileName1)
+*CONJUR_AUTHN_TOKEN_FILE in the name field and the <path/fileName> as value, where the Token is saved
+*CONJUR_CERT_FILE in the name field and the <path /.der> (.der file created during the Conjur OSS setup)
+*CONJUR_SSL_CERTIFICATE in the name filed and the details of the certificate in the value field
+
 ## Using the Conjur Spring Boot Plugin
 
-Applications have two alternative methods for using the plugin. The first method is based on a standard Spring Boot @Value annotation and an optional conjur.properties file that enables the mapping of secret names. The second method is based on @ConjurValue and @ConjurValues, which are Conjur native annotations that enable individual and bulk secret retrieval.
+There are two ways to use the plugin. 
+*@Value annotation and an optional conjur.properties file that enables the mapping of secret names. 
+*@ConjurValue and @ConjurValues, which are Conjur native annotations(Custom Annotation) that enable individual and bulk secret retrieval.
 
-Option 1. The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the Conjur Vault. 
+Option 1. 
+The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the Conjur Vault. 
 
  Example use case: Given the following vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
 
@@ -163,7 +194,8 @@ Conjur Properties (conjur.properties)
 ----
 
 
-Option 2. The `@ConjurValue` and `@ConjurValues` annotations are intended for new Spring Boot applications. Injecting `@ConjurValue` 
+Option 2. 
+The `@ConjurValue` and `@ConjurValues` annotations are intended for new Spring Boot applications. Injecting `@ConjurValue` 
 into your Spring Boot code allows you to retrieve a single secret from the Conjur Vault. `@ConjurValues` allows you to retrieve multiple secrets from the Conjur Vault.
 
 ----
