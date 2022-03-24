@@ -29,11 +29,11 @@ The Conjur Spring Boot Plugin does not support creating, deleting, or updating s
 |  Technology    |  Version |
 |----------------|----------|
 | Java           |  11      |
-|----------------|----------|
- Conjur OSS      |  1.9+    |
-|--------------- |----------|
-|ConjurSDK(Java) |  4.0.0  |
-|----------------|----------|
+|                |          |
+| Conjur OSS     |  1.9+    |
+|                |          |
+|ConjurSDK(Java) |  4.0.0   |
+|                |          |
 |Conjur API.     |  5.1.    |
 |----------------|----------|
 
