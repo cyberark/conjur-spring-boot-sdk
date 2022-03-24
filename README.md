@@ -62,7 +62,7 @@ To do so from the source using Maven, following the setup steps below:
        <dependency>
          <groupId>com.cyberark.conjur.springboot</groupId>
          <artifactId>Spring-boot-conjur</artifactId>
-         <version>0.0.1-SNAPSHOT</version>
+         <version>4.5.7</version>
       </dependency>
 ```
 
