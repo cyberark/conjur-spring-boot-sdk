@@ -100,11 +100,11 @@ to the project manually by following the setup steps below:
 ####Set Up Trust Between App and Conjur
 
 By default, the Conjur  generates and uses self-signed SSL certificates. Without trusting them, Java app will not be able to connect to the Conjur server using the Conjur APIs and . This is accomplished by  following steps:
-*Copy the .pem certificate created while setting up the Conjur
-*Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
-*In the Select Configuration popup click the Java App
-*In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
-*In the New Environment Variable window , enter 'CONJUR_SSL_CERTIFICATE' in the name field and the copied certificate in the value field
+* Copy the .pem certificate created while setting up the Conjur
+* Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
+* In the Select Configuration popup click the Java App
+* In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
+* In the New Environment Variable window , enter 'CONJUR_SSL_CERTIFICATE' in the name field and the copied certificate in the value field
 
 ## Environment Setup
 
@@ -138,24 +138,25 @@ CLI parameters):
 ##### Steps to set the environment variables in the Eclipse IDE
 
 Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
-*In the Select Configuration popup click the Java App
-*In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
-*In the New Environment Variable window , enter the properties with the corresponding name and vale one at a time by clciking the Add button->Click Apply &Close
+* In the Select Configuration popup click the Java App
+* In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
+* In the New Environment Variable window , enter the properties with the corresponding name and vale one at a time by clciking the 
+  Add button->Click Apply &Close
 
 ######Environment variables to add:
 
-*Enter CONJUR_ACCOUNT in the name field and the Account Id (created during the Conjur OSS setup. Ex: myConjurAccount) as value 
-*CONJUR_APPLIANCE_URL in the name field and the https://localhost:8443 as value
-*CONJUR_AUTHN_LOGIN in the name field and the host/fileName1(created during the Conjur OSS setup Ex:host/<file name where grant permission is defined for the user)/userName( for whom the access is granted in fileName1)
-*CONJUR_AUTHN_TOKEN_FILE in the name field and the <path/fileName> as value, where the Token is saved
-*CONJUR_CERT_FILE in the name field and the <path /.der> (.der file created during the Conjur OSS setup)
-*CONJUR_SSL_CERTIFICATE in the name filed and the details of the certificate in the value field
+* Enter CONJUR_ACCOUNT in the name field and the Account Id (created during the Conjur OSS setup. Ex: myConjurAccount) as value 
+* CONJUR_APPLIANCE_URL in the name field and the https://localhost:8443 as value
+* CONJUR_AUTHN_LOGIN in the name field and the host/fileName1(created during the Conjur OSS setup Ex:host/<file name where grant permission is defined for   the user)/userName( for whom the access is granted in fileName1)
+* CONJUR_AUTHN_TOKEN_FILE in the name field and the <path/fileName> as value, where the Token is saved
+* CONJUR_CERT_FILE in the name field and the <path /.der> (.der file created during the Conjur OSS setup)
+* CONJUR_SSL_CERTIFICATE in the name filed and the details of the certificate in the value field
 
 ## Using the Conjur Spring Boot Plugin
 
 There are two ways to use the plugin. 
-*@Value annotation and an optional conjur.properties file that enables the mapping of secret names. 
-*@ConjurValue and @ConjurValues, which are Conjur native annotations(Custom Annotation) that enable individual and bulk secret retrieval.
+* @Value annotation and an optional conjur.properties file that enables the mapping of secret names. 
+* @ConjurValue and @ConjurValues, which are Conjur native annotations(Custom Annotation) that enable individual and bulk secret retrieval.
 
 Option 1. 
 The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the Conjur Vault. 
