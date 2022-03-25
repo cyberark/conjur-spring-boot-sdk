@@ -4,7 +4,7 @@
 
 The Conjur Spring Boot Plugin provides client-side support for externalized configuration of secrets in a distributed system. The plugin can be integrated with exisiting and new Spring Boot applications to retrieve the secrets from Conjur. Application credentials/secrets stored in Conjur can be retrieved with minimal code changes to the existing Spring Boot application code using Conjur Spring Boot Plugin.
 
-#Benefits of storing application’s secrets in [Conjur’s Vault](https://www.conjur.org/):
+## Benefits of storing application’s secrets in [Conjur’s Vault](https://www.conjur.org/):
 
 * Provides one central location to store and retrieve secrets for applications across all environments. 
 * Supports the management of static and dynamic secrets such as username and password for remote applications and resources.  
@@ -31,20 +31,21 @@ The Conjur Spring Boot Plugin does not support creating, deleting, or updating s
 | Java           |  11      |
 | Conjur OSS     |  1.9+    |
 |ConjurSDK(Java) |  4.0.0   |
-|Conjur API.     |  5.1.    |
+|Conjur API      |  5.1     |
 
 
 #Prerequisites
 
-## [Conjur OSS setup]
+## Conjur OSS setup
 
 It is assumed that Conjur (Enterprise) and the Conjur CLI have already been installed in the environment and running in the background. 
-If you haven't done so,follow these instructions doucmented 
-for [Enterprise](https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/HomeTilesLPs/LP-Tile2.htm).
+If you haven't done so,follow these instructions doucmented for .If you haven't done so,follow the instructions for installation of the 
+[OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) and for installation of [Enterprise](https://www.conjur.org/get-started/quick-start/oss-environment/).
 
 Once Conjur and the Conjur CLI are running in the background, you are ready to start setting up your Spring Boot applcation to work with our Conjur Spring Boot Plugin.
 
 ### Setup
+
 The Conjur Spring Boot Plugin can be imported manually through building the source code locally, 
 or by using a dependency configuration to import from Maven Central. Please refer to
 the following instructions for your specific use case.
@@ -53,7 +54,7 @@ the following instructions for your specific use case.
 
 You can grab the library's dependencies from the source by using Maven
 
-To do so from the source using Maven, following the setup steps below:
+To do so from the source using Maven, follow the setup steps below:
 
 1. Create new Maven project using an IDE of your choice
 2. If you are using Maven to manage your project's dependencies, include the following
@@ -97,7 +98,7 @@ to the project manually by following the setup steps below:
 
 4b. For Eclipse you `Right click project > Build Path > Configure Build Path > Library > Add External JARs`.
 
-####Set Up Trust Between App and Conjur
+#### Set Up Trust Between App and Conjur
 
 By default, the Conjur  generates and uses self-signed SSL certificates. Without trusting them, Java app will not be able to connect to the Conjur server using the Conjur APIs and . This is accomplished by  following steps:
 * Copy the .pem certificate created while setting up the Conjur
@@ -107,7 +108,6 @@ By default, the Conjur  generates and uses self-signed SSL certificates. Without
 * In the New Environment Variable window , enter 'CONJUR_SSL_CERTIFICATE' in the name field and the copied certificate in the value field
 
 ## Environment Setup
-
 
 Once the setup steps have been successfully run, we will now define the variables needed
 to make the connection between the plugin and Conjur. You can do this by setting
