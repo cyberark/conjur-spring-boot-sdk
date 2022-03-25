@@ -34,15 +34,15 @@ The Conjur Spring Boot Plugin does not support creating, deleting, or updating s
 |Conjur API      |  5.1     |
 
 
-#Prerequisites
+# Prerequisites
 
 ## Conjur OSS setup
 
-It is assumed that Conjur (Enterprise) and the Conjur CLI have already been installed in the environment and running in the background. 
+It is assumed that Conjur (OSS or Enterprise) and the Conjur CLI have already been installed in the environment and running in the background. 
 If you haven't done so,follow these instructions doucmented for .If you haven't done so,follow the instructions for installation of the 
 [OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) and for installation of [Enterprise](https://www.conjur.org/get-started/quick-start/oss-environment/).
 
-Once Conjur and the Conjur CLI are running in the background, you are ready to start setting up your Spring Boot applcation to work with our Conjur Spring Boot Plugin.
+Once Conjur and the Conjur CLI are running in the background, you are ready to start setting up your Spring Boot application to work with our Conjur Spring Boot Plugin.
 
 ### Setup
 
@@ -100,7 +100,7 @@ to the project manually by following the setup steps below:
 
 #### Set Up Trust Between App and Conjur
 
-By default, the Conjur  generates and uses self-signed SSL certificates. Without trusting them, Java app will not be able to connect to the Conjur server using the Conjur APIs and . This is accomplished by  following steps:
+By default, the Conjur  generates and uses self-signed SSL certificates. Without trusting them, Java app will not be able to connect to the Conjur server using the Conjur APIs , so you will need to configure your app to trust them . This is accomplished by  following steps:
 * Copy the .pem certificate created while setting up the Conjur
 * Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
 * In the Select Configuration popup click the Java App
@@ -113,8 +113,6 @@ Once the setup steps have been successfully run, we will now define the variable
 to make the connection between the plugin and Conjur. You can do this by setting
 [environment variables](#environment-variables) 
 
-_NOTE:_ System properties will override enviroment values when both are defined for a
-variable.
 
 #### Environment Variables
 
@@ -143,7 +141,7 @@ Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Se
 * In the New Environment Variable window , enter the properties with the corresponding name and vale one at a time by clciking the 
   Add button->Click Apply &Close
 
-######Environment variables to add:
+###### Environment variables to add:
 
 * Enter CONJUR_ACCOUNT in the name field and the Account Id (created during the Conjur OSS setup. Ex: myConjurAccount) as value 
 * CONJUR_APPLIANCE_URL in the name field and the https://localhost:8443 as value
