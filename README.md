@@ -156,7 +156,7 @@ There are two ways to use the plugin.
 * @Value annotation and an optional conjur.properties file that enables the mapping of secret names. 
 * @ConjurValue and @ConjurValues, which are Conjur native annotations(Custom Annotation) that enable individual and bulk secret retrieval.
 
-Option 1. 
+#### Option 1 : Using Spring Standard @Value annotation. 
 The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the Conjur Vault. 
 
  Example use case: Given the following vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
@@ -191,7 +191,7 @@ Conjur Properties (conjur.properties)
 ----
 
 
-Option 2. 
+#### Option 2 : Using Conjur native annotations(Custom Annotation).
 The `@ConjurValue` and `@ConjurValues` annotations are intended for new Spring Boot applications. Injecting `@ConjurValue` 
 into your Spring Boot code allows you to retrieve a single secret from the Conjur Vault. `@ConjurValues` allows you to retrieve multiple secrets from the Conjur Vault.
 
