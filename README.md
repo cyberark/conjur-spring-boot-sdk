@@ -164,8 +164,9 @@ The `@ConjurPropertySource` annotation allows you to specify the root of a polic
 
 ----
     @Configuration
-    @ConjurPropertySource("policy/my-application")
-    @ConjurPropertySource("policy/my-other-application")
+    @ConjurPropertySource("policy/my-application/")
+    @ConjurPropertySource("policy/my-other-application/")
+    @ConjurPropertySource(value={"policy/my-application/", "policy/my-other-application/"}, name="")
     public class AppConfig {
 
     @Autowired 
