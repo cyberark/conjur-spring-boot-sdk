@@ -104,20 +104,39 @@ pipeline {
   //     }
   //   }
 
-    stage('functionalTests') {
+    stage('Functional Tests OSS') {
       steps {
         dir ('SpringBootExample') {
           sh './build-sampleapp-image.sh'
           sh './start'
         }
-        sh './run-tests.sh'
       }
 
       post {
         always {
           junit 'target/surefire-reports/*.xml'
+ 
           dir ('SpringBootExample') {
+            // Jenkins has already recorded these results
+            // clean them out so they aren't recorded for
+            // a second time after the Enterprise tests.
+            sh './clean_surefire_reports'
             sh './stop'
+          }
+        }
+      }
+    }
+    stage('Functional Tests Enterprise') {
+      steps {
+        dir ('SpringBootExample') {
+          sh './start_enterprise'
+        }
+      }
+      post {
+        always {
+          junit 'target/surefire-reports/*.xml'
+          dir ('SpringBootExample') {
+            sh './stop_enterprise'
           }
         }
       }

@@ -19,8 +19,31 @@ TODO:
 
 ## Testing
 
-TODO:
-[Instructions for running the test suite]
+1) Go into SpringBootExample folder and set up sample client application for connecting to Conjur via Spring-boot-sdk
+
+    $ cd SpringBootExample
+
+2) Create Docker image for sample client application.
+
+    $ ./build-sampleapp-image.sh
+
+3) Set up Sample client app and Conjur OSS environment as docker containers to test Spring-boot-sdk.
+
+    $ ./start
+
+
+    once start script finishes
+
+        It creates a container out of sample application.
+        It sets up conjur OSS environment as containers.
+        Logs into Conjur OSS environment  and adds secrets to secrets vault.
+        Finally run sample client app, client app connects to Conjur OSS via Spring-boot-sdk and fetches required secrets from Conjur OSS.
+        
+4) Clean Up.
+
+    $ ./stop
+
+    Running stop removes the running Docker Compose containers of Sample app and Conjur OSS environment.
 
 ## Releases
 
