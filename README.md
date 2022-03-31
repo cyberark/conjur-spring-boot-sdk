@@ -10,6 +10,13 @@ The Conjur Spring Boot Plugin provides client-side support for externalized conf
 * Supports the management of static and dynamic secrets such as username and password for remote applications and resources.  
 * Provides credentials for external services like MySQL, PostgreSQL, Apache Cassandra, Couchbase, MongoDB, Consul, AWS, and more. 
 
+## Certification level
+
+![](https://img.shields.io/badge/Certification%20Level-Certified-28A745?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
+
+This repo is a **Certified** level project. It's a community contributed project that **has been reviewed and tested by CyberArk
+and is trusted to use with Conjur Open Source**. For more detailed information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#certified).
+
 
 ## Features
 
@@ -214,10 +221,14 @@ into your Spring Boot code allows you to retrieve a single secret from the Conju
      }
 ----
 
+## Contributing
+
+We welcome contributions of all kinds to this repository. For instructions on how to get started and descriptions
+of our development workflows, please see our [contributing guide](CONTRIBUTING.md).
 
 ## License
 
-Copyright (c) 2020 CyberArk Software Ltd. All rights reserved.
+Copyright (c) 2022 CyberArk Software Ltd. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -231,8 +242,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-
 For the full license text see [`LICENSE`](LICENSE).
-
-
-
