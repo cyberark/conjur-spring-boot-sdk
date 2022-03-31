@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
+# Clean Maven Surefire reports
+
+docker run \
+    --volume "${PWD}:${PWD}" \
+    --volume "${PWD}/maven_cache":/root/.m2 \
+    --workdir "${PWD}" \
+    tools \
+        bash -c 'rm -f target/surefire-reports/*.xml'
