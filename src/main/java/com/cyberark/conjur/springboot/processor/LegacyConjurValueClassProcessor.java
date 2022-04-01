@@ -1,0 +1,60 @@
+
+package com.cyberark.conjur.springboot.processor;
+
+import java.lang.reflect.Field;
+import java.util.List;
+import javax.annotation.Nullable;
+import org.apache.commons.lang3.reflect.FieldUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.util.ReflectionUtils;
+
+import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.core.env.LegacyConjurConnectionManager;
+import com.cyberark.conjur.springboot.core.env.LegacyConjurPropertySource;
+
+@Configuration
+public class LegacyConjurValueClassProcessor implements BeanPostProcessor {
+
+	@Autowired
+	LegacyConjurRetrieveSecretService legacyConjurRetrieveSecretService;
+
+	private static Logger logger = LoggerFactory.getLogger(LegacyConjurPropertySource.class);
+
+	@Override
+	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		Class<?> managedBeanClass = bean.getClass();
+		LegacyConjurConnectionManager.getInstance();
+
+		List<Field> fieldList = FieldUtils.getFieldsListWithAnnotation(managedBeanClass, ConjurValue.class);
+
+		for (Field field : fieldList) {
+			if (field.isAnnotationPresent(ConjurValue.class)) {
+				ReflectionUtils.makeAccessible(field);
+				String variableId = field.getDeclaredAnnotation(ConjurValue.class).key();
+				byte[] result = null;
+				try {
+					result = legacyConjurRetrieveSecretService.retriveSingleSecretForCustomAnnotation(variableId);
+
+					field.set(bean, result);
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+				}
+
+			}
+
+		}
+
+		return bean;
+	}
+
+	@Nullable
+	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		return null;
+	}
+
+}
