@@ -23,7 +23,7 @@ if (params.MODE == "PROMOTE") {
       git checkout "${sourceVersion}"
       echo "${targetVersion}" > VERSION
       ./build-package.sh
-      summon -e artifactory ./publish.sh
+      summon ./publish.sh
       cp target/*.jar "${assetDirectory}"
     """
   }
@@ -77,11 +77,6 @@ pipeline {
 
     stage('Build') {
       steps {
-
-        // create mvn settings.xml with repo creds pulled
-        // from conjurops
-        sh 'summon -e artifactory ./generate-maven-settings.sh'
-
         // Build Docker Image for tools (eg mvn)
         sh './build-tools-image.sh'
 
@@ -169,7 +164,7 @@ pipeline {
         release { billOfMaterialsDirectory, assetDirectory ->
           // Publish release artifacts to all the appropriate locations
           // Copy any artifacts to assetDirectory to attach them to the Github release
-          sh "ASSET_DIR=\"${assetDirectory}\" summon -e artifactory ./publish.sh"
+          sh "ASSET_DIR=\"${assetDirectory}\" summon ./publish.sh"
         }
       }
     }

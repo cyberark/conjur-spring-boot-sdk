@@ -3,16 +3,157 @@
 
 	<groupId>com.cyberark.conjur.springboot</groupId>
 	<artifactId>Spring-boot-conjur</artifactId>
-	<version>4.5.7</version>
+
+	<!--
+		DO NOT UPDATE THE VERSION HERE
+		The current version is stored in the changelog.
+		When the package is built his place holder
+		version will be replaced with the latest version
+		from the changelog.
+
+		See build-package.sh
+	-->
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Spring Boot Plugin Project </name>
+	<name>Spring Boot SDK</name>
+	<description>Conjur Credentials Provider for Spring Boot Applications</description>
+
+	<licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+	<developers>
+    <developer>
+      <name>Cyberark Conjur</name>
+      <email>conj_maintainers@cyberark.com</email>
+      <organization>Cyberark Software Ltd.</organization>
+      <organizationUrl>https://conjur.org</organizationUrl>
+    </developer>
+  </developers>
+
+	<scm>
+    <connection>scm:git:git://github.com/cyberark/conjur-spring-boot-sdk.git</connection>
+    <developerConnection>scm:git:ssh://github.com:cyberark/conjur-spring-boot-sdk.git</developerConnection>
+    <url>https://github.com/cyberark/conjur-spring-boot-sdk</url>
+  </scm>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.4.RELEASE</version>
 	</parent>
+
+	<profiles>
+    <!-- Profile for activating Artifactory as our deployment goal -->
+    <profile>
+      <id>artifactory</id>
+      <distributionManagement>
+        <repository>
+          <id>conjurinc-releases</id>
+          <name>conjurinc-releases</name>
+          <url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+          <id>conjurinc-snapshots</id>
+          <name>conjurinc-snapshots</name>
+          <url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+
+    <!-- Profile for deploying and releasing to Maven Central through OSSRH -->
+    <profile>
+      <id>ossrh</id>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+      </distributionManagement>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.7</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.9.1</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Profile for signing releases -->
+    <profile>
+      <id>sign</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <!-- This is necessary for gpg to not try to use the pinentry programs -->
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                    <arg>--passphrase-file</arg>
+                    <arg>/gpg_password</arg>
+                  </gpgArguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -163,13 +304,13 @@
 	  </reporting>
 	<distributionManagement>
 		<snapshotRepository>
-			<id>artifactory-libs-snapshot-local</id>
+			<id>conjurinc-snapshots</id>
 			<name>conjurinc-snapshots</name>
 			<url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 		<repository>
-			<id>artifactory-libs-release-local</id>
+			<id>conjurinc-releases</id>
 			<name>conjurinc-releases</name>
 			<url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
 			<uniqueVersion>false</uniqueVersion>

@@ -61,4 +61,4 @@ docker run \
   --rm \
   --entrypoint /bin/bash \
   sampleapp \
-    -ec 'mvn -f pom.xml jacoco:prepare-agent test jacoco:report'
+    -ec 'mvn --batch-mode -f pom.xml jacoco:prepare-agent test jacoco:report'

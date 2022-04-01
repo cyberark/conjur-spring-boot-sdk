@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Publish a pre-release to artifactory
+
 set -euo pipefail
 
 # Load docker_rt function from utils.sh
@@ -19,21 +21,26 @@ else
     exit 1
 fi
 
-# Use Tools image to package code
-if [[ ! -f mvn-settings.xml ]]; then
-    echo "Please run summon -e artifactory ./generate-maven-settings.sh before publish.sh"
-    exit 1
-fi
 mkdir -p maven_cache
+
+if grep SNAPSHOT VERSION; then
+    echo "Snapshot Version, publishing to internal artifactory"
+    maven_profiles="artifactory,sign"
+else
+    echo "Non-Snapshot Version, publishing to internal artifactory and ossrh (maven central)"
+    maven_profiles="artifactory,ossrh,sign"
+fi
+
 docker run \
+    -e OSSRH_USERNAME \
+    -e OSSRH_PASSWORD \
+    -e JFROG_USERNAME \
+    -e JFROG_APIKEY \
     --volume "${PWD}:${PWD}" \
     --volume "${PWD}/maven_cache":/root/.m2 \
+    --volume "$GPG_PASSWORD:/gpg_password" \
+    --volume "$GPG_PRIVATE_KEY:/gpg_key" \
     --workdir "${PWD}" \
     tools \
-        cp mvn-settings.xml maven_cache/settings.xml
-docker run \
-    --volume "${PWD}:${PWD}" \
-    --volume "${PWD}/maven_cache":/root/.m2 \
-    --workdir "${PWD}" \
-    tools \
-        mvn -f pom.xml deploy -Dmaven.test.skip
+        /bin/bash -ec "gpg --batch --passphrase-file /gpg_password --trust-model always --import /gpg_key
+                       mvn --batch-mode  --settings mvn-settings.xml --file pom.xml deploy -Dmaven.test.skip -P ${maven_profiles}"
