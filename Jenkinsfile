@@ -20,7 +20,7 @@ if (params.MODE == "PROMOTE") {
 
     sh """
       set -exuo pipefail
-      git checkout "${sourceVersion}"
+      git checkout "v${sourceVersion}"
       echo "${targetVersion}" > VERSION
       ./build-package.sh
       summon ./publish.sh
