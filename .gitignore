@@ -30,7 +30,6 @@ VERSION
 pom.xml.*
 jacoco.xml
 jacoco.html
-mvn-settings.xml
 settings.xml
 .env
 cc-test-reporter
