@@ -31,7 +31,7 @@ The following features are available with the Conjur Spring Boot Plugin:
 
 The Spring Boot Plugin does not support creating, deleting, or updating secrets.
 
-## Technical Requirements
+## Technical requirements
 
 |  Technology    |  Version |
 |----------------|----------|
@@ -55,7 +55,7 @@ Once Conjur and the Conjur CLI are running in the background, setup your Spring 
 
 You can import the Spring Boot Plugin manually by building the source code locally or using a dependency configuration to import from Maven Central. For more information, see the following instructions for your specific use case.
 
-#### Using the Source Code
+#### Using the source code
 
 You can grab the library's dependencies from the source by using Maven. 
 
@@ -84,7 +84,7 @@ the version. At this time, we are compatibile with Java 11.
 Run `mvn install -DskipTests` in this repo's directory to install the Spring Boot Plugin into your
 local Maven repository.
 
-#### Using the Jarfile
+#### Using the Jar file
 
 If you prefer to generate a JAR, you can build the library locally and add the dependency
 to the project manually.
@@ -115,7 +115,7 @@ Once the setup steps are successfully run, define the needed variables to make t
 [environment variables](#environment-variables)
 
 
-#### Environment Variables
+#### Environment variables
 
 In Conjur (both Open Source and Enterprise), environment variables are mapped to configuration variables
 by prepending `CONJUR_` to the all-caps name of the configuration variable. For example,
