@@ -22,6 +22,7 @@ if (params.MODE == "PROMOTE") {
       set -exuo pipefail
       git checkout "v${sourceVersion}"
       echo "${targetVersion}" > VERSION
+      ./build-tools-image.sh
       ./build-package.sh
       summon ./publish.sh
       cp target/*.jar "${assetDirectory}"
