@@ -36,6 +36,13 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.cyberark.conjur.api</groupId>
+			<artifactId>conjur-api</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
+
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
