@@ -2,9 +2,9 @@
 
 # Conjur Spring Boot Plugin
 
-The Conjur Spring Boot Plugin provides client-side support for externalized configuration of secrets in a distributed system. The plugin can be integrated with exisiting and new Spring Boot applications to retrieve the secrets from Conjur. Application credentials/secrets stored in Conjur can be retrieved with minimal code changes to the existing Spring Boot application code using Conjur Spring Boot Plugin.
+The Conjur Spring Boot Plugin provides client-side support for externalized configuration of secrets in a distributed system. You can integrate the plugin with exisiting and new Spring Boot applications to retrieve secrets from Conjur. Using the Spring Boot Plugin, you can retrieve application credentials and secrets stored in Conjur with minimal code changes to the existing Spring Boot application code.
 
-## Benefits of storing application’s secrets in [Conjur’s Vault](https://www.conjur.org/):
+## Benefits of storing application secrets in [CyberArk's Vault](https://www.conjur.org/)
 
 * Provides one central location to store and retrieve secrets for applications across all environments.
 * Supports the management of static and dynamic secrets such as username and password for remote applications and resources.
@@ -14,22 +14,22 @@ The Conjur Spring Boot Plugin provides client-side support for externalized conf
 
 ![](https://img.shields.io/badge/Certification%20Level-Certified-28A745?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
 
-This repo is a **Certified** level project. It's a community contributed project that **has been reviewed and tested by CyberArk
-and is trusted to use with Conjur Open Source**. For more detailed information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#certified).
+This repository is a **Certified** level project. It's a community contributed project **reviewed and tested by CyberArk
+and trusted to use with Conjur Open Source**. For more detailed information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#certified).
 
 
 ## Features
 
-The following features are available with the Conjur Spring Boot Plugin:
+The following features are available with the Spring Boot Plugin:
 
-* Retrieve a single secret from the Conjur Vault by specifying the path to the secret in the vault.
-* Retrieve multiple secrets from the Conjur Vault by specifying the paths to the secrets in the vault.
-* Retrieve secrets from the Conjur Vault and initialize the Spring environment with remote property sources.
+* Retrieve a single secret from the CyberArk Vault by specifying the path to the secret in the Vault.
+* Retrieve multiple secrets from the CyberArk Vault by specifying the paths to the secrets in the Vault.
+* Retrieve secrets from the CyberArk Vault and initialize the Spring environment with remote property sources.
 
 
 ## Limitations
 
-The Conjur Spring Boot Plugin does not support creating, deleting, or updating secrets.
+The Spring Boot Plugin does not support creating, deleting, or updating secrets.
 
 ## Technical Requirements
 
@@ -44,29 +44,26 @@ The Conjur Spring Boot Plugin does not support creating, deleting, or updating s
 
 # Prerequisites
 
+The following are prerequisites to using the Spring Boot Plugin.
+
 ## Conjur OSS setup
 
-It is assumed that Conjur (OSS or Enterprise) and the Conjur CLI have already been installed in the environment and running in the background.
-If you haven't done so,follow these instructions doucmented for .If you haven't done so,follow the instructions for installation of the
-[OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) and for installation of [Enterprise](https://www.conjur.org/get-started/quick-start/oss-environment/).
+Conjur (OSS or Enterprise) and the Conjur CLI are installed in the environment and running in the background.
+If you haven't yet done so, follow the instructions for installing [OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) or [Enterprise](https://www.conjur.org/get-started/quick-start/oss-environment/).
 
-Once Conjur and the Conjur CLI are running in the background, you are ready to start setting up your Spring Boot application to work with our Conjur Spring Boot Plugin.
+Once Conjur and the Conjur CLI are running in the background, you can start setting up your Spring Boot application to work with our Conjur Spring Boot Plugin.
 
 ### Setup
 
-The Conjur Spring Boot Plugin can be imported manually through building the source code locally,
-or by using a dependency configuration to import from Maven Central. Please refer to
-the following instructions for your specific use case.
+You can import the Conjur Spring Boot Plugin manually by building the source code locally or using a dependency configuration to import from Maven Central. For information about your specific use case, see the following instructions.
 
-#### Using the Source Code
+#### Using the source code
 
-You can grab the library's dependencies from the source by using Maven
+You can grab the library's dependencies using Maven:
 
-To do so from the source using Maven, follow the setup steps below:
-
-1. Create new Maven project using an IDE of your choice
+1. Create a new Maven project using an IDE of your choice.
 2. If you are using Maven to manage your project's dependencies, include the following
-   Conjur Spring Boot Plugin dependency snippet in your `pom.xml` under `<project>`/`<dependencies>`:
+   Spring Boot Plugin dependency snippet in your `pom.xml` under `<project>`/`<dependencies>`:
 
 ```xml
        <dependency>
@@ -76,9 +73,8 @@ To do so from the source using Maven, follow the setup steps below:
       </dependency>
 ```
 
-_NOTE:_ Depending on what version of the Java compiler you have, you may need to update
-the version. At this time, the `{version}` that we are targeting compatibility with is
-Java 11:
+NOTE: Depending on the Java compiler version you have, you may need to update
+the version. At this time, we are targeting compatibility with Java 11:
 
 ```xml
   <properties>
@@ -87,50 +83,44 @@ Java 11:
   </properties>
 ```
 
-1. Run `mvn install -DskipTests` in this repo's directory to install Conjur Spring Boot Plugin into your
-   local maven repository.
+Run `mvn install -DskipTests` in this repository's directory to install the Spring Boot Plugin into your local Maven repository.
 
 #### Using the Jarfile
 
-If generating a JAR is preferred, you can build the library locally and add the dependency
-to the project manually by following the setup steps below:
+If generating a JAR is preferred, build the library locally and add the dependency to the project manually:
 
-1. Clone the Conjur Spring Boot Plugin repo locally: `git clone {repo}`
+1. Clone the Spring Boot Plugin repository locally: `git clone {repo}`
 2. Go into the cloned repository with `cd conjur-spring-boot-sdk`
-3. Run `mvn package -DskipTests` to generate a JAR file. The output `.jar` files will be located
-   in the `target` directory of the repo
+3. Run `mvn package -DskipTests` to generate a JAR file. The output `.jar` files are located
+   in the `target` directory of the repository.
+   
+4a. For Intellij, follow the steps outlined [here](https://www.jetbrains.com/help/idea/library.html)
+    to add the SDK JAR files to the new app's project.
+
+4b. For Eclipse, `right click project > Build Path > Configure Build Path > Library > Add External JARs`.
+
+#### Setup trust between app and Conjur
+
+By default, Conjur  generates and uses self-signed SSL certificates. Without trusting them, the Java app cannot connect to the Conjur server using the Conjur APIs. You need to configure your app to trust them. 
+1. Copy the .pem certificate created while setting up the Conjur.
+2. Select the Client Class in Eclipse then right-click and select Properties-> Run&Debug Setting-> New.
+3. Select Configuration popup and click the Java app.
+4. In the Edit Launch Configuration properties window, select the Environment Tab and click Add.
+5. In the New Environment Variable window, enter 'CONJUR_SSL_CERTIFICATE' in the Name field and the copied certificate in the Value field.
+
+## Environment setup
+
+Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. You can do this by setting
+[environment variables](#environment-variables).
 
 
-4a. For Intellij, Follow the steps outlined [here](https://www.jetbrains.com/help/idea/library.html)
-    to add the SDK JAR files into the new app's project.
-
-4b. For Eclipse you `Right click project > Build Path > Configure Build Path > Library > Add External JARs`.
-
-#### Set Up Trust Between App and Conjur
-
-By default, Conjur  generates and uses self-signed SSL certificates. Without trusting them, Java app will not be able to connect to the Conjur server using the Conjur APIs , so you will need to configure your app to trust them . This is accomplished by  following steps:
-* Copy the .pem certificate created while setting up the Conjur
-* Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
-* In the Select Configuration popup click the Java App
-* In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
-* In the New Environment Variable window , enter 'CONJUR_SSL_CERTIFICATE' in the name field and the copied certificate in the value field
-
-## Environment Setup
-
-Once the setup steps have been successfully run, we will now define the variables needed
-to make the connection between the plugin and Conjur. You can do this by setting
-[environment variables](#environment-variables)
-
-
-#### Environment Variables
+#### Environment variables
 
 In Conjur (both Open Source and Enterprise), environment variables are mapped to configuration variables
-by prepending `CONJUR_` to the all-caps name of the configuration variable. For example,
-`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT` etc.
+by prepending `CONJUR_` to the all-caps name of the configuration variable. 
+For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
 
-The following environment variables need to be included in the app's runtime environment in
-order use the Conjur Spring Boot Plugin if no other configuration is done (e.g. over system properties or
-CLI parameters):
+If no other configuration is done (e.g. over system properties or CLI parameters), include the following environment variables in the app's runtime environment to use the Spring Boot Plugin.
 
 | Name                     | Environment ID           |   Description                 |
 | ------------------------ | ------------------       |   -----------------------     |
@@ -141,39 +131,39 @@ CLI parameters):
 | SSL Certificate Path     | CONJUR_CERT_FILE         |   Path to certificate file    |
 | SSL Certificate Content  | CONJUR_SSL_CERTIFICATE   |   Certificate content         |
 
-Only one of CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables
-to allow the user to specify the path to a certificate file or to provide the certificate
+Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables
+to allow the user to specify the path to a certificate file or provide the certificate
 data directly in an environment variable.
 
-##### Steps to set the environment variables in the Eclipse IDE
+##### Set environment variables in the Eclipse IDE
 
-Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
-* In the Select Configuration popup click the Java App
-* In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
-* In the New Environment Variable window , enter the properties with the corresponding name and vale one at a time by clciking the
-  Add button->Click Apply &Close
+1. Select the Client Class in Eclipse, then right click Properties -> Run&Debug Setting-> New.
+2. In the Select Configuration popup, click the Java App.
+3. In the Edit Launch Configuration properties window, select the Environment Tab and click Add.
+4. In the New Environment Variable window, enter the properties with the corresponding name and vale one at a time by clciking the
+  Add button followed by Apply & Close.
   
 
-###### Environment variables to add:
+###### Add environment variables
 
-* Enter CONJUR_ACCOUNT in the name field and the Account Id (created during the Conjur OSS setup. Ex: myConjurAccount) as value.
-* CONJUR_APPLIANCE_URL in the name field and the https://localhost:8443 as value
-* CONJUR_AUTHN_LOGIN in the name field and the host/fileName1(created during the Conjur OSS setup Ex:host/<file name where grant permission is defined for   the user)/userName( for whom the access is granted in fileName1)
-* CONJUR_AUTHN_TOKEN_FILE in the name field and the <path/fileName> as value, where the Token is saved.
-* CONJUR_CERT_FILE in the name field and the <path /.der> (.der file created during the Conjur OSS setup).
-* CONJUR_SSL_CERTIFICATE in the name filed and the details of the certificate in the value field.
-* For IntelliJ, setting up trusting Conjur self-signed certs, Follow the steps outlined [here](https://www.jetbrains.com/help/idea/settings-tools-server-certificates.html)
+* Enter CONJUR_ACCOUNT in the Name field and the Account Id created during the Conjur OSS setup. For example: myConjurAccount) as value.
+* CONJUR_APPLIANCE_URL in the Name field and the https://localhost:8443 as value.
+* CONJUR_AUTHN_LOGIN in the Name field and the host/fileName1 created during the Conjur OSS setup. For example: host/<file name where grant permission is defined for the user/userName (for whom the access is granted in fileName1).
+* CONJUR_AUTHN_TOKEN_FILE in the Name field and the <path/fileName> as value, where the token is saved.
+* CONJUR_CERT_FILE in the Name field and the <path /.der> (.der file created during the Conjur OSS setup.
+* CONJUR_SSL_CERTIFICATE in the Name field and the details of the certificate in the Value field.
+* For IntelliJ, set up trusted Conjur self-signed certs by following the steps outlined [here](https://www.jetbrains.com/help/idea/settings-tools-server-certificates.html).
 
 ## Using the Conjur Spring Boot Plugin
 
 There are two ways to use the plugin.
 * @Value annotation and an optional conjur.properties file that enables the mapping of secret names.
-* @ConjurValue and @ConjurValues, which are Conjur native annotations(Custom Annotation) that enable individual and bulk secret retrieval.
+* @ConjurValue and @ConjurValues, which are Conjur native annotations (custom annotations) that enable individual and bulk secret retrieval.
 
-#### Option 1 : Using Spring Standard @Value annotation.
-The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the Conjur Vault.
+#### Option 1: Spring Standard @Value annotation
+The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the CyberArk Vault.
 
- Example use case: Given the following vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
+ Example use case: Given the following Vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
 
 
 ----
@@ -205,9 +195,9 @@ Conjur Properties (conjur.properties)
 ----
 
 
-#### Option 2 : Using Conjur native annotations(Custom Annotation).
+#### Option 2: Conjur native annotations (custom annotation)
 The `@ConjurValue` and `@ConjurValues` annotations are intended for new Spring Boot applications. Injecting `@ConjurValue`
-into your Spring Boot code allows you to retrieve a single secret from the Conjur Vault. `@ConjurValues` allows you to retrieve multiple secrets from the Conjur Vault.
+into your Spring Boot code allows you to retrieve a single secret from the CyberArk Vault. `@ConjurValues` allows you to retrieve multiple secrets from the CyberArk Vault.
 
 ----
     @Configuration
@@ -231,7 +221,7 @@ into your Spring Boot code allows you to retrieve a single secret from the Conju
 ## Contributing
 
 We welcome contributions of all kinds to this repository. For instructions on how to get started and descriptions
-of our development workflows, please see our [contributing guide](CONTRIBUTING.md).
+of our development workflows, see our [contributing guide](CONTRIBUTING.md).
 
 ## License
 
