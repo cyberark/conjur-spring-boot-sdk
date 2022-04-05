@@ -5,14 +5,27 @@ set -x
 
 mkdir -p maven_cache
 
-cp ../target/*.jar spring-boot-conjur.jar
+# Find the plugin jar
+# Array variable to force glob expansion during assignment
+jar_paths=(../target/*$(<../VERSION).jar)
+
+# Get first item from the array
+jar_path="${jar_paths[0]}"
+
+# Extract jar filename from path
+jar="$(basename "${jar_path}")"
+
+# Bring the spring boot conjur jar into this directory so
+# it is accessible to docker.
+cp "${jar_path}" "${jar}"
+
 docker run \
     --volume "${PWD}:${PWD}" \
     --volume "${PWD}/maven_cache":/root/.m2 \
     --workdir "${PWD}" \
     tools \
         mvn --batch-mode install:install-file \
-        -Dfile=spring-boot-conjur.jar \
+        -Dfile="${jar}" \
         -DgroupId=com.cyberark.conjur.springboot \
         -DartifactId=Spring-boot-conjur \
         -Dversion="$(<../VERSION)" \

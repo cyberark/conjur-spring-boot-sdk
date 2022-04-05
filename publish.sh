@@ -23,7 +23,7 @@ fi
 
 mkdir -p maven_cache
 
-if grep SNAPSHOT VERSION; then
+if grep SNAPSHOT VERSION.original; then
     echo "Snapshot Version, publishing to internal artifactory"
     maven_profiles="artifactory,sign"
 else

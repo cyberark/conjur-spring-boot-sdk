@@ -29,11 +29,3 @@ docker run \
     --workdir "${PWD}" \
     tools \
         mvn --batch-mode -f pom.xml package -Dmaven.test.skip
-
-# Remove javadoc jar so only the target jar remains.
-docker run \
-    --volume "${PWD}:${PWD}" \
-    --volume "${PWD}/maven_cache":/root/.m2 \
-    --workdir "${PWD}" \
-    tools \
-        rm -f target/*-javadoc.jar
