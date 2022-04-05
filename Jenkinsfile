@@ -18,10 +18,14 @@ if (params.MODE == "PROMOTE") {
     // Any publishing of targetVersion artifacts occur here
     // Anything added to assetDirectory will be attached to the Github Release
 
+    // Pass assetDirectory through to publish.sh as an env var.
+    env.ASSET_DIR=assetDirectory
+
     sh """
       set -exuo pipefail
       git checkout "v${sourceVersion}"
       echo "${targetVersion}" > VERSION
+      cp VERSION VERSION.original
       ./build-tools-image.sh
       ./build-package.sh
       summon ./publish.sh

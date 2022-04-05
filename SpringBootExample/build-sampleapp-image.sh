@@ -5,16 +5,29 @@ set -x
 
 mkdir -p maven_cache
 
-cp ../target/*.jar spring-boot-conjur.jar
+# Find the plugin jar
+# Array variable to force glob expansion during assignment
+jar_paths=(../target/*$(<../VERSION).jar)
+
+# Get first item from the array
+jar_path="${jar_paths[0]}"
+
+# Extract jar filename from path
+jar="$(basename "${jar_path}")"
+
+# Bring the spring boot conjur jar into this directory so
+# it is accessible to docker.
+cp "${jar_path}" "${jar}"
+
 docker run \
     --volume "${PWD}:${PWD}" \
     --volume "${PWD}/maven_cache":/root/.m2 \
     --workdir "${PWD}" \
     tools \
         mvn --batch-mode install:install-file \
-        -Dfile=spring-boot-conjur.jar \
-        -DgroupId=com.cyberark.conjur.springboot \
-        -DartifactId=Spring-boot-conjur \
+        -Dfile="${jar}" \
+        -DgroupId=com.cyberark \
+        -DartifactId=conjur-sdk-springboot \
         -Dversion="$(<../VERSION)" \
         -Dpackaging=jar \
         -DgeneratePom=true
@@ -25,7 +38,7 @@ docker run \
     --volume "${PWD}/maven_cache":/root/.m2 \
     --workdir "${PWD}" \
     tools \
-        mvn --batch-mode -f pom.xml versions:use-dep-version -Dincludes=com.cyberark.conjur.springboot:Spring-boot-conjur -DdepVersion="$(<../VERSION)"
+        mvn --batch-mode -f pom.xml versions:use-dep-version -Dincludes=com.cyberark:conjur-sdk-springboot -DdepVersion="$(<../VERSION)"
 
 docker run \
     --volume "${PWD}:${PWD}" \

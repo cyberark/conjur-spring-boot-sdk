@@ -53,10 +53,6 @@ docker-compose run \
 
 sleep 2
 
-#docker-compose up --exit-code-from app app 
-
-#docker-compose up --exit-code-from app app 
-
 docker-compose run \
   --volume "$(git rev-parse --show-toplevel):/repo" \
   --volume "${PWD}/maven_cache":/root/.m2 \
@@ -68,7 +64,7 @@ docker-compose run \
   --rm \
   --entrypoint /bin/bash \
 app \
--ec 'mvn -f pom.xml jacoco:prepare-agent test jacoco:report'
+  -ec 'mvn --batch-mode -f pom.xml jacoco:prepare-agent test jacoco:report'
 
- 
+
  cp ../target/site/jacoco/jacoco.xml ../src/main/java
