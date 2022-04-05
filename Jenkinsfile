@@ -24,7 +24,7 @@ if (params.MODE == "PROMOTE") {
     sh """
       set -exuo pipefail
       git checkout "v${sourceVersion}"
-      echo "${targetVersion}" > VERSION
+      echo -n "${targetVersion}" > VERSION
       cp VERSION VERSION.original
       ./build-tools-image.sh
       ./build-package.sh
