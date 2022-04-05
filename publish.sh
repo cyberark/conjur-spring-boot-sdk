@@ -23,12 +23,12 @@ fi
 
 mkdir -p maven_cache
 
-if grep SNAPSHOT VERSION.original; then
-    echo "Snapshot Version, publishing to internal artifactory"
-    maven_profiles="artifactory,sign"
-else
-    echo "Non-Snapshot Version, publishing to internal artifactory and ossrh (maven central)"
+if [[ "${MODE:-}" == "PROMOTE" ]]; then
+    echo "PROMOTE build, publishing to internal artifactory and ossrh (maven central)"
     maven_profiles="artifactory,ossrh,sign"
+else
+    echo "Release build, publishing to internal artifactory"
+    maven_profiles="artifactory,sign"
 fi
 
 docker run \
