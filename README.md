@@ -69,8 +69,8 @@ To do so from the source using Maven, follow the setup steps below:
 
 ```xml
        <dependency>
-         <groupId>com.cyberark.conjur.springboot</groupId>
-         <artifactId>Spring-boot-conjur</artifactId>
+         <groupId>com.cyberark</groupId>
+         <artifactId>conjur-sdk-springboot</artifactId>
          <version>1.0.0</version>
       </dependency>
 ```
