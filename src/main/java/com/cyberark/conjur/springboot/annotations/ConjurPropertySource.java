@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
  * The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API that we expose.
  * Using @ConjurPropertySource in conjunction with @Configuration classes is required.
  * The names of secrets, passwords, and user IDs all remain as originally specified.
- * <h3>Example usage</h3>
+ * <h2>Example usage</h2>
  * <p>
  * Given a vault's path {@code policy/my-application} containing the configuration
  * data pair {@code database.password=mysecretpassword}, the following
@@ -48,6 +48,7 @@ public @interface ConjurPropertySource {
 	/**
 	 * Indicates the name of query vault.
 	 * 
+	 * @return  name of query vault.
 	 */
 	String name() default "";
 
@@ -55,8 +56,13 @@ public @interface ConjurPropertySource {
 	 * Indicate the Vault path(s) of the policy to be retrieved. For example,
 	 * {@code "policy/my-application/db.userName"}.
 	 *
+	 * @return Vault path(s)
 	 */
 	String[] value();
 
+	/**
+	 * 
+	 * @return false.
+	 */
 	boolean ignoreResourceNotFound() default false;
 }
