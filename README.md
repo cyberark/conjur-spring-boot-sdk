@@ -152,6 +152,7 @@ Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Se
 * In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
 * In the New Environment Variable window , enter the properties with the corresponding name and vale one at a time by clciking the
   Add button->Click Apply &Close
+  
 
 ###### Environment variables to add:
 
@@ -161,6 +162,7 @@ Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Se
 * CONJUR_AUTHN_TOKEN_FILE in the name field and the <path/fileName> as value, where the Token is saved.
 * CONJUR_CERT_FILE in the name field and the <path /.der> (.der file created during the Conjur OSS setup).
 * CONJUR_SSL_CERTIFICATE in the name filed and the details of the certificate in the value field.
+* For IntelliJ, setting up trusting Conjur self-signed certs, Follow the steps outlined [here](https://www.jetbrains.com/help/idea/settings-tools-server-certificates.html)
 
 ## Using the Conjur Spring Boot Plugin
 
