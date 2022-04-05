@@ -1,5 +1,8 @@
 package com.cyberark.conjur.springboot.processor;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,46 +14,23 @@ public class LegacyConjurRetrieveSecretService {
 
 	private Conjur conjur;
 
-//	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys) throws ApiException {
-//		Object result = null;
-//		conjur = new Conjur();
-//		StringBuilder kind = new StringBuilder("");
-//		for (int i = 0; i <= keys.length; i++) {
-//			if (i < keys.length - 1) {
-//				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + ",");
-//			} else if (i == keys.length - 1) {
-//				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + "");
-//			}
-//		}
-//		try {
-//			result = secretsApi.getSecrets(new String(kind));
-//		} catch (ApiException e) {
-//			logger.error(e.getMessage());
-//		}
-//		return processMultipleSecretResult(result);
-//
-//	}
+	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys) throws Exception {
+		conjur = new Conjur();
+		String str = String.join(",", keys);
+		ArrayList aList = new ArrayList(Arrays.asList(str.split(",")));
+		ArrayList<String> result = new ArrayList<String>();
+		for (int i = 0; i < aList.size(); i++) {
+			result.add(conjur.variables().retrieveSecret((String) aList.get(i)));
+		}
+		return result.toString().getBytes();
+	}
 
 	public byte[] retriveSingleSecretForCustomAnnotation(String key) throws Exception {
 		byte[] result = null;
 		Conjur conjur = new Conjur();
-		 result = conjur.variables().retrieveSecret(key).getBytes();
+		result = conjur.variables().retrieveSecret(key) != null ? conjur.variables().retrieveSecret(key).getBytes()
+				: null;
 		return result;
 	}
-
-//	private byte[] processMultipleSecretResult(Object result) {
-//		Map<String, String> map = new HashMap<String, String>();
-//		String[] parts = result.toString().split(",");
-//		{
-//			for (int j = 0; j < parts.length; j++) {
-//				String[] splitted = parts[j].split("[:/=]");
-//
-//				for (int i = 0; i < splitted.length; i++) {
-//					map.put(splitted[3], splitted[4]);
-//				}
-//			}
-//		}
-//		return map.toString().getBytes();
-//	}
 
 }

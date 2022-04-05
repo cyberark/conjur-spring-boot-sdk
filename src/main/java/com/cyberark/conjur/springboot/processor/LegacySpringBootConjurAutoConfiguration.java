@@ -14,7 +14,7 @@ public class LegacySpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean
 	@Bean
-	LegacyConjurValueClassProcessor clegacyonjurSecretValueClassProcessor() {
+	LegacyConjurValueClassProcessor legacyconjurSecretValueClassProcessor() {
 		return new LegacyConjurValueClassProcessor();
 	}
 
@@ -30,10 +30,10 @@ public class LegacySpringBootConjurAutoConfiguration {
 		return new Conjur();
 	}
 
-//	@ConditionalOnMissingBean
-//	@Bean
-//	ConjurValuesClassProcessor conjurValuesClassProcessor() {
-//		return new ConjurValuesClassProcessor();
-//	}
+	@ConditionalOnMissingBean
+	@Bean
+	LegacyConjurValuesClassProcessor legacyConjurValuesClassProcessor() {
+		return new LegacyConjurValuesClassProcessor();
+	}
 
 }

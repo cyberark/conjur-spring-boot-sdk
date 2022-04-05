@@ -1,4 +1,3 @@
-
 package com.cyberark.conjur.springboot.processor;
 
 import java.lang.reflect.Field;
@@ -15,40 +14,42 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ReflectionUtils;
 
-import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
+import com.cyberark.conjur.springboot.annotations.ConjurValues;
 import com.cyberark.conjur.springboot.core.env.LegacyConjurConnectionManager;
-import com.cyberark.conjur.springboot.core.env.LegacyConjurPropertySource;
 
 @Configuration
-public class LegacyConjurValueClassProcessor implements BeanPostProcessor {
+public class LegacyConjurValuesClassProcessor implements BeanPostProcessor {
+
+	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
 
 	@Autowired
-	LegacyConjurRetrieveSecretService legacyConjurRetrieveSecretService;
-
-	private static Logger logger = LoggerFactory.getLogger(LegacyConjurPropertySource.class);
+	LegacyConjurRetrieveSecretService conjurRetrieveSecretService;
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+
 		Class<?> managedBeanClass = bean.getClass();
+
+		List<Field> fieldList = FieldUtils.getFieldsListWithAnnotation(managedBeanClass, ConjurValues.class);
+
 		LegacyConjurConnectionManager.getInstance();
 
-		List<Field> fieldList = FieldUtils.getFieldsListWithAnnotation(managedBeanClass, ConjurValue.class);
-
 		for (Field field : fieldList) {
-			if (field.isAnnotationPresent(ConjurValue.class)) {
+			if (field.isAnnotationPresent(ConjurValues.class)) {
 				ReflectionUtils.makeAccessible(field);
-				String variableId = field.getDeclaredAnnotation(ConjurValue.class).key();
+				String[] variableId = field.getDeclaredAnnotation(ConjurValues.class).keys();
 				byte[] result = null;
 				try {
-					result = legacyConjurRetrieveSecretService.retriveSingleSecretForCustomAnnotation(variableId);
+					result = conjurRetrieveSecretService.retriveMultipleSecretsForCustomAnnotation(variableId);
 
 					field.set(bean, result);
-				} catch (Exception e) {
-					logger.error(e.getMessage());
+
+				} catch (Exception e1) {
+					logger.error(e1.getMessage());
 				}
 
 			}
-
 		}
 
 		return bean;
@@ -56,7 +57,7 @@ public class LegacyConjurValueClassProcessor implements BeanPostProcessor {
 
 	@Nullable
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

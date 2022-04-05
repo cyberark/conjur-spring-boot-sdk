@@ -1,13 +1,10 @@
 package com.cyberark.conjur.springboot.core.env;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.EnumerablePropertySource;
 
 import com.cyberark.conjur.api.Conjur;
-import com.cyberark.conjur.api.Token;
 
 /**
  * 
@@ -60,7 +57,9 @@ public class LegacyConjurPropertySource
 		}
 		byte[] result = null;
 		try {
-			result=conjur.variables().retrieveSecret(vaultPath + key)!=null?conjur.variables().retrieveSecret(vaultPath + key).getBytes():null;
+			result = conjur.variables().retrieveSecret(vaultPath + key) != null
+					? conjur.variables().retrieveSecret(vaultPath + key).getBytes()
+					: null;
 			
 		} catch (Exception ae) {
 			ae.getMessage();
