@@ -26,8 +26,8 @@ docker run \
     tools \
         mvn --batch-mode install:install-file \
         -Dfile="${jar}" \
-        -DgroupId=com.cyberark.conjur.springboot \
-        -DartifactId=Spring-boot-conjur \
+        -DgroupId=com.cyberark \
+        -DartifactId=conjur-sdk-springboot \
         -Dversion="$(<../VERSION)" \
         -Dpackaging=jar \
         -DgeneratePom=true
@@ -38,7 +38,7 @@ docker run \
     --volume "${PWD}/maven_cache":/root/.m2 \
     --workdir "${PWD}" \
     tools \
-        mvn --batch-mode -f pom.xml versions:use-dep-version -Dincludes=com.cyberark.conjur.springboot:Spring-boot-conjur -DdepVersion="$(<../VERSION)"
+        mvn --batch-mode -f pom.xml versions:use-dep-version -Dincludes=com.cyberark:conjur-sdk-springboot -DdepVersion="$(<../VERSION)"
 
 docker run \
     --volume "${PWD}:${PWD}" \
