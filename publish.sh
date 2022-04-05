@@ -26,6 +26,7 @@ mkdir -p maven_cache
 if [[ "${MODE:-}" == "PROMOTE" ]]; then
     echo "PROMOTE build, publishing to internal artifactory and ossrh (maven central)"
     maven_profiles="artifactory,ossrh,sign"
+    release_to_central="mvn --settings mvn-settings.xml nexus-staging:release -Dmaven.test.skip=true -P ossrh,sign"
 else
     echo "Release build, publishing to internal artifactory"
     maven_profiles="artifactory,sign"
@@ -43,4 +44,5 @@ docker run \
     --workdir "${PWD}" \
     tools \
         /bin/bash -ec "gpg --batch --passphrase-file /gpg_password --trust-model always --import /gpg_key
-                       mvn --batch-mode  --settings mvn-settings.xml --file pom.xml deploy -Dmaven.test.skip -P ${maven_profiles}"
+                       mvn --batch-mode  --settings mvn-settings.xml --file pom.xml deploy -Dmaven.test.skip -P ${maven_profiles}
+                       ${release_to_central:-}"
