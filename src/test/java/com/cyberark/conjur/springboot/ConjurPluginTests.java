@@ -1,6 +1,5 @@
 package com.cyberark.conjur.springboot;
 
-
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,33 +12,38 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.annotations.ConjurValues;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
-import com.cyberark.conjur.springboot.core.env.LegacyConjurConnectionManager;
+import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 
 @SpringBootTest(classes = ConjurPluginTests.class)
-@ConjurPropertySource(value = { "jenkinsapp/", "jenkinsapp1/", "jenkinsapp3/", "jenkinsapp4/" }, name = "vault2")
+@ConjurPropertySource("db/")
 public class ConjurPluginTests {
+
+	
 
 	@Value("${dbpassWord}")
 	private byte[] dbpassWord;
 
 	@Value("${dbuserName}")
 	private byte[] dbuserName;
-
+	
 	@Value("${dbPort:notFound}")
 	private byte[] dbPort;
-	
-	@ConjurValue(key = "jenkinsapp1/dbPort")
+
+	@ConjurValue(key = "db/dbPort")
 	private byte[] ddbPortFromCustomAnnotation;
+
 
 	@Value("${key}")
 	private byte[] key;
-
-	@ConjurValue(key = "jenkinsapp1/dbuserName")
+	
+	@ConjurValue(key = "db/dbuserName")
 	private byte[] dbuserNameFromCustomAnnotation;
-
+	
 	// private static Properties properties;
 	private static Properties props = new Properties();
 
@@ -65,7 +69,7 @@ public class ConjurPluginTests {
 		}
 
 	}
-
+	
 	@Test
 	void testForAllEnvVariables() {
 
@@ -73,12 +77,12 @@ public class ConjurPluginTests {
 		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
 		assertNotNull(System.getenv().getOrDefault("CONJUR_ACCOUNT", null));
 		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_TOKEN_FILE", null));
-        
+
 	}
 
 	@Test
 	void testForConnection() {
-		assertNotNull(LegacyConjurConnectionManager.getInstance());
+		assertNotNull(ConjurConnectionManager.getInstance());
 
 	}
 	
@@ -92,13 +96,13 @@ public class ConjurPluginTests {
 
 
 	@Test
-	void testForSinglePath() {
+	void testForSinglePath() throws ApiException {
 		assertNotNull(dbuserName);
 		assertEquals(props.getProperty("dbuserName"), getDbuserName());
 	}
 
 	@Test
-	void testForSecondPath() {
+	void testForSecondPath() throws ApiException {
 		assertNotNull(getDbpassWord());
 		assertEquals(props.getProperty("dbpassWord"), getDbpassWord());
 
@@ -108,7 +112,7 @@ public class ConjurPluginTests {
 	}
 
 	@Test
-	void testForThirdPath(){
+	void testForThirdPath() throws ApiException {
 		assertNotNull(getKey());
 		assertEquals(props.getProperty("key"), getKey());
 
@@ -131,6 +135,7 @@ public class ConjurPluginTests {
 	/**
 	 * @return the dbuserName
 	 */
+	
 
 	/**
 	 * @return the dbpassWord
@@ -163,10 +168,9 @@ public class ConjurPluginTests {
 	public String getDbuserName() {
 		return new String(dbuserName);
 	}
-
 	/**
-	 * @param dbuserName the dbuserName to set
-	 */
+		* @param dbuserName the dbuserName to set
+	*/
 
 	public void setDbuserName(byte[] dbuserName) {
 		this.dbuserName = dbuserName;
@@ -200,4 +204,6 @@ public class ConjurPluginTests {
 		this.ddbPortFromCustomAnnotation = ddbPortFromCustomAnnotation;
 	}
 
+
+	
 }
