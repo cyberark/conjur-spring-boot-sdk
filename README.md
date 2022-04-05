@@ -159,7 +159,6 @@ Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Se
 * Enter CONJUR_ACCOUNT in the name field and the Account Id (created during the Conjur OSS setup. Ex: myConjurAccount) as value.
 * CONJUR_APPLIANCE_URL in the name field and the https://localhost:8443 as value
 * CONJUR_AUTHN_LOGIN in the name field and the host/fileName1(created during the Conjur OSS setup Ex:host/<file name where grant permission is defined for   the user)/userName( for whom the access is granted in fileName1)
-* CONJUR_AUTHN_TOKEN_FILE in the name field and the <path/fileName> as value, where the Token is saved.
 * CONJUR_CERT_FILE in the name field and the <path /.der> (.der file created during the Conjur OSS setup).
 * CONJUR_SSL_CERTIFICATE in the name filed and the details of the certificate in the value field.
 * For IntelliJ, setting up trusting Conjur self-signed certs, Follow the steps outlined [here](https://www.jetbrains.com/help/idea/settings-tools-server-certificates.html)
