@@ -46,7 +46,7 @@ The Spring Boot Plugin does not support creating, deleting, or updating secrets.
 
 The following are prerequisites to using the Spring Boot Plugin.
 
-## Conjur OSS or Enterprise setup
+## Conjur setup
 
 Conjur (OSS or Enterprise) and the Conjur CLI are installed in the environment and running in the background.
 If you haven't yet done so, follow the instructions for installing [OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) or [Enterprise](https://www.conjur.org/get-started/quick-start/oss-environment/).
