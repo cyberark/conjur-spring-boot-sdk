@@ -37,6 +37,7 @@ The Conjur Spring Boot Plugin does not support creating, deleting, or updating s
 |----------------|----------|
 | Java           |  11      |
 | Conjur OSS     |  1.9+    |
+| Conjur Enterprise | 5.0.  |
 |ConjurSDK(Java) |  4.0.0   |
 |Conjur API      |  5.1     |
 
@@ -107,7 +108,7 @@ to the project manually by following the setup steps below:
 
 #### Set Up Trust Between App and Conjur
 
-By default, the Conjur  generates and uses self-signed SSL certificates. Without trusting them, Java app will not be able to connect to the Conjur server using the Conjur APIs , so you will need to configure your app to trust them . This is accomplished by  following steps:
+By default, Conjur  generates and uses self-signed SSL certificates. Without trusting them, Java app will not be able to connect to the Conjur server using the Conjur APIs , so you will need to configure your app to trust them . This is accomplished by  following steps:
 * Copy the .pem certificate created while setting up the Conjur
 * Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Setting-> Click New
 * In the Select Configuration popup click the Java App
@@ -151,15 +152,17 @@ Select the Client Class in Eclipse then do RightClick->Properties-> Run&Debug Se
 * In the Edit Launch Configuration properties window -> select Environment Tab -> click Add
 * In the New Environment Variable window , enter the properties with the corresponding name and vale one at a time by clciking the
   Add button->Click Apply &Close
+  
 
 ###### Environment variables to add:
 
-* Enter CONJUR_ACCOUNT in the name field and the Account Id (created during the Conjur OSS setup. Ex: myConjurAccount) as value
+* Enter CONJUR_ACCOUNT in the name field and the Account Id (created during the Conjur OSS setup. Ex: myConjurAccount) as value.
 * CONJUR_APPLIANCE_URL in the name field and the https://localhost:8443 as value
 * CONJUR_AUTHN_LOGIN in the name field and the host/fileName1(created during the Conjur OSS setup Ex:host/<file name where grant permission is defined for   the user)/userName( for whom the access is granted in fileName1)
-* CONJUR_AUTHN_TOKEN_FILE in the name field and the <path/fileName> as value, where the Token is saved
-* CONJUR_CERT_FILE in the name field and the <path /.der> (.der file created during the Conjur OSS setup)
-* CONJUR_SSL_CERTIFICATE in the name filed and the details of the certificate in the value field
+* CONJUR_AUTHN_TOKEN_FILE in the name field and the <path/fileName> as value, where the Token is saved.
+* CONJUR_CERT_FILE in the name field and the <path /.der> (.der file created during the Conjur OSS setup).
+* CONJUR_SSL_CERTIFICATE in the name filed and the details of the certificate in the value field.
+* For IntelliJ, setting up trusting Conjur self-signed certs, Follow the steps outlined [here](https://www.jetbrains.com/help/idea/settings-tools-server-certificates.html)
 
 ## Using the Conjur Spring Boot Plugin
 
