@@ -69,7 +69,7 @@ You can grab the library's dependencies using Maven:
        <dependency>
          <groupId>com.cyberark</groupId>
          <artifactId>conjur-sdk-springboot</artifactId>
-         <version>1.0.0</version>
+         <version>1.0.1</version>
       </dependency>
 ```
 
