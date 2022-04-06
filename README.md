@@ -69,9 +69,12 @@ You can grab the library's dependencies using Maven:
        <dependency>
          <groupId>com.cyberark</groupId>
          <artifactId>conjur-sdk-springboot</artifactId>
-         <version>1.0.1</version>
+         <version>LATEST</version>
       </dependency>
 ```
+![Version Badge](https://img.shields.io/github/v/release/cyberark/conjur-spring-boot-sdk?label=Latest%20Release)
+
+View available versions at [Github Releases](https://github.com/cyberark/conjur-spring-boot-sdk/releases/latest) or [Maven Central](https://search.maven.org/artifact/com.cyberark/conjur-sdk-springboot).
 
 NOTE: Depending on the Java compiler version you have, you may need to update
 the version. At this time, we are targeting compatibility with Java 11:
