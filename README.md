@@ -149,7 +149,7 @@ data directly in an environment variable.
 ###### Add environment variables
 
 * Enter CONJUR_ACCOUNT in the Name field and the Account Id created during the Conjur OSS setup. For example: myConjurAccount) as value.
-* CONJUR_APPLIANCE_URL in the Name field and the https://localhost:8443 as value.
+* CONJUR_APPLIANCE_URL is the URL of the Conjur instance to which you are connecting. When connecting to Conjur Enterprise, configure for high availability by including the URL of the master load balancer (if performing read and write operations) or the URL of a follower load balancer (if performing read-only operations).
 * CONJUR_AUTHN_LOGIN in the Name field and the host/fileName1 created during the Conjur OSS setup. For example: host/<file name where grant permission is defined for the user/userName (for whom the access is granted in fileName1).
 * CONJUR_CERT_FILE in the Name field and the <path /.der> (.der file created during the Conjur OSS setup.
 * CONJUR_SSL_CERTIFICATE in the Name field and the details of the certificate in the Value field.
