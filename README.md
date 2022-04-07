@@ -10,6 +10,8 @@ The Conjur Spring Boot Plugin provides client-side support for externalized conf
 * Supports the management of static and dynamic secrets such as username and password for remote applications and resources.
 * Provides credentials for external services like MySQL, PostgreSQL, Apache Cassandra, Couchbase, MongoDB, Consul, AWS, and more.
 
+**Note for Kubernetes users**: Customers and users intending to run their Spring Boot based application in Kubernetes are encouraged to follow an alternative to the plugin solution described in this readme. Cyberark offers a Kubernetes native feature 'Push To File' described [here]( https://github.com/cyberark/secrets-provider-for-k8s/blob/main/PUSH_TO_FILE.md#example-custom-templates-spring-boot-configuration/). The documentation illustrates a process to assemble spring-boot application.properties files dynamically and avoids the need for any Java code changes in order to draw secrets directly from Conjur.
+
 ## Certification level
 [![](https://img.shields.io/badge/Certification%20Level-Certified-28A745?)](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
 
