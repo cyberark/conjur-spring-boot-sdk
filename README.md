@@ -38,7 +38,7 @@ The Spring Boot Plugin does not support creating, deleting, or updating secrets.
 |----------------|----------|
 | Java           |  11      |
 | Conjur OSS     |  1.9+    |
-| Conjur Enterprise | 5.0.  |
+| Conjur Enterprise | 12.5  |
 |ConjurSDK(Java) |  4.0.0   |
 |Conjur API      |  5.1     |
 
