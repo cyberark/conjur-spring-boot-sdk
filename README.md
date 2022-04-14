@@ -1,6 +1,6 @@
-# Conjur Spring Boot Legacy Plugin
+# Conjur Spring Boot Api Plugin
 
-The Conjur Spring Boot Legacy Plugin provides client-side support for externalized configuration of secrets in a distributed system. You can integrate the plugin with exisiting and new Spring Boot applications to retrieve secrets from Conjur. Using the Spring Boot Legacy Plugin, you can retrieve application credentials and secrets stored in Conjur with minimal code changes to the existing Spring Boot application code.
+The Conjur Spring Boot Api Plugin provides client-side support for externalized configuration of secrets in a distributed system. You can integrate the plugin with exisiting and new Spring Boot applications to retrieve secrets from Conjur. Using the Spring Boot Api Plugin, you can retrieve application credentials and secrets stored in Conjur with minimal code changes to the existing Spring Boot application code.
 
 ## Benefits of storing application secrets in [CyberArk's Vault](https://www.conjur.org/)
 
@@ -11,7 +11,7 @@ The Conjur Spring Boot Legacy Plugin provides client-side support for externaliz
 
 ## Features
 
-The following features are available with the Spring Boot Legacy Plugin:
+The following features are available with the Spring Boot Api Plugin:
 
 * Retrieve a single secret from the CyberArk Vault by specifying the path to the secret in the Vault.
 * Retrieve multiple secrets from the CyberArk Vault by specifying the paths to the secrets in the Vault.
@@ -20,7 +20,7 @@ The following features are available with the Spring Boot Legacy Plugin:
 
 ## Limitations
 
-The Spring Boot Legacy Plugin does not support creating, deleting, or updating secrets.
+The Spring Boot Api Plugin does not support creating, deleting, or updating secrets.
 
 ## Technical Requirements
 
@@ -35,18 +35,18 @@ The Spring Boot Legacy Plugin does not support creating, deleting, or updating s
 
 # Prerequisites
 
-The following are prerequisites to using the Spring Boot Legacy Plugin.
+The following are prerequisites to using the Spring Boot Api Plugin.
 
 ## Conjur setup
 
 Conjur (OSS or Enterprise) and the Conjur CLI are installed in the environment and running in the background.
 If you haven't yet done so, follow the instructions for installing [OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) or [Enterprise](https://www.conjur.org/get-started/quick-start/oss-environment/).
 
-Once Conjur and the Conjur CLI are running in the background, you can start setting up your Spring Boot application to work with our Conjur Spring Boot Legacy Plugin.
+Once Conjur and the Conjur CLI are running in the background, you can start setting up your Spring Boot application to work with our Conjur Spring Boot Api Plugin.
 
 ### Setup
 
-You can import the Conjur Spring Boot Legacy Plugin manually by building the source code locally or using a dependency configuration to import from Maven Central. For information about your specific use case, see the following instructions.
+You can import the Conjur Spring Boot Api Plugin manually by building the source code locally or using a dependency configuration to import from Maven Central. For information about your specific use case, see the following instructions.
 
 #### Using the source code
 
@@ -54,12 +54,12 @@ You can grab the library's dependencies using Maven:
 
 1. Create a new Maven project using an IDE of your choice.
 2. If you are using Maven to manage your project's dependencies, include the following
-   Spring Boot Legacy Plugin dependency snippet in your `pom.xml` under `<project>`/`<dependencies>`:
+   Spring Boot Api Plugin dependency snippet in your `pom.xml` under `<project>`/`<dependencies>`:
 
 ```xml
        <dependency>
-         <groupId>com.cyberark.conjur.legacy</groupId>
-	 <artifactId>Springboot-conjur-legacy</artifactId>
+         <groupId>com.cyberark.conjur.api</groupId>
+	 <artifactId>conjur-api-springboot</artifactId>
 	 <version>1.0.0</version>
       </dependency>
 ```
@@ -74,14 +74,14 @@ the version. At this time, we are targeting compatibility with Java 11:
   </properties>
 ```
 
-Run `mvn install -DskipTests` in this repository's directory to install the Spring Boot Legacy Plugin into your local Maven repository.
+Run `mvn install -DskipTests` in this repository's directory to install the Spring Boot Api Plugin into your local Maven repository.
 
 #### Using the Jarfile
 
 If generating a JAR is preferred, build the library locally and add the dependency to the project manually:
 
-1. Clone the Spring Boot Legacy Plugin repository locally: `git clone {repo}`
-2. Go into the cloned repository with `cd conjur-legacy-spring-boot-sdk`
+1. Clone the Spring Boot Api Plugin repository locally: `git clone {repo}`
+2. Go into the cloned repository with `cd conjur-api-spring-boot`
 3. Run `mvn package -DskipTests` to generate a JAR file. The output `.jar` files are located
    in the `target` directory of the repository.
    
@@ -178,7 +178,7 @@ There you have it! Now you are all configured to start leveraging the Conjur Jav
 
 ## Environment setup
 
-Once the setup steps are successfully run, define the variables needed to make the connection between the legacy plugin and Conjur. You can do this by setting
+Once the setup steps are successfully run, define the variables needed to make the connection between the Api plugin and Conjur. You can do this by setting
 [environment variables](#environment-variables).
 
 
@@ -214,14 +214,14 @@ If no other configuration is done (e.g. over system properties or CLI parameters
 * CONJUR_AUTHN_API_KEY - User/host API key 
 * For IntelliJ, set up trusted Conjur self-signed certs by following the steps outlined [here](https://www.jetbrains.com/help/idea/settings-tools-server-certificates.html).
 
-## Using the Conjur Spring Boot Legacy Plugin
+## Using the Conjur Spring Boot Api Plugin
 
 There are two ways to use the plugin.
 * @Value annotation and an optional conjur.properties file that enables the mapping of secret names.
 * @ConjurValue and @ConjurValues, which are Conjur native annotations (custom annotations) that enable individual and bulk secret retrieval.
 
 #### Option 1: Spring Standard @Value annotation
-The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Legacy Plugin routes the look up to Conjur through the Conjur Legacy Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the CyberArk Vault.
+The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Api Plugin routes the look up to Conjur through the Conjur Api Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the CyberArk Vault.
 
  Example use case: Given the following Vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
 
