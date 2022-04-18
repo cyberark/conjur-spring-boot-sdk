@@ -20,10 +20,13 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.MultiValueMap;
 
+import com.cyberark.conjur.springboot.constant.ConjurConstant;
+
 /**
  * 
  * This class helps to get all variables defined on the custom annotation side
- * and registers them with the ConjurPropertySource class for further processing.
+ * and registers them with the ConjurPropertySource class for further processing
+ * in conjur spring boot api integration plugin.
  *
  */
 public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPostProcessor, EnvironmentAware {
@@ -65,7 +68,6 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 	 * This method finds all variables values defined at annotation side and
 	 * registers then with give bean.
 	 */
-
 	@Override
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 
@@ -85,31 +87,32 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 
 		// resolve repeatable / container annotations
 		if (attributesCont != null) {
-			for (Object attribs : attributesCont.get("value")) {
-				// for (AnnotationAttributes a : ((AnnotationAttributes[])((Object[])attribs)))
-				// {
-				makeAndRegisterBean(registry, (String[]) ((LinkedHashMap<String, Object>) attribs).get("value"),
-						((AnnotationAttributes) attribs).getString("name"));
-				// }
+			for (Object attribs : attributesCont.get(ConjurConstant.VALUE)) {
+				makeAndRegisterBean(registry,
+						(String[]) ((LinkedHashMap<String, Object>) attribs).get(ConjurConstant.VALUE),
+						((AnnotationAttributes) attribs).getString(ConjurConstant.NAME));
 			}
 		}
 
 		// resolve single annotations
 		if (attributes != null)
-			for (Object valuesObj : attributes.get("value")) {
+			for (Object valuesObj : attributes.get(ConjurConstant.VALUE)) {
 				makeAndRegisterBean(registry, (String[]) valuesObj,
-						attributes.get("name").size() != 0 ? (String) attributes.get("name").get(0) : "");
+						attributes.get(ConjurConstant.NAME).size() != 0
+								? (String) attributes.get(ConjurConstant.NAME).get(0)
+								: "");
 			}
 	}
 
 	private void makeAndRegisterBean(BeanDefinitionRegistry registry, String[] values, String name) {
 		for (String value : values) {
-			if (!registry
-					.containsBeanDefinition(com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class.getName()
-							+ "-" + value + "@" + name)) {
-				registerBeanDefinition(registry, com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class,
-						com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class.getName() + "-" + value + "@"
-								+ name,
+			if (!registry.containsBeanDefinition(
+					com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class.getName() + "-" + value
+							+ "@" + name)) {
+				registerBeanDefinition(registry,
+						com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class,
+						com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class.getName() + "-" + value
+								+ "@" + name,
 						value, name);
 			}
 		}

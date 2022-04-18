@@ -17,10 +17,11 @@ import org.springframework.util.ReflectionUtils;
 
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
-import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
+
 /**
  * 
- * Annotation ConjurValues class processor.
+ * Custom Annotation ConjurValue class processor which implements
+ * beanPostProcessor.
  *
  */
 @Configuration
@@ -29,11 +30,10 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 	@Autowired
 	ConjurRetrieveSecretService conjurRetrieveSecretService;
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
+	private static Logger logger = LoggerFactory.getLogger(ConjurValueClassProcessor.class);
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-
 		Class<?> managedBeanClass = bean.getClass();
 		ConjurConnectionManager.getInstance();
 
@@ -59,6 +59,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 		return bean;
 	}
 
+	@Override
 	@Nullable
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		return null;

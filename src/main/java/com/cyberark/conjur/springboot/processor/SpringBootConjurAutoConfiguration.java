@@ -4,9 +4,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
-import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+import com.cyberark.conjur.api.Conjur;
 
 @Configuration
 
@@ -15,7 +14,7 @@ public class SpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean
 	@Bean
-	ConjurValueClassProcessor conjurSecretValueClassProcessor() {
+	ConjurValueClassProcessor legacyconjurSecretValueClassProcessor() {
 		return new ConjurValueClassProcessor();
 	}
 
@@ -27,10 +26,10 @@ public class SpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean
 	@Bean
-	SecretsApi secretsApi() {
-		return new SecretsApi();
+	Conjur conjur() {
+		return new Conjur();
 	}
-	
+
 	@ConditionalOnMissingBean
 	@Bean
 	ConjurValuesClassProcessor conjurValuesClassProcessor() {

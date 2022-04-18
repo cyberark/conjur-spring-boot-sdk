@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.cyberark.conjur.springboot.processor.LegacySpringBootConjurAutoConfiguration
+com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguration

@@ -16,7 +16,7 @@ import org.springframework.util.ReflectionUtils;
 
 import com.cyberark.conjur.springboot.annotations.ConjurValues;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
-import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
+
 /**
  * 
  * Custom annotation ConjurValues class processor.
@@ -25,7 +25,7 @@ import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 @Configuration
 public class ConjurValuesClassProcessor implements BeanPostProcessor {
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
+	private static Logger logger = LoggerFactory.getLogger(ConjurValuesClassProcessor.class);
 
 	@Autowired
 	ConjurRetrieveSecretService conjurRetrieveSecretService;
@@ -59,9 +59,9 @@ public class ConjurValuesClassProcessor implements BeanPostProcessor {
 		return bean;
 	}
 
+	@Override
 	@Nullable
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

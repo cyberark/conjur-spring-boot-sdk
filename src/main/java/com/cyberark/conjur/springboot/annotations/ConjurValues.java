@@ -6,7 +6,6 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-
 /**
  * The @ConjurValues annotation is a Conjur native annotation intended for new Spring Boot applications.
  * Injecting the annotation into your Spring Boot code allows you to retrieve multiple secrets from the Conjur Vault by passing the complete path 
@@ -15,6 +14,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RUNTIME)
 @Target(ElementType.FIELD)
+
 public @interface ConjurValues {
 
 	/**

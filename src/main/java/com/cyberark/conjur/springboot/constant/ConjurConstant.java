@@ -1,7 +1,8 @@
 package com.cyberark.conjur.springboot.constant;
+
 /**
  * 
- * Conjur Spring boot plugin constant file.
+ * Conjur Spring boot api plugin constant file.
  *
  */
 public class ConjurConstant {
@@ -14,8 +15,15 @@ public class ConjurConstant {
 
 	public static final String CONJUR_ACCOUNT = System.getenv("CONJUR_ACCOUNT");
 	
-	public static final String CONJUR_APIKEY_ERROR="Please provide Conjur Authn Token file or else api Key in environment Variable";
-
 	public static final String NOT_FOUND = "notFound";
+	
+	public static final String VALUE = "value";
+	
+	public static final String NAME = "name";
 
+
+	private ConjurConstant() {
+		super();
+	}
+	
 }

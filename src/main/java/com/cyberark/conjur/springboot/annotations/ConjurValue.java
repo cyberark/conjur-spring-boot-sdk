@@ -5,11 +5,10 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
 /**
  * The @ConjurValue annotation is a Conjur native annotation intended for new Spring Boot applications.
  * Injecting the annotation into your Spring Boot code allows you to retrieve a single secret from the Conjur Vault.
- * <h3>Example usage:</h3>
+ * 
  * <p>
  * Given the path {@code policy/my-application/database.password} containing
  * the configuration data pair {@code database.password=mysecretpassword}, the
@@ -36,12 +35,15 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConjurValue {
-	
 	/**
 	 * Indicates the complete path of the variable.
 	 * 
 	 */
 	String key();
 
+	/**
+	 * Indicates the kind of the variable.
+	 * 
+	 */
 	String kind() default "variable";
 }

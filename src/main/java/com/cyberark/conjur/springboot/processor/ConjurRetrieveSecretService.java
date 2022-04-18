@@ -1,82 +1,51 @@
 package com.cyberark.conjur.springboot.processor;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.cyberark.conjur.sdk.ApiException;
-import com.cyberark.conjur.sdk.endpoint.SecretsApi;
-import com.cyberark.conjur.springboot.constant.ConjurConstant;
+import com.cyberark.conjur.api.Conjur;
 
 public class ConjurRetrieveSecretService {
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurRetrieveSecretService.class);
-
-	private SecretsApi secretsApi;
+	private Conjur conjur;
 
 	/**
 	 * This method retrieves multiple secrets for custom annotation's keys.
 	 * 
 	 * @param keys - query to vault.
-	 * @return secrets - output from the vault.
-	 * @throws ApiException - Exception thrown from conjur java sdk.
+	 * @return secrets - output from the conjur vault in form of byte array.
 	 */
-	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys) throws ApiException {
-
-		Object result = null;
-		secretsApi = new SecretsApi();
-		StringBuilder kind = new StringBuilder("");
-		for (int i = 0; i <= keys.length; i++) {
-			if (i < keys.length - 1) {
-				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + ",");
-			} else if (i == keys.length - 1) {
-				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + "");
-			}
-		}
+	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys){
+		conjur = new Conjur();
+		String str = String.join(",", keys);
+		ArrayList<String> aList = new ArrayList<>(Arrays.asList(str.split(",")));
+		ArrayList<String> result = new ArrayList<>();
 		try {
-			result = secretsApi.getSecrets(new String(kind));
-		} catch (ApiException e) {
-			logger.error(e.getMessage());
+			for (int i = 0; i < aList.size(); i++) {
+				result.add(conjur.variables().retrieveSecret(aList.get(i)));
+			}
+		} catch (Exception e) {
+			e.getMessage();
 		}
-		return processMultipleSecretResult(result);
-
+		return result.toString().getBytes();
 	}
 
 	/**
 	 * This method retrieves single secret for custom annotation's key value.
 	 * 
 	 * @param key - query to vault.
-	 * @return secrets - output from the vault.
-	 * @throws ApiException - Exception thrown from conjur java sdk.
+	 * @return secrets - output from the vault in form of byte array.
 	 */
-	public byte[] retriveSingleSecretForCustomAnnotation(String key) throws ApiException {
+	public byte[] retriveSingleSecretForCustomAnnotation(String key) {
 		byte[] result = null;
-		secretsApi = new SecretsApi();
+		conjur = new Conjur();
 		try {
-			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key) != null
-					? secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key).getBytes()
-					: null; 
-		} catch (ApiException e) {
-			logger.error(e.getMessage());
+			result = conjur.variables().retrieveSecret(key) != null ? conjur.variables().retrieveSecret(key).getBytes()
+					: null;
+		} catch (Exception e) {
+			e.getMessage();
 		}
 		return result;
-	}
-
-	private byte[] processMultipleSecretResult(Object result) {
-		Map<String, String> map = new HashMap<String, String>();
-		String[] parts = result.toString().split(",");
-		{
-			for (int j = 0; j < parts.length; j++) {
-				String[] splitted = parts[j].split("[:/=]");
-
-				for (int i = 0; i < splitted.length; i++) {
-					map.put(splitted[3], splitted[4]);
-				}
-			}
-		}
-		return map.toString().getBytes();
 	}
 
 }
