@@ -35,3 +35,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 ### Security
+- Updated Spring Boot to 2.5.12 [cyberark/conjur-spring-boot-sdk#59](https://github.com/cyberark/conjur-spring-boot-sdk/pull/59)
