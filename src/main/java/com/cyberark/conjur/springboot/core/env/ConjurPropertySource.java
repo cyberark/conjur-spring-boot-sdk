@@ -34,6 +34,8 @@ public class ConjurPropertySource
 	private SecretsApi secretsApi;
 
 	private static String authTokenFile=System.getenv("CONJUR_AUTHN_TOKEN_FILE");
+
+	private static String authnApiKey=System.getenv("CONJUR_AUTHN_API_KEY");
 	
 	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
 	/**
@@ -71,7 +73,7 @@ public class ConjurPropertySource
 		}
 	
 	}
-	else {
+	else if(authnApiKey==null){
 		 logger.error(ConjurConstant.CONJUR_APIKEY_ERROR);
 
 	}
