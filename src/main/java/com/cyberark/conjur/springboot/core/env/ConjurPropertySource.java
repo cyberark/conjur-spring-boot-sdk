@@ -129,20 +129,23 @@ public class ConjurPropertySource
 	@Override
 	public Object getProperty(String key) {
 
+		String secretValue = null;
 		key = ConjurConfig.getInstance().mapProperty(key);
 
 		ConjurConnectionManager.getInstance();
 		if (null == secretsApi) {
 			secretsApi = new SecretsApi();
 		}
-		byte[]result = null;
+		byte[] result = null;
 		try {
-			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, vaultPath + key)!=null?secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, vaultPath + key).getBytes():null;
-
+			secretValue = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND,
+					vaultPath + key);
+			result = secretValue != null ? secretValue.getBytes() : null;
 
 		} catch (ApiException ae) {
 		}
 		return result;
+
 	}
 	
 }
