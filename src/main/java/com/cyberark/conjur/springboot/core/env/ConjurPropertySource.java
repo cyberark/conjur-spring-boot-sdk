@@ -35,6 +35,8 @@ public class ConjurPropertySource
 
 	private static String authTokenFile=System.getenv("CONJUR_AUTHN_TOKEN_FILE");
 	
+	private static String authApiKey=System.getenv("CONJUR_AUTHN_API_KEY");
+	
 	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
 	/**
 	 * a hack to support seeding environment for the file based api token support in
@@ -44,7 +46,7 @@ public class ConjurPropertySource
 
 		// a hack to support seeding environment for the file based api token support in
 		// downstream java
-		if(authTokenFile!=null) {
+		if(authTokenFile!=null && authApiKey==null) {
 		Map<String, String> conjurParameters = new HashMap<String, String>();
 		byte[] apiKey = null;
 		try (BufferedReader br = new BufferedReader(new FileReader(authTokenFile))){
@@ -70,11 +72,10 @@ public class ConjurPropertySource
 			logger.error(e.getMessage());
 		}
 	
-	}
-	else {
-		 logger.error(ConjurConstant.CONJUR_APIKEY_ERROR);
+	}else if(authApiKey==null && authTokenFile==null) {
+	         logger.error(ConjurConstant.CONJUR_APIKEY_ERROR);
 
-	}
+	    }
 	}
 	/**
 	 * Sets the external environment variable.
