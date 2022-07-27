@@ -90,6 +90,12 @@ public class ConjurPluginTests {
 	}
 	
 	@Test
+	void testForAuthTokenAndApiKey() {
+		assertNull(System.getenv().getOrDefault("CONJUR_AUTHN_TOKEN_FILE", null));
+		assertNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
+	}
+	
+	@Test
 	void testForNotExistingSecretNames() {
 		assertNull(getDdbPortFromCustomAnnotation());
 		assertNotNull(getDbPort());
