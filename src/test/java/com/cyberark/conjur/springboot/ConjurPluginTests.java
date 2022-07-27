@@ -79,7 +79,7 @@ public class ConjurPluginTests {
 		assertNotNull(System.getenv().getOrDefault("CONJUR_CERT_FILE", null));
 		//assertNotNull(System.getenv().getOrDefault("CONJUR_SSL_CERTIFICATE", null));
 		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
-		//assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_TOKEN_FILE", null));
+		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_TOKEN_FILE", null));
 
 	}
 
