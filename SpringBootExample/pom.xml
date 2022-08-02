@@ -18,6 +18,7 @@
 		<java.version>11</java.version>
 		<start-class>com.test.plugin.ConjurClient</start-class>
 		<rest.assured.version>2.3.3</rest.assured.version>
+		<okhttp3.version>4.10.0</okhttp3.version>
 	</properties>
 
 	<dependencies>
