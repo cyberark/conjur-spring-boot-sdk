@@ -40,7 +40,7 @@
 			<groupId>com.cyberark</groupId>
 			<artifactId>conjur-sdk-springboot</artifactId>
 			<!-- This will be updated by build-sampleapp-image.sh -->
-			<version>4.5.7</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
