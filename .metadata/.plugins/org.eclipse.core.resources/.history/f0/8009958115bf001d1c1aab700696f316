@@ -1,0 +1,17 @@
+# See http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+spring.thymeleaf.cache=false
+spring.main.show-banner=false
+#logging.level.jdbc=OFF
+#logging.level.jdbc.sqltiming=INFO
+#logging.level.jdbc.resultsettable=INFO
+#
+spring.main.allow-bean-definition-overriding=true
+
+server.port =9091
+spring.config.import=optional:configserver:${SPRING_CLOUD_CONFIG_URI:http://localhost:8888}
+spring.profiles.active=native
+spring.application.name=conjur
+llogging.level.=INFO
+
+spring.config.location= file://${user.home}/conjur-repo/conjur.properties
+conjur.cloud.enabled = true

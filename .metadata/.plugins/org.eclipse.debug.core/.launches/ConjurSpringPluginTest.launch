@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/ConjurSpringPluginTest/src/main/java/com/cyberark/conjur/plugintest/ConjurSpringPluginTest.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <mapAttribute key="org.eclipse.debug.core.environmentVariables">
+        <mapEntry key="CONJUR_ACCOUNT" value="myConjurAccount"/>
+        <mapEntry key="CONJUR_APPLIANCE_URL" value="https://localhost:8443"/>
+        <mapEntry key="CONJUR_AUTHN_API_KEY" value="3eg8ay4vz0ywx244b533x5rf9a22f1xhe2yqh93z13yjw441scaqs1"/>
+        <mapEntry key="CONJUR_AUTHN_LOGIN" value="host/jenkins-frontend/NG-SUKANTI-P"/>
+        <mapEntry key="CONJUR_AUTHN_TOKEN_FILE" value="/Users/Sukanti.Pradhan/Documents/apikey.txt"/>
+        <mapEntry key="CONJUR_CERT_FILE" value="/Users/Sukanti.Pradhan/conjur-quickstart/conf/policy/conjur.der"/>
+        <mapEntry key="CONJUR_SSL_CERTIFICATE" value="/Users/Sukanti.Pradhan/conjur-quickstart/conf/policy/conjur.pem"/>
+    </mapAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.cyberark.conjur.plugintest.ConjurSpringPluginTest"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="ConjurSpringPluginTest"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="ConjurSpringPluginTest"/>
+    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="--illegal-access=permit&#13;&#10;--add-opens java.base/java.util=ALL-UNNAMED&#13;&#10;--add-opens java.base/java.lang.reflect=ALL-UNNAMED&#13;&#10;--add-opens java.base/java.text=ALL-UNNAMED&#13;&#10;--add-opens java.desktop/java.awt.font=ALL-UNNAMED&#13;&#10;--add-opens java.base/java.net=ALL-UNNAMED&#13;&#10;--add-opens java.base/java.lang=ALL-UNNAMED"/>
+</launchConfiguration>

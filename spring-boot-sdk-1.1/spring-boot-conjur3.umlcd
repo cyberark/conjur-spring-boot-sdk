@@ -1,0 +1,2314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.diagrams="http://ns.yatta-solutions.com/umllab/diagrams/1.1.0" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_Y-tN0KE0Ee2JZf-PgyDh_g">
+  <modelElement href="spring-boot-conjur3.uml#_ZPgC4qE0Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cLaaYKE0Ee2JZf-PgyDh_g" sourceAnchor="73.0,0.0" targetAnchor="139.0,127.0" target="_cS6JgKE0Ee2JZf-PgyDh_g" source="_cMO5wKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUOK0KE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cLaaYaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUOK0qE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cLaaYqE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRobkKE0Ee2JZf-PgyDh_g" position="-21.0,-11.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cLaaY6E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUOK0aE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRn0gKE0Ee2JZf-PgyDh_g" position="-20.0,-45.5"/>
+      <visibility xmi:id="_cLaaZKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cLaaZaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cLaaZqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="value" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZQBAQaE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRobkaE0Ee2JZf-PgyDh_g" position="5.0,5.5"/>
+      <stereotypes xmi:id="_a1KDAKE9Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZQBnUqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cLaaZ6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cLaaaKE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cQP3EKE0Ee2JZf-PgyDh_g" source="_cQz3wKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUWttKE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cQP3EaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUXUwKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cQP3EqE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cQP3E6E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUWttaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cQP3FKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cQP3FaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cQP3FqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="environment" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT8eA6E0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cQP3F6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cQP3GKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_caNEUKE0Ee2JZf-PgyDh_g" source="_caVAIKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUOx4KE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_caNEUaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUOx4qE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_caNEUqE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_caNEU6E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUOx4aE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_caNEVKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_caNEVaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_caNEVqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="logger" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTubk6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1KqEKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTvCoKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_caNEV6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_caNEWKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_caQusKE0Ee2JZf-PgyDh_g" source="_caVAIKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUOx46E0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_caQusaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUPY8KE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_caQusqE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_caQus6E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUOx5KE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_caQutKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_caQutaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_caQutqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="secretsApi" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTvCoqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1KqEaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTvCo6E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_caQut6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_caQuuKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cbTQgKE0Ee2JZf-PgyDh_g" sourceAnchor="0.0,56.0" targetAnchor="494.0,75.0" target="_caVAIKE0Ee2JZf-PgyDh_g" source="_cdHOY6E0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUPY8aE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cce8QKE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUPY86E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cceVMKE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRppsKE0Ee2JZf-PgyDh_g" position="64.0,-7.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cceVMaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUPY8qE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRpCoKE0Ee2JZf-PgyDh_g" position="-18.5,5.5"/>
+      <visibility xmi:id="_cdFZMKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cdEyIKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cceVMqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="conjurRetrieveSecretService" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTvpsKE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRppsaE0Ee2JZf-PgyDh_g" position="5.5,-46.499999999999886"/>
+      <stereotypes xmi:id="_a1KqEqE9Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTvpsaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cdFZMqE0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_cdFZMaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cce8QaE0Ee2JZf-PgyDh_g" source="_cdHOY6E0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUPY9KE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cdGAQaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUQAAKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cdFZNKE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cdFZNaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUPY9aE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cdHOYKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cdGnUKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cdGAQKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="logger" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTvps6E0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cdHOYqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cdHOYaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_ceLlYKE0Ee2JZf-PgyDh_g" sourceAnchor="247.0,226.0" targetAnchor="132.0,0.0" target="_cVRhAKE0Ee2JZf-PgyDh_g" source="_cgqRoKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUROIaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cfd-0KE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUROI6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cfdXwKE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRqQwaE0Ee2JZf-PgyDh_g" position="-21.0,-7.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cfdXwaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUROIqE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRqQwKE0Ee2JZf-PgyDh_g" position="6.0,5.0"/>
+      <visibility xmi:id="_cff0A6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cff0AqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cfdXwqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="conjurParam" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTxe4KE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRq30KE0Ee2JZf-PgyDh_g" position="-92.0,-46.0"/>
+      <stereotypes xmi:id="_a1LRIKE9Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTxe4aE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cff0BaE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cff0BKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cfVb8KE0Ee2JZf-PgyDh_g" source="_cgqRoKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUQAAaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cff0AaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUQAA6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cffM8KE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cffM8aE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUQAAqE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cfgbEaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cfgbEKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cff0AKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="logger" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTwQwaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cfgbE6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cfgbEqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cfhpMKE0Ee2JZf-PgyDh_g" source="_cgqRoKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUQABKE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cfhpMaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUQnEKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cfhpMqE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cfhpM6E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUQABaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cfhpNKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cfhpNaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cfhpNqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="context" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTw30KE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cfhpN6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cfhpOKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cghHsKE0Ee2JZf-PgyDh_g" source="_cgqRoKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUQnEaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cghHsaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUQnE6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cghHsqE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cghHs6E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUQnEqE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cghHtKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cghHtaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cghHtqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="environment" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTw30aE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cghHt6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cghHuKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cgjj8KE0Ee2JZf-PgyDh_g" sourceAnchor="493.0,113.0" targetAnchor="0.0,134.0" target="_cqAa4KE0Ee2JZf-PgyDh_g" source="_cgqRoKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUQnFKE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cgjj8aE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUROIKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cgjj8qE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRre4KE0Ee2JZf-PgyDh_g" position="-62.0,-7.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cgjj86E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUQnFaE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRq30aE0Ee2JZf-PgyDh_g" position="5.5,-46.5"/>
+      <visibility xmi:id="_cgjj9KE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cgjj9aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cgjj9qE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="propertySource" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTw30qE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRre4aE0Ee2JZf-PgyDh_g" position="-101.0,5.5"/>
+      <visibility xmi:id="_cgjj96E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cgjj-KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cgmAMKE0Ee2JZf-PgyDh_g" sourceAnchor="0.0,113.0" targetAnchor="414.0,45.0" target="_c3YIgKE0Ee2JZf-PgyDh_g" source="_cgqRoKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUROJKE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cgmAMaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUR1MKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cgmAMqE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRstAKE0Ee2JZf-PgyDh_g" position="97.0,-7.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cgmAM6E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUROJaE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRsF8KE0Ee2JZf-PgyDh_g" position="-18.5,5.5"/>
+      <visibility xmi:id="_cgmANKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cgmANaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cgmnQKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="processorChain" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTxe46E0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRstAaE0Ee2JZf-PgyDh_g" position="5.0,-46.50000000000003"/>
+      <visibility xmi:id="_cgmnQaE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cgmnQqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_ciFN8KE0Ee2JZf-PgyDh_g" sourceAnchor="247.0,0.0" targetAnchor="247.0,150.0" target="_caVAIKE0Ee2JZf-PgyDh_g" source="_ckUpoKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUR1NKE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_ckS0cKE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUScQKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_ckSNYKE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRt7IKE0Ee2JZf-PgyDh_g" position="-21.0,-10.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_ckSNYaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUR1NaE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRtUEKE0Ee2JZf-PgyDh_g" position="-20.0,-46.0"/>
+      <visibility xmi:id="_ckTbhaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_ckTbhKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_ckSNYqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="conjurRetrieveSecretService" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTyF8qE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRt7IaE0Ee2JZf-PgyDh_g" position="9.5,5.0"/>
+      <stereotypes xmi:id="_a1L4MKE9Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTytAKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_ckTbh6E0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_ckTbhqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cjbRwKE0Ee2JZf-PgyDh_g" source="_ckUpoKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUR1MaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_ckTbg6E0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUR1M6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_ckTbgKE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_ckTbgaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUR1MqE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_ckUCkaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_ckUCkKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_ckTbgqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="logger" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTyF8KE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_ckUCk6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_ckUCkqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cp34AKE0Ee2JZf-PgyDh_g" source="_cqAa4KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUURdKE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cp-lsqE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUU4gKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cp9-oKE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cp-lsKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUURdaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cp_MwaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cp_MwKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cp-lsaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="secretsApi" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT2-cKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1L4MaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT2-caE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cp_Mw6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cp_MwqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cp5tMKE0Ee2JZf-PgyDh_g" source="_cqAa4KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUU4gaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cp-ltqE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUVfkKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cp-ls6E0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cp-ltKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUU4gqE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cp_MxqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cp_MxaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cp-ltaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="logger" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT4MkaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1L4MqE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT4Mk6E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cp_z0aE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cp_z0KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_crV3oKE0Ee2JZf-PgyDh_g" sourceAnchor="183.0,0.0" targetAnchor="366.0,66.0" target="_cs594KE0Ee2JZf-PgyDh_g" source="_cs594KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUVfkaE0Ee2JZf-PgyDh_g"/>
+    <bendpoints xmi:id="_dRl_UKE0Ee2JZf-PgyDh_g" sourceY="-90" targetX="-183" targetY="-156"/>
+    <bendpoints xmi:id="_dRl_UaE0Ee2JZf-PgyDh_g" sourceX="377" sourceY="-90" targetX="194" targetY="-156"/>
+    <bendpoints xmi:id="_dRl_UqE0Ee2JZf-PgyDh_g" sourceX="377" sourceY="66" targetX="194"/>
+    <stereotypes xmi:id="_cs3hoqE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUVfk6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cs26kKE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRvJQKE0Ee2JZf-PgyDh_g" position="-361.5,-7.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cs3hoKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUVfkqE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRuiMKE0Ee2JZf-PgyDh_g" position="-20.0,-45.5"/>
+      <visibility xmi:id="_cs4vwaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cs4vwKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cs3hoaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="conjurConnectionInstance" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT4zoKE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRvJQaE0Ee2JZf-PgyDh_g" position="5.0,-46.5"/>
+      <stereotypes xmi:id="_a1MfQKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT4zoaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cs4vw6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cs4vwqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_csz3QKE0Ee2JZf-PgyDh_g" source="_cs594KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUVflKE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cs4Is6E0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUWGoKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cs4IsKE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cs4IsaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUVflaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cs4vxqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cs4vxaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cs4IsqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="logger" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT5asKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1MfQaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT5asqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cs4vyKE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cs4vx6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_ctw5gKE0Ee2JZf-PgyDh_g" sourceAnchor="135.0,0.0" targetAnchor="270.0,66.0" target="_cvYDEKE0Ee2JZf-PgyDh_g" source="_cvYDEKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUWtsaE0Ee2JZf-PgyDh_g"/>
+    <bendpoints xmi:id="_dRmmYKE0Ee2JZf-PgyDh_g" sourceY="-90" targetX="-135" targetY="-156"/>
+    <bendpoints xmi:id="_dRmmYaE0Ee2JZf-PgyDh_g" sourceX="273" sourceY="-90" targetX="138" targetY="-156"/>
+    <bendpoints xmi:id="_dRmmYqE0Ee2JZf-PgyDh_g" sourceX="273" sourceY="66" targetX="138"/>
+    <stereotypes xmi:id="_cvVm0qE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUWts6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cvU_wKE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRwXYKE0Ee2JZf-PgyDh_g" position="-257.5,-7.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cvVm0KE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUWtsqE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRvwUKE0Ee2JZf-PgyDh_g" position="-20.0,-45.5"/>
+      <visibility xmi:id="_cvVm1KE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cvVm06E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cvVm0aE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="uniqueInstance" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT6o0KE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRwXYaE0Ee2JZf-PgyDh_g" position="5.0,-46.5"/>
+      <stereotypes xmi:id="_a1MfQqE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT6o0aE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cvVm1qE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cvVm1aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cvW08KE0Ee2JZf-PgyDh_g" source="_cvYDEKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUWGoaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cvW08aE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUWtsKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cvW08qE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cvW086E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUWGoqE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cvW09KE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cvW09aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cvW09qE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="props" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT6BwKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1MfQ6E9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT6BwaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cvW096E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cvW0-KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cwgEcKE0Ee2JZf-PgyDh_g" sourceAnchor="464.0,77.0" targetAnchor="0.0,113.0" target="_cVRhAKE0Ee2JZf-PgyDh_g" source="_czLlAKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUTDUaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cyTbQaE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUTDU6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cyS0MKE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRw-caE0Ee2JZf-PgyDh_g" position="-45.0,-7.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cyS0MaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUTDUqE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRw-cKE0Ee2JZf-PgyDh_g" position="46.0,-46.5"/>
+      <visibility xmi:id="_cyV3iKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cyV3h6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cyTbQKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="conjurParam" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTzUE6E0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRxlgKE0Ee2JZf-PgyDh_g" position="-85.0,5.5"/>
+      <stereotypes xmi:id="_a1MfRKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTz7IKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cyV3iqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cyV3iaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cyOiwKE0Ee2JZf-PgyDh_g" source="_czLlAKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUScQaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cyV3gqE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUScQ6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cyVQcKE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cyV3gKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUScQqE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cyWekaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cyWekKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cyV3gaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="logger" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTytAqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1NGUKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTzUEKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cyWek6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cyWekqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cySNIKE0Ee2JZf-PgyDh_g" sourceAnchor="464.0,64.0" targetAnchor="414.0,58.0" target="_c3YIgKE0Ee2JZf-PgyDh_g" source="_czLlAKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUScRKE0Ee2JZf-PgyDh_g"/>
+    <bendpoints xmi:id="_dRmmY6E0Ee2JZf-PgyDh_g" sourceX="41" targetX="287" targetY="390"/>
+    <bendpoints xmi:id="_dRmmZKE0Ee2JZf-PgyDh_g" sourceX="41" sourceY="-390" targetX="287"/>
+    <stereotypes xmi:id="_cyV3hqE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUTDUKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cyV3g6E0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRxlgqE0Ee2JZf-PgyDh_g" position="-21.0,96.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_cyV3hKE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUScRaE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRxlgaE0Ee2JZf-PgyDh_g" position="21.0,-46.0"/>
+      <visibility xmi:id="_cyXFoaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cyXFoKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cyV3haE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="chain" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTzUEaE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRyMkKE0Ee2JZf-PgyDh_g" position="291.5,5.0"/>
+      <stereotypes xmi:id="_a1NGUaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTzUEqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cyXFo6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cyXFoqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cyTbQqE0Ee2JZf-PgyDh_g" source="_czLlAKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUTDVKE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_cyV3j6E0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUTqYKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_cyV3jKE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_cyV3jaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUTDVaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cyXssKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cyXFpaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_cyV3jqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="secretsApi" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTz7IaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1NGUqE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTz7IqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cyXssqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cyXssaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_cyUCUKE0Ee2JZf-PgyDh_g" sourceAnchor="232.0,0.0" targetAnchor="207.0,90.0" superClass="_c3YIgKE0Ee2JZf-PgyDh_g" subClass="_czLlAKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZSzOgqE0Ee2JZf-PgyDh_g"/>
+    <bendpoints xmi:id="_dRnNcKE0Ee2JZf-PgyDh_g" sourceY="-261" targetX="221" targetY="33"/>
+    <bendpoints xmi:id="_dRnNcaE0Ee2JZf-PgyDh_g" sourceX="-221" sourceY="-261" targetY="33"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_cyXstKE0Ee2JZf-PgyDh_g" sourceAnchor="0.0,45.0" targetAnchor="207.0,0.0" target="_c3YIgKE0Ee2JZf-PgyDh_g" source="_c3YIgKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUURcaE0Ee2JZf-PgyDh_g"/>
+    <bendpoints xmi:id="_dRnNdqE0Ee2JZf-PgyDh_g" sourceX="-170" targetX="-377" targetY="45"/>
+    <bendpoints xmi:id="_dRnNd6E0Ee2JZf-PgyDh_g" sourceX="-170" sourceY="-130" targetX="-377" targetY="-85"/>
+    <bendpoints xmi:id="_dRnNeKE0Ee2JZf-PgyDh_g" sourceX="207" sourceY="-130" targetY="-85"/>
+    <stereotypes xmi:id="_czJv06E0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUURc6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_czJv0KE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRzasKE0Ee2JZf-PgyDh_g" position="-23.5,96.50000000000003"/>
+    </nameVisual>
+    <sourceRole xmi:id="_czJv0aE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUURcqE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRyzoqE0Ee2JZf-PgyDh_g" position="-137.0,5.499999999999972"/>
+      <visibility xmi:id="_czKW4aE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_czKW4KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_czJv0qE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="processorChain" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT1JQaE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRzasaE0Ee2JZf-PgyDh_g" position="-100.5,-45.99999999999997"/>
+      <stereotypes xmi:id="_a1NGU6E9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT1JQqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_czKW46E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_czKW4qE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_c0a7IKE0Ee2JZf-PgyDh_g" sourceAnchor="0.0,68.0" targetAnchor="0.0,58.0" target="_c3YIgKE0Ee2JZf-PgyDh_g" source="_c1huYKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUTqZKE0Ee2JZf-PgyDh_g"/>
+    <bendpoints xmi:id="_dRnNcqE0Ee2JZf-PgyDh_g" sourceX="-70" targetX="-118" targetY="169"/>
+    <bendpoints xmi:id="_dRnNc6E0Ee2JZf-PgyDh_g" sourceX="-70" sourceY="-169" targetX="-118"/>
+    <stereotypes xmi:id="_c1fSIKE0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUURcKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_c1erEaE0Ee2JZf-PgyDh_g" text="">
+      <visualProperties xmi:id="_dRyzoKE0Ee2JZf-PgyDh_g" position="-21.0,51.49999999999994"/>
+    </nameVisual>
+    <sourceRole xmi:id="_c1erEqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUTqZaE0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRyMkaE0Ee2JZf-PgyDh_g" position="-19.0,5.5"/>
+      <visibility xmi:id="_c1ggRaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c1ggRKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_c1erE6E0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="chain" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT0iM6E0Ee2JZf-PgyDh_g"/>
+      <visualProperties xmi:id="_dRyzoaE0Ee2JZf-PgyDh_g" position="-113.50000000000006,5.000000000000028"/>
+      <stereotypes xmi:id="_a1NGVKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT1JQKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_c1ggR6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_c1ggRqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_c1eEAKE0Ee2JZf-PgyDh_g" sourceAnchor="229.0,0.0" targetAnchor="207.0,90.0" superClass="_c3YIgKE0Ee2JZf-PgyDh_g" subClass="_c1huYKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZS1qwqE0Ee2JZf-PgyDh_g"/>
+    <bendpoints xmi:id="_dRnNdKE0Ee2JZf-PgyDh_g" sourceY="-36" targetX="-26" targetY="33"/>
+    <bendpoints xmi:id="_dRnNdaE0Ee2JZf-PgyDh_g" sourceX="26" sourceY="-36" targetY="33"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_c1erEKE0Ee2JZf-PgyDh_g" source="_c1huYKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUTqYaE0Ee2JZf-PgyDh_g"/>
+    <stereotypes xmi:id="_c1ggQ6E0Ee2JZf-PgyDh_g" name="Reference">
+      <modelElement href="spring-boot-conjur3.uml#_ZUTqY6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <nameVisual xmi:id="_c1ggQKE0Ee2JZf-PgyDh_g" text=""/>
+    <sourceRole xmi:id="_c1ggQaE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="">
+      <modelElement href="spring-boot-conjur3.uml#_ZUTqYqE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_c1hHUaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c1hHUKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_c1ggQqE0Ee2JZf-PgyDh_g" aggregationKind="NONE" name="logger" navigable="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT0iMKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1NtYKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT0iMqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_c1hHU6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_c1hHUqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1OUcaE9Ee2JZf-PgyDh_g" targetItem="_cNqdKqE0Ee2JZf-PgyDh_g" sourceItem="_a1OUcKE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1O7gaE9Ee2JZf-PgyDh_g" targetItem="_cPXGRqE0Ee2JZf-PgyDh_g" sourceItem="_a1O7gKE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1PikaE9Ee2JZf-PgyDh_g" targetItem="_cQz3wKE0Ee2JZf-PgyDh_g" sourceItem="_a1PikKE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1QwsaE9Ee2JZf-PgyDh_g" targetItem="_cS6JjqE0Ee2JZf-PgyDh_g" sourceItem="_a1QwsKE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1R-0aE9Ee2JZf-PgyDh_g" targetItem="_cXDpsKE0Ee2JZf-PgyDh_g" sourceItem="_a1R-0KE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1T0AaE9Ee2JZf-PgyDh_g" targetItem="_caVALqE0Ee2JZf-PgyDh_g" sourceItem="_a1T0AKE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1T0A6E9Ee2JZf-PgyDh_g" targetItem="_caVAN6E0Ee2JZf-PgyDh_g" sourceItem="_a1T0AqE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1YFcaE9Ee2JZf-PgyDh_g" targetItem="_cqAa4KE0Ee2JZf-PgyDh_g" sourceItem="_a1YFcKE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1Z6oKE9Ee2JZf-PgyDh_g" targetItem="_cqAbLaE0Ee2JZf-PgyDh_g" sourceItem="_a1ZTkKE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1Z6oqE9Ee2JZf-PgyDh_g" targetItem="_cs594KE0Ee2JZf-PgyDh_g" sourceItem="_a1Z6oaE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1bIwaE9Ee2JZf-PgyDh_g" targetItem="_cs5996E0Ee2JZf-PgyDh_g" sourceItem="_a1bIwKE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1bIw6E9Ee2JZf-PgyDh_g" targetItem="_cvYDEKE0Ee2JZf-PgyDh_g" sourceItem="_a1bIwqE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1cW4aE9Ee2JZf-PgyDh_g" targetItem="_cvYDJKE0Ee2JZf-PgyDh_g" sourceItem="_a1cW4KE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_a1cW46E9Ee2JZf-PgyDh_g" targetItem="_cvYDKaE0Ee2JZf-PgyDh_g" sourceItem="_a1cW4qE9Ee2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEC60qFPEe2JZf-PgyDh_g" targetItem="_cvYDKaE0Ee2JZf-PgyDh_g" sourceItem="_VEC60aFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEC61KFPEe2JZf-PgyDh_g" targetItem="_cvYDJKE0Ee2JZf-PgyDh_g" sourceItem="_VEC606FPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEDh4qFPEe2JZf-PgyDh_g" targetItem="_cs5996E0Ee2JZf-PgyDh_g" sourceItem="_VEDh4aFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEEI8qFPEe2JZf-PgyDh_g" targetItem="_cqAbLaE0Ee2JZf-PgyDh_g" sourceItem="_VEEI8aFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEHMQaFPEe2JZf-PgyDh_g" targetItem="_caVAN6E0Ee2JZf-PgyDh_g" sourceItem="_VEHMQKFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEHMQ6FPEe2JZf-PgyDh_g" targetItem="_caVALqE0Ee2JZf-PgyDh_g" sourceItem="_VEHMQqFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEIaYaFPEe2JZf-PgyDh_g" targetItem="_cS6JjqE0Ee2JZf-PgyDh_g" sourceItem="_VEIaYKFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEJBcaFPEe2JZf-PgyDh_g" targetItem="_cPXGRqE0Ee2JZf-PgyDh_g" sourceItem="_VEJBcKFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEJBc6FPEe2JZf-PgyDh_g" targetItem="_cNqdKqE0Ee2JZf-PgyDh_g" sourceItem="_VEJBcqFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEN58aFPEe2JZf-PgyDh_g" targetItem="_cvYDEKE0Ee2JZf-PgyDh_g" sourceItem="_VEN58KFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEOhAaFPEe2JZf-PgyDh_g" targetItem="_cs594KE0Ee2JZf-PgyDh_g" sourceItem="_VEOhAKFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VEPIEaFPEe2JZf-PgyDh_g" targetItem="_cqAa4KE0Ee2JZf-PgyDh_g" sourceItem="_VEPIEKFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VESLYaFPEe2JZf-PgyDh_g" targetItem="_cXDpsKE0Ee2JZf-PgyDh_g" sourceItem="_VESLYKFPEe2JZf-PgyDh_g"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_VESycaFPEe2JZf-PgyDh_g" targetItem="_cQz3wKE0Ee2JZf-PgyDh_g" sourceItem="_VESycKFPEe2JZf-PgyDh_g"/>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1OUcKE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1OUcaE9Ee2JZf-PgyDh_g" text="Indicates the complete path of the variable.&#xA;&#x9; *" item="_cNqdKqE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUGPAKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1O7gKE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1O7gaE9Ee2JZf-PgyDh_g" text="Indicates the complete path for multiple keys.&#xA;&#x9; *" item="_cPXGRqE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUGPA6E0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1PikKE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1PikaE9Ee2JZf-PgyDh_g" text="&#xA;This class helps to get all variables defined on the custom annotation side&#xA;and registers them with the ConjurPropertySource class for further processing.&#xA; *" item="_cQz3wKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIENaE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1QwsKE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1QwsaE9Ee2JZf-PgyDh_g" text="Indicate the Vault path(s) of the policy to be retrieved. For example,&#xA;&#x9; * {@code &quot;policy/my-application/db.userName&quot;}.&#xA;&#x9; *&#xA;&#x9; * @return Vault path(s)" item="_cS6JjqE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIrRKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1R-0KE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1R-0aE9Ee2JZf-PgyDh_g" text="&#xA;Conjur Spring boot plugin constant file.&#xA; *" item="_cXDpsKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIENKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1T0AKE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1T0AaE9Ee2JZf-PgyDh_g" text="This method retrieves multiple secrets for custom annotation's keys.&#xA;&#x9; * &#xA;&#x9; * @param keys - query to vault.&#xA;&#x9; * @return secrets - output from the vault.&#xA;&#x9; * @throws ApiException - Exception thrown from conjur java sdk." item="_caVALqE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUGPBqE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1T0AqE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1T0A6E9Ee2JZf-PgyDh_g" text="This method retrieves single secret for custom annotation's key value.&#xA;&#x9; * &#xA;&#x9; * @param key - query to vault.&#xA;&#x9; * @return secrets - output from the vault.&#xA;&#x9; * @throws ApiException - Exception thrown from conjur java sdk." item="_caVAN6E0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUG2EKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1YFcKE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1YFcaE9Ee2JZf-PgyDh_g" text="&#xA;This class resolves the secret value for give vault path at application load&#xA;time from the conjur vault.&#xA; *" item="_cqAa4KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUHdIKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1ZTkKE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1Z6oKE9Ee2JZf-PgyDh_g" text="Sets the external environment variable.&#xA;&#x9; * &#xA;&#x9; * @param newenv - setting for API_KEY&#xA;&#x9; * @throws NoSuchFieldException     -- class doesn't have a field of a specified&#xA;&#x9; *                                  name&#xA;&#x9; * @throws SecurityException        --indicate a security violation.&#xA;&#x9; * @throws IllegalArgumentException -- a method has been passed an illegal or&#xA;&#x9; *                                  inappropriate argument.&#xA;&#x9; * @throws IllegalAccessException   -- excuting method does not have access to&#xA;&#x9; *                                  the definition of the specified class,&#xA;&#x9; *                                  field, method or constructor." item="_cqAbLaE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUHdIaE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1Z6oaE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1Z6oqE9Ee2JZf-PgyDh_g" text="&#xA;This is the connection creation singleton class with conjur vault by using&#xA;the conjur java sdk.&#xA; *" item="_cs594KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUHdIqE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1bIwKE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1bIwaE9Ee2JZf-PgyDh_g" text="method to create instance of class and checking for multiple threads.&#xA;&#x9; * @return unique instance of class." item="_cs5996E0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIEMKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1bIwqE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1bIw6E9Ee2JZf-PgyDh_g" text="&#xA;This class loads the external configured conjur.properties file and resolves&#xA;the keys values defined in properties file.&#xA; *" item="_cvYDEKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIEMaE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1cW4KE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1cW4aE9Ee2JZf-PgyDh_g" text="&#xA;&#x9; * @return unique instance of class." item="_cvYDJKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIEMqE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_a1cW4qE9Ee2JZf-PgyDh_g" sourceConnectionVisual="_a1cW46E9Ee2JZf-PgyDh_g" text="&#xA;&#x9; * @param name - key define at given property file.&#xA;&#x9; * @return - corresponding value of key defined at given property file." item="_cvYDKaE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIEM6E0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:InterfaceVisual" xmi:id="_cMO5wKE0Ee2JZf-PgyDh_g" name="ConjurPropertySources" associationsOut="_cLaaYKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZP_yIKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cMO5waE0Ee2JZf-PgyDh_g" position="80.0,1606.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cMO5wqE0Ee2JZf-PgyDh_g" name="AnnotationDefinition">
+      <modelElement href="spring-boot-conjur3.uml#_ZQAZM6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cMO5w6E0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQBAQKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cMO5xKE0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQBnU6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cMO5xaE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cMO5xqE0Ee2JZf-PgyDh_g" name="value">
+      <modelElement href="spring-boot-conjur3.uml#_ZQBAQaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1hPYKE9Ee2JZf-PgyDh_g" name="Array"/>
+      <stereotypes xmi:id="_a1h2cKE9Ee2JZf-PgyDh_g" name="Array"/>
+      <stereotypes xmi:id="_a10KUKE9Ee2JZf-PgyDh_g" name="Array"/>
+      <stereotypes xmi:id="_VEJBdKFPEe2JZf-PgyDh_g" name="Array"/>
+      <visibility xmi:id="_cMO5yKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cMO5yaE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_cMO5yqE0Ee2JZf-PgyDh_g" name="ConjurPropertySource">
+        <modelElement href="spring-boot-conjur3.uml#_ZQsVsKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:InterfaceVisual" xmi:id="_cNqdIKE0Ee2JZf-PgyDh_g" name="ConjurValue">
+    <modelElement href="spring-boot-conjur3.uml#_ZQCOZ6E0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cNqdIaE0Ee2JZf-PgyDh_g" position="464.0,1970.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cNqdIqE0Ee2JZf-PgyDh_g" name="AnnotationDefinition">
+      <modelElement href="spring-boot-conjur3.uml#_ZQC1c6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cNqdI6E0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQC1dKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cNqdJKE0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQEDkKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cNqdJaE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cNqdJqE0Ee2JZf-PgyDh_g" defaultValue="&quot;variable&quot;" name="kind">
+      <modelElement href="spring-boot-conjur3.uml#_ZQDcgqE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cNqdJ6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cNqdKKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cNqdKaE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cNqdKqE0Ee2JZf-PgyDh_g" comments="_a1OUcKE9Ee2JZf-PgyDh_g _VEJBcqFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1OUcaE9Ee2JZf-PgyDh_g _VEJBc6FPEe2JZf-PgyDh_g" name="key">
+      <modelElement href="spring-boot-conjur3.uml#_ZQC1daE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cNqdK6E0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQDcgaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cNqdLKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cNqdLaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cNqdLqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQDcgKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cNqdL6E0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:InterfaceVisual" xmi:id="_cPXGQKE0Ee2JZf-PgyDh_g" name="ConjurValues">
+    <modelElement href="spring-boot-conjur3.uml#_ZQEDlqE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cPXGQaE0Ee2JZf-PgyDh_g" position="714.0,1970.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cPXGQqE0Ee2JZf-PgyDh_g" name="AnnotationDefinition">
+      <modelElement href="spring-boot-conjur3.uml#_ZQEqoKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cPXGQ6E0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQEqoaE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cPXGRKE0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQFRsKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cPXGRaE0Ee2JZf-PgyDh_g" label="+"/>
+    <operations xmi:id="_cPXGRqE0Ee2JZf-PgyDh_g" comments="_a1O7gKE9Ee2JZf-PgyDh_g _VEJBcKFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1O7gaE9Ee2JZf-PgyDh_g _VEJBcaFPEe2JZf-PgyDh_g" name="keys">
+      <modelElement href="spring-boot-conjur3.uml#_ZQEqoqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cPXGR6E0Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZQEqpaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cPXGSKE0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQEqpqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cPXGSaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cPXGSqE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_cPXGS6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQEqo6E0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cPXGTKE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_cQz3wKE0Ee2JZf-PgyDh_g" comments="_a1PikKE9Ee2JZf-PgyDh_g _VESycKFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1PikaE9Ee2JZf-PgyDh_g _VESycaFPEe2JZf-PgyDh_g" name="Registrar" associationsOut="_cQP3EKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQp5cKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cQz3waE0Ee2JZf-PgyDh_g" position="519.0,1738.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_cQz3wqE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cQz3w6E0Ee2JZf-PgyDh_g" name="environment">
+      <modelElement href="spring-boot-conjur3.uml#_ZT8eA6E0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cQz3xKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cQz3xaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cQz3xqE0Ee2JZf-PgyDh_g" name="Environment">
+        <modelElement href="spring-boot-conjur3.uml#_ZSr5wqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cQz3x6E0Ee2JZf-PgyDh_g" name="setEnvironment">
+      <modelElement href="spring-boot-conjur3.uml#_ZTnG0KE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cQz3yKE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTnG0qE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cQz3yaE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTnG06E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cQz3yqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cQz3y6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cQz3zKE0Ee2JZf-PgyDh_g" name="environment">
+        <modelElement href="spring-boot-conjur3.uml#_ZTnG0aE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQz3zaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQz3zqE0Ee2JZf-PgyDh_g" name="Environment">
+          <modelElement href="spring-boot-conjur3.uml#_ZSr5wqE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cQz3z6E0Ee2JZf-PgyDh_g" name="postProcessBeanFactory">
+      <modelElement href="spring-boot-conjur3.uml#_ZTnt4KE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cQz30KE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTnt4qE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cQz30aE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTnt46E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cQz30qE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cQz306E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cQz31KE0Ee2JZf-PgyDh_g" name="beanFactory">
+        <modelElement href="spring-boot-conjur3.uml#_ZTnt4aE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQz31aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQz31qE0Ee2JZf-PgyDh_g" name="ConfigurableListableBeanFactory">
+          <modelElement href="spring-boot-conjur3.uml#_ZS-0s6E0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cQz316E0Ee2JZf-PgyDh_g" name="registerBeanDefinitions">
+      <modelElement href="spring-boot-conjur3.uml#_ZToU8KE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cQz32KE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZToU86E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cQz32aE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZToU9KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cQz32qE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cQz326E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cQz33KE0Ee2JZf-PgyDh_g" name="importingClassMetadata">
+        <modelElement href="spring-boot-conjur3.uml#_ZToU8aE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQz33aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQz33qE0Ee2JZf-PgyDh_g" name="AnnotationMetadata">
+          <modelElement href="spring-boot-conjur3.uml#_ZTBQ8aE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cQz336E0Ee2JZf-PgyDh_g" name="registry">
+        <modelElement href="spring-boot-conjur3.uml#_ZToU8qE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQz34KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQz34aE0Ee2JZf-PgyDh_g" name="BeanDefinitionRegistry">
+          <modelElement href="spring-boot-conjur3.uml#_ZTAC0KE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cQz34qE0Ee2JZf-PgyDh_g" name="makeAndRegisterBean">
+      <modelElement href="spring-boot-conjur3.uml#_ZTo8AKE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cQ0e0KE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cQ0e0aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cQ0e0qE0Ee2JZf-PgyDh_g" name="registry">
+        <modelElement href="spring-boot-conjur3.uml#_ZTo8AaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQ0e06E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQ0e1KE0Ee2JZf-PgyDh_g" name="BeanDefinitionRegistry">
+          <modelElement href="spring-boot-conjur3.uml#_ZTAC0KE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cQ0e1aE0Ee2JZf-PgyDh_g" name="values">
+        <modelElement href="spring-boot-conjur3.uml#_ZTo8AqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQ0e1qE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+        <type xmi:id="_cQ0e16E0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cQ0e2KE0Ee2JZf-PgyDh_g" name="name">
+        <modelElement href="spring-boot-conjur3.uml#_ZTo8A6E0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQ0e2aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQ0e2qE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cQ0e26E0Ee2JZf-PgyDh_g" name="registerBeanDefinition">
+      <modelElement href="spring-boot-conjur3.uml#_ZTpjEaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cQ0e3KE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cQ0e3aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cQ0e3qE0Ee2JZf-PgyDh_g" name="registry">
+        <modelElement href="spring-boot-conjur3.uml#_ZTpjEqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQ0e36E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQ0e4KE0Ee2JZf-PgyDh_g" name="BeanDefinitionRegistry">
+          <modelElement href="spring-boot-conjur3.uml#_ZTAC0KE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cQ0e4aE0Ee2JZf-PgyDh_g" name="type">
+        <modelElement href="spring-boot-conjur3.uml#_ZTpjE6E0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQ0e4qE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQ0e46E0Ee2JZf-PgyDh_g" name="Class">
+          <modelElement href="spring-boot-conjur3.uml#_ZTo8BaE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cQ0e5KE0Ee2JZf-PgyDh_g" name="name">
+        <modelElement href="spring-boot-conjur3.uml#_ZTpjFKE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQ0e5aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQ0e5qE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cQ0e56E0Ee2JZf-PgyDh_g" name="value">
+        <modelElement href="spring-boot-conjur3.uml#_ZTpjFaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQ0e6KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQ0e6aE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cQ0e6qE0Ee2JZf-PgyDh_g" name="vaultInfo">
+        <modelElement href="spring-boot-conjur3.uml#_ZTpjFqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cQ0e66E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cQ0e7KE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:InterfaceVisual" xmi:id="_cS6JgKE0Ee2JZf-PgyDh_g" name="ConjurPropertySource" associationsIn="_cLaaYKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQsVsKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cS6JgaE0Ee2JZf-PgyDh_g" position="14.0,1284.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cS6JgqE0Ee2JZf-PgyDh_g" name="AnnotationDefinition">
+      <modelElement href="spring-boot-conjur3.uml#_ZQs8w6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cS6Jg6E0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQs8xKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cS6JhKE0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQuK4aE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cS6JhaE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cS6JhqE0Ee2JZf-PgyDh_g" defaultValue="&quot;&quot;" name="name">
+      <modelElement href="spring-boot-conjur3.uml#_ZQs8xaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cS6Jh6E0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_cS6JiKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cS6JiaE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cS6JiqE0Ee2JZf-PgyDh_g" defaultValue="false" name="ignoreResourceNotFound">
+      <modelElement href="spring-boot-conjur3.uml#_ZQtj1qE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cS6Ji6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cS6JjKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cS6JjaE0Ee2JZf-PgyDh_g" name="boolean">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cS6JjqE0Ee2JZf-PgyDh_g" comments="_a1QwsKE9Ee2JZf-PgyDh_g _VEIaYKFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1QwsaE9Ee2JZf-PgyDh_g _VEIaYaFPEe2JZf-PgyDh_g" name="value">
+      <modelElement href="spring-boot-conjur3.uml#_ZQtj0aE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cS6Jj6E0Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZQtj1KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cS6JkKE0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQtj1aE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cS6JkaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cS6JkqE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_cS6Jk6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQtj0qE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cS6JlKE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_cVRhAKE0Ee2JZf-PgyDh_g" name="ConjurProperties" associationsIn="_ceLlYKE0Ee2JZf-PgyDh_g _cwgEcKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQFRtqE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cVRhAaE0Ee2JZf-PgyDh_g" position="1152.0,468.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cVRhAqE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQF4wKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cVRhA6E0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQHG4qE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cVRhBKE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cVRhBaE0Ee2JZf-PgyDh_g" name="account">
+      <modelElement href="spring-boot-conjur3.uml#_ZTr_UKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cVRhBqE0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTr_UaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVRhB6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVRhCKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cVRhCaE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cVRhCqE0Ee2JZf-PgyDh_g" name="applianceUrl">
+      <modelElement href="spring-boot-conjur3.uml#_ZTsmYKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cVRhC6E0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTsmYaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVRhDKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVRhDaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cVRhDqE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cVRhD6E0Ee2JZf-PgyDh_g" name="authTokenFilePath">
+      <modelElement href="spring-boot-conjur3.uml#_ZTsmYqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cVRhEKE0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTsmY6E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVRhEaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVRhEqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cVRhE6E0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cVRhFKE0Ee2JZf-PgyDh_g" name="authnLogin">
+      <modelElement href="spring-boot-conjur3.uml#_ZTsmZKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cVRhFaE0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTsmZaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVRhFqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVRhF6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cVRhGKE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cVRhGaE0Ee2JZf-PgyDh_g" name="certFile">
+      <modelElement href="spring-boot-conjur3.uml#_ZTsmZqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cVRhGqE0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTtNcKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVRhG6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVRhHKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cVRhHaE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cVRhHqE0Ee2JZf-PgyDh_g" name="sslCertificate">
+      <modelElement href="spring-boot-conjur3.uml#_ZTtNcaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cVRhH6E0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTtNcqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVRhIKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVRhIaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cVRhIqE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cVRhI6E0Ee2JZf-PgyDh_g" name="path">
+      <modelElement href="spring-boot-conjur3.uml#_ZTtNc6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cVRhJKE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTt0gKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cVRhJaE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTubkKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVRhJqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVRhJ6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cVRhKKE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cVRhKaE0Ee2JZf-PgyDh_g" name="ConjurProperties">
+      <modelElement href="spring-boot-conjur3.uml#_ZQGf0KE0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_cVRhKqE0Ee2JZf-PgyDh_g" keyword="create"/>
+      <stereotypes xmi:id="_cVRhK6E0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQGf1KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVSIEKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVSIEaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cVSIEqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQGf06E0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cVSIE6E0Ee2JZf-PgyDh_g" name="ConjurProperties">
+          <modelElement href="spring-boot-conjur3.uml#_ZQFRtqE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_cVSIFKE0Ee2JZf-PgyDh_g" name="toString">
+      <modelElement href="spring-boot-conjur3.uml#_ZQGf1aE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cVSIFaE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQHG4KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cVSIFqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cVSIF6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cVSIGKE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQGf1qE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cVSIGaE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_cXDpsKE0Ee2JZf-PgyDh_g" comments="_a1R-0KE9Ee2JZf-PgyDh_g _VESLYKFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1R-0aE9Ee2JZf-PgyDh_g _VESLYaFPEe2JZf-PgyDh_g" name="ConjurConstant">
+    <modelElement href="spring-boot-conjur3.uml#_ZQorUKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cXDpsaE0Ee2JZf-PgyDh_g" position="11.0,1963.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_cXDpsqE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cXDps6E0Ee2JZf-PgyDh_g" defaultValue="&quot;conjur.mapping.&quot;" name="CONJUR_MAPPING" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT7P4KE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cXDptKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cXDptaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cXDptqE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cXDpt6E0Ee2JZf-PgyDh_g" defaultValue="&quot;variable&quot;" name="CONJUR_KIND" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT7P4qE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cXDpuKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cXDpuaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cXDpuqE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cXDpu6E0Ee2JZf-PgyDh_g" defaultValue="&quot;/conjur.properties&quot;" name="CONJUR_PROPERTIES" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT728KE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cXDpvKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cXDpvaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cXDpvqE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cXDpv6E0Ee2JZf-PgyDh_g" defaultValue="System.getenv(&quot;CONJUR_ACCOUNT&quot;)" name="CONJUR_ACCOUNT" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT728qE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cXDpwKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cXDpwaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cXDpwqE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cXDpw6E0Ee2JZf-PgyDh_g" defaultValue="&quot;Please provide Conjur Authn Token file or else api Key in environment Variable&quot;" name="CONJUR_APIKEY_ERROR" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT729KE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cXDpxKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cXDpxaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cXDpxqE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cXDpx6E0Ee2JZf-PgyDh_g" defaultValue="&quot;notFound&quot;" name="NOT_FOUND" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT8eAaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cXDpyKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cXDpyaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cXDpyqE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_caVAIKE0Ee2JZf-PgyDh_g" name="ConjurRetrieveSecretService" associationsIn="_cbTQgKE0Ee2JZf-PgyDh_g _ciFN8KE0Ee2JZf-PgyDh_g" associationsOut="_caNEUKE0Ee2JZf-PgyDh_g _caQusKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQIVAKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_caVAIaE0Ee2JZf-PgyDh_g" position="23.0,766.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_caVAIqE0Ee2JZf-PgyDh_g" name="Patch">
+      <modelElement href="spring-boot-conjur3.uml#_Z6dEYKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_caVAI6E0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_caVAJKE0Ee2JZf-PgyDh_g" defaultValue="LoggerFactory.getLogger(ConjurRetrieveSecretService.class)" name="logger" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTubk6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1idgKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1jEkKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a11_gKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEHzUKFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_caVAJqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_caVAJ6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_caVAKKE0Ee2JZf-PgyDh_g" name="Logger">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiIwqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_caVAKaE0Ee2JZf-PgyDh_g" name="secretsApi">
+      <modelElement href="spring-boot-conjur3.uml#_ZTvCoqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1jroKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1jroaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a12mkKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEHMRKFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_caVAK6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_caVALKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_caVALaE0Ee2JZf-PgyDh_g" name="SecretsApi">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiv1KE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_caVALqE0Ee2JZf-PgyDh_g" comments="_a1T0AKE9Ee2JZf-PgyDh_g _VEHMQqFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1T0AaE9Ee2JZf-PgyDh_g _VEHMQ6FPEe2JZf-PgyDh_g" name="retriveMultipleSecretsForCustomAnnotation">
+      <modelElement href="spring-boot-conjur3.uml#_ZQI8EKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_caVAL6E0Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZQI8FKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_caVAMKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_caVAMaE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_caVAMqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQI8EqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_caVAM6E0Ee2JZf-PgyDh_g" name="byte">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_caVANKE0Ee2JZf-PgyDh_g" name="keys">
+        <modelElement href="spring-boot-conjur3.uml#_ZQI8EaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_caVANaE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+        <type xmi:id="_caVANqE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_caVAN6E0Ee2JZf-PgyDh_g" comments="_a1T0AqE9Ee2JZf-PgyDh_g _VEHMQKFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1T0A6E9Ee2JZf-PgyDh_g _VEHMQaFPEe2JZf-PgyDh_g" name="retriveSingleSecretForCustomAnnotation">
+      <modelElement href="spring-boot-conjur3.uml#_ZQJjIKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_caVAOKE0Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZQJjJKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_caVAOaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_caVAOqE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_caVAO6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQJjIqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_caVAPKE0Ee2JZf-PgyDh_g" name="byte">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_caVAPaE0Ee2JZf-PgyDh_g" name="key">
+        <modelElement href="spring-boot-conjur3.uml#_ZQJjIaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_caVAPqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_caVAP6E0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_caVAQKE0Ee2JZf-PgyDh_g" name="processMultipleSecretResult">
+      <modelElement href="spring-boot-conjur3.uml#_ZTMQEKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_caVAQaE0Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZTMQFKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_caVAQqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_caVAQ6E0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_caVARKE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTMQEqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_caVARaE0Ee2JZf-PgyDh_g" name="byte">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_caVARqE0Ee2JZf-PgyDh_g" name="result">
+        <modelElement href="spring-boot-conjur3.uml#_ZTMQEaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_caVAR6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_caVASKE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_cdHOY6E0Ee2JZf-PgyDh_g" name="ConjurValueClassProcessor" associationsOut="_cbTQgKE0Ee2JZf-PgyDh_g _cce8QaE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQKKMKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cdH1cKE0Ee2JZf-PgyDh_g" position="842.0,785.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cdH1caE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQKxQ6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cdH1cqE0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQLYUKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cdH1c6E0Ee2JZf-PgyDh_g" name="Patch">
+      <modelElement href="spring-boot-conjur3.uml#_Z6eSgKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cdH1dKE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cdH1daE0Ee2JZf-PgyDh_g" name="conjurRetrieveSecretService">
+      <modelElement href="spring-boot-conjur3.uml#_ZTvpsKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1kSsKE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_a1kSsaE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_a12mkaE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_VEGlMaFPEe2JZf-PgyDh_g" name="Annotations"/>
+      <visibility xmi:id="_cdH1d6E0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_cdH1eKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cdH1eaE0Ee2JZf-PgyDh_g" name="ConjurRetrieveSecretService">
+        <modelElement href="spring-boot-conjur3.uml#_ZQIVAKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cdH1eqE0Ee2JZf-PgyDh_g" defaultValue="LoggerFactory.getLogger(ConjurPropertySource.class)" name="logger" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTvps6E0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cdH1e6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cdH1fKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cdH1faE0Ee2JZf-PgyDh_g" name="Logger">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiIwqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cdH1fqE0Ee2JZf-PgyDh_g" name="postProcessBeforeInitialization">
+      <modelElement href="spring-boot-conjur3.uml#_ZTOFQKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cdH1f6E0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTOsUKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cdH1gKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cdH1gaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cdH1gqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTOFQ6E0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cdH1g6E0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_cdH1hKE0Ee2JZf-PgyDh_g" name="bean">
+        <modelElement href="spring-boot-conjur3.uml#_ZTOFQaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cdH1haE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cdH1hqE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cdH1h6E0Ee2JZf-PgyDh_g" name="beanName">
+        <modelElement href="spring-boot-conjur3.uml#_ZTOFQqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cdH1iKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cdH1iaE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cdH1iqE0Ee2JZf-PgyDh_g" name="postProcessAfterInitialization">
+      <modelElement href="spring-boot-conjur3.uml#_ZTPTYKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cdH1i6E0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTP6caE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cdH1jKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cdH1jaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cdH1jqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTP6cKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cdH1j6E0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_cdH1kKE0Ee2JZf-PgyDh_g" name="bean">
+        <modelElement href="spring-boot-conjur3.uml#_ZTPTYaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cdH1kaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cdH1kqE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cdH1k6E0Ee2JZf-PgyDh_g" name="beanName">
+        <modelElement href="spring-boot-conjur3.uml#_ZTPTYqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cdH1lKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cdH1laE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_cgqRoKE0Ee2JZf-PgyDh_g" name="ConjurValueProcessor" associationsOut="_ceLlYKE0Ee2JZf-PgyDh_g _cfVb8KE0Ee2JZf-PgyDh_g _cfhpMKE0Ee2JZf-PgyDh_g _cghHsKE0Ee2JZf-PgyDh_g _cgjj8KE0Ee2JZf-PgyDh_g _cgmAMKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQMmcKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cgqRoaE0Ee2JZf-PgyDh_g" position="1037.0,52.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cgqRoqE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQNNg6E0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_cgqRo6E0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQPCsKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cgqRpKE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cgqRpaE0Ee2JZf-PgyDh_g" defaultValue="LoggerFactory.getLogger(ConjurValueProcessor.class)" name="logger">
+      <modelElement href="spring-boot-conjur3.uml#_ZTwQwaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cgqRpqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cgqRp6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cgqRqKE0Ee2JZf-PgyDh_g" name="Logger">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiIwqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cgqRqaE0Ee2JZf-PgyDh_g" name="context">
+      <modelElement href="spring-boot-conjur3.uml#_ZTw30KE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cgqRqqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cgqRq6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cgqRrKE0Ee2JZf-PgyDh_g" name="ApplicationContext">
+        <modelElement href="spring-boot-conjur3.uml#_ZSqroaE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cgqRraE0Ee2JZf-PgyDh_g" name="environment">
+      <modelElement href="spring-boot-conjur3.uml#_ZTw30aE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cgqRrqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cgqRr6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cgqRsKE0Ee2JZf-PgyDh_g" name="ConfigurableEnvironment">
+        <modelElement href="spring-boot-conjur3.uml#_ZSr5wKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cgqRsaE0Ee2JZf-PgyDh_g" name="propertySource">
+      <modelElement href="spring-boot-conjur3.uml#_ZTw30qE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cgqRsqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cgqRs6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cgqRtKE0Ee2JZf-PgyDh_g" name="ConjurPropertySource">
+        <modelElement href="spring-boot-conjur3.uml#_ZQgIcKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cgqRtaE0Ee2JZf-PgyDh_g" name="conjurParam">
+      <modelElement href="spring-boot-conjur3.uml#_ZTxe4KE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1lg0KE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_a1lg0aE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_a130sKE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_VEGlMKFPEe2JZf-PgyDh_g" name="Annotations"/>
+      <visibility xmi:id="_cgqRt6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cgqRuKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cgqRuaE0Ee2JZf-PgyDh_g" name="ConjurProperties">
+        <modelElement href="spring-boot-conjur3.uml#_ZQFRtqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cgqRuqE0Ee2JZf-PgyDh_g" name="processorChain">
+      <modelElement href="spring-boot-conjur3.uml#_ZTxe46E0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cgqRu6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cgqRvKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cgqRvaE0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+        <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cgqRvqE0Ee2JZf-PgyDh_g" name="afterPropertiesSet">
+      <modelElement href="spring-boot-conjur3.uml#_ZQN0kKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cgqRv6E0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQOboKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cgqRwKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cgqRwaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_cgqRwqE0Ee2JZf-PgyDh_g" name="initializeSysEnv">
+      <modelElement href="spring-boot-conjur3.uml#_ZStH4KE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cgqRw6E0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZStH4qE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cgqRxKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cgqRxaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cgqRxqE0Ee2JZf-PgyDh_g" name="conjurParam">
+        <modelElement href="spring-boot-conjur3.uml#_ZStH4aE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cgqRx6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cgqRyKE0Ee2JZf-PgyDh_g" name="ConjurProperties">
+          <modelElement href="spring-boot-conjur3.uml#_ZQFRtqE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cgqRyaE0Ee2JZf-PgyDh_g" name="postProcessBeforeInitialization">
+      <modelElement href="spring-boot-conjur3.uml#_ZTSWsKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cgqRyqE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTTk0KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cgqRy6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cgqRzKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cgqRzaE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTS9wqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cgqRzqE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_cgqRz6E0Ee2JZf-PgyDh_g" name="bean">
+        <modelElement href="spring-boot-conjur3.uml#_ZTS9wKE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cgqR0KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cgqR0aE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cgqR0qE0Ee2JZf-PgyDh_g" name="beanName">
+        <modelElement href="spring-boot-conjur3.uml#_ZTS9waE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cgqR06E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cgqR1KE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cgqR1aE0Ee2JZf-PgyDh_g" name="setEnvironment">
+      <modelElement href="spring-boot-conjur3.uml#_ZTUL4aE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cgqR1qE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTUy8KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cgqR16E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cgqR2KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cgqR2aE0Ee2JZf-PgyDh_g" name="environment">
+        <modelElement href="spring-boot-conjur3.uml#_ZTUL4qE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cgqR2qE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cgqR26E0Ee2JZf-PgyDh_g" name="Environment">
+          <modelElement href="spring-boot-conjur3.uml#_ZSr5wqE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cgqR3KE0Ee2JZf-PgyDh_g" name="setApplicationContext">
+      <modelElement href="spring-boot-conjur3.uml#_ZTVaAKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cgqR3aE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTWBEKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cgqR3qE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cgqR36E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cgqR4KE0Ee2JZf-PgyDh_g" name="applicationContext">
+        <modelElement href="spring-boot-conjur3.uml#_ZTVaAaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cgqR4aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cgqR4qE0Ee2JZf-PgyDh_g" name="ApplicationContext">
+          <modelElement href="spring-boot-conjur3.uml#_ZSqroaE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cgqR46E0Ee2JZf-PgyDh_g" name="loadEnvironmentParameters">
+      <modelElement href="spring-boot-conjur3.uml#_ZTYdUaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cgqR5KE0Ee2JZf-PgyDh_g" name="StyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZTYdU6E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cgqR5aE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cgqR5qE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cgqR56E0Ee2JZf-PgyDh_g" name="newenv">
+        <modelElement href="spring-boot-conjur3.uml#_ZTYdUqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cgqR6KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cgqR6aE0Ee2JZf-PgyDh_g" name="Map">
+          <modelElement href="spring-boot-conjur3.uml#_ZSiIwKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_ckUpoKE0Ee2JZf-PgyDh_g" name="ConjurValuesClassProcessor" associationsOut="_ciFN8KE0Ee2JZf-PgyDh_g _cjbRwKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQSGAKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_ckUpoaE0Ee2JZf-PgyDh_g" position="23.0,1110.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_ckUpoqE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQStEaE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_ckUpo6E0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQTUIKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_ckUppKE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_ckUppaE0Ee2JZf-PgyDh_g" defaultValue="LoggerFactory.getLogger(ConjurPropertySource.class)" name="logger" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTyF8KE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_ckUppqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_ckUpp6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_ckUpqKE0Ee2JZf-PgyDh_g" name="Logger">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiIwqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_ckUpqaE0Ee2JZf-PgyDh_g" name="conjurRetrieveSecretService">
+      <modelElement href="spring-boot-conjur3.uml#_ZTyF8qE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1okIKE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_a1okIaE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_a14bwKE9Ee2JZf-PgyDh_g" name="Annotations"/>
+      <stereotypes xmi:id="_VEF-IKFPEe2JZf-PgyDh_g" name="Annotations"/>
+      <visibility xmi:id="_ckUpq6E0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_ckUprKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_ckUpraE0Ee2JZf-PgyDh_g" name="ConjurRetrieveSecretService">
+        <modelElement href="spring-boot-conjur3.uml#_ZQIVAKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_ckUprqE0Ee2JZf-PgyDh_g" name="postProcessBeforeInitialization">
+      <modelElement href="spring-boot-conjur3.uml#_ZTbgoKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_ckUpr6E0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTcHsaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_ckUpsKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_ckUpsaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_ckUpsqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTcHsKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_ckUps6E0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_ckUptKE0Ee2JZf-PgyDh_g" name="bean">
+        <modelElement href="spring-boot-conjur3.uml#_ZTbgoaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_ckUptaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_ckUptqE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_ckUpt6E0Ee2JZf-PgyDh_g" name="beanName">
+        <modelElement href="spring-boot-conjur3.uml#_ZTbgoqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_ckUpuKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_ckUpuaE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_ckUpuqE0Ee2JZf-PgyDh_g" name="postProcessAfterInitialization">
+      <modelElement href="spring-boot-conjur3.uml#_ZTcuwKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_ckUpu6E0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZTdV0aE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_ckUpvKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_ckUpvaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_ckUpvqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTdV0KE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_ckUpv6E0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_ckUpwKE0Ee2JZf-PgyDh_g" name="bean">
+        <modelElement href="spring-boot-conjur3.uml#_ZTcuwaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_ckUpwaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_ckUpwqE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_ckUpw6E0Ee2JZf-PgyDh_g" name="beanName">
+        <modelElement href="spring-boot-conjur3.uml#_ZTcuwqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_ckUpxKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_ckUpxaE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_clrUgKE0Ee2JZf-PgyDh_g" name="SpringBootConjurAutoConfiguration">
+    <modelElement href="spring-boot-conjur3.uml#_ZQUiQKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_clrUgaE0Ee2JZf-PgyDh_g" position="14.0,1735.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_clrUgqE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+      <modelElement href="spring-boot-conjur3.uml#_ZQVJUKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <stereotypes xmi:id="_clrUg6E0Ee2JZf-PgyDh_g" name="Annotations">
+      <modelElement href="spring-boot-conjur3.uml#_ZQXlkKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_clrUhKE0Ee2JZf-PgyDh_g" label="+"/>
+    <operations xmi:id="_clrUhaE0Ee2JZf-PgyDh_g" name="conjurSecretValueClassProcessor">
+      <modelElement href="spring-boot-conjur3.uml#_ZQVJUaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_clrUhqE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQVJUqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_clrUh6E0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_clrUiKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_clrUiaE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZSxZUaE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_clrUiqE0Ee2JZf-PgyDh_g" name="ConjurValueClassProcessor">
+          <modelElement href="spring-boot-conjur3.uml#_ZQKKMKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_clrUi6E0Ee2JZf-PgyDh_g" name="conjurRetrieveSecretService">
+      <modelElement href="spring-boot-conjur3.uml#_ZQVJVaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_clrUjKE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQVwYKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_clrUjaE0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_clrUjqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_clrUj6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZSxZUqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_clrUkKE0Ee2JZf-PgyDh_g" name="ConjurRetrieveSecretService">
+          <modelElement href="spring-boot-conjur3.uml#_ZQIVAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_clrUkaE0Ee2JZf-PgyDh_g" name="secretsApi">
+      <modelElement href="spring-boot-conjur3.uml#_ZQVwZKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_clrUkqE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQVwZaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_clrUk6E0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_clrUlKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_clrUlaE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTd84KE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_clrUlqE0Ee2JZf-PgyDh_g" name="SecretsApi">
+          <modelElement href="spring-boot-conjur3.uml#_ZSiv1KE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_clrUl6E0Ee2JZf-PgyDh_g" name="conjurAuthParam">
+      <modelElement href="spring-boot-conjur3.uml#_ZQWXcqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_clrUmKE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQWXc6E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_clrUmaE0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_clrUmqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_clrUm6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZSxZU6E0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_clrUnKE0Ee2JZf-PgyDh_g" name="ConjurProperties">
+          <modelElement href="spring-boot-conjur3.uml#_ZQFRtqE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_clrUnaE0Ee2JZf-PgyDh_g" name="conjurValuesClassProcessor">
+      <modelElement href="spring-boot-conjur3.uml#_ZQWXdqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_clrUnqE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQW-gKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_clrUn6E0Ee2JZf-PgyDh_g" label="~"/>
+      <cardinality xmi:id="_clrUoKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_clrUoaE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZSxZVKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_clrUoqE0Ee2JZf-PgyDh_g" name="ConjurValuesClassProcessor">
+          <modelElement href="spring-boot-conjur3.uml#_ZQSGAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_clrUo6E0Ee2JZf-PgyDh_g" name="conjurValueProcessor">
+      <modelElement href="spring-boot-conjur3.uml#_ZQW-g6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_clrUpKE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQW-hKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_clrUpaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_clrUpqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_clrUp6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZSxZVaE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_clrUqKE0Ee2JZf-PgyDh_g" name="ConjurValueProcessor">
+          <modelElement href="spring-boot-conjur3.uml#_ZQMmcKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_cqAa4KE0Ee2JZf-PgyDh_g" comments="_a1YFcKE9Ee2JZf-PgyDh_g _VEPIEKFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1YFcaE9Ee2JZf-PgyDh_g _VEPIEaFPEe2JZf-PgyDh_g" name="ConjurPropertySource" associationsIn="_cgjj8KE0Ee2JZf-PgyDh_g" associationsOut="_cp34AKE0Ee2JZf-PgyDh_g _cp5tMKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQgIcKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cqAa4aE0Ee2JZf-PgyDh_g" position="1770.0,31.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_cqAa4qE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cqAa46E0Ee2JZf-PgyDh_g" defaultValue="&quot;&quot;" name="vaultInfo">
+      <modelElement href="spring-boot-conjur3.uml#_ZT1wUKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cqAa5KE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT1wUqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cqAa5aE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cqAa5qE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cqAa56E0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cqAa6KE0Ee2JZf-PgyDh_g" defaultValue="&quot;&quot;" name="vaultPath">
+      <modelElement href="spring-boot-conjur3.uml#_ZT2XYKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cqAa6aE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT2XYqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cqAa6qE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cqAa66E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cqAa7KE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cqAa7aE0Ee2JZf-PgyDh_g" name="secretsApi">
+      <modelElement href="spring-boot-conjur3.uml#_ZT2-cKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1pyQKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1pyQaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a15C0KE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEEwAaFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_cqAa76E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cqAa8KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cqAa8aE0Ee2JZf-PgyDh_g" name="SecretsApi">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiv1KE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cqAa8qE0Ee2JZf-PgyDh_g" defaultValue="System.getenv(&quot;CONJUR_AUTHN_TOKEN_FILE&quot;)" name="authTokenFile" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT2-cqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cqAa86E0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT3lgKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cqAa9KE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cqAa9aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cqAa9qE0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cqAa96E0Ee2JZf-PgyDh_g" defaultValue="System.getenv(&quot;CONJUR_AUTHN_API_KEY&quot;)" name="authApiKey" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT3lgaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cqAa-KE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZT4MkKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cqAa-aE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cqAa-qE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cqAa-6E0Ee2JZf-PgyDh_g" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cqAa_KE0Ee2JZf-PgyDh_g" defaultValue="LoggerFactory.getLogger(ConjurPropertySource.class)" name="logger" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT4MkaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1qZUKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1rAYKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a15p4KE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEEwAKFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_cqAa_qE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cqAa_6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cqAbAKE0Ee2JZf-PgyDh_g" name="Logger">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiIwqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cqAbAaE0Ee2JZf-PgyDh_g" name="_initializer1" staticOperation="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZQgvg6E0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_cqAbAqE0Ee2JZf-PgyDh_g" keyword="init"/>
+      <stereotypes xmi:id="_cqAbA6E0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQhWkKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cqAbBKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cqAbBaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_cqAbBqE0Ee2JZf-PgyDh_g" name="ConjurPropertySource">
+      <modelElement href="spring-boot-conjur3.uml#_ZQhWkaE0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_cqAbB6E0Ee2JZf-PgyDh_g" keyword="create"/>
+      <visibility xmi:id="_cqAbCKE0Ee2JZf-PgyDh_g" label="#"/>
+      <cardinality xmi:id="_cqAbCaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cqAbCqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQh9oqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cqAbC6E0Ee2JZf-PgyDh_g" name="ConjurPropertySource">
+          <modelElement href="spring-boot-conjur3.uml#_ZQgIcKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_cqAbDKE0Ee2JZf-PgyDh_g" name="vaultPath">
+        <modelElement href="spring-boot-conjur3.uml#_ZQhWkqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cqAbDaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cqAbDqE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cqAbD6E0Ee2JZf-PgyDh_g" name="ConjurPropertySource">
+      <modelElement href="spring-boot-conjur3.uml#_ZQh9o6E0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_cqAbEKE0Ee2JZf-PgyDh_g" keyword="create"/>
+      <visibility xmi:id="_cqAbEaE0Ee2JZf-PgyDh_g" label="#"/>
+      <cardinality xmi:id="_cqAbEqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cqAbE6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQh9qKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cqAbFKE0Ee2JZf-PgyDh_g" name="ConjurPropertySource">
+          <modelElement href="spring-boot-conjur3.uml#_ZQgIcKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_cqAbFaE0Ee2JZf-PgyDh_g" name="vaultPath">
+        <modelElement href="spring-boot-conjur3.uml#_ZQh9pKE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cqAbFqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cqAbF6E0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_cqAbGKE0Ee2JZf-PgyDh_g" name="vaultInfo">
+        <modelElement href="spring-boot-conjur3.uml#_ZQh9paE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cqAbGaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cqAbGqE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cqAbG6E0Ee2JZf-PgyDh_g" name="getPropertyNames">
+      <modelElement href="spring-boot-conjur3.uml#_ZQiksKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cqAbHKE0Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZQiks6E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cqAbHaE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQiktKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cqAbHqE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQjLwKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cqAbH6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cqAbIKE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_cqAbIaE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQiksaE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cqAbIqE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_cqAbI6E0Ee2JZf-PgyDh_g" name="getProperty">
+      <modelElement href="spring-boot-conjur3.uml#_ZQjLwqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_cqAbJKE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQjLxKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_cqAbJaE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQjLxaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_cqAbJqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cqAbJ6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cqAbKKE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTjccaE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cqAbKaE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_cqAbKqE0Ee2JZf-PgyDh_g" name="key">
+        <modelElement href="spring-boot-conjur3.uml#_ZQjLw6E0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cqAbK6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cqAbLKE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_cqAbLaE0Ee2JZf-PgyDh_g" comments="_a1ZTkKE9Ee2JZf-PgyDh_g _VEEI8aFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1Z6oKE9Ee2JZf-PgyDh_g _VEEI8qFPEe2JZf-PgyDh_g" name="loadEnvironmentParameters" staticOperation="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZTiOUKE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cqAbLqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cqAbL6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_cqAbMKE0Ee2JZf-PgyDh_g" name="newenv">
+        <modelElement href="spring-boot-conjur3.uml#_ZTi1YKE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cqAbMaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cqAbMqE0Ee2JZf-PgyDh_g" name="Map">
+          <modelElement href="spring-boot-conjur3.uml#_ZSiIwKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_cs594KE0Ee2JZf-PgyDh_g" comments="_a1Z6oaE9Ee2JZf-PgyDh_g _VEOhAKFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1Z6oqE9Ee2JZf-PgyDh_g _VEOhAaFPEe2JZf-PgyDh_g" name="ConjurConnectionManager" associationsIn="_crV3oKE0Ee2JZf-PgyDh_g" associationsOut="_crV3oKE0Ee2JZf-PgyDh_g _csz3QKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQlA8KE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cs594aE0Ee2JZf-PgyDh_g" position="360.0,1386.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cs594qE0Ee2JZf-PgyDh_g" name="Patch">
+      <modelElement href="spring-boot-conjur3.uml#_Z6eSgaE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cs5946E0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cs595KE0Ee2JZf-PgyDh_g" defaultValue="null" name="conjurConnectionInstance" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT4zoKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1rAYaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1rncKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a15p4aE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEEI8KFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_cs595qE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cs5956E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cs596KE0Ee2JZf-PgyDh_g" name="ConjurConnectionManager">
+        <modelElement href="spring-boot-conjur3.uml#_ZQlA8KE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cs596aE0Ee2JZf-PgyDh_g" defaultValue="LoggerFactory.getLogger(ConjurConnectionManager.class)" name="logger" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT5asKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1sOgKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1sOgaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a16Q8KE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEDh46FPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_cs5966E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cs597KE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cs597aE0Ee2JZf-PgyDh_g" name="Logger">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiIwqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cs597qE0Ee2JZf-PgyDh_g" name="ConjurConnectionManager">
+      <modelElement href="spring-boot-conjur3.uml#_ZQloA6E0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_cs5976E0Ee2JZf-PgyDh_g" keyword="create"/>
+      <visibility xmi:id="_cs598KE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cs598aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cs598qE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQloBqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cs5986E0Ee2JZf-PgyDh_g" name="ConjurConnectionManager">
+          <modelElement href="spring-boot-conjur3.uml#_ZQlA8KE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_cs599KE0Ee2JZf-PgyDh_g" name="getConnection">
+      <modelElement href="spring-boot-conjur3.uml#_ZQmPEKE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cs599aE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cs599qE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_cs5996E0Ee2JZf-PgyDh_g" comments="_a1bIwKE9Ee2JZf-PgyDh_g _VEDh4aFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1bIwaE9Ee2JZf-PgyDh_g _VEDh4qFPEe2JZf-PgyDh_g" name="getInstance" staticOperation="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZQmPEaE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cs59-KE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cs59-aE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cs59-qE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZS7xYKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cs59-6E0Ee2JZf-PgyDh_g" name="ConjurConnectionManager">
+          <modelElement href="spring-boot-conjur3.uml#_ZQlA8KE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_cvYDEKE0Ee2JZf-PgyDh_g" comments="_a1bIwqE9Ee2JZf-PgyDh_g _VEN58KFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1bIw6E9Ee2JZf-PgyDh_g _VEN58aFPEe2JZf-PgyDh_g" name="ConjurConfig" associationsIn="_ctw5gKE0Ee2JZf-PgyDh_g" associationsOut="_ctw5gKE0Ee2JZf-PgyDh_g _cvW08KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQm2IKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_cvYDEaE0Ee2JZf-PgyDh_g" position="993.0,1386.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_cvYDEqE0Ee2JZf-PgyDh_g" name="Patch">
+      <modelElement href="spring-boot-conjur3.uml#_Z6e5kKE0Ee2JZf-PgyDh_g"/>
+    </stereotypes>
+    <visibility xmi:id="_cvYDE6E0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_cvYDFKE0Ee2JZf-PgyDh_g" defaultValue="new Properties()" name="props" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT6BwKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1tcoKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1uDsKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a164AKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEDh4KFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_cvYDFqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cvYDF6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cvYDGKE0Ee2JZf-PgyDh_g" name="Properties">
+        <modelElement href="spring-boot-conjur3.uml#_ZS8_gKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_cvYDGaE0Ee2JZf-PgyDh_g" defaultValue="new ConjurConfig()" name="uniqueInstance" staticAttribute="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZT6o0KE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1s1kKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1s1kaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a164AaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEC61aFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_cvYDG6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cvYDHKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_cvYDHaE0Ee2JZf-PgyDh_g" name="ConjurConfig">
+        <modelElement href="spring-boot-conjur3.uml#_ZQm2IKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_cvYDHqE0Ee2JZf-PgyDh_g" name="ConjurConfig">
+      <modelElement href="spring-boot-conjur3.uml#_ZQndMKE0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_cvYDH6E0Ee2JZf-PgyDh_g" keyword="create"/>
+      <visibility xmi:id="_cvYDIKE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_cvYDIaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cvYDIqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQndM6E0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cvYDI6E0Ee2JZf-PgyDh_g" name="ConjurConfig">
+          <modelElement href="spring-boot-conjur3.uml#_ZQm2IKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_cvYDJKE0Ee2JZf-PgyDh_g" comments="_a1cW4KE9Ee2JZf-PgyDh_g _VEC606FPEe2JZf-PgyDh_g" targetConnectionVisual="_a1cW4aE9Ee2JZf-PgyDh_g _VEC61KFPEe2JZf-PgyDh_g" name="getInstance" staticOperation="true">
+      <modelElement href="spring-boot-conjur3.uml#_ZQndNKE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cvYDJaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cvYDJqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cvYDJ6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZS8_gqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cvYDKKE0Ee2JZf-PgyDh_g" name="ConjurConfig">
+          <modelElement href="spring-boot-conjur3.uml#_ZQm2IKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_cvYDKaE0Ee2JZf-PgyDh_g" comments="_a1cW4qE9Ee2JZf-PgyDh_g _VEC60aFPEe2JZf-PgyDh_g" targetConnectionVisual="_a1cW46E9Ee2JZf-PgyDh_g _VEC60qFPEe2JZf-PgyDh_g" name="mapProperty">
+      <modelElement href="spring-boot-conjur3.uml#_ZQoEQKE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_cvYDKqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_cvYDK6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_cvYDLKE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQoEQqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_cvYDLaE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_cvYDLqE0Ee2JZf-PgyDh_g" name="name">
+        <modelElement href="spring-boot-conjur3.uml#_ZQoEQaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_cvYDL6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_cvYDMKE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_c1huYKE0Ee2JZf-PgyDh_g" name="DefaultPropertySourceChain" associationsOut="_c0a7IKE0Ee2JZf-PgyDh_g _c1erEKE0Ee2JZf-PgyDh_g" generalizations="_c1eEAKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQbP8KE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_c1huYaE0Ee2JZf-PgyDh_g" position="158.0,279.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_c1huYqE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_c1huY6E0Ee2JZf-PgyDh_g" defaultValue="LoggerFactory.getLogger(DefaultPropertySourceChain.class)" name="logger">
+      <modelElement href="spring-boot-conjur3.uml#_ZT0iMKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1zjQKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1zjQaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a19UQKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEC60KFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_c1huZaE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_c1huZqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_c1huZ6E0Ee2JZf-PgyDh_g" name="Logger">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiIwqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_c1huaKE0Ee2JZf-PgyDh_g" name="chain">
+      <modelElement href="spring-boot-conjur3.uml#_ZT0iM6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1yVIaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1y8MKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a19UQaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VECTwaFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_c1huaqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_c1hua6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_c1hubKE0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+        <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_c1hubaE0Ee2JZf-PgyDh_g" name="DefaultPropertySourceChain">
+      <modelElement href="spring-boot-conjur3.uml#_ZQb3A6E0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_c1hubqE0Ee2JZf-PgyDh_g" keyword="create"/>
+      <visibility xmi:id="_c1hub6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c1hucKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_c1hucaE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQceEqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_c1hucqE0Ee2JZf-PgyDh_g" name="DefaultPropertySourceChain">
+          <modelElement href="spring-boot-conjur3.uml#_ZQbP8KE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_c1huc6E0Ee2JZf-PgyDh_g" name="name">
+        <modelElement href="spring-boot-conjur3.uml#_ZQb3BKE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_c1hudKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_c1hudaE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_c1hudqE0Ee2JZf-PgyDh_g" name="getPropertyNames">
+      <modelElement href="spring-boot-conjur3.uml#_ZQceE6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_c1hud6E0Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZQceFqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_c1hueKE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQdFIKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_c1hueaE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQdFIaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_c1hueqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c1hue6E0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_c1hufKE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQceFKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_c1hufaE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_c1hufqE0Ee2JZf-PgyDh_g" name="getProperty">
+      <modelElement href="spring-boot-conjur3.uml#_ZQdFI6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_c1huf6E0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQdFJaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_c1hugKE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQdsMKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_c1hugaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c1hugqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_c1hug6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTfyEKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_c1huhKE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_c1huhaE0Ee2JZf-PgyDh_g" name="name">
+        <modelElement href="spring-boot-conjur3.uml#_ZQdFJKE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_c1huhqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_c1huh6E0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_c1huiKE0Ee2JZf-PgyDh_g" name="setNextChain">
+      <modelElement href="spring-boot-conjur3.uml#_ZS0coKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_c1huiaE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZS1DsKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_c1huiqE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZS1qwKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_c1hui6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c1hujKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_c1hujaE0Ee2JZf-PgyDh_g" name="nextChain">
+        <modelElement href="spring-boot-conjur3.uml#_ZS0coaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_c1hujqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_c1huj6E0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+          <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_c3YIgKE0Ee2JZf-PgyDh_g" name="PropertyProcessorChain" abstractClass="true" associationsIn="_cySNIKE0Ee2JZf-PgyDh_g _cyXstKE0Ee2JZf-PgyDh_g _cgmAMKE0Ee2JZf-PgyDh_g _c0a7IKE0Ee2JZf-PgyDh_g" associationsOut="_cyXstKE0Ee2JZf-PgyDh_g" subclassedBy="_cyUCUKE0Ee2JZf-PgyDh_g _c1eEAKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_c3YIgaE0Ee2JZf-PgyDh_g" position="206.0,120.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_c3YIgqE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_c3YIg6E0Ee2JZf-PgyDh_g" name="processorChain">
+      <modelElement href="spring-boot-conjur3.uml#_ZT1JQaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1xuEaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1yVIKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a197UKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VECTwKFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_c3YIhaE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_c3YIhqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_c3YIh6E0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+        <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_c3YIiKE0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+      <modelElement href="spring-boot-conjur3.uml#_ZQe6UKE0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_c3YIiaE0Ee2JZf-PgyDh_g" keyword="create"/>
+      <visibility xmi:id="_c3YIiqE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c3YIi6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_c3YIjKE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQe6VKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_c3YIjaE0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+          <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_c3YIjqE0Ee2JZf-PgyDh_g" name="name">
+        <modelElement href="spring-boot-conjur3.uml#_ZQe6UaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_c3YIj6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_c3YIkKE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_c3YIkaE0Ee2JZf-PgyDh_g" name="getProperty">
+      <modelElement href="spring-boot-conjur3.uml#_ZQe6VaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_c3YIkqE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQfhYKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_c3YIk6E0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQfhYaE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_c3YIlKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c3YIlaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_c3YIlqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTgZIKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_c3YIl6E0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_c3YImKE0Ee2JZf-PgyDh_g" name="name">
+        <modelElement href="spring-boot-conjur3.uml#_ZQe6VqE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_c3YImaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_c3YImqE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_c3YIm6E0Ee2JZf-PgyDh_g" name="setNextChain">
+      <modelElement href="spring-boot-conjur3.uml#_ZS244aE0Ee2JZf-PgyDh_g"/>
+      <visibility xmi:id="_c3YInKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_c3YInaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_c3YInqE0Ee2JZf-PgyDh_g" name="processChain">
+        <modelElement href="spring-boot-conjur3.uml#_ZS3f8KE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_c3YIn6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_c3YIoKE0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+          <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_czLlAKE0Ee2JZf-PgyDh_g" name="CustomPropertySourceChain" associationsOut="_cwgEcKE0Ee2JZf-PgyDh_g _cyOiwKE0Ee2JZf-PgyDh_g _cySNIKE0Ee2JZf-PgyDh_g _cyTbQqE0Ee2JZf-PgyDh_g" generalizations="_cyUCUKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZQYMoKE0Ee2JZf-PgyDh_g"/>
+    <visualProperties xmi:id="_czLlAaE0Ee2JZf-PgyDh_g" position="402.0,504.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_czLlAqE0Ee2JZf-PgyDh_g" label="+"/>
+    <attributes xmi:id="_czLlA6E0Ee2JZf-PgyDh_g" defaultValue="LoggerFactory.getLogger(CustomPropertySourceChain.class)" name="logger">
+      <modelElement href="spring-boot-conjur3.uml#_ZTytAqE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1vR0KE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1vR0aE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a17fEKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEBssaFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_czLlBaE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_czLlBqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_czLlB6E0Ee2JZf-PgyDh_g" name="Logger">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiIwqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_czLlCKE0Ee2JZf-PgyDh_g" name="chain">
+      <modelElement href="spring-boot-conjur3.uml#_ZTzUEaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1wf8KE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1wf8aE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a18GIKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEBssKFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_czLlCqE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_czLlC6E0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_czLlDKE0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+        <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_czLlDaE0Ee2JZf-PgyDh_g" name="conjurParam">
+      <modelElement href="spring-boot-conjur3.uml#_ZTzUE6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1uqwKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1uqwaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a18GIaE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEBFoaFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_czLlD6E0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_czLlEKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_czLlEaE0Ee2JZf-PgyDh_g" name="ConjurProperties">
+        <modelElement href="spring-boot-conjur3.uml#_ZQFRtqE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_czLlEqE0Ee2JZf-PgyDh_g" name="secretsApi">
+      <modelElement href="spring-boot-conjur3.uml#_ZTz7IaE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_a1xHAKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a1xuEKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_a18tMKE9Ee2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_VEBFoKFPEe2JZf-PgyDh_g" name="LegacyStyledElement"/>
+      <visibility xmi:id="_czLlFKE0Ee2JZf-PgyDh_g" label="-"/>
+      <cardinality xmi:id="_czLlFaE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <type xmi:id="_czLlFqE0Ee2JZf-PgyDh_g" name="SecretsApi">
+        <modelElement href="spring-boot-conjur3.uml#_ZSiv1KE0Ee2JZf-PgyDh_g"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_czLlF6E0Ee2JZf-PgyDh_g" name="CustomPropertySourceChain">
+      <modelElement href="spring-boot-conjur3.uml#_ZQYzs6E0Ee2JZf-PgyDh_g"/>
+      <keywords xmi:id="_czLlGKE0Ee2JZf-PgyDh_g" keyword="create"/>
+      <visibility xmi:id="_czLlGaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_czLlGqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_czLlG6E0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQZawqE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_czLlHKE0Ee2JZf-PgyDh_g" name="CustomPropertySourceChain">
+          <modelElement href="spring-boot-conjur3.uml#_ZQYMoKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_czLlHaE0Ee2JZf-PgyDh_g" name="name">
+        <modelElement href="spring-boot-conjur3.uml#_ZQYztKE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_czLlHqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_czLlH6E0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_czLlIKE0Ee2JZf-PgyDh_g" name="getPropertyNames">
+      <modelElement href="spring-boot-conjur3.uml#_ZQZaw6E0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_czLlIaE0Ee2JZf-PgyDh_g" name="Array">
+        <modelElement href="spring-boot-conjur3.uml#_ZQZaxqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_czLlIqE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQZax6E0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_czLlI6E0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQaB0KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_czLlJKE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_czLlJaE0Ee2JZf-PgyDh_g" label="1..*" max="-1" min="1"/>
+      <outParameters xmi:id="_czLlJqE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZQZaxKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_czLlJ6E0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_czLlKKE0Ee2JZf-PgyDh_g" name="getProperty">
+      <modelElement href="spring-boot-conjur3.uml#_ZQaB0qE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_czLlKaE0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZQaB1KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_czLlKqE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZQao4KE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_czLlK6E0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_czLlLKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_czLlLaE0Ee2JZf-PgyDh_g">
+        <modelElement href="spring-boot-conjur3.uml#_ZTfLAKE0Ee2JZf-PgyDh_g"/>
+        <type xmi:id="_czLlLqE0Ee2JZf-PgyDh_g" name="Object">
+          <modelElement href="spring-boot-conjur3.uml#_ZTLpAKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_czLlL6E0Ee2JZf-PgyDh_g" name="key">
+        <modelElement href="spring-boot-conjur3.uml#_ZQaB06E0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_czLlMKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_czLlMaE0Ee2JZf-PgyDh_g" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_czLlMqE0Ee2JZf-PgyDh_g" name="setNextChain">
+      <modelElement href="spring-boot-conjur3.uml#_ZSyncKE0Ee2JZf-PgyDh_g"/>
+      <stereotypes xmi:id="_czLlM6E0Ee2JZf-PgyDh_g" name="LegacyStyledElement">
+        <modelElement href="spring-boot-conjur3.uml#_ZSyncqE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <stereotypes xmi:id="_czLlNKE0Ee2JZf-PgyDh_g" name="Annotations">
+        <modelElement href="spring-boot-conjur3.uml#_ZSzOgKE0Ee2JZf-PgyDh_g"/>
+      </stereotypes>
+      <visibility xmi:id="_czLlNaE0Ee2JZf-PgyDh_g" label="+"/>
+      <cardinality xmi:id="_czLlNqE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+      <parameters xmi:id="_czLlN6E0Ee2JZf-PgyDh_g" name="nextChain">
+        <modelElement href="spring-boot-conjur3.uml#_ZSyncaE0Ee2JZf-PgyDh_g"/>
+        <cardinality xmi:id="_czLlOKE0Ee2JZf-PgyDh_g" label="1" max="1" min="1"/>
+        <type xmi:id="_czLlOaE0Ee2JZf-PgyDh_g" name="PropertyProcessorChain">
+          <modelElement href="spring-boot-conjur3.uml#_ZQeTQKE0Ee2JZf-PgyDh_g"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEC60aFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEC60qFPEe2JZf-PgyDh_g" text="&#xA;&#x9; * @param name - key define at given property file.&#xA;&#x9; * @return - corresponding value of key defined at given property file." item="_cvYDKaE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIEM6E0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEC606FPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEC61KFPEe2JZf-PgyDh_g" text="&#xA;&#x9; * @return unique instance of class." item="_cvYDJKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIEMqE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEDh4aFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEDh4qFPEe2JZf-PgyDh_g" text="method to create instance of class and checking for multiple threads.&#xA;&#x9; * @return unique instance of class." item="_cs5996E0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIEMKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEEI8aFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEEI8qFPEe2JZf-PgyDh_g" text="Sets the external environment variable.&#xA;&#x9; * &#xA;&#x9; * @param newenv - setting for API_KEY&#xA;&#x9; * @throws NoSuchFieldException     -- class doesn't have a field of a specified&#xA;&#x9; *                                  name&#xA;&#x9; * @throws SecurityException        --indicate a security violation.&#xA;&#x9; * @throws IllegalArgumentException -- a method has been passed an illegal or&#xA;&#x9; *                                  inappropriate argument.&#xA;&#x9; * @throws IllegalAccessException   -- excuting method does not have access to&#xA;&#x9; *                                  the definition of the specified class,&#xA;&#x9; *                                  field, method or constructor." item="_cqAbLaE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUHdIaE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEHMQKFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEHMQaFPEe2JZf-PgyDh_g" text="This method retrieves single secret for custom annotation's key value.&#xA;&#x9; * &#xA;&#x9; * @param key - query to vault.&#xA;&#x9; * @return secrets - output from the vault.&#xA;&#x9; * @throws ApiException - Exception thrown from conjur java sdk." item="_caVAN6E0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUG2EKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEHMQqFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEHMQ6FPEe2JZf-PgyDh_g" text="This method retrieves multiple secrets for custom annotation's keys.&#xA;&#x9; * &#xA;&#x9; * @param keys - query to vault.&#xA;&#x9; * @return secrets - output from the vault.&#xA;&#x9; * @throws ApiException - Exception thrown from conjur java sdk." item="_caVALqE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUGPBqE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEIaYKFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEIaYaFPEe2JZf-PgyDh_g" text="Indicate the Vault path(s) of the policy to be retrieved. For example,&#xA;&#x9; * {@code &quot;policy/my-application/db.userName&quot;}.&#xA;&#x9; *&#xA;&#x9; * @return Vault path(s)" item="_cS6JjqE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIrRKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEJBcKFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEJBcaFPEe2JZf-PgyDh_g" text="Indicates the complete path for multiple keys.&#xA;&#x9; *" item="_cPXGRqE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUGPA6E0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEJBcqFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEJBc6FPEe2JZf-PgyDh_g" text="Indicates the complete path of the variable.&#xA;&#x9; *" item="_cNqdKqE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUGPAKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEN58KFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEN58aFPEe2JZf-PgyDh_g" text="&#xA;This class loads the external configured conjur.properties file and resolves&#xA;the keys values defined in properties file.&#xA; *" item="_cvYDEKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIEMaE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEOhAKFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEOhAaFPEe2JZf-PgyDh_g" text="&#xA;This is the connection creation singleton class with conjur vault by using&#xA;the conjur java sdk.&#xA; *" item="_cs594KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUHdIqE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VEPIEKFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VEPIEaFPEe2JZf-PgyDh_g" text="&#xA;This class resolves the secret value for give vault path at application load&#xA;time from the conjur vault.&#xA; *" item="_cqAa4KE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUHdIKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VESLYKFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VESLYaFPEe2JZf-PgyDh_g" text="&#xA;Conjur Spring boot plugin constant file.&#xA; *" item="_cXDpsKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIENKE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_VESycKFPEe2JZf-PgyDh_g" sourceConnectionVisual="_VESycaFPEe2JZf-PgyDh_g" text="&#xA;This class helps to get all variables defined on the custom annotation side&#xA;and registers them with the ConjurPropertySource class for further processing.&#xA; *" item="_cQz3wKE0Ee2JZf-PgyDh_g">
+    <modelElement href="spring-boot-conjur3.uml#_ZUIENaE0Ee2JZf-PgyDh_g"/>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>

@@ -1,0 +1,8 @@
+#conjur:
+#  account: myConjurAccount
+#  appliance-url: https://localhost:8443
+#  authn-login: host/jenkins-frontend/NG-JALEELA-R
+#  authn-token-file: /Users/Jaleela.FaizurRahman/Documents/conjur.txt
+ # cert-file: /Users/Jaleela.FaizurRahman/conjur-quickstart-2/conjur-quickstart/conf/policy/conjur.der
+ # ssl-certificate: /Users/Jaleela.FaizurRahman/conjur-quickstart-2/conjur-quickstart/conf/policy/conjur.pem
+  

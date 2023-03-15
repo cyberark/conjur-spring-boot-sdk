@@ -1,0 +1,82 @@
+version: '2'
+services:
+  pg:
+    image: postgres:9.4
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: password
+      POSTGRES_PASSWORD: SuperSecure
+
+  openssl:
+    image: cyberark/conjur
+    container_name: openssl
+    entrypoint:
+     - openssl
+     - req
+     - -newkey
+     - rsa:2048
+     - -days
+     - "365"
+     - -nodes
+     - -x509
+     - -config
+     - /tmp/conf/tls.conf
+     - -extensions
+     - v3_ca
+     - -keyout
+     - /tmp/conf/nginx.key
+     - -out
+     - /tmp/conf/nginx.crt
+    volumes:
+     - ./conf/tls/:/tmp/conf
+  conjur:
+    image: cyberark/conjur:latest
+    command: server -a dev -f /work/conjur.yml
+    environment:
+      DATABASE_URL: postgres://postgres:SuperSecure@pg/postgres
+      CONJUR_DATA_KEY: 'WMfApcDBtocRWV+ZSUP3Tjr5XNU+Z2FdBb6BEezejIs='
+      RAILS_ENV: development
+    ports:
+      - 80
+    volumes:
+      - .:/work
+    depends_on:
+      - pg
+      - openssl
+  proxy:
+    image: nginx:1.13.6-alpine
+    container_name: nginx_proxy
+    ports:
+      - "8443:443"
+    volumes:
+      - ./conf/:/etc/nginx/conf.d/:ro
+      - ./conf/tls/:/etc/nginx/tls/:ro
+    depends_on:
+    - conjur
+    - openssl
+    restart: on-failure
+
+  client:
+    image: cyberark/conjur-cli:5
+    depends_on:
+      - conjur
+    entrypoint: /bin/bash
+    environment:
+      CONJUR_APPLIANCE_URL: http://conjur
+      CONJUR_ACCOUNT: dev
+      CONJUR_AUTHN_LOGIN: admin
+      CONJUR_AUTHN_API_KEY:
+
+  app:
+    image: sampleapp
+    environment:
+      CONJUR_APPLIANCE_URL: https://proxy
+      CONJUR_ACCOUNT: dev
+      CONJUR_AUTHN_LOGIN: admin
+      CONJUR_AUTHN_API_KEY:
+      CONJUR_CERT_FILE: /conjur-dev.pem
+    volumes:
+      - ./conjur-dev.pem:/conjur-dev.pem
+    tty: true
+
+    ports:
+      - 8076

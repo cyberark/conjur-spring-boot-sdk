@@ -1,0 +1,8 @@
+# See http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+spring.thymeleaf.cache=false
+spring.main.show-banner=false
+
+
+server.port =9091
+#spring.config.location= file://${user.home}/config-repo/conjur.properties
+spring.config.location= file://${user.home}/conjur-repo/conjur.properties
