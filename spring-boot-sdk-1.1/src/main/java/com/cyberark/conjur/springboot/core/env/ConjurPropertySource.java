@@ -1,11 +1,6 @@
 package com.cyberark.conjur.springboot.core.env;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +8,7 @@ import org.springframework.core.env.EnumerablePropertySource;
 
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+import com.cyberark.conjur.springboot.config.ConjurAuthConfiguration;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 
 /**
@@ -21,20 +17,16 @@ import com.cyberark.conjur.springboot.constant.ConjurConstant;
  * time from the conjur vault.
  *
  */
-public class ConjurPropertySource
-//extends PropertySource<Object> {
-//consider the following alternative if miss rates are excessive
-		extends EnumerablePropertySource<Object> {
+public class ConjurPropertySource extends EnumerablePropertySource<Object> {
 
+    @SuppressWarnings("unused")
 	private String vaultInfo = "";
 
 	private String vaultPath = "";
 
 	private SecretsApi secretsApi;
 
-	private static String authTokenFile = System.getenv("CONJUR_AUTHN_TOKEN_FILE");
-
-	private static String authApiKey = System.getenv("CONJUR_AUTHN_API_KEY");
+	private static ConjurAuthConfiguration conjurAuthConfig = new ConjurAuthConfiguration();
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurPropertySource.class);
 	/**
@@ -42,42 +34,35 @@ public class ConjurPropertySource
 	 * downstream java
 	 */
 	static {
+		
+		LOGGER.info("Start initializing the environemnt variables");
+
+		conjurAuthConfig.getSysAuthParam();
 
 		// a hack to support seeding environment for the file based api token support in
 		// downstream java
-		if (authTokenFile != null) {
-			Map<String, String> conjurParameters = new HashMap<String, String>();
-			byte[] apiKey = null;
-			try (BufferedReader br = new BufferedReader(new FileReader(authTokenFile))) {
-				StringBuilder sb = new StringBuilder();
-				String line = br.readLine();
+		/*
+		 * if (authTokenFile != null) { Map<String, String> conjurParameters = new
+		 * HashMap<String, String>(); byte[] apiKey = null; try (BufferedReader br = new
+		 * BufferedReader(new FileReader(authTokenFile))) { StringBuilder sb = new
+		 * StringBuilder(); String line = br.readLine();
+		 * 
+		 * while (line != null) { sb.append(line); sb.append(System.lineSeparator());
+		 * line = br.readLine(); } apiKey = sb.toString().getBytes(); } catch (Exception
+		 * e1) { LOGGER.error(e1.getMessage());;
+		 * 
+		 * }
+		 * 
+		 * conjurParameters.put("CONJUR_AUTHN_API_KEY", new String(apiKey).trim());
+		 * apiKey = null; try { loadEnvironmentParameters(conjurParameters); } catch
+		 * (Exception e) { { LOGGER.error(e.getMessage()); } }
+		 * 
+		 * } else if (authApiKey == null && authTokenFile == null) {
+		 * LOGGER.error(ConjurConstant.CONJUR_APIKEY_ERROR);
+		 * 
+		 * }
+		 */
 
-				while (line != null) {
-					sb.append(line);
-					sb.append(System.lineSeparator());
-					line = br.readLine();
-				}
-				apiKey = sb.toString().getBytes();
-			} catch (Exception e1) {
-				LOGGER.error(e1.getMessage());;
-
-			}
-
-			conjurParameters.put("CONJUR_AUTHN_API_KEY", new String(apiKey).trim());
-			apiKey = null;
-			try {
-				loadEnvironmentParameters(conjurParameters);
-			} catch (Exception e) {
-				{
-				LOGGER.error(e.getMessage());
-				}
-			}
-
-		} else if (authApiKey == null && authTokenFile == null)
-		{
-			LOGGER.error(ConjurConstant.CONJUR_APIKEY_ERROR);
-
-		}
 	}
 
 	/**
@@ -93,7 +78,7 @@ public class ConjurPropertySource
 	 *                                  the definition of the specified class,
 	 *                                  field, method or constructor.
 	 */
-	public static void loadEnvironmentParameters(Map<String, String> newenv)
+	/*public static void loadEnvironmentParameters(Map<String, String> newenv)
 			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		Class[] classes = Collections.class.getDeclaredClasses();
 		Map<String, String> env = System.getenv();
@@ -107,7 +92,7 @@ public class ConjurPropertySource
 
 			}
 		}
-	}
+	}*/
 
 	protected ConjurPropertySource(String vaultPath) {
 		super(vaultPath + "@");
@@ -135,7 +120,8 @@ public class ConjurPropertySource
 	public Object getProperty(String key) {
 
 		String secretValue = null;
-//		key = ConjurConfig.getInstance().mapProperty(key);
+		
+		key = ConjurConfig.getInstance().mapProperty(key);
 		ConjurConnectionManager.getInstance();
 		if (null == secretsApi) {
 			secretsApi = new SecretsApi();

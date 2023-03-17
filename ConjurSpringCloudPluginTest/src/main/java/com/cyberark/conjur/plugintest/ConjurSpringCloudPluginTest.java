@@ -15,13 +15,13 @@ public class ConjurSpringCloudPluginTest implements CommandLineRunner{
 	private static Logger logger = LoggerFactory.getLogger(ConjurSpringCloudPluginTest.class);
 
 	
-	@Value("${jenkins-app/dbUserName}")
+	@Value("${uid}")
 	private byte[] pass1;
 
-	@Value("${jenkins-app/dbPassword}")
+	@Value("${password}")
 	private byte[] pass2;
 
-	@Value("${jenkins-app/dbUrl}")
+	@Value("${url}")
 	private byte[] pass3;
 
 	

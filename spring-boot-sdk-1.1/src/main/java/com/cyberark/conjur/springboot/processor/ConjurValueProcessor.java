@@ -1,12 +1,5 @@
 package com.cyberark.conjur.springboot.processor;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 
-import com.cyberark.conjur.springboot.constant.ConjurConstant;
+import com.cyberark.conjur.springboot.config.ConjurAuthConfiguration;
 import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 import com.cyberark.conjur.springboot.domain.ConjurProperties;
 import com.cyberark.conjur.springboot.service.CustomPropertySourceChain;
@@ -48,11 +41,13 @@ public class ConjurValueProcessor implements BeanPostProcessor, InitializingBean
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurValueProcessor.class);
 
+	@SuppressWarnings("unused")
 	private ApplicationContext context;
 
 	private ConfigurableEnvironment environment;
 
 	//@Autowired
+	@SuppressWarnings("unused")
 	private ConjurPropertySource propertySource;
 
 	@Autowired
@@ -60,6 +55,8 @@ public class ConjurValueProcessor implements BeanPostProcessor, InitializingBean
 	
 
 	private PropertyProcessorChain processorChain;
+	
+	private ConjurAuthConfiguration conjurAuthConfig = new ConjurAuthConfiguration();
 	
    
 
@@ -73,13 +70,13 @@ public class ConjurValueProcessor implements BeanPostProcessor, InitializingBean
 		{
 
 		LOGGER.info("Start : afterPropertiesSet" + conjurProperties);}
-		initializeSysEnv(conjurProperties);
+		conjurAuthConfig.getPropAuthParam(conjurProperties);
 		
 		this.processorChain = new DefaultPropertySourceChain("DefaultPropertySource");
 		CustomPropertySourceChain customPS = new CustomPropertySourceChain("CustomPropertySource");
 		processorChain.setNextChain(customPS);
 
-		// environment.getPropertySources().addLast(new ConjurPropertySource());
+		
 		environment.getPropertySources().addLast(processorChain);
 		
 		LOGGER.info("End :afterPropertiesSet" + environment.getPropertySources());
@@ -89,7 +86,8 @@ public class ConjurValueProcessor implements BeanPostProcessor, InitializingBean
 
 	@Override
 	public void setEnvironment(Environment environment) {
-		// TODO Auto-generated method stub
+		LOGGER.info("Start : setEnvironment");
+		
 		if (environment instanceof ConfigurableEnvironment) {
 
 			this.environment = (ConfigurableEnvironment) environment;
@@ -108,7 +106,7 @@ public class ConjurValueProcessor implements BeanPostProcessor, InitializingBean
 	}
 	
 	
-	public void initializeSysEnv(ConjurProperties conjurParam)
+	/*public void initializeSysEnv(ConjurProperties conjurParam)
 	{
 		String authApiKey =null;// System.getenv("CONJUR_AUTHN_API_KEY");
 			
@@ -172,6 +170,6 @@ public class ConjurValueProcessor implements BeanPostProcessor, InitializingBean
 				
 			}
 		}
-	}
+	}*/
 
 }
