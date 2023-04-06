@@ -55,7 +55,6 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 				.getBeansOfType(com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class).values();
 
 		if(beanFactory.getBeanNamesForType(SecretsApi.class).length == 0){
-			ConjurConnectionManager.getInstance();
 			beanFactory.registerSingleton("secretsApi", new SecretsApi());
 		}
 
