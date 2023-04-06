@@ -19,7 +19,7 @@ import com.cyberark.conjur.springboot.annotations.ConjurValue;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 /**
- *
+ * 
  * Annotation ConjurValues class processor.
  *
  */
