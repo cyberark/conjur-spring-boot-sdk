@@ -21,7 +21,7 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.MultiValueMap;
 
 /**
- *
+ * 
  * This class helps to get all variables defined on the custom annotation side
  * and registers them with the ConjurPropertySource class for further processing.
  *
