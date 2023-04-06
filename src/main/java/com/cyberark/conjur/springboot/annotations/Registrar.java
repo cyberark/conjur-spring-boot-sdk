@@ -3,8 +3,6 @@ package com.cyberark.conjur.springboot.annotations;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
-import com.cyberark.conjur.sdk.endpoint.SecretsApi;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -23,7 +21,7 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.MultiValueMap;
 
 /**
- * 
+ *
  * This class helps to get all variables defined on the custom annotation side
  * and registers them with the ConjurPropertySource class for further processing.
  *
@@ -52,10 +50,6 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 
 		Collection<com.cyberark.conjur.springboot.core.env.ConjurPropertySource> beans = beanFactory
 				.getBeansOfType(com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class).values();
-
-		if(beanFactory.getBeanNamesForType(SecretsApi.class).length == 0){
-			beanFactory.registerSingleton("secretsApi", new SecretsApi());
-		}
 
 		for (PropertySource<?> ps : beans) {
 

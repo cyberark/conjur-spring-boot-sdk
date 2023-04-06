@@ -17,8 +17,9 @@ import org.springframework.util.ReflectionUtils;
 
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
+import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 /**
- * 
+ *
  * Annotation ConjurValues class processor.
  *
  */
@@ -28,7 +29,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 	@Autowired
 	ConjurRetrieveSecretService conjurRetrieveSecretService;
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurValueClassProcessor.class);
+	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -42,7 +43,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 			if (field.isAnnotationPresent(ConjurValue.class)) {
 				ReflectionUtils.makeAccessible(field);
 				String variableId = field.getDeclaredAnnotation(ConjurValue.class).key();
-				byte[] result;
+				byte[] result = null;
 				try {
 					result = conjurRetrieveSecretService.retriveSingleSecretForCustomAnnotation(variableId);
 

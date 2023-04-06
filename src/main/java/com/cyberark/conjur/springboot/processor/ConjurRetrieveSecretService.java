@@ -22,7 +22,7 @@ public class ConjurRetrieveSecretService {
 
 	/**
 	 * This method retrieves multiple secrets for custom annotation's keys.
-	 * 
+	 *
 	 * @param keys - query to vault.
 	 * @return secrets - output from the vault.
 	 * @throws ApiException - Exception thrown from conjur java sdk.
@@ -49,19 +49,20 @@ public class ConjurRetrieveSecretService {
 
 	/**
 	 * This method retrieves single secret for custom annotation's key value.
-	 * 
+	 *
 	 * @param key - query to vault.
 	 * @return secrets - output from the vault.
 	 * @throws ApiException - Exception thrown from conjur java sdk.
 	 */
-	public byte[] retriveSingleSecretForCustomAnnotation(String key) {
+	public byte[] retriveSingleSecretForCustomAnnotation(String key) throws ApiException {
 		byte[] result = null;
 		try {
 			String secret = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key);
-			result = secret != null ? secret.getBytes() : null;
+			result = secret != null
+					? secret.getBytes()
+					: null;
 		} catch (ApiException e) {
 			logger.error(e.getMessage());
-			logger.error("Reason: " + e.getResponseBody());
 		}
 		return result;
 	}
