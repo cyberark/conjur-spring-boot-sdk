@@ -18,13 +18,15 @@ import com.cyberark.conjur.springboot.annotations.ConjurValue;
 import com.cyberark.conjur.springboot.annotations.ConjurValues;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SpringBootTest(classes = ConjurPluginTests.class)
 @ConjurPropertySource("db/")
 public class ConjurPluginTests {
 
+	private static final Logger logger = LoggerFactory.getLogger(ConjurPluginTests.class);
 	
-
 	@Value("${dbpassWord}")
 	private byte[] dbpassWord;
 
@@ -57,12 +59,12 @@ public class ConjurPluginTests {
 			try {
 				props.load(propsFile);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.getMessage(), e);
 			} finally {
 				try {
 					propsFile.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage(), e);
 				}
 			}
 

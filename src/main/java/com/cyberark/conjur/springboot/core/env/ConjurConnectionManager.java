@@ -1,5 +1,6 @@
 package com.cyberark.conjur.springboot.core.env;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,7 @@ public final class ConjurConnectionManager {
 
 	private static ConjurConnectionManager conjurConnectionInstance = null;
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurConnectionManager.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConjurConnectionManager.class);
 
 	// For Getting Connection with conjur vault using cyberark sdk
 	private ConjurConnectionManager() {
@@ -26,20 +27,29 @@ public final class ConjurConnectionManager {
 	}
 
 	private void getConnection() { 
-		try {
-			ApiClient client = Configuration.getDefaultApiClient();
-			AccessToken accesToken = client.getNewAccessToken();
-			if (accesToken == null) {
-				logger.error("Access token is null, Please enter proper environment variables.");
+		ApiClient client = Configuration.getDefaultApiClient();
+		AccessToken accesToken = client.getNewAccessToken();
+		if (accesToken == null) {
+			logger.debug("Using Account: " + obfuscateString(client.getAccount()));
+			logger.debug("Using ApplianceUrl: " + obfuscateString(client.getBasePath()));
+			if (StringUtils.isNotEmpty( System.getenv().get("CONJUR_AUTHN_LOGIN"))) {
+				logger.debug("Using AuthnLogin: " +obfuscateString(System.getenv().get("CONJUR_AUTHN_LOGIN")));
 			}
-			String token = accesToken.getHeaderValue();
-			client.setAccessToken(token);
-			Configuration.setDefaultApiClient(client);
-			logger.debug("Connection with conjur is successful");
-		} catch (Exception e) {
-			logger.error(e.getMessage());
+			if (StringUtils.isNotEmpty( System.getenv().get("CONJUR_AUTHN_API_KEY"))) {
+				logger.debug("Using Authn API Key: " +obfuscateString(System.getenv().get("CONJUR_AUTHN_API_KEY")));
+			}
+			if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_SSL_CERTIFICATE"))) {
+				logger.debug("Using SSL Cert: " +  obfuscateString(System.getenv().get("CONJUR_SSL_CERTIFICATE")));
+			}
+			else if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_CERT_FILE"))){
+				logger.debug("Using SSL Cert File: " +  obfuscateString((System.getenv().get("CONJUR_CERT_FILE"))));
+			}
+			throw new IllegalArgumentException("Access token is null, Please enter proper environment variables.");
 		}
-
+		String token = accesToken.getHeaderValue();
+		client.setAccessToken(token);
+		Configuration.setDefaultApiClient(client);
+		logger.debug("Connection with conjur is successful");
 	}
 
 	/**
@@ -55,5 +65,17 @@ public final class ConjurConnectionManager {
 			}
 		}
 		return conjurConnectionInstance;
+	}
+
+	private String obfuscateString(String str) {
+		int len = str.length();
+		if (len <= 2) {
+			return str;
+		} else {
+			char first = str.charAt(0);
+			char last = str.charAt(len - 1);
+			String middle = "*******";
+			return first + middle + last;
+		}
 	}
 }

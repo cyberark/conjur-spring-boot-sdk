@@ -33,11 +33,11 @@ public class ConjurPropertySource
 
 	private SecretsApi secretsApi;
 
-	private static String authTokenFile=System.getenv("CONJUR_AUTHN_TOKEN_FILE");
+	private static final String authTokenFile=System.getenv("CONJUR_AUTHN_TOKEN_FILE");
 	
-	private static String authApiKey = System.getenv("CONJUR_AUTHN_API_KEY");
+	private static final String authApiKey = System.getenv("CONJUR_AUTHN_API_KEY");
 	
-	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
 	/**
 	 * a hack to support seeding environment for the file based api token support in
 	 * downstream java
@@ -60,8 +60,7 @@ public class ConjurPropertySource
 			}
 			apiKey =  sb.toString().getBytes();
 		} catch (Exception e1) {
-			e1.printStackTrace();
-
+			logger.error(e1.getMessage(), e1);
 		}
 
 		conjurParameters.put("CONJUR_AUTHN_API_KEY",new String(apiKey).trim());
@@ -145,6 +144,8 @@ public class ConjurPropertySource
 			result = secretValue != null ? secretValue.getBytes() : null;
 
 		} catch (ApiException ae) {
+			logger.warn("Failed to get property from Conjur for: " + key);
+			logger.warn("Reason: " + ae.getResponseBody());
 		}
 		return result;
 

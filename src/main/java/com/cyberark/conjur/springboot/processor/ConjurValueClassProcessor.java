@@ -29,7 +29,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 	@Autowired
 	ConjurRetrieveSecretService conjurRetrieveSecretService;
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConjurValueClassProcessor.class);
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {

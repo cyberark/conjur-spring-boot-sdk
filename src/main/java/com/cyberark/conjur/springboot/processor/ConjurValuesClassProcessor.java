@@ -25,7 +25,7 @@ import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 @Configuration
 public class ConjurValuesClassProcessor implements BeanPostProcessor {
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConjurValuesClassProcessor.class);
 
 	@Autowired
 	ConjurRetrieveSecretService conjurRetrieveSecretService;
