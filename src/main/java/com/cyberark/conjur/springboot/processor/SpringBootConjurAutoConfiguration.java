@@ -1,16 +1,12 @@
 package com.cyberark.conjur.springboot.processor;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 
 @Configuration
-
-@ConditionalOnClass(ConjurRetrieveSecretService.class)
 public class SpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean
