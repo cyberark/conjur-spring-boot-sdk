@@ -3,6 +3,8 @@ package com.cyberark.conjur.springboot.annotations;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
+import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -16,7 +18,6 @@ import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.MutablePropertySources;
-import org.springframework.core.env.PropertySource;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.MultiValueMap;
 
@@ -51,12 +52,12 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 		Collection<com.cyberark.conjur.springboot.core.env.ConjurPropertySource> beans = beanFactory
 				.getBeansOfType(com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class).values();
 
-		for (PropertySource<?> ps : beans) {
+		for (com.cyberark.conjur.springboot.core.env.ConjurPropertySource ps : beans) {
 
 			if (propertySources.contains(ps.getName())) {
 				continue;
 			}
-
+			ps.setSecretsApi(beanFactory.getBean(SecretsApi.class));
 			propertySources.addLast(ps);
 		}
 	}

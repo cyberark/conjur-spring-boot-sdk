@@ -131,13 +131,8 @@ public class ConjurPropertySource
 	@Override
 	public Object getProperty(String key) {
 
-		String secretValue = null;
+		String secretValue;
 		key = ConjurConfig.getInstance().mapProperty(key);
-
-		ConjurConnectionManager.getInstance();
-		if (null == secretsApi) {
-			secretsApi = new SecretsApi();
-		}
 		byte[] result = null;
 		try {
 			secretValue = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND,
@@ -149,5 +144,8 @@ public class ConjurPropertySource
 		return result;
 
 	}
-	
+
+	public void setSecretsApi(SecretsApi secretsApi) {
+		this.secretsApi = secretsApi;
+	}
 }
