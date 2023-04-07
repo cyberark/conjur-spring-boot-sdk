@@ -149,13 +149,11 @@ public class ConjurPropertySource
 		byte[] result = null;
 		if(propertyExists(key)){
 			key = ConjurConfig.getInstance().mapProperty(key);
-			result =  key.getBytes();
 			ConjurConnectionManager.getInstance();
 			try {
 				String secretValue = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND,
 						vaultPath + key);
-				if(secretValue !=null)
-					result = secretValue.getBytes();
+				result = secretValue != null ? secretValue.getBytes() : null;
 			} catch (ApiException ae) {
 				logger.warn("Failed to get property from Conjur for: " + key);
 				logger.warn("Reason: " + ae.getResponseBody());

@@ -3,10 +3,11 @@ package com.cyberark.conjur.springboot.core.env;
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
+import com.cyberark.conjur.springboot.core.env.ConjurPropertySourceTest.ConjurPropertySourceConfiguration;
+import com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguration;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +19,8 @@ import static org.mockito.Mockito.verify;
 /**
  * @author bnasslahsen
  */
-@SpringBootTest
+@SpringBootTest(classes = { SpringBootConjurAutoConfiguration.class, ConjurPropertySourceConfiguration.class, ConjurPropertySourceTest.class})
 public class ConjurPropertySourceTest {
-
 
 	@MockBean
 	private SecretsApi secretsApi;
@@ -32,22 +32,18 @@ public class ConjurPropertySourceTest {
 				any());
 	}
 
-	@SpringBootApplication
-	static class ConjurPropertySourceTestApp {
+	@ConjurPropertySource("db/")
+	@Configuration
+	class ConjurPropertySourceConfiguration {
 
-		@ConjurPropertySource("db/")
-		@Configuration
-		class ConjurPropertySourceConfiguration {
+		@Value("${dbpassWord}")
+		private byte[] dbpassWord;
 
-			@Value("${dbpassWord}")
-			private byte[] dbpassWord;
+		@Value("${dbuserName}")
+		private byte[] dbuserName;
 
-			@Value("${dbuserName}")
-			private byte[] dbuserName;
-
-			@Value("${key}")
-			private byte[] key;
-		}
+		@Value("${key}")
+		private byte[] key;
 	}
 
 }

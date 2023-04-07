@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +20,7 @@ import com.cyberark.conjur.springboot.annotations.ConjurValues;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 
-@SpringBootTest(classes = ConjurPluginTests.class)
+@SpringBootTest(classes = SpringBootConjurAutoConfiguration.class)
 @ConjurPropertySource("db/")
 public class ConjurPluginTests {
 
