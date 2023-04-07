@@ -62,7 +62,7 @@ public class SpringBootConjurAutoConfiguration {
 			com.cyberark.conjur.sdk.Configuration.setDefaultApiClient(client);
 			logger.debug("Connection with conjur is successful");
 		} catch (Exception e) {
-			logger.error("Unable to get the AccessToken", e);
+			logger.error(e.getMessage());
 		}
 		return client;
 	}
