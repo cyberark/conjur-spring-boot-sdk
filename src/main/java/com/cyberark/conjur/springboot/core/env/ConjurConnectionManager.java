@@ -52,7 +52,7 @@ public final class ConjurConnectionManager {
 			Configuration.setDefaultApiClient(client);
 			logger.debug("Connection with conjur is successful");
 		} catch (Exception e) {
-			logger.error("Unable to get the AccessToken", e);
+			logger.error(e.getMessage());
 		}
 	}
 
