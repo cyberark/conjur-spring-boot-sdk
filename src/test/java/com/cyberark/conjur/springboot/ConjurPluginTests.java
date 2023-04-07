@@ -21,7 +21,7 @@ import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 
-@SpringBootTest(classes = {ConjurPluginTests.class, SpringBootConjurAutoConfiguration.class})
+@SpringBootTest(classes = SpringBootConjurAutoConfiguration.class)
 @ConjurPropertySource("db/")
 public class ConjurPluginTests {
 
