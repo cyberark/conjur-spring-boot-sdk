@@ -3,10 +3,11 @@ package com.cyberark.conjur.springboot.processor;
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.processor.ConjurRetrieveSecretServiceTest.ConjurPropertySourceConfiguration;
+import com.cyberark.conjur.springboot.processor.ConjurRetrieveSecretServiceTest.SecretApiMockConfig;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.when;
 /**
  * @author bnasslahsen
  */
-@SpringBootTest
+@SpringBootTest(classes = { ConjurRetrieveSecretServiceTest.class, SpringBootConjurAutoConfiguration.class, SecretApiMockConfig.class, ConjurPropertySourceConfiguration.class})
 public class ConjurRetrieveSecretServiceTest {
 
 	@Autowired
@@ -35,7 +36,7 @@ public class ConjurRetrieveSecretServiceTest {
 	}
 
 	@TestConfiguration
-	public static class SecretApiMockConfig {
+	static class SecretApiMockConfig {
 
 		@Bean
 		@Primary
@@ -47,14 +48,10 @@ public class ConjurRetrieveSecretServiceTest {
 
 	}
 
-	@SpringBootApplication
-	static class ConjurPropertySourceTestApp {
+	@Configuration
+	class ConjurPropertySourceConfiguration {
 
-		@Configuration
-		class ConjurPropertySourceConfiguration {
-
-			@ConjurValue(key = "db/dbpassWord")
-			private byte[] dbpassWord;
-		}
+		@ConjurValue(key = "db/dbpassWord")
+		private byte[] dbpassWord;
 	}
 }
