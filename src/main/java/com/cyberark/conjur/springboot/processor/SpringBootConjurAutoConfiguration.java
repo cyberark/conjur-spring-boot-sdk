@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class SpringBootConjurAutoConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringBootConjurAutoConfiguration.class);
