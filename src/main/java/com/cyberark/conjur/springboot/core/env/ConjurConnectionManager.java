@@ -44,7 +44,7 @@ public final class ConjurConnectionManager {
 			else if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_CERT_FILE"))){
 				logger.debug("Using SSL Cert File: " +  obfuscateString((System.getenv().get("CONJUR_CERT_FILE"))));
 			}
-			throw new IllegalArgumentException("Access token is null, Please enter proper environment variables.");
+			logger.error("Access token is null, Please enter proper environment variables.");
 		}
 		String token = accesToken.getHeaderValue();
 		client.setAccessToken(token);
