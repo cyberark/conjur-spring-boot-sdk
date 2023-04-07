@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,13 +16,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
-import com.cyberark.conjur.springboot.annotations.ConjurValues;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SpringBootTest(classes = ConjurPluginTests.class)
+@SpringBootTest(classes = SpringBootConjurAutoConfiguration.class)
 @ConjurPropertySource("db/")
 public class ConjurPluginTests {
 

@@ -27,33 +27,29 @@ public final class ConjurConnectionManager {
 	}
 
 	private void getConnection() {
-		try {
-			ApiClient client = Configuration.getDefaultApiClient();
-			AccessToken accesToken = client.getNewAccessToken();
-			if (accesToken == null) {
-				logger.debug("Using Account: " + obfuscateString(client.getAccount()));
-				logger.debug("Using ApplianceUrl: " + obfuscateString(client.getBasePath()));
-				if (StringUtils.isNotEmpty( System.getenv().get("CONJUR_AUTHN_LOGIN"))) {
-					logger.debug("Using AuthnLogin: " +obfuscateString(System.getenv().get("CONJUR_AUTHN_LOGIN")));
-				}
-				if (StringUtils.isNotEmpty( System.getenv().get("CONJUR_AUTHN_API_KEY"))) {
-					logger.debug("Using Authn API Key: " +obfuscateString(System.getenv().get("CONJUR_AUTHN_API_KEY")));
-				}
-				if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_SSL_CERTIFICATE"))) {
-					logger.debug("Using SSL Cert: " +  obfuscateString(System.getenv().get("CONJUR_SSL_CERTIFICATE")));
-				}
-				else if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_CERT_FILE"))){
-					logger.debug("Using SSL Cert File: " +  obfuscateString((System.getenv().get("CONJUR_CERT_FILE"))));
-				}
-				logger.error("Access token is null, Please enter proper environment variables.");
+		ApiClient client = Configuration.getDefaultApiClient();
+		AccessToken accesToken = client.getNewAccessToken();
+		if (accesToken == null) {
+			logger.debug("Using Account: " + obfuscateString(client.getAccount()));
+			logger.debug("Using ApplianceUrl: " + obfuscateString(client.getBasePath()));
+			if (StringUtils.isNotEmpty( System.getenv().get("CONJUR_AUTHN_LOGIN"))) {
+				logger.debug("Using AuthnLogin: " +obfuscateString(System.getenv().get("CONJUR_AUTHN_LOGIN")));
 			}
-			String token = accesToken.getHeaderValue();
-			client.setAccessToken(token);
-			Configuration.setDefaultApiClient(client);
-			logger.debug("Connection with conjur is successful");
-		} catch (Exception e) {
-			logger.error(e.getMessage());
+			if (StringUtils.isNotEmpty( System.getenv().get("CONJUR_AUTHN_API_KEY"))) {
+				logger.debug("Using Authn API Key: " +obfuscateString(System.getenv().get("CONJUR_AUTHN_API_KEY")));
+			}
+			if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_SSL_CERTIFICATE"))) {
+				logger.debug("Using SSL Cert: " +  obfuscateString(System.getenv().get("CONJUR_SSL_CERTIFICATE")));
+			}
+			else if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_CERT_FILE"))){
+				logger.debug("Using SSL Cert File: " +  obfuscateString((System.getenv().get("CONJUR_CERT_FILE"))));
+			}
+			logger.error("Access token is null, Please enter proper environment variables.");
 		}
+		String token = accesToken.getHeaderValue();
+		client.setAccessToken(token);
+		Configuration.setDefaultApiClient(client);
+		logger.debug("Connection with conjur is successful");
 	}
 
 	/**
