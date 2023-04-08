@@ -157,6 +157,7 @@ public class ConjurPropertySource
 			} catch (ApiException ae) {
 				logger.warn("Failed to get property from Conjur for: " + key);
 				logger.warn("Reason: " + ae.getResponseBody());
+				logger.warn(ae.getMessage());
 			}
 		}
 		return result;
