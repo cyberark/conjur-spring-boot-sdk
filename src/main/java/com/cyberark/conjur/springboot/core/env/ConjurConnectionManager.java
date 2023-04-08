@@ -47,10 +47,12 @@ public final class ConjurConnectionManager {
 				}
 				logger.error("Access token is null, Please enter proper environment variables.");
 			}
-			String token = accesToken.getHeaderValue();
-			client.setAccessToken(token);
-			Configuration.setDefaultApiClient(client);
-			logger.debug("Connection with conjur is successful");
+			else {
+				String token = accesToken.getHeaderValue();
+				client.setAccessToken(token);
+				Configuration.setDefaultApiClient(client);
+				logger.debug("Connection with conjur is successful");
+			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
