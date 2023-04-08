@@ -38,6 +38,7 @@ public class ConjurRetrieveSecretService {
 		try {
 			result = secretsApi.getSecrets(new String(kind));
 		} catch (ApiException e) {
+			logger.error("Status code: " + e.getCode());
 			logger.error("Reason: " + e.getResponseBody());
 			logger.error(e.getMessage());
 		}
@@ -60,6 +61,7 @@ public class ConjurRetrieveSecretService {
 					? secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key).getBytes()
 					: null; 
 		} catch (ApiException e) {
+			logger.error("Status code: " + e.getCode());
 			logger.error("Reason: " + e.getResponseBody());
 			logger.error(e.getMessage());
 		}
