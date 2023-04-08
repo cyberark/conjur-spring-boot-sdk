@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.cyberark.conjur.sdk.ApiClient;
+import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 import com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguration;
 import org.junit.jupiter.api.Test;
 
@@ -26,8 +26,8 @@ import com.cyberark.conjur.springboot.constant.ConjurConstant;
 public class ConjurPluginTests {
 
 	@Autowired
-    private ApiClient apiClient;
-	
+	private ConjurConnectionManager conjurConnectionManager;
+
 	@Value("${dbpassWord}")
 	private byte[] dbpassWord;
 
@@ -88,7 +88,7 @@ public class ConjurPluginTests {
 
 	@Test
 	void testForConnection() {
-		assertNotNull(apiClient);
+		assertNotNull(conjurConnectionManager);
 	}
 	
 	@Test
