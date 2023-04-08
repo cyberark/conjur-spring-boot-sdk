@@ -1,5 +1,10 @@
 package com.cyberark.conjur.springboot.core.env;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +48,19 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 	private void getConnection() {
 		try {
 			ApiClient client = Configuration.getDefaultApiClient();
+
+			InputStream sslInputStream = null;
+			if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_SSL_CERTIFICATE"))) {
+				sslInputStream = new ByteArrayInputStream(System.getenv().get("CONJUR_SSL_CERTIFICATE").getBytes(StandardCharsets.UTF_8));
+			}
+			else if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_CERT_FILE")))
+				sslInputStream = new FileInputStream(System.getenv().get("CONJUR_CERT_FILE"));
+
+			if (sslInputStream != null) {
+				client.setSslCaCert(sslInputStream);
+				sslInputStream.close();
+			}
+			
 			AccessToken accesToken = client.getNewAccessToken();
 			if (accesToken == null) {
 				logger.debug("Using Account: " + obfuscateString(client.getAccount()));
