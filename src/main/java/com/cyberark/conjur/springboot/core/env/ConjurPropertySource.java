@@ -3,17 +3,22 @@ package com.cyberark.conjur.springboot.core.env;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.env.EnumerablePropertySource;
 
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.EnumerablePropertySource;
+import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.util.ClassUtils;
 
 
 /**
@@ -32,6 +37,8 @@ public class ConjurPropertySource
 	private String vaultPath = "";
 
 	private SecretsApi secretsApi;
+
+	private List<String> properties;
 
 	private static String authTokenFile=System.getenv("CONJUR_AUTHN_TOKEN_FILE");
 	
@@ -113,10 +120,19 @@ public class ConjurPropertySource
 
 	}
 
-	protected ConjurPropertySource(String vaultPath, String vaultInfo) {
+	protected ConjurPropertySource(String vaultPath, String vaultInfo, AnnotationMetadata importingClassMetadata) throws ClassNotFoundException {
 		super(vaultPath + "@" + vaultInfo);
 		this.vaultPath = vaultPath;
 		this.vaultInfo = vaultInfo;
+		List<String> properties = new ArrayList<>();
+		Class<?> annotatedClass = ClassUtils.forName((importingClassMetadata).getClassName(), getClass().getClassLoader());
+		for (Field field : annotatedClass.getDeclaredFields()) {
+			if (field.isAnnotationPresent(Value.class)) {
+				String value = field.getAnnotation(Value.class).value();
+				properties.add(value);
+			}
+		}
+		this.properties = properties;
 	}
 
 	@Override
@@ -130,24 +146,29 @@ public class ConjurPropertySource
 
 	@Override
 	public Object getProperty(String key) {
-
-		String secretValue = null;
-		key = ConjurConfig.getInstance().mapProperty(key);
-
-		ConjurConnectionManager.getInstance();
-		if (null == secretsApi) {
-			secretsApi = new SecretsApi();
-		}
 		byte[] result = null;
-		try {
-			secretValue = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND,
-					vaultPath + key);
-			result = secretValue != null ? secretValue.getBytes() : null;
-
-		} catch (ApiException ae) {
+		if(propertyExists(key)){
+			key = ConjurConfig.getInstance().mapProperty(key);
+			ConjurConnectionManager.getInstance();
+			try {
+				String secretValue = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND,
+						vaultPath + key);
+				result = secretValue != null ? secretValue.getBytes() : null;
+			} catch (ApiException ae) {
+				logger.warn("Failed to get property from Conjur for: " + key);
+				logger.warn("Reason: " + ae.getResponseBody());
+				logger.warn(ae.getMessage());
+			}
 		}
 		return result;
-
 	}
-	
+
+	public void setSecretsApi(SecretsApi secretsApi) {
+		this.secretsApi = secretsApi;
+	}
+
+	private boolean propertyExists(String key) {
+		return properties.stream()
+				.anyMatch(property -> property.contains(key));
+	}
 }
