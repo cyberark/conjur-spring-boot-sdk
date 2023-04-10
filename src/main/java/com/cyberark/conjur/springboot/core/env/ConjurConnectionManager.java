@@ -7,28 +7,54 @@ import org.slf4j.LoggerFactory;
 import com.cyberark.conjur.sdk.AccessToken;
 import com.cyberark.conjur.sdk.ApiClient;
 import com.cyberark.conjur.sdk.Configuration;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.Environment;
+
 /**
- * 
+ *
  * This is the connection creation singleton class with conjur vault by using
  * the conjur java sdk.
  *
  */
-public final class ConjurConnectionManager {
-
-	private static ConjurConnectionManager conjurConnectionInstance = null;
+public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPostProcessor {
 
 	private static final Logger logger = LoggerFactory.getLogger(ConjurConnectionManager.class);
+	private Environment environment;
 
 	// For Getting Connection with conjur vault using cyberark sdk
-	private ConjurConnectionManager() {
+	public ConjurConnectionManager() {}
 
-		getConnection();
+	@Override
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 
+			 this.getConnection();
+	}
+
+	@Override
+	public void setEnvironment(Environment environment) {
+		this.environment = environment;
 	}
 
 	private void getConnection() {
 		try {
 			ApiClient client = Configuration.getDefaultApiClient();
+
+			InputStream sslInputStream = null;
+			if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_SSL_CERTIFICATE"))) {
+				sslInputStream = new ByteArrayInputStream(System.getenv().get("CONJUR_SSL_CERTIFICATE").getBytes(StandardCharsets.UTF_8));
+			}
+			else if (StringUtils.isNotEmpty(System.getenv().get("CONJUR_CERT_FILE")))
+				sslInputStream = new FileInputStream(System.getenv().get("CONJUR_CERT_FILE"));
+
+			if (sslInputStream != null) {
+				client.setSslCaCert(sslInputStream);
+				sslInputStream.close();
+			}
+			
 			AccessToken accesToken = client.getNewAccessToken();
 			if (accesToken == null) {
 				logger.debug("Using Account: " + obfuscateString(client.getAccount()));
@@ -58,19 +84,16 @@ public final class ConjurConnectionManager {
 		}
 	}
 
-	/**
-	 * method to create instance of class and checking for multiple threads.
-	 * @return unique instance of class. 
-	 */
-	public static ConjurConnectionManager getInstance() {
-		if (conjurConnectionInstance == null) {
-			synchronized (ConjurConnectionManager.class) {
-				if (conjurConnectionInstance == null) {
-					conjurConnectionInstance = new ConjurConnectionManager();
-				}
-			}
+	private String obfuscateString(String str) {
+		int len = str.length();
+		if (len <= 2) {
+			return str;
+		} else {
+			char first = str.charAt(0);
+			char last = str.charAt(len - 1);
+			String middle = "*******";
+			return first + middle + last;
 		}
-		return conjurConnectionInstance;
 	}
 
 	private String obfuscateString(String str) {

@@ -14,11 +14,15 @@ public class ConjurRetrieveSecretService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ConjurRetrieveSecretService.class);
 
-	private SecretsApi secretsApi;
+	private final SecretsApi secretsApi;
+
+	public ConjurRetrieveSecretService(SecretsApi secretsApi) {
+		this.secretsApi = secretsApi;
+	}
 
 	/**
 	 * This method retrieves multiple secrets for custom annotation's keys.
-	 * 
+	 *
 	 * @param keys - query to vault.
 	 * @return secrets - output from the vault.
 	 * @throws ApiException - Exception thrown from conjur java sdk.
@@ -28,6 +32,7 @@ public class ConjurRetrieveSecretService {
 		Object result = null;
 		secretsApi = new SecretsApi();
 		StringBuilder kind = new StringBuilder();
+
 		for (int i = 0; i <= keys.length; i++) {
 			if (i < keys.length - 1) {
 				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + ",");
@@ -55,11 +60,11 @@ public class ConjurRetrieveSecretService {
 	 */
 	public byte[] retriveSingleSecretForCustomAnnotation(String key) throws ApiException {
 		byte[] result = null;
-		secretsApi = new SecretsApi();
 		try {
-			result = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key) != null
-					? secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key).getBytes()
-					: null; 
+			String secret = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND, key);
+			result = secret != null
+					? secret.getBytes()
+					: null;
 		} catch (ApiException e) {
 			logger.error("Status code: " + e.getCode());
 			logger.error("Reason: " + e.getResponseBody());

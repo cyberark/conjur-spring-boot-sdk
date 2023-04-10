@@ -6,36 +6,36 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.annotations.ConjurValues;
+import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ReflectionUtils;
 
-import com.cyberark.conjur.springboot.annotations.ConjurValue;
-import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
-import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.util.ReflectionUtils;
 /**
  * 
  * Annotation ConjurValues class processor.
  *
  */
-@Configuration
 public class ConjurValueClassProcessor implements BeanPostProcessor {
 
-	@Autowired
-	ConjurRetrieveSecretService conjurRetrieveSecretService;
+	private final ConjurRetrieveSecretService conjurRetrieveSecretService;
 
 	private static final Logger logger = LoggerFactory.getLogger(ConjurValueClassProcessor.class);
+
+	public ConjurValueClassProcessor(ConjurRetrieveSecretService conjurRetrieveSecretService) {
+		this.conjurRetrieveSecretService = conjurRetrieveSecretService;
+	}
+
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
 		Class<?> managedBeanClass = bean.getClass();
-		ConjurConnectionManager.getInstance();
 
 		List<Field> fieldList = FieldUtils.getFieldsListWithAnnotation(managedBeanClass, ConjurValue.class);
 
@@ -43,15 +43,25 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 			if (field.isAnnotationPresent(ConjurValue.class)) {
 				ReflectionUtils.makeAccessible(field);
 				String variableId = field.getDeclaredAnnotation(ConjurValue.class).key();
-				byte[] result = null;
+				byte[] result;
 				try {
 					result = conjurRetrieveSecretService.retriveSingleSecretForCustomAnnotation(variableId);
-
 					field.set(bean, result);
 				} catch (Exception e) {
 					logger.error(e.getMessage());
 				}
+			}
+			else if (field.isAnnotationPresent(ConjurValues.class)) {
+				ReflectionUtils.makeAccessible(field);
+				String[] variableId = field.getDeclaredAnnotation(ConjurValues.class).keys();
+				byte[] result = null;
+				try {
+					result = conjurRetrieveSecretService.retriveMultipleSecretsForCustomAnnotation(variableId);
+					field.set(bean, result);
 
+				} catch (Exception e1) {
+					logger.error(e1.getMessage());
+				}
 			}
 
 		}
@@ -61,7 +71,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 
 	@Nullable
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		return null;
+		return bean;
 	}
 
 }

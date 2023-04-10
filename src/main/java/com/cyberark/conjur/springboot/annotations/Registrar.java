@@ -3,6 +3,8 @@ package com.cyberark.conjur.springboot.annotations;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
+import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -16,7 +18,6 @@ import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.MutablePropertySources;
-import org.springframework.core.env.PropertySource;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.MultiValueMap;
 
@@ -51,12 +52,12 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 		Collection<com.cyberark.conjur.springboot.core.env.ConjurPropertySource> beans = beanFactory
 				.getBeansOfType(com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class).values();
 
-		for (PropertySource<?> ps : beans) {
+		for (com.cyberark.conjur.springboot.core.env.ConjurPropertySource ps : beans) {
 
 			if (propertySources.contains(ps.getName())) {
 				continue;
 			}
-
+			ps.setSecretsApi(beanFactory.getBean(SecretsApi.class));
 			propertySources.addLast(ps);
 		}
 	}
@@ -89,7 +90,7 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 				// for (AnnotationAttributes a : ((AnnotationAttributes[])((Object[])attribs)))
 				// {
 				makeAndRegisterBean(registry, (String[]) ((LinkedHashMap<String, Object>) attribs).get("value"),
-						((AnnotationAttributes) attribs).getString("name"));
+						((AnnotationAttributes) attribs).getString("name"), importingClassMetadata);
 				// }
 			}
 		}
@@ -98,11 +99,11 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 		if (attributes != null)
 			for (Object valuesObj : attributes.get("value")) {
 				makeAndRegisterBean(registry, (String[]) valuesObj,
-						attributes.get("name").size() != 0 ? (String) attributes.get("name").get(0) : "");
+						attributes.get("name").size() != 0 ? (String) attributes.get("name").get(0) : "", importingClassMetadata);
 			}
 	}
 
-	private void makeAndRegisterBean(BeanDefinitionRegistry registry, String[] values, String name) {
+	private void makeAndRegisterBean(BeanDefinitionRegistry registry, String[] values, String name, AnnotationMetadata importingClassMetadata) {
 		for (String value : values) {
 			if (!registry
 					.containsBeanDefinition(com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class.getName()
@@ -110,16 +111,17 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 				registerBeanDefinition(registry, com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class,
 						com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class.getName() + "-" + value + "@"
 								+ name,
-						value, name);
+						value, name, importingClassMetadata);
 			}
 		}
 	}
 
 	private void registerBeanDefinition(BeanDefinitionRegistry registry, Class<?> type, String name, String value,
-			String vaultInfo) {
+			String vaultInfo, AnnotationMetadata importingClassMetadata) {
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(type);
 		builder.addConstructorArgValue(value);
 		builder.addConstructorArgValue(vaultInfo);
+		builder.addConstructorArgValue(importingClassMetadata);
 		AbstractBeanDefinition beanDefinition = builder.getBeanDefinition();
 		registry.registerBeanDefinition(name, beanDefinition);
 

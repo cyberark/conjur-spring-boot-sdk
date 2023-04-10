@@ -1,28 +1,24 @@
 package com.cyberark.conjur.springboot.processor;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
-import com.cyberark.conjur.sdk.endpoint.SecretsApi;
-
-@Configuration
-
-@ConditionalOnClass(ConjurRetrieveSecretService.class)
+@Configuration(proxyBeanMethods = false)
 public class SpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean
 	@Bean
-	ConjurValueClassProcessor conjurSecretValueClassProcessor() {
-		return new ConjurValueClassProcessor();
+	ConjurValueClassProcessor conjurSecretValueClassProcessor(ConjurRetrieveSecretService conjurRetrieveSecretService) {
+		return new ConjurValueClassProcessor(conjurRetrieveSecretService);
 	}
 
 	@ConditionalOnMissingBean
 	@Bean
-	ConjurRetrieveSecretService conjurRetrieveSecretService() {
-		return new ConjurRetrieveSecretService();
+	ConjurRetrieveSecretService conjurRetrieveSecretService(SecretsApi secretsApi) {
+		return new ConjurRetrieveSecretService(secretsApi);
 	}
 
 	@ConditionalOnMissingBean
@@ -30,11 +26,10 @@ public class SpringBootConjurAutoConfiguration {
 	SecretsApi secretsApi() {
 		return new SecretsApi();
 	}
-	
+
 	@ConditionalOnMissingBean
 	@Bean
-	ConjurValuesClassProcessor conjurValuesClassProcessor() {
-		return new ConjurValuesClassProcessor();
+	static ConjurConnectionManager conjurConnectionManager() {
+		return new ConjurConnectionManager();
 	}
-
 }
