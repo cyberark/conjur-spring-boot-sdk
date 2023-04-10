@@ -17,8 +17,8 @@ public class SpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean
 	@Bean
-	ConjurRetrieveSecretService conjurRetrieveSecretService() {
-		return new ConjurRetrieveSecretService();
+	ConjurRetrieveSecretService conjurRetrieveSecretService(SecretsApi secretsApi) {
+		return new ConjurRetrieveSecretService(secretsApi);
 	}
 
 	@ConditionalOnMissingBean
@@ -26,7 +26,7 @@ public class SpringBootConjurAutoConfiguration {
 	SecretsApi secretsApi() {
 		return new SecretsApi();
 	}
-	
+
 	@ConditionalOnMissingBean
 	@Bean
 	ConjurValuesClassProcessor conjurValuesClassProcessor() {
