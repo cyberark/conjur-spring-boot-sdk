@@ -12,7 +12,7 @@ import com.cyberark.conjur.springboot.constant.ConjurConstant;
 
 public class ConjurRetrieveSecretService {
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurRetrieveSecretService.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConjurRetrieveSecretService.class);
 
 	private final SecretsApi secretsApi;
 
@@ -30,7 +30,9 @@ public class ConjurRetrieveSecretService {
 	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys) throws ApiException {
 
 		Object result = null;
-		StringBuilder kind = new StringBuilder("");
+		secretsApi = new SecretsApi();
+		StringBuilder kind = new StringBuilder();
+
 		for (int i = 0; i <= keys.length; i++) {
 			if (i < keys.length - 1) {
 				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + ",");
@@ -41,6 +43,8 @@ public class ConjurRetrieveSecretService {
 		try {
 			result = secretsApi.getSecrets(new String(kind));
 		} catch (ApiException e) {
+			logger.error("Status code: " + e.getCode());
+			logger.error("Reason: " + e.getResponseBody());
 			logger.error(e.getMessage());
 		}
 		return processMultipleSecretResult(result);
@@ -62,6 +66,8 @@ public class ConjurRetrieveSecretService {
 					? secret.getBytes()
 					: null;
 		} catch (ApiException e) {
+			logger.error("Status code: " + e.getCode());
+			logger.error("Reason: " + e.getResponseBody());
 			logger.error(e.getMessage());
 		}
 		return result;

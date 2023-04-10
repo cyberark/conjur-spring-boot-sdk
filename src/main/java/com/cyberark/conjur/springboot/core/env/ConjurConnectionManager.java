@@ -1,10 +1,5 @@
 package com.cyberark.conjur.springboot.core.env;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +22,8 @@ import org.springframework.core.env.Environment;
  */
 public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPostProcessor {
 
+	private static final Logger logger = LoggerFactory.getLogger(ConjurConnectionManager.class);
 	private Environment environment;
-	
-	private static Logger logger = LoggerFactory.getLogger(ConjurConnectionManager.class);
 
 	// For Getting Connection with conjur vault using cyberark sdk
 	public ConjurConnectionManager() {}
@@ -87,6 +81,18 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+		}
+	}
+
+	private String obfuscateString(String str) {
+		int len = str.length();
+		if (len <= 2) {
+			return str;
+		} else {
+			char first = str.charAt(0);
+			char last = str.charAt(len - 1);
+			String middle = "*******";
+			return first + middle + last;
 		}
 	}
 

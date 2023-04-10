@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -14,10 +16,12 @@ import com.cyberark.conjur.springboot.constant.ConjurConstant;
  */
 public class ConjurConfig {
 
-	private static Properties props = new Properties();
+	private static final Properties props = new Properties();
 
-	private static ConjurConfig uniqueInstance = new ConjurConfig();
-
+	private static final ConjurConfig uniqueInstance = new ConjurConfig();
+	
+	private static final Logger logger = LoggerFactory.getLogger(ConjurConfig.class);
+	
 	private ConjurConfig() {
 
 		InputStream propsFile = ConjurConfig.class.getResourceAsStream(ConjurConstant.CONJUR_PROPERTIES);
@@ -26,13 +30,13 @@ public class ConjurConfig {
 			try {
 				props.load(propsFile);
 			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			try {
-				propsFile.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.getMessage(), e);
+			} finally {
+				try {
+					propsFile.close();
+				} catch (IOException e) {
+					logger.error(e.getMessage(), e);
+				}
 			}
 		}
 

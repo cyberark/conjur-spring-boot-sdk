@@ -25,7 +25,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 
 	private final ConjurRetrieveSecretService conjurRetrieveSecretService;
 
-	private static Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConjurValueClassProcessor.class);
 
 	public ConjurValueClassProcessor(ConjurRetrieveSecretService conjurRetrieveSecretService) {
 		this.conjurRetrieveSecretService = conjurRetrieveSecretService;
