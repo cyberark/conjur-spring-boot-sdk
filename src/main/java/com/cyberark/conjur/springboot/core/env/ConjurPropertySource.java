@@ -144,7 +144,6 @@ public class ConjurPropertySource
 
 	@Override
 	public Object getProperty(String key) {
-		String secretValue;
 		key = ConjurConfig.getInstance().mapProperty(key);
 
 		ConjurConnectionManager.getInstance();
@@ -176,9 +175,5 @@ public class ConjurPropertySource
 	private boolean propertyExists(String key) {
 		return properties.stream()
 				.anyMatch(property -> property.contains(key));
-	}
-
-	public void setSecretsApi(SecretsApi secretsApi) {
-		this.secretsApi = secretsApi;
 	}
 }
