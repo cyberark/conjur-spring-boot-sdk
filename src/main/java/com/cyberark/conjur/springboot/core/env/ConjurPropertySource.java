@@ -178,4 +178,8 @@ public class ConjurPropertySource
 		return properties.stream()
 				.anyMatch(property -> property.contains(key));
 	}
+
+	public void setSecretsApi(SecretsApi secretsApi) {
+		this.secretsApi = secretsApi;
+	}
 }
