@@ -72,7 +72,6 @@ public class ConjurPropertySource
 		}
 
 		conjurParameters.put("CONJUR_AUTHN_API_KEY",new String(apiKey).trim());
-		apiKey=null;
 		try {
 		loadEnvironmentParameters(conjurParameters);
 		} catch (Exception e) {
@@ -146,6 +145,14 @@ public class ConjurPropertySource
 
 	@Override
 	public Object getProperty(String key) {
+		String secretValue;
+		key = ConjurConfig.getInstance().mapProperty(key);
+
+		ConjurConnectionManager.getInstance();
+		if (null == secretsApi) {
+			secretsApi = new SecretsApi();
+		}
+    
 		byte[] result = null;
 		if(propertyExists(key)){
 			key = ConjurConfig.getInstance().mapProperty(key);
