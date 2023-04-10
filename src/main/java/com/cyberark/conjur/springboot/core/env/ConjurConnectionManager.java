@@ -26,6 +26,7 @@ import org.springframework.core.env.Environment;
  *
  */
 public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPostProcessor {
+	private static ConjurConnectionManager conjurConnectionInstance = null;
 
 	private static final Logger logger = LoggerFactory.getLogger(ConjurConnectionManager.class);
 	private Environment environment;
