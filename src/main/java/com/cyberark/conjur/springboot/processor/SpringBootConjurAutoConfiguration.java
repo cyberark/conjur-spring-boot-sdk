@@ -2,7 +2,6 @@ package com.cyberark.conjur.springboot.processor;
 
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
-
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +32,4 @@ public class SpringBootConjurAutoConfiguration {
 	static ConjurConnectionManager conjurConnectionManager() {
 		return new ConjurConnectionManager();
 	}
-
 }

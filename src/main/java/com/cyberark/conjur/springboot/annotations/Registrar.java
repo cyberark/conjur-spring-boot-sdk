@@ -90,7 +90,7 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 				// for (AnnotationAttributes a : ((AnnotationAttributes[])((Object[])attribs)))
 				// {
 				makeAndRegisterBean(registry, (String[]) ((LinkedHashMap<String, Object>) attribs).get("value"),
-						((AnnotationAttributes) attribs).getString("name"));
+						((AnnotationAttributes) attribs).getString("name"), importingClassMetadata);
 				// }
 			}
 		}
@@ -99,11 +99,11 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 		if (attributes != null)
 			for (Object valuesObj : attributes.get("value")) {
 				makeAndRegisterBean(registry, (String[]) valuesObj,
-						attributes.get("name").size() != 0 ? (String) attributes.get("name").get(0) : "");
+						attributes.get("name").size() != 0 ? (String) attributes.get("name").get(0) : "", importingClassMetadata);
 			}
 	}
 
-	private void makeAndRegisterBean(BeanDefinitionRegistry registry, String[] values, String name) {
+	private void makeAndRegisterBean(BeanDefinitionRegistry registry, String[] values, String name, AnnotationMetadata importingClassMetadata) {
 		for (String value : values) {
 			if (!registry
 					.containsBeanDefinition(com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class.getName()
@@ -111,16 +111,17 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 				registerBeanDefinition(registry, com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class,
 						com.cyberark.conjur.springboot.core.env.ConjurPropertySource.class.getName() + "-" + value + "@"
 								+ name,
-						value, name);
+						value, name, importingClassMetadata);
 			}
 		}
 	}
 
 	private void registerBeanDefinition(BeanDefinitionRegistry registry, Class<?> type, String name, String value,
-			String vaultInfo) {
+			String vaultInfo, AnnotationMetadata importingClassMetadata) {
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(type);
 		builder.addConstructorArgValue(value);
 		builder.addConstructorArgValue(vaultInfo);
+		builder.addConstructorArgValue(importingClassMetadata);
 		AbstractBeanDefinition beanDefinition = builder.getBeanDefinition();
 		registry.registerBeanDefinition(name, beanDefinition);
 

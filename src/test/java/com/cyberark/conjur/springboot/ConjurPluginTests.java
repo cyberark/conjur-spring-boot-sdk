@@ -207,8 +207,5 @@ public class ConjurPluginTests {
 	 */
 	public void setDdbPortFromCustomAnnotation(byte[] ddbPortFromCustomAnnotation) {
 		this.ddbPortFromCustomAnnotation = ddbPortFromCustomAnnotation;
-	}
-
-
-	
+	}	
 }
