@@ -14,7 +14,7 @@ public class ConjurRetrieveSecretService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ConjurRetrieveSecretService.class);
 
-	private final SecretsApi secretsApi;
+	private SecretsApi secretsApi;
 
 	public ConjurRetrieveSecretService(SecretsApi secretsApi) {
 		this.secretsApi = secretsApi;
