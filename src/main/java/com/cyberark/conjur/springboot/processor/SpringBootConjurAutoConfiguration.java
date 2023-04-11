@@ -1,10 +1,16 @@
 package com.cyberark.conjur.springboot.processor;
 
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
+import com.cyberark.conjur.springboot.domain.ConjurProperties;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import static com.cyberark.conjur.springboot.constant.ConjurConstant.CONJUR_PREFIX;
 
 @Configuration(proxyBeanMethods = false)
 public class SpringBootConjurAutoConfiguration {
@@ -29,7 +35,20 @@ public class SpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean
 	@Bean
-	static ConjurConnectionManager conjurConnectionManager() {
-		return new ConjurConnectionManager();
+	static ConjurConnectionManager conjurConnectionManager(AccessTokenProvider accessTokenProvider) {
+		return new ConjurConnectionManager(accessTokenProvider);
+	}
+
+	@ConditionalOnMissingBean
+	@Bean
+	AccessTokenProvider accessTokenProvider(){
+		return new AccessTokenProvider();
+	}
+
+	@ConditionalOnMissingBean
+	@ConfigurationProperties(prefix = CONJUR_PREFIX)
+	@Bean
+	ConjurProperties conjurProperties(){
+		return new ConjurProperties();
 	}
 }

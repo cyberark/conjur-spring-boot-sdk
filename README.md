@@ -126,14 +126,16 @@ For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCO
 
 If no other configuration is done (e.g. over system properties or CLI parameters), include the following environment variables in the app's runtime environment to use the Spring Boot Plugin.
 
-| Name                     | Environment ID           |   Description                 |
-| ------------------------ | ------------------       |   -----------------------     |
-| Conjur Account           | CONJUR_ACCOUNT           |   Account to connect          |
-| API key                  | CONJUR_AUTHN_API_KEY     |   User/host API Key/password  |
-| Connection url           | CONJUR_APPLIANCE_URL     |   Conjur instance to connect  |
-| User/host identity       | CONJUR_AUTHN_LOGIN       |   User /host identity         |
-| SSL Certificate Path     | CONJUR_CERT_FILE         |   Path to certificate file    |
-| SSL Certificate Content  | CONJUR_SSL_CERTIFICATE   |   Certificate content         |
+| Name                    | Environment ID          | Description                | API KEY | JWT    |
+|-------------------------| ------------------      |----------------------------|---------|--------|
+| Conjur Account          | CONJUR_ACCOUNT          | Account to connect         | Yes     | Yes    |
+| API key                 | CONJUR_AUTHN_API_KEY    | User/host API Key/password | Yes     | No     |
+| Connection url          | CONJUR_APPLIANCE_URL    | Conjur instance to connect | Yes     | Yes    |
+| User/host identity      | CONJUR_AUTHN_LOGIN      | User /host identity        | Yes     | No     |
+| SSL Certificate Path    | CONJUR_CERT_FILE        | Path to certificate file   | Yes     | Yes    |
+| SSL Certificate Content | CONJUR_SSL_CERTIFICATE  | Certificate content        | Yes     | Yes    |
+| Path of the JWT Token   | CONJUR_JWT_TOKEN_PATH   | Path of the JWT Token      | No      | Yes    |
+| Conjur authenticator ID | CONJUR_AUTHENTICATOR_ID | Conjur authenticator ID    | No      | Yes    |
 
 Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables
 to allow the user to specify the path to a certificate file or provide the certificate
@@ -155,6 +157,8 @@ data directly in an environment variable.
 * CONJUR_AUTHN_LOGIN in the Name field and the host/fileName1 created during the Conjur OSS setup. For example: host/<file name where grant permission is defined for the user/userName (for whom the access is granted in fileName1).
 * CONJUR_CERT_FILE in the Name field and the <path /.der> (.der file created during the Conjur OSS setup.
 * CONJUR_SSL_CERTIFICATE in the Name field and the details of the certificate in the Value field.
+* CONJUR_JWT_TOKEN_PATH in the Name field and the JWT token path (Only required for JWT)
+* CONJUR_AUTHENTICATOR_ID in the Name field and the Conjur authenticator ID (Only required for JWT)
 * For IntelliJ, set up trusted Conjur self-signed certs by following the steps outlined [here](https://www.jetbrains.com/help/idea/settings-tools-server-certificates.html).
 
 ## Using the Conjur Spring Boot Plugin
