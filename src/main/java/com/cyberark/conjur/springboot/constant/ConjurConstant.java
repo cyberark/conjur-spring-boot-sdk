@@ -41,4 +41,8 @@ public class ConjurConstant {
 	 */
 	public static final String NOT_FOUND = "notFound";
 
+	/**
+	 * The constant CONJUR_PREFIX.
+	 */
+	public static final String CONJUR_PREFIX="conjur";
 }

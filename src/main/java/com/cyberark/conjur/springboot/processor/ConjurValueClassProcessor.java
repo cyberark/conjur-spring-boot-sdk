@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
 import com.cyberark.conjur.springboot.annotations.ConjurValues;
-import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +53,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 			else if (field.isAnnotationPresent(ConjurValues.class)) {
 				ReflectionUtils.makeAccessible(field);
 				String[] variableId = field.getDeclaredAnnotation(ConjurValues.class).keys();
-				byte[] result = null;
+				byte[] result;
 				try {
 					result = conjurRetrieveSecretService.retriveMultipleSecretsForCustomAnnotation(variableId);
 					field.set(bean, result);

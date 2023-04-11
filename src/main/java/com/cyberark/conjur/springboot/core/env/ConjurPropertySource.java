@@ -1,13 +1,8 @@
 package com.cyberark.conjur.springboot.core.env;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
@@ -40,77 +35,7 @@ public class ConjurPropertySource
 
 	private List<String> properties;
 
-	private static final String authTokenFile=System.getenv("CONJUR_AUTHN_TOKEN_FILE");
-
-	private static final String authApiKey = System.getenv("CONJUR_AUTHN_API_KEY");
-	
 	private static final Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
-	/**
-	 * a hack to support seeding environment for the file based api token support in
-	 * downstream java
-	 */
-	static {
-
-		// a hack to support seeding environment for the file based api token support in
-		// downstream java
-		if (authTokenFile != null) {
-		Map<String, String> conjurParameters = new HashMap<String, String>();
-		byte[] apiKey = null;
-		try (BufferedReader br = new BufferedReader(new FileReader(authTokenFile))){
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
-
-			while (line != null) {
-				sb.append(line);
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-			}
-			apiKey =  sb.toString().getBytes();
-		} catch (Exception e1) {
-			logger.error(e1.getMessage(), e1);
-		}
-
-		conjurParameters.put("CONJUR_AUTHN_API_KEY",new String(apiKey).trim());
-		try {
-		loadEnvironmentParameters(conjurParameters);
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
-	
-	}
-    else if (authApiKey == null && authTokenFile == null) {
-		 logger.error(ConjurConstant.CONJUR_APIKEY_ERROR);
-
-	}
-	}
-	/**
-	 * Sets the external environment variable.
-	 * 
-	 * @param newenv - setting for API_KEY
-	 * @throws NoSuchFieldException     -- class doesn't have a field of a specified
-	 *                                  name
-	 * @throws SecurityException        --indicate a security violation.
-	 * @throws IllegalArgumentException -- a method has been passed an illegal or
-	 *                                  inappropriate argument.
-	 * @throws IllegalAccessException   -- excuting method does not have access to
-	 *                                  the definition of the specified class,
-	 *                                  field, method or constructor.
-	 */
-	public static void loadEnvironmentParameters(Map<String, String> newenv)
-			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-		Class[] classes = Collections.class.getDeclaredClasses();
-		Map<String, String> env = System.getenv();
-		for (Class cl : classes) {
-			if ("java.util.Collections$UnmodifiableMap".equals(cl.getName())) {
-				Field field = cl.getDeclaredField("m");
-				field.setAccessible(true);
-				Object obj = field.get(env);
-				Map<String, String> map = (Map<String, String>) obj;
-				map.putAll(newenv);
-				
-			}
-		}
-	}
 
 	protected ConjurPropertySource(String vaultPath) {
 		super(vaultPath + "@");
@@ -144,19 +69,12 @@ public class ConjurPropertySource
 
 	@Override
 	public Object getProperty(String key) {
-		key = ConjurConfig.getInstance().mapProperty(key);
-
-		ConjurConnectionManager.getInstance();
-		if (null == secretsApi) {
-			secretsApi = new SecretsApi();
-		}
-    
 		byte[] result = null;
 		if(propertyExists(key)){
 			key = ConjurConfig.getInstance().mapProperty(key);
-			ConjurConnectionManager.getInstance();
 			try {
-				String secretValue = secretsApi.getSecret(ConjurConstant.CONJUR_ACCOUNT, ConjurConstant.CONJUR_KIND,
+				String account = ConjurConnectionManager.getAccount(secretsApi);
+				String secretValue = secretsApi.getSecret(account, ConjurConstant.CONJUR_KIND,
 						vaultPath + key);
 				result = secretValue != null ? secretValue.getBytes() : null;
 			} catch (ApiException ae) {

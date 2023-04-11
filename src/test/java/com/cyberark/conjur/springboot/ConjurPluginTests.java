@@ -1,29 +1,25 @@
 package com.cyberark.conjur.springboot;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
+import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
+import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.constant.ConjurConstant;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 import com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguration;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.cyberark.conjur.sdk.ApiException;
-import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
-import com.cyberark.conjur.springboot.annotations.ConjurValue;
-import com.cyberark.conjur.springboot.constant.ConjurConstant;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = SpringBootConjurAutoConfiguration.class)
 @ConjurPropertySource("db/")
@@ -106,13 +102,13 @@ public class ConjurPluginTests {
 
 
 	@Test
-	void testForSinglePath() throws ApiException {
+	void testForSinglePath() {
 		assertNotNull(dbuserName);
 		assertEquals(props.getProperty("dbuserName"), getDbuserName());
 	}
 
 	@Test
-	void testForSecondPath() throws ApiException {
+	void testForSecondPath() {
 		assertNotNull(getDbpassWord());
 		assertEquals(props.getProperty("dbpassWord"), getDbpassWord());
 
@@ -122,7 +118,7 @@ public class ConjurPluginTests {
 	}
 
 	@Test
-	void testForThirdPath() throws ApiException {
+	void testForThirdPath() {
 		assertNotNull(getKey());
 		assertEquals(props.getProperty("key"), getKey());
 
