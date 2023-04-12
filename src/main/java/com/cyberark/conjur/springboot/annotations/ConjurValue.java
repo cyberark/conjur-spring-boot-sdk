@@ -38,7 +38,7 @@ import java.lang.annotation.Target;
 public @interface ConjurValue {
 	/**
 	 * Indicates the complete path of the variable.
-	 * @return {@String key}
+	 * @return key.
 	 */
 	String key();
 
