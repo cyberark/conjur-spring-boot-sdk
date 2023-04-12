@@ -25,7 +25,6 @@ public class ConjurRetrieveSecretService {
 	 *
 	 * @param keys - query to vault.
 	 * @return secrets - output from the vault.
-	 * @throws ApiException - Exception thrown from conjur java sdk.
 	 */
 	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys) {
 
@@ -55,7 +54,6 @@ public class ConjurRetrieveSecretService {
 	 * 
 	 * @param key - query to vault.
 	 * @return secrets - output from the vault.
-	 * @throws ApiException - Exception thrown from conjur java sdk.
 	 */
 	public byte[] retriveSingleSecretForCustomAnnotation(String key) {
 		byte[] result = null;

@@ -36,10 +36,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConjurValue {
-	
 	/**
 	 * Indicates the complete path of the variable.
-	 * 
+	 * @return key.
 	 */
 	String key();
 
