@@ -34,8 +34,7 @@ public class ConjurPropertySourceTest {
 	}
 
 	@ConjurPropertySource("db/")
-
-	@Configuration
+    @Configuration
 	class ConjurPropertySourceConfiguration {
 
 		@Value("${dbpassWord}")
