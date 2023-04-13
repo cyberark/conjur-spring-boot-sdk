@@ -26,7 +26,7 @@ public class ConjurProperties{
 	 * The Api key can be injected with CONJUR_AUTHN_API_KEY environment variable
 	 * or spring boot property: conjur.api-key
 	 */
-	private String authApiKey;
+	private String authnApiKey;
 
 	/**
 	 * The Authn login.can be injected with CONJUR_AUTHN_LOGIN environment variable
@@ -169,17 +169,17 @@ public class ConjurProperties{
 	 *
 	 * @return the auth api key
 	 */
-	public String getAuthApiKey() {
-		return authApiKey;
+	public String getAuthnApiKey() {
+		return authnApiKey;
 	}
 
 	/**
 	 * Sets auth api key.
 	 *
-	 * @param authApiKey the auth api key
+	 * @param authnApiKey the auth api key
 	 */
-	public void setAuthApiKey(String authApiKey) {
-		this.authApiKey = authApiKey;
+	public void setAuthnApiKey(String authnApiKey) {
+		this.authnApiKey = authnApiKey;
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class ConjurProperties{
 				"account='" + account + '\'' +
 				", applianceUrl='" + applianceUrl + '\'' +
 				", authTokenFile='" + authTokenFile + '\'' +
-				", authApiKey='" + authApiKey + '\'' +
+				", authnApiKey='" + authnApiKey + '\'' +
 				", authnLogin='" + authnLogin + '\'' +
 				", certFile='" + certFile + '\'' +
 				", sslCertificate='" + sslCertificate + '\'' +
