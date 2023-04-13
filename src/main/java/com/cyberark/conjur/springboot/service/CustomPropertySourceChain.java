@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
+import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 
 
@@ -51,26 +52,20 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 
 	@Override
 	public Object getProperty(String key) {
+		byte[] result = null;
 		
-			
-		Object result = null;
-		String secretValue = null;
-		String account = ConjurConnectionManager.getAccount(secretsApi);
-		
-		
-		try {
-		LOGGER.debug("Key>>>"+key);
-		LOGGER.debug("Account>>>"+ConjurConstant.CONJUR_ACCOUNT);
-			secretValue = secretsApi.getSecret(account, ConjurConstant.CONJUR_KIND,
-					 key);
-			result = secretValue != null ? secretValue.getBytes() : null;
-
-		} catch (ApiException ae) {
-			
-		}
+			key = ConjurConfig.getInstance().mapProperty(key);
+			try {
+				String account = ConjurConnectionManager.getAccount(secretsApi);
+				String secretValue = secretsApi.getSecret(account, ConjurConstant.CONJUR_KIND,
+						  key);
+				result = secretValue != null ? secretValue.getBytes() : null;
+			} catch (ApiException ae) {
+				logger.warn("Failed to get property from Conjur for: " + key);
+				logger.warn("Reason: " + ae.getResponseBody());
+				logger.warn(ae.getMessage());
+			}
 	
-		
 		return result;
-		
-}
+	}
 }
