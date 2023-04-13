@@ -16,7 +16,7 @@ public abstract class PropertyProcessorChain extends EnumerablePropertySource<Ob
 
 	
 
-	public PropertyProcessorChain(String name) {	
+	protected PropertyProcessorChain(String name) {	
 		super("propertyProcessorChain");
 	}
 	

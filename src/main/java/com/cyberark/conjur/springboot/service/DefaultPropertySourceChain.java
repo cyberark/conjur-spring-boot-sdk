@@ -39,15 +39,9 @@ public class DefaultPropertySourceChain extends PropertyProcessorChain {
 
 	@Override
 	public Object getProperty(String name) {
-		
 
-		Object value = null;
+		Object value =  this.chain.getProperty(name);
 
-		if (value == null) {
-			value =  this.chain.getProperty(name);
-
-		}
-        LOGGER.debug("property value : " + value);
 		return value;
 		
 	}
