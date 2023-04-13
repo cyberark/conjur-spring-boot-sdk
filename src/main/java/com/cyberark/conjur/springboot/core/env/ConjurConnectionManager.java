@@ -115,7 +115,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 			String jwtTokenPath = conjurProperties.getJwtTokenPath();
 			String authenticatorId = conjurProperties.getAuthenticatorId();
 			String authnLogin = conjurProperties.getAuthnLogin();
-			String authApiKey = conjurProperties.getAuthApiKey();
+			String authApiKey = conjurProperties.getAuthnApiKey();
 
 			// If jwtTokenPath and authenticatorId are present, the we assume it's JWT Authentication
 			if (StringUtils.isNotEmpty(jwtTokenPath) && StringUtils.isNotEmpty(authenticatorId)) {
