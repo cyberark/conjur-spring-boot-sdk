@@ -19,9 +19,9 @@ public class ConjurConfig {
 	private static final Properties props = new Properties();
 
 	private static final ConjurConfig uniqueInstance = new ConjurConfig();
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ConjurConfig.class);
-	
+
 	private ConjurConfig() {
 
 		InputStream propsFile = ConjurConfig.class.getResourceAsStream(ConjurConstant.CONJUR_PROPERTIES);

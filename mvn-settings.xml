@@ -1,4 +1,4 @@
-<settings>
+<!--  <settings>
   <pluginGroups>
     <pluginGroup>org.jenkins-ci.tools</pluginGroup>
   </pluginGroups>
@@ -80,3 +80,4 @@
     <activeProfile>artifactory</activeProfile>
   </activeProfiles>
 </settings>
+-->

@@ -60,7 +60,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 	public ConjurConnectionManager(AccessTokenProvider accessTokenProvider) {
 		this.accessTokenProvider = accessTokenProvider;
 	}
-	
+
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		final BindResult<ConjurProperties> result = Binder.get(environment).bind(CONJUR_PREFIX, ConjurProperties.class);
@@ -88,7 +88,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 			ApiClient client = Configuration.getDefaultApiClient();
 			client.setAccount(conjurProperties.getAccount());
 			client.setBasePath(conjurProperties.getApplianceUrl());
-					
+
 			InputStream sslInputStream = null;
 			String sslCertificate = conjurProperties.getSslCertificate();
 			String certFile = conjurProperties.getCertFile();
@@ -110,7 +110,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 				String apiKey = Files.readString(Paths.get(authTokenFile));
 				client.setApiKey(apiKey);
 			}
-			
+
 			AccessToken accessToken;
 			String jwtTokenPath = conjurProperties.getJwtTokenPath();
 			String authenticatorId = conjurProperties.getAuthenticatorId();
@@ -132,7 +132,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 				logger.debug("Using API KEY Authentication");
 				accessToken = accessTokenProvider.getNewAccessToken(client);
 			}
-			
+
 			if (accessToken == null) {
 				logger.debug("Using Account: " + obfuscateString(client.getAccount()));
 				logger.debug("Using ApplianceUrl: " + obfuscateString(client.getBasePath()));
@@ -165,6 +165,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 		} catch (Exception e) {
 			logger.error("Exception encountered {} : {}" , e.getClass(), e.getMessage());
 		}
+
 	}
 
 	/**
@@ -186,7 +187,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 	}
 
 	/**
-	 * Gets file content as string. 
+	 * Gets file content as string.
 	 * Works for java 8 and higher versions
 	 *
 	 * @param path the path

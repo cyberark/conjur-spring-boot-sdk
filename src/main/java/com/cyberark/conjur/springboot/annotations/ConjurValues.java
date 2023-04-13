@@ -16,9 +16,11 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ConjurValues {
+
 	/**
 	 * Indicates the complete path for multiple keys.
-	 * @return - An array of keys.
+	 *  @return array of keys.
 	 */
 	String[] keys();
+
 }

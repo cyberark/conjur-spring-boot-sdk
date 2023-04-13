@@ -3,6 +3,7 @@ package com.cyberark.conjur.springboot.domain;
 /**
  * The type Conjur properties.
  */
+
 public class ConjurProperties{
 
 	/**

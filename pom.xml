@@ -13,7 +13,7 @@
 
 		See build-package.sh
 	-->
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>Conjur Spring Boot SDK</name>
@@ -161,6 +161,7 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<okhttp3.version>4.10.0</okhttp3.version>
+		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -193,7 +194,7 @@
 			<version>1.16.3</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

@@ -1,2 +1,3 @@
+
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguration
