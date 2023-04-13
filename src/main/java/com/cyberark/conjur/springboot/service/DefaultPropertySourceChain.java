@@ -26,20 +26,20 @@ public class DefaultPropertySourceChain extends PropertyProcessorChain {
 
 	@Override
 	public void setNextChain(PropertyProcessorChain nextChain) {
-		// TODO Auto-generated method stub
+	
 		this.chain = nextChain;
 
 	}
 
 	@Override
 	public String[] getPropertyNames() {
-		// TODO Auto-generated method stub
+		
 		return new String[0];
 	}
 
 	@Override
 	public Object getProperty(String name) {
-		// TODO Auto-generated method stub
+		
 
 		Object value = null;
 

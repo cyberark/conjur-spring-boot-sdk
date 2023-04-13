@@ -36,7 +36,7 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 
 	@Override
 	public void setNextChain(PropertyProcessorChain nextChain) {
-		// TODO Auto-generated method stub
+		
 		this.chain = nextChain;
 
 	}
@@ -45,7 +45,7 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 
 	@Override
 	public String[] getPropertyNames() {
-		// TODO Auto-generated method stub
+		
 		return new String[0];
 	}
 
