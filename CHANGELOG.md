@@ -5,10 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-### Changed
-- Nothing should go in this section, please add to the latest unreleased version
-  (and update the corresponding date), or add a new version.
+## [1.1.0]
+- Update Spring Boot Starter Parent version to 3.0.5 to address Security issues reported through Snyk.
+- Fixed issue: https://github.com/cyberark/conjur-spring-boot-sdk/issues/84
+- Fixed issue: https://github.com/cyberark/conjur-spring-boot-sdk/issues/82
+- Fixed issue: https://github.com/cyberark/conjur-spring-boot-sdk/issues/80
+- https://github.com/cyberark/conjur-spring-boot-sdk/issues/78
+- https://github.com/cyberark/conjur-spring-boot-sdk/issues/75
+- https://github.com/cyberark/conjur-spring-boot-sdk/issues/64
+- https://github.com/cyberark/conjur-spring-boot-sdk/issues/63
+
 
 ## [1.0.2] - 2022-04-06
 
