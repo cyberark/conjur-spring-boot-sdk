@@ -1,84 +1,139 @@
-package com.cyberark.conjur.springboot.core.env;
+package com.cyberark.conjur.springboot.processor;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.Environment;
 
 import com.cyberark.conjur.sdk.AccessToken;
 import com.cyberark.conjur.sdk.ApiClient;
 import com.cyberark.conjur.sdk.Configuration;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
-import com.cyberark.conjur.springboot.constant.ConjurConstant;
+import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
+
 import com.cyberark.conjur.springboot.domain.ConjurProperties;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.boot.context.properties.bind.BindResult;
-import org.springframework.boot.context.properties.bind.Binder;
-import org.springframework.context.EnvironmentAware;
-import org.springframework.core.env.Environment;
-
-import static com.cyberark.conjur.springboot.constant.ConjurConstant.CONJUR_PREFIX;
+import com.cyberark.conjur.springboot.service.CustomPropertySourceChain;
+import com.cyberark.conjur.springboot.service.DefaultPropertySourceChain;
+import com.cyberark.conjur.springboot.service.PropertyProcessorChain;
 
 /**
- *
- * This is the connection creation singleton class with conjur vault by using
- * the conjur java sdk.
+ * The ValueProcess class will be invoked on boot strap of the applicaiton and
+ * will invoke the process chain based on the properties. It call the default
+ * property chain if value is found or will call the Custome propertysource to
+ * retrieve the value from the Conjur vault . This class in turn will invoke the
+ * ConjurPropertySource to autowire the value for @Value annotation
+ * 
  *
  */
-public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPostProcessor {
 
+public class ConjurCloudProcessor
+		implements BeanPostProcessor, InitializingBean, EnvironmentAware, ApplicationContextAware {
+
+
+	private ApplicationContext context;
+
+	private ConfigurableEnvironment environment;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurCloudProcessor.class);
+	
 	/**
 	 * The Access token provider.
 	 */
 	private final AccessTokenProvider accessTokenProvider;
-
-	/**
-	 * The Environment.
-	 */
-	private Environment environment;
-
-	/**
-	 * The constant logger.
-	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurConnectionManager.class);
-
+	
 	/**
 	 * For Getting Connection with conjur vault using cyberark sdk
 	 *
 	 * @param accessTokenProvider the access token provider
 	 */
-	public ConjurConnectionManager(AccessTokenProvider accessTokenProvider) {
+	public ConjurCloudProcessor(AccessTokenProvider accessTokenProvider) {
 		this.accessTokenProvider = accessTokenProvider;
 	}
-	
+
+	@Autowired(required = true)
+	private ConjurProperties conjurProperties;
+
+	private PropertyProcessorChain processorChain;
+
 	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		final BindResult<ConjurProperties> result = Binder.get(environment).bind(CONJUR_PREFIX, ConjurProperties.class);
-		if (result.isBound()) {
-			this.getConnection(result.get());
-		}
+	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		
+		//initializeApiClient(conjurProperties);
+		
+		getConnection(conjurProperties);
+
+		this.processorChain = new DefaultPropertySourceChain("DefaultPropertySource");
+		CustomPropertySourceChain customPS = new CustomPropertySourceChain("CustomPropertySource");
+		processorChain.setNextChain(customPS);
+		customPS.setSecretsApi(new SecretsApi());
+		environment.getPropertySources().addLast(processorChain);
+
+
 	}
 
 	@Override
 	public void setEnvironment(Environment environment) {
-		this.environment = environment;
+
+		if (environment instanceof ConfigurableEnvironment) {
+
+			this.environment = (ConfigurableEnvironment) environment;
+			
+		}
+
 	}
 
-	/**
-	 * Gets connection.
-	 *
-	 * @param conjurProperties the conjur properties
-	 */
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+
+		this.context = applicationContext;
+
+	}
+
+	private void initializeApiClient(ConjurProperties conjurParam) throws IOException {
+
+		ApiClient apiClient = Configuration.getDefaultApiClient();
+		apiClient.setAccount(conjurParam.getAccount());
+		apiClient.setApiKey(conjurParam.getAuthnApiKey());
+		apiClient.setCertFile(conjurParam.getCertFile());
+
+		InputStream sslInputStream = null;
+		String sslCertificate = conjurProperties.getSslCertificate();
+		String certFile = conjurProperties.getCertFile();
+		if (StringUtils.isNotEmpty(sslCertificate)) {
+			sslInputStream = new ByteArrayInputStream(sslCertificate.getBytes(StandardCharsets.UTF_8));
+		} else {
+			if (StringUtils.isNotEmpty(certFile))
+				sslInputStream = new FileInputStream(certFile);
+		}
+
+		if (sslInputStream != null) {
+			apiClient.setSslCaCert(sslInputStream);
+			sslInputStream.close();
+		}
+
+	}
+	
 	private void getConnection(ConjurProperties conjurProperties) {
 		try {
 			// The client connection values can be filled automatically through environment variables
@@ -185,31 +240,6 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 		}
 	}
 
-	/**
-	 * Gets file content as string. 
-	 * Works for java 8 and higher versions
-	 *
-	 * @param path the path
-	 * @param encoding the encoding
-	 * @return the file content as string
-	 * @throws IOException the io exception
-	 */
-	private String getFileContentAsString(String path, Charset encoding)
-			throws IOException
-	{
-		byte[] encoded = Files.readAllBytes(Paths.get(path));
-		return new String(encoded, encoding);
-	}
 
-	/**
-	 * Get account string.
-	 *
-	 * @param secretsApi the secrets api
-	 * @return the string
-	 */
-	public static String getAccount(SecretsApi secretsApi){
-		ApiClient apiClient = secretsApi.getApiClient();
-		return (apiClient != null ) ? apiClient.getAccount() : ConjurConstant.CONJUR_ACCOUNT;
-	}
 
 }

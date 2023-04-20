@@ -6,15 +6,15 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.cyberark.conjur.springboot.annotations.ConjurValue;
-import com.cyberark.conjur.springboot.annotations.ConjurValues;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.util.ReflectionUtils;
+
+import com.cyberark.conjur.springboot.annotations.ConjurValue;
+import com.cyberark.conjur.springboot.annotations.ConjurValues;
 /**
  * 
  * Annotation ConjurValues class processor.
@@ -24,7 +24,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 
 	private final ConjurRetrieveSecretService conjurRetrieveSecretService;
 
-	private static final Logger logger = LoggerFactory.getLogger(ConjurValueClassProcessor.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurValueClassProcessor.class);
 
 	public ConjurValueClassProcessor(ConjurRetrieveSecretService conjurRetrieveSecretService) {
 		this.conjurRetrieveSecretService = conjurRetrieveSecretService;
@@ -47,7 +47,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 					result = conjurRetrieveSecretService.retriveSingleSecretForCustomAnnotation(variableId);
 					field.set(bean, result);
 				} catch (Exception e) {
-					logger.error(e.getMessage());
+					LOGGER.error(e.getMessage());
 				}
 			}
 			else if (field.isAnnotationPresent(ConjurValues.class)) {
@@ -59,7 +59,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 					field.set(bean, result);
 
 				} catch (Exception e1) {
-					logger.error(e1.getMessage());
+					LOGGER.error(e1.getMessage());
 				}
 			}
 

@@ -22,10 +22,7 @@ import org.springframework.util.ClassUtils;
  * time from the conjur vault.
  *
  */
-public class ConjurPropertySource
-//extends PropertySource<Object> {
-//consider the following alternative if miss rates are excessive
-		extends EnumerablePropertySource<Object>{
+public class ConjurPropertySource extends EnumerablePropertySource<Object>{
 
 	private String vaultInfo = "";
 
@@ -35,7 +32,7 @@ public class ConjurPropertySource
 
 	private List<String> properties;
 
-	private static final Logger logger = LoggerFactory.getLogger(ConjurPropertySource.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurPropertySource.class);
 
 	protected ConjurPropertySource(String vaultPath) {
 		super(vaultPath + "@");
@@ -78,9 +75,9 @@ public class ConjurPropertySource
 						vaultPath + key);
 				result = secretValue != null ? secretValue.getBytes() : null;
 			} catch (ApiException ae) {
-				logger.warn("Failed to get property from Conjur for: " + key);
-				logger.warn("Reason: " + ae.getResponseBody());
-				logger.warn(ae.getMessage());
+				LOGGER.warn("Failed to get property from Conjur for: " + key);
+				LOGGER.warn("Reason: " + ae.getResponseBody());
+				LOGGER.warn(ae.getMessage());
 			}
 		}
 		return result;

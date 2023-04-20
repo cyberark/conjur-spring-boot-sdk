@@ -1,19 +1,25 @@
 package com.cyberark.conjur.springboot.processor;
 
-import com.cyberark.conjur.sdk.endpoint.SecretsApi;
-import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
-import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
-import com.cyberark.conjur.springboot.domain.ConjurProperties;
+import static com.cyberark.conjur.springboot.constant.ConjurConstant.CONJUR_PREFIX;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.cyberark.conjur.springboot.constant.ConjurConstant.CONJUR_PREFIX;
+import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
+import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
+import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
+import com.cyberark.conjur.springboot.domain.ConjurProperties;
+
 
 @Configuration(proxyBeanMethods = false)
 public class SpringBootConjurAutoConfiguration {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(SpringBootConjurAutoConfiguration.class);
 
 	@ConditionalOnMissingBean
 	@Bean
@@ -41,7 +47,7 @@ public class SpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean
 	@Bean
-	AccessTokenProvider accessTokenProvider(){
+	AccessTokenProvider accessTokenProvider() {
 		return new AccessTokenProvider();
 	}
 
@@ -51,4 +57,15 @@ public class SpringBootConjurAutoConfiguration {
 	ConjurProperties conjurProperties(){
 		return new ConjurProperties();
 	}
+	
+
+	@ConditionalOnMissingBean
+    @Bean
+    static ConjurCloudProcessor conjurCloudProcessor(AccessTokenProvider accessTokenProvider){
+	
+	LOGGER.info("Creating ConjurCloudProcessor instance");
+	
+	return new ConjurCloudProcessor(accessTokenProvider);
+}
+	
 }
