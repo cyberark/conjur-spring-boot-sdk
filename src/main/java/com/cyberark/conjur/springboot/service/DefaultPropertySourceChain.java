@@ -41,10 +41,7 @@ public class DefaultPropertySourceChain extends PropertyProcessorChain {
 
 		Object value = null;
 
-		if (value == null) {
-			value = this.chain.getProperty(name);
-
-		}
+		value = this.chain.getProperty(name);
 
 		return value;
 

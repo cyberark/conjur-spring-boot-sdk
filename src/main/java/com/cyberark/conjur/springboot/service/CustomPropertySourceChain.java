@@ -26,9 +26,9 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 
 	public CustomPropertySourceChain(String name) {
 		super("customPropertySource");
-		{
+	
 			LOGGER.debug("Calling CustomPropertysource Chain ");
-		}
+		
 	}
 
 	@Override
