@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+## [2.0.0]
+- Plugin now supports Spring Cloud Configuration and to dynamically inject secrets to application.
+
 ## [1.1.0]
 - Update Spring Boot Starter Parent version to 3.0.5 to address Security issues reported through Snyk.
 - Fixed issue: https://github.com/cyberark/conjur-spring-boot-sdk/issues/84
@@ -16,6 +20,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - https://github.com/cyberark/conjur-spring-boot-sdk/issues/75
 - https://github.com/cyberark/conjur-spring-boot-sdk/issues/64
 - https://github.com/cyberark/conjur-spring-boot-sdk/issues/63
+
+## [1.0.3] - 2023-04-20
+### Added
 
 ## [1.0.2] - 2022-04-06
 
