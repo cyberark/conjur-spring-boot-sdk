@@ -29,8 +29,10 @@ public abstract class PropertyProcessorChain extends EnumerablePropertySource<Ob
 		processorChain.setNextChain(customPS);
 	}
 
-	
-	
+    /**
+	 * Method which resolves @value annotation queries and return result in the form
+	 * of byte array.
+	 */
 	 @Override
 	 public Object getProperty(String name) {
 		return name;

@@ -11,6 +11,7 @@ import com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguratio
 public class CustomPropertySourceTest {
 	
 
+
 	@Configuration
 	class CustomPropertySourceConfiguration {
 

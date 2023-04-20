@@ -35,7 +35,10 @@ public class DefaultPropertySourceChain extends PropertyProcessorChain {
 
 		return new String[0];
 	}
-
+	/**
+	 * Method which resolves @value annotation queries and return result in the form
+	 * of byte array.
+	 */
 	@Override
 	public Object getProperty(String name) {
 
