@@ -87,11 +87,10 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 		// resolve repeatable / container annotations
 		if (attributesCont != null) {
 			for (Object attribs : attributesCont.get("value")) {
-				// for (AnnotationAttributes a : ((AnnotationAttributes[])((Object[])attribs)))
-				// {
+				
 				makeAndRegisterBean(registry, (String[]) ((LinkedHashMap<String, Object>) attribs).get("value"),
 						((AnnotationAttributes) attribs).getString("name"), importingClassMetadata);
-				// }
+				
 			}
 		}
 

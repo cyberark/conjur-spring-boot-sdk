@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * This class resolves the secret value at application load
- * time from the conjur vault.
+ * This class resolves the secret value at application load time from the conjur
+ * vault.
  *
  */
 
@@ -15,7 +15,6 @@ public class DefaultPropertySourceChain extends PropertyProcessorChain {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultPropertySourceChain.class);
 
 	private PropertyProcessorChain chain;
-
 
 	public DefaultPropertySourceChain(String name) {
 
@@ -40,16 +39,15 @@ public class DefaultPropertySourceChain extends PropertyProcessorChain {
 	@Override
 	public Object getProperty(String name) {
 
-
 		Object value = null;
 
 		if (value == null) {
-			value =  this.chain.getProperty(name);
+			value = this.chain.getProperty(name);
 
 		}
-        LOGGER.debug("property value : " + value);
+
 		return value;
-		
+
 	}
 
 }

@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
-import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 import com.cyberark.conjur.springboot.domain.ConjurProperties;
 
 

@@ -2,7 +2,6 @@ package com.cyberark.conjur.springboot.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.env.Environment;
 
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
@@ -22,8 +21,6 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomPropertySourceChain.class);
 
 	private PropertyProcessorChain chain;
-
-	private Environment env;
 
 	private SecretsApi secretsApi;
 

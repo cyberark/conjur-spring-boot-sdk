@@ -2,7 +2,6 @@ package com.cyberark.conjur.springboot.processor;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,7 +25,6 @@ import com.cyberark.conjur.sdk.ApiClient;
 import com.cyberark.conjur.sdk.Configuration;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
-
 import com.cyberark.conjur.springboot.domain.ConjurProperties;
 import com.cyberark.conjur.springboot.service.CustomPropertySourceChain;
 import com.cyberark.conjur.springboot.service.DefaultPropertySourceChain;
@@ -79,7 +77,6 @@ public class ConjurCloudProcessor
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		
-		//initializeApiClient(conjurProperties);
 		
 		getConnection(conjurProperties);
 
@@ -110,30 +107,7 @@ public class ConjurCloudProcessor
 
 	}
 
-	private void initializeApiClient(ConjurProperties conjurParam) throws IOException {
 
-		ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setAccount(conjurParam.getAccount());
-		apiClient.setApiKey(conjurParam.getAuthnApiKey());
-		apiClient.setCertFile(conjurParam.getCertFile());
-
-		InputStream sslInputStream = null;
-		String sslCertificate = conjurProperties.getSslCertificate();
-		String certFile = conjurProperties.getCertFile();
-		if (StringUtils.isNotEmpty(sslCertificate)) {
-			sslInputStream = new ByteArrayInputStream(sslCertificate.getBytes(StandardCharsets.UTF_8));
-		} else {
-			if (StringUtils.isNotEmpty(certFile))
-				sslInputStream = new FileInputStream(certFile);
-		}
-
-		if (sslInputStream != null) {
-			apiClient.setSslCaCert(sslInputStream);
-			sslInputStream.close();
-		}
-
-	}
-	
 	private void getConnection(ConjurProperties conjurProperties) {
 		try {
 			// The client connection values can be filled automatically through environment variables
