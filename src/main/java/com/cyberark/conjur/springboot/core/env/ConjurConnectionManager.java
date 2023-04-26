@@ -1,24 +1,17 @@
 package com.cyberark.conjur.springboot.core.env;
 
+import static com.cyberark.conjur.springboot.constant.ConjurConstant.CONJUR_PREFIX;
+
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.cyberark.conjur.sdk.AccessToken;
-import com.cyberark.conjur.sdk.ApiClient;
-import com.cyberark.conjur.sdk.Configuration;
-import com.cyberark.conjur.sdk.endpoint.SecretsApi;
-import com.cyberark.conjur.springboot.constant.ConjurConstant;
-import com.cyberark.conjur.springboot.domain.ConjurProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -27,7 +20,12 @@ import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 
-import static com.cyberark.conjur.springboot.constant.ConjurConstant.CONJUR_PREFIX;
+import com.cyberark.conjur.sdk.AccessToken;
+import com.cyberark.conjur.sdk.ApiClient;
+import com.cyberark.conjur.sdk.Configuration;
+import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+import com.cyberark.conjur.springboot.constant.ConjurConstant;
+import com.cyberark.conjur.springboot.domain.ConjurProperties;
 
 /**
  *
@@ -60,7 +58,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 	public ConjurConnectionManager(AccessTokenProvider accessTokenProvider) {
 		this.accessTokenProvider = accessTokenProvider;
 	}
-	
+
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		final BindResult<ConjurProperties> result = Binder.get(environment).bind(CONJUR_PREFIX, ConjurProperties.class);
@@ -81,21 +79,24 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 	 */
 	private void getConnection(ConjurProperties conjurProperties) {
 		try {
-			// The client connection values can be filled automatically through environment variables
-			// But if the client connection information come from a configuration file: application.yml for example
-			// We will need to set the client properties values to the ApiClient, because during
-			// postProcessBeanFactory lifecyle, properties as environment variables might not be set yet.
+			// The client connection values can be filled automatically through environment
+			// variables
+			// But if the client connection information come from a configuration file:
+			// application.yml for example
+			// We will need to set the client properties values to the ApiClient, because
+			// during
+			// postProcessBeanFactory lifecyle, properties as environment variables might
+			// not be set yet.
 			ApiClient client = Configuration.getDefaultApiClient();
 			client.setAccount(conjurProperties.getAccount());
 			client.setBasePath(conjurProperties.getApplianceUrl());
-					
+
 			InputStream sslInputStream = null;
 			String sslCertificate = conjurProperties.getSslCertificate();
 			String certFile = conjurProperties.getCertFile();
 			if (StringUtils.isNotEmpty(sslCertificate)) {
 				sslInputStream = new ByteArrayInputStream(sslCertificate.getBytes(StandardCharsets.UTF_8));
-			}
-			else {
+			} else {
 				if (StringUtils.isNotEmpty(certFile))
 					sslInputStream = new FileInputStream(certFile);
 			}
@@ -110,19 +111,19 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 				String apiKey = Files.readString(Paths.get(authTokenFile));
 				client.setApiKey(apiKey);
 			}
-			
+
 			AccessToken accessToken;
 			String jwtTokenPath = conjurProperties.getJwtTokenPath();
 			String authenticatorId = conjurProperties.getAuthenticatorId();
 			String authnLogin = conjurProperties.getAuthnLogin();
 			String authApiKey = conjurProperties.getAuthnApiKey();
 
-			// If jwtTokenPath and authenticatorId are present, the we assume it's JWT Authentication
+			// If jwtTokenPath and authenticatorId are present, the we assume it's JWT
+			// Authentication
 			if (StringUtils.isNotEmpty(jwtTokenPath) && StringUtils.isNotEmpty(authenticatorId)) {
-             LOGGER.debug("Using JWT Authentication");
+				LOGGER.debug("Using JWT Authentication");
 				accessToken = accessTokenProvider.getJwtAccessToken(client, jwtTokenPath, authenticatorId);
-			}
-			else {
+			} else {
 				if (StringUtils.isNotEmpty(authnLogin)) {
 					client.setUsername(authnLogin);
 				}
@@ -132,38 +133,36 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 				LOGGER.debug("Using API KEY Authentication");
 				accessToken = accessTokenProvider.getNewAccessToken(client);
 			}
-			
+
 			if (accessToken == null) {
 				LOGGER.debug("Using Account: " + obfuscateString(client.getAccount()));
 				LOGGER.debug("Using ApplianceUrl: " + obfuscateString(client.getBasePath()));
 				if (StringUtils.isNotEmpty(authnLogin)) {
-					LOGGER.debug("Using AuthnLogin: " +obfuscateString(authnLogin));
+					LOGGER.debug("Using AuthnLogin: " + obfuscateString(authnLogin));
 				}
 				if (StringUtils.isNotEmpty(authApiKey)) {
-					LOGGER.debug("Using Authn API Key: " +obfuscateString(authApiKey));
+					LOGGER.debug("Using Authn API Key: " + obfuscateString(authApiKey));
 				}
 				if (StringUtils.isNotEmpty(sslCertificate)) {
-					LOGGER.debug("Using SSL Cert: " +  obfuscateString(sslCertificate));
-				}
-				else if (StringUtils.isNotEmpty(certFile)){
-					LOGGER.debug("Using SSL Cert File: " +  obfuscateString(certFile));
+					LOGGER.debug("Using SSL Cert: " + obfuscateString(sslCertificate));
+				} else if (StringUtils.isNotEmpty(certFile)) {
+					LOGGER.debug("Using SSL Cert File: " + obfuscateString(certFile));
 				}
 				if (StringUtils.isNotEmpty(jwtTokenPath)) {
-					LOGGER.debug("Using JWT Token Path: " +obfuscateString(jwtTokenPath));
+					LOGGER.debug("Using JWT Token Path: " + obfuscateString(jwtTokenPath));
 				}
 				if (StringUtils.isNotEmpty(authenticatorId)) {
-					LOGGER.debug("Using Authenticator ID: " +obfuscateString(authenticatorId));
+					LOGGER.debug("Using Authenticator ID: " + obfuscateString(authenticatorId));
 				}
 				LOGGER.error("Access token is null, Please enter proper environment variables.");
-			}
-			else {
+			} else {
 				String token = accessToken.getHeaderValue();
 				client.setAccessToken(token);
 				Configuration.setDefaultApiClient(client);
 				LOGGER.debug("Connection with conjur is successful");
 			}
 		} catch (Exception e) {
-			LOGGER.error("Exception encountered {} : {}" , e.getClass(), e.getMessage());
+			LOGGER.error("Exception encountered {} : {}", e.getClass(), e.getMessage());
 		}
 	}
 
@@ -174,31 +173,15 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 	 * @return the string
 	 */
 	private String obfuscateString(String str) {
-		int len = str.length();
-		if (len <= 2) {
-			return str;
-		} else {
+		if (StringUtils.isNoneEmpty(str) && str.length() > 2) {
+			int len = str.length();
 			char first = str.charAt(0);
 			char last = str.charAt(len - 1);
 			String middle = "*******";
 			return first + middle + last;
-		}
-	}
 
-	/**
-	 * Gets file content as string. 
-	 * Works for java 8 and higher versions
-	 *
-	 * @param path the path
-	 * @param encoding the encoding
-	 * @return the file content as string
-	 * @throws IOException the io exception
-	 */
-	private String getFileContentAsString(String path, Charset encoding)
-			throws IOException
-	{
-		byte[] encoded = Files.readAllBytes(Paths.get(path));
-		return new String(encoded, encoding);
+		}
+		return str;
 	}
 
 	/**
@@ -207,9 +190,9 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 	 * @param secretsApi the secrets api
 	 * @return the string
 	 */
-	public static String getAccount(SecretsApi secretsApi){
+	public static String getAccount(SecretsApi secretsApi) {
 		ApiClient apiClient = secretsApi.getApiClient();
-		return (apiClient != null ) ? apiClient.getAccount() : ConjurConstant.CONJUR_ACCOUNT;
+		return (apiClient != null) ? apiClient.getAccount() : ConjurConstant.CONJUR_ACCOUNT;
 	}
 
 }

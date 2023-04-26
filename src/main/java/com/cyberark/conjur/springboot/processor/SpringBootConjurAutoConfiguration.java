@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
+import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 import com.cyberark.conjur.springboot.domain.ConjurProperties;
 
 
@@ -58,13 +59,13 @@ public class SpringBootConjurAutoConfiguration {
 	}
 	
 
-	@ConditionalOnMissingBean
-    @Bean
-    static ConjurCloudProcessor conjurCloudProcessor(AccessTokenProvider accessTokenProvider){
-	
-	LOGGER.info("Creating ConjurCloudProcessor instance");
-	
-	return new ConjurCloudProcessor(accessTokenProvider);
-}
+	@ConditionalOnMissingBean(ConjurPropertySource.class)
+	@Bean
+	static ConjurCloudProcessor conjurCloudProcessor(SecretsApi secretsApi) {
+
+		LOGGER.info("Creating ConjurCloudProcessor instance");
+
+		return new ConjurCloudProcessor(secretsApi);
+	}
 	
 }

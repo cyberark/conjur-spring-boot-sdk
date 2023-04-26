@@ -69,6 +69,9 @@ public class ConjurPropertySource extends EnumerablePropertySource<Object> {
 	@Override
 	public Object getProperty(String key) {
 		byte[] result = null;
+		if(!vaultPath.endsWith("/")) {
+			this.vaultPath = vaultPath.concat("/");
+		}
 		if (propertyExists(key)) {
 			key = ConjurConfig.getInstance().mapProperty(key);
 			try {

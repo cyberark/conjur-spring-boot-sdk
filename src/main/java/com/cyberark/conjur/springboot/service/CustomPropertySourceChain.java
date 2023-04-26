@@ -55,7 +55,8 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 		key = ConjurConfig.getInstance().mapProperty(key);
 
 		if (!(key.startsWith(ConjurConstant.SPRING_VAR)) && !(key.startsWith(ConjurConstant.SERVER_VAR))
-				&& !(key.startsWith(ConjurConstant.ERROR)) && !(key.startsWith(ConjurConstant.SPRING_UTIL))) {
+				&& !(key.startsWith(ConjurConstant.ERROR)) && !(key.startsWith(ConjurConstant.SPRING_UTIL))
+				&& !(key.startsWith(ConjurConstant.CONJUR_PREFIX))) {
 
 			try {
 				String account = ConjurConnectionManager.getAccount(secretsApi);
