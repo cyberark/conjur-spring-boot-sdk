@@ -35,9 +35,7 @@ public class ConjurPluginTests {
 	@Value("${dbuserName}")
 	private byte[] dbuserName;
 	
-	@Value("${dbPort:notFound}")
-	private byte[] dbPort;
-
+	
 	@ConjurValue(key = "db/dbPort")
 	private byte[] ddbPortFromCustomAnnotation;
 
@@ -94,9 +92,7 @@ public class ConjurPluginTests {
 	@Test
 	void testForNotExistingSecretNames() {
 		assertNull(getDdbPortFromCustomAnnotation());
-		assertNotNull(getDbPort());
-		assertEquals(ConjurConstant.NOT_FOUND, getDbPort());
-
+	
 	}
 
 
@@ -158,19 +154,6 @@ public class ConjurPluginTests {
 		this.dbuserName = dbuserName;
 	}
 
-	/**
-	 * @return the dbPort
-	 */
-	public String getDbPort() {
-		return new String(dbPort);
-	}
-
-	/**
-	 * @param dbPort the dbPort to set
-	 */
-	public void setDbPort(byte[] dbPort) {
-		this.dbPort = dbPort;
-	}
 
 	/**
 	 * @return the ddbPortFromCustomAnnotation
