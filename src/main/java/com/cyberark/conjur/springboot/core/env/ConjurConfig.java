@@ -16,11 +16,11 @@ import org.slf4j.LoggerFactory;
  */
 public class ConjurConfig {
 
-	private static final Properties props = new Properties();
+	private static final Properties PROPS = new Properties();
 
-	private static final ConjurConfig uniqueInstance = new ConjurConfig();
+	private static final ConjurConfig UNIQUE_INSTANCE = new ConjurConfig();
 	
-	private static final Logger logger = LoggerFactory.getLogger(ConjurConfig.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurConfig.class);
 	
 	private ConjurConfig() {
 
@@ -28,14 +28,14 @@ public class ConjurConfig {
 
 		if (propsFile != null) {
 			try {
-				props.load(propsFile);
+				PROPS.load(propsFile);
 			} catch (IOException e) {
-				logger.error(e.getMessage(), e);
+				LOGGER.error(e.getMessage(), e);
 			} finally {
 				try {
 					propsFile.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage(), e);
+					LOGGER.error(e.getMessage(), e);
 				}
 			}
 		}
@@ -47,7 +47,7 @@ public class ConjurConfig {
 	 * @return unique instance of class.
 	 */
 	public static ConjurConfig getInstance() {
-		return uniqueInstance;
+		return UNIQUE_INSTANCE;
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class ConjurConfig {
 	 * @return - corresponding value of key defined at given property file.
 	 */
 	public String mapProperty(String name) {
-		String mapped = props.getProperty(ConjurConstant.CONJUR_MAPPING + name);
+		String mapped = PROPS.getProperty(ConjurConstant.CONJUR_MAPPING + name);
 
 		return mapped != null ? mapped : name;
 	}

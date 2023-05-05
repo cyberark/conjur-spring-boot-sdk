@@ -3,16 +3,17 @@ package com.cyberark.conjur.springboot.processor;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.constant.ConjurConstant;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ConjurRetrieveSecretService {
 
-	private static final Logger logger = LoggerFactory.getLogger(ConjurRetrieveSecretService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurRetrieveSecretService.class);
 
 	private final SecretsApi secretsApi;
 
@@ -41,9 +42,9 @@ public class ConjurRetrieveSecretService {
 		try {
 			result = secretsApi.getSecrets(new String(kind));
 		} catch (ApiException e) {
-			logger.error("Status code: " + e.getCode());
-			logger.error("Reason: " + e.getResponseBody());
-			logger.error(e.getMessage());
+			LOGGER.error("Status code: " + e.getCode());
+			LOGGER.error("Reason: " + e.getResponseBody());
+			LOGGER.error(e.getMessage());
 		}
 		return processMultipleSecretResult(result);
 
@@ -64,9 +65,9 @@ public class ConjurRetrieveSecretService {
 					? secret.getBytes()
 					: null;
 		} catch (ApiException e) {
-			logger.error("Status code: " + e.getCode());
-			logger.error("Reason: " + e.getResponseBody());
-			logger.error(e.getMessage());
+			LOGGER.error("Status code: " + e.getCode());
+			LOGGER.error("Reason: " + e.getResponseBody());
+			LOGGER.error(e.getMessage());
 		}
 		return result;
 	}
