@@ -33,15 +33,15 @@ The Spring Cloud Config Conjur plugin does not support creating, updating or rem
 
 ## Technical Requirements
 
-| Technology        | Version  |
-| ----------------- | -------- |
-| Java              | 17       |
-| Conjur OSS        | 1.9+     |
-| Conjur Enterprise | 12.5+    |
-| ConjurSDK(Java)   | 4.0.0    |
-| Conjur API        | 5.1      |
-| Spring Cloud      | 2021.0.3 |
-| Spring Boot       | 2.7.3    |
+| Technology        | Version           |
+|-------------------|-------------------|
+| Java              | 8+                |
+| Conjur OSS        | 1.9+              |
+| Conjur Enterprise | 12.5+             |
+| ConjurSDK(Java)   | 4.0.0             |
+| Conjur API        | 5.1               |
+| Spring Cloud      | 2021.x and 2022.x |
+| Spring Boot       | 2.x and 3.x       |
 
 
 
@@ -102,13 +102,13 @@ If generating a JAR is preferred, build the library locally and add the dependen
    in the `target` directory of the repository.
 
 4a. For Intellij, follow the steps outlined [here](https://www.jetbrains.com/help/idea/library.html)
-    to add the SDK JAR files to the new app's project.
+to add the SDK JAR files to the new app's project.
 
 4b. For Eclipse, `right click project > Build Path > Configure Build Path > Library > Add External JARs`.
 
 #### Setup trust between app and Conjur
 
-By default, Conjur  generates and uses self-signed SSL certificates. Without trusting them, the Java app cannot connect to the Conjur server using the Conjur APIs. You need to configure your app to trust them. 
+By default, Conjur  generates and uses self-signed SSL certificates. Without trusting them, the Java app cannot connect to the Conjur server using the Conjur APIs. You need to configure your app to trust them.
 
 1. Copy the .pem certificate created while setting up the Conjur.
 2. Select the Client Class in Eclipse then right-click and select Properties-> Run&Debug Setting-> New.
@@ -117,61 +117,61 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
 5. In the New Environment Variable window, enter 'CONJUR_SSL_CERTIFICATE' in the Name field and the copied certificate in the Value field.
 
 -  Spring Cloud Config provides server-side and client-side support for externalized configuration in a distributed system.
-    \* Config Server provides a central place to manage external properties for applicaiton across all environments. Best 
-    \* Can be integrated with any application running any language including Spring applicaiton as Spring Environment provides mapping to the \n
-     property sources.
-    \* Configuration can be managed across the enviornment while migrating from dev to test and to production, to make sure that applicaitons have\n
-     everything they need to run when they migrate.
-    \* Default storage is the git ,so it easily supports labelled versions of configuration environment as well as being accessible to a wide range
-     of tooling for managing the content
-    \* Support for configuration file security through the encryption/decryption mechanism
+   \* Config Server provides a central place to manage external properties for applicaiton across all environments. Best
+   \* Can be integrated with any application running any language including Spring applicaiton as Spring Environment provides mapping to the \n
+   property sources.
+   \* Configuration can be managed across the enviornment while migrating from dev to test and to production, to make sure that applicaitons have\n
+   everything they need to run when they migrate.
+   \* Default storage is the git ,so it easily supports labelled versions of configuration environment as well as being accessible to a wide range
+   of tooling for managing the content
+   \* Support for configuration file security through the encryption/decryption mechanism
 
-  ## Spring Cloud Config Setup
+## Spring Cloud Config Setup
 
-   Setting up the Config Server involves two step process, installing the Server and Client
+Setting up the Config Server involves two step process, installing the Server and Client
 
-   ### Spring Cloud Config Server Setup
+### Spring Cloud Config Server Setup
 
 
-   #### Git Backend setup
+#### Git Backend setup
 
-   The Spring Cloud Config Server can be integrated with different storage mechanism like Git Hub,File System Backend, Vault Backend etc,to access Property files from.  The default implementation of the Spring Cloud Config Server uses Git.
-  In this documentation Git Backend has been used as an repository to store and acces the application properties. Below are the steps to follow to integrate   Spring Cloud Config Server with Git Repository.
+The Spring Cloud Config Server can be integrated with different storage mechanism like Git Hub,File System Backend, Vault Backend etc,to access Property files from.  The default implementation of the Spring Cloud Config Server uses Git.
+In this documentation Git Backend has been used as an repository to store and acces the application properties. Below are the steps to follow to integrate   Spring Cloud Config Server with Git Repository.
 
-   #### Configure Repository
+#### Configure Repository
 
-  
 
-   Below are the steps to create a .properties file and to initialize the Git Repository.
 
-  
+Below are the steps to create a .properties file and to initialize the Git Repository.
 
-  1. Check if git is installed in sytem with the below command, if not download the Git [here]https://git-scm.com/downloads
+
+
+1. Check if git is installed in sytem with the below command, if not download the Git [here]https://git-scm.com/downloads
 
 
    ```
    $ git --version
    ```
-   Should return the version of the Git ,if already installed.
+Should return the version of the Git ,if already installed.
 
-  2. Create a folder in local environment, to store the <file-name>.properties file that will be used by the application
+2. Create a folder in local environment, to store the <file-name>.properties file that will be used by the application
 
-   Property files can created one for each environment (Dev,Test, Prod)
-   
+Property files can created one for each environment (Dev,Test, Prod)
+
    ```
    $> mkdir example-repo
    ````
-   
 
-  3. Change to the directory and create a properties file
 
-   
+3. Change to the directory and create a properties file
+
+
    ```
    $> cd example-repo
    $ example-repo > vi exampleService.properties
    ```
-   Enter the below properties in the exampleService.properties
-   
+Enter the below properties in the exampleService.properties
+
    ```
    exampleService.properties
    CONJUR.ACCOUNT = <Account to connect>
@@ -182,13 +182,13 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
    CONJUR.CERT_FILE = <Path to certificate file>
    CONJUR.SSL_CERTIFICATE = <Certificate content>
    ```
-   
 
-  4. Initializing the Git
 
-   
-   The below commands will be used to initialize Git in the configuration folder and commit the property files to the Git
-   
+4. Initializing the Git
+
+
+The below commands will be used to initialize Git in the configuration folder and commit the property files to the Git
+
    ```
    $> cd example-repo
    $ example-repo> git init
@@ -196,23 +196,23 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
    $ example-repo> git commit -m "Initial commit"
    ```
 
-  5. Creating property file for different environment
+5. Creating property file for different environment
 
-   
-   Properties file can created for different environment from Dev to Prod 
-   exampleService-dev.properties
-   exampleService-uat.properties 
-   exampleService-prod.properties
-   
-  6. The local Git repository is created only for Dev/Test deployment. To work on the Production deployment , Repository needs to be more secured 
 
-   and created in remote location.
-   
-   Spring Cloud Config Server provides a HTTP resource based API for extenral configuration by Key/Value pair or .yml file
-   @EnableConfigServer annotation will be used to embed the server into the Spring Boot Application
-   
-   ### Example code:
-   #### Step 1:
+Properties file can created for different environment from Dev to Prod
+exampleService-dev.properties
+exampleService-uat.properties
+exampleService-prod.properties
+
+6. The local Git repository is created only for Dev/Test deployment. To work on the Production deployment , Repository needs to be more secured
+
+and created in remote location.
+
+Spring Cloud Config Server provides a HTTP resource based API for extenral configuration by Key/Value pair or .yml file
+@EnableConfigServer annotation will be used to embed the server into the Spring Boot Application
+
+### Example code:
+#### Step 1:
    ```
    @EnableConfigServer
    @SpringBootApplication
@@ -223,9 +223,9 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
     }
   }
    ```
-   #### Step 2: Create bootstrap.properties file in the <b> /resource</b> folder
-   
-   bootstrap.properties
+#### Step 2: Create bootstrap.properties file in the <b> /resource</b> folder
+
+bootstrap.properties
    ```
    server.port= <port to connect to the server>
    spring.profiles.active= <environment dev/stage/test/prod>
@@ -234,10 +234,10 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
    spring.cloud.config.server.git.clone-on-start= <specify 'true' to refresh the config server on server startup>
    spring.application.name=<point to the properties file for that particular application>
    ```
-   
-   #### pom.xml
-   Following dependency needs to be included for Spring Cloud Config Server to be started
-   
+
+#### pom.xml
+Following dependency needs to be included for Spring Cloud Config Server to be started
+
    ```
    <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -263,14 +263,28 @@ ComposeParagraph
 
 ## Environment setup
 
-Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. You can do this by setting
-[environment variables](#environment-variables).
+Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur.
+You can do this by setting Conjur Properties or [environment variables](#environment-variables).
 
+#### CyberArk Conjur Configuration Properties
+The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
+
+| Parameter name           | Description                             |
+|:-------------------------|:----------------------------------------|
+| conjur.account           | CyberArk Conjur Account                 |
+| conjur.appliance-url     | CyberArk Conjur Appliance URL           |
+| conjur.authn-login       | CyberArk Conjur User /host identity     |
+| conjur.authn-api-key     | CyberArk Conjur API KEY of the host     |
+| conjur.auth-token-file   | CyberArk Conjur Token, stored in a file |
+| conjur.cert-file         | CyberArk Conjur SSL Certificate path    |
+| conjur.ssl-certificate   | CyberArk Conjur SSL Certificate Content |
+| conjur.authenticator-id  | CyberArk Conjur authenticator ID        |
+| conjur.jwt-token-path    | CyberArk Conjur Path of the JWT Token   |
 
 #### Environment variables
 
 In Conjur (both Open Source and Enterprise), environment variables are mapped to configuration variables
-by prepending `CONJUR_` to the all-caps name of the configuration variable. 
+by prepending `CONJUR_` to the all-caps name of the configuration variable.
 For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
 
 If no other configuration is done (e.g. over system properties or CLI parameters), include the following environment variables in the app's runtime environment to use the Spring Boot Plugin.
@@ -321,7 +335,7 @@ There are two ways to use the plugin.
 
 The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the CyberArk Vault.
 
- Example use case: Given the following Vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
+Example use case: Given the following Vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
 
 
 ----
@@ -383,7 +397,7 @@ into your Spring Boot code allows you to retrieve a single secret from the Cyber
 
 ----
 
-##Option 3: Spring Cloud @value Annotation 
+##Option 3: Spring Cloud @value Annotation
 
 
 	@SpringBootApplication
@@ -436,7 +450,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
