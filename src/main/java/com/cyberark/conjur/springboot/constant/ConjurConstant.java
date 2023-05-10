@@ -57,4 +57,20 @@ public class ConjurConstant {
 	 * The constant SPRING_UTIL
 	 */
 	public static final String SPRING_UTIL = "SPRING_UTIL";
+
+	/**
+	 * The constant ACTUATOR_PREFIX.
+	 */
+	public static final String ACTUATOR_PREFIX = "management";
+
+	/**
+	 * The constant LOGGING_PREFIX.
+	 */
+	public static final String LOGGING_PREFIX = "logging";
+
+	/**
+	 * The constant KUBERNETES_PREFIX.
+	 */
+	public static final String KUBERNETES_PREFIX = "kubernetes";
+	
 }
