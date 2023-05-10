@@ -33,15 +33,15 @@ The Spring Cloud Config Conjur plugin does not support creating, updating or rem
 
 ## Technical Requirements
 
-| Technology        | Version  |
-| ----------------- | -------- |
-| Java              | 17       |
-| Conjur OSS        | 1.9+     |
-| Conjur Enterprise | 12.5+    |
-| ConjurSDK(Java)   | 4.0.0    |
-| Conjur API        | 5.1      |
-| Spring Cloud      | 2021.0.3 |
-| Spring Boot       | 2.7.3    |
+| Technology        | Version           |
+|-------------------|-------------------|
+| Java              | 8+                |
+| Conjur OSS        | 1.9+              |
+| Conjur Enterprise | 12.5+             |
+| ConjurSDK(Java)   | 4.0.0             |
+| Conjur API        | 5.1               |
+| Spring Cloud      | 2021.x and 2022.x |
+| Spring Boot       | 2.x and 3.x       |
 
 
 
@@ -263,8 +263,24 @@ ComposeParagraph
 
 ## Environment setup
 
-Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. You can do this by setting
-[environment variables](#environment-variables).
+Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
+
+You can do this by setting Conjur Properties or [environment variables](#environment-variables).
+
+#### CyberArk Conjur Configuration Properties
+The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
+
+| Parameter name           | Description                             |
+|:-------------------------|:----------------------------------------|
+| conjur.account           | CyberArk Conjur Account                 |
+| conjur.appliance-url     | CyberArk Conjur Appliance URL           |
+| conjur.authn-login       | CyberArk Conjur User /host identity     |
+| conjur.authn-api-key     | CyberArk Conjur API KEY of the host     |
+| conjur.auth-token-file   | CyberArk Conjur Token, stored in a file |
+| conjur.cert-file         | CyberArk Conjur SSL Certificate path    |
+| conjur.ssl-certificate   | CyberArk Conjur SSL Certificate Content |
+| conjur.authenticator-id  | CyberArk Conjur authenticator ID        |
+| conjur.jwt-token-path    | CyberArk Conjur Path of the JWT Token   |
 
 
 #### Environment variables
