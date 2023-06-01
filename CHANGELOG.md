@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
+
+### Security
+- Upgraded Spring Boot Starter Parent to 2.7.12 and Junit to 5.9.3
+  [conjur-spring-boot-sdk#97](https://github.com/cyberark/conjur-spring-boot-sdk/pull/97)
+
 ## [2.0.0]
 - Plugin now supports Spring Cloud Configuration and to dynamically inject secrets to application.
 
