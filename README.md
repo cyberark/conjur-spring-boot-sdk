@@ -261,11 +261,11 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
    ```
 
 ## Environment setup
-[Conjur OSS](#environment variables)
+[Conjur OSS](# environment variables)
 
 Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
 
-You can do this by setting Conjur Properties or [environment variables](#environment variables).
+You can do this by setting Conjur Properties or [environment variables](# environment variables).
 
 #### CyberArk Conjur Configuration Properties
 The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
@@ -283,7 +283,7 @@ The following configuration properties can be set in the standard `spring-boot` 
 | conjur.jwt-token-path    | CyberArk Conjur Path of the JWT Token   |
 
 
-[anchor](#### Environment variables)
+#[anchor](#### Environment variables)
 
 In Conjur (both Open Source and Enterprise), environment variables are mapped to configuration variables
 by prepending `CONJUR_` to the all-caps name of the configuration variable. 
