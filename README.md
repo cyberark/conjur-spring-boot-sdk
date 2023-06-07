@@ -5,7 +5,7 @@ The Spring boot conjur sdk plugin provides client-side support for externalized 
 - With **minimal code** change by annotating existing or new POJO/Class with @ConjurPropertySource
 - With **no code** change.
 
-The Authentication parameters to connect to Conjur Server can be configured either as the System Env variables(while using @ConjurPropertySource annotation) or through external property source[Spring Cloud Config Server](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/).
+The Authentication parameters to connect to Conjur Server can be configured either as the System Env variables(while using @ConjurPropertySource annotation) or through external property source [Spring Cloud Config Server](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/).
 
 ## Benefits of storing application secrets in [CyberArk's Vault](https://www.conjur.org/)
 
@@ -16,7 +16,9 @@ The Authentication parameters to connect to Conjur Server can be configured eith
 **Note for Kubernetes users**: Customers and users intending to run their Spring Boot based application in Kubernetes are encouraged to follow an alternative to the plugin solution described in this readme. Cyberark offers a Kubernetes native feature 'Push To File' described [here]( https://github.com/cyberark/secrets-provider-for-k8s/blob/main/PUSH_TO_FILE.md#example-custom-templates-spring-boot-configuration/). The documentation illustrates a process to assemble spring-boot application.properties files dynamically and avoids the need for any Java code changes in order to draw secrets directly from Conjur.
 
 ## Certification level
+![](https://img.shields.io/badge/Certification%20Level-Certified-28A745?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
 
+This repo is a **Certified** level project. It's a community contributed project that **has been reviewed and tested by CyberArk and is trusted to use with Conjur Open Source, Conjur Enterprise ,Conjur Cloud**. For more detailed information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#certified).
 
 ## Features
 
@@ -258,15 +260,12 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
    </dependency>
    ```
 
-has context menu
-
-ComposeParagraph
-
 ## Environment setup
+[Conjur OSS](#environment variables)
 
 Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
 
-You can do this by setting Conjur Properties or [environment variables](#environment-variables).
+You can do this by setting Conjur Properties or [environment variables](#environment variables).
 
 #### CyberArk Conjur Configuration Properties
 The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
@@ -284,7 +283,7 @@ The following configuration properties can be set in the standard `spring-boot` 
 | conjur.jwt-token-path    | CyberArk Conjur Path of the JWT Token   |
 
 
-#### Environment variables
+[anchor](#### Environment variables)
 
 In Conjur (both Open Source and Enterprise), environment variables are mapped to configuration variables
 by prepending `CONJUR_` to the all-caps name of the configuration variable. 
