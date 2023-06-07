@@ -262,16 +262,49 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
 
 ## Environment setup
 	
-<p>
-<a href="#environment-variables">Conjur OSS</a> |
-<a href="#environment-variables">Conjur Enterprise</a> |
-<a href="#environment-variables">Conjur Cloud</a>
-</p>
-
-<p style="display: none;">Conjur OSS setup<strong>text2</strong></p>
-
+<details>
+	<summary><b>Conjur OSS</b></summary>
+	
 Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
+You can do this by setting Conjur Properties or [Environment variables](#environment-variables).
 
+#### CyberArk Conjur Configuration Properties
+The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
+
+| Parameter name           | Description                             |
+|:-------------------------|:----------------------------------------|
+| conjur.account           | CyberArk Conjur Account                 |
+| conjur.appliance-url     | CyberArk Conjur Appliance URL           |
+| conjur.authn-login       | CyberArk Conjur User /host identity     |
+| conjur.authn-api-key     | CyberArk Conjur API KEY of the host     |
+| conjur.auth-token-file   | CyberArk Conjur Token, stored in a file |
+| conjur.cert-file         | CyberArk Conjur SSL Certificate path    |
+| conjur.ssl-certificate   | CyberArk Conjur SSL Certificate Content |
+	
+<h4 id="environment-variables">
+ Environment Variables
+</h4>
+
+In Conjur,environment variables are mapped to configuration variables by prepending `CONJUR_` to the all-caps name of the configuration variable. 
+For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
+
+If no other configuration is done (e.g. over system properties or CLI parameters), include the following environment variables in the app's runtime environment to use the Spring Boot Plugin.
+
+| Name                    | Environment ID          | Description                | API KEY | JWT  |
+| ----------------------- | ----------------------- | -------------------------- | ------- | ---- |
+| Conjur Account          | CONJUR_ACCOUNT          | Account to connect         | Yes     | Yes  |
+| API key                 | CONJUR_AUTHN_API_KEY    | User/host API Key/password | Yes     | No   |
+| Connection url          | CONJUR_APPLIANCE_URL    | Conjur instance to connect | Yes     | Yes  |
+| User/host identity      | CONJUR_AUTHN_LOGIN      | User /host identity        | Yes     | No   |
+| SSL Certificate Path    | CONJUR_CERT_FILE        | Path to certificate file   | Yes     | Yes  |
+| SSL Certificate Content | CONJUR_SSL_CERTIFICATE  | Certificate content        | Yes     | Yes  |
+
+Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables to allow the user to specify the path to a certificate file or provide the certificate data directly in an environment variable.
+</details>
+
+<details>
+	<summary><b>Conjur Enterprise</b></summary>
+Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
 You can do this by setting Conjur Properties or [Environment variables](#environment-variables).
 
 #### CyberArk Conjur Configuration Properties
@@ -294,8 +327,7 @@ The following configuration properties can be set in the standard `spring-boot` 
  Environment Variables
 </h4>
 
-
-In Conjur (both Open Source and Enterprise), environment variables are mapped to configuration variables
+In Conjur,environment variables are mapped to configuration variables
 by prepending `CONJUR_` to the all-caps name of the configuration variable. 
 For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
 
@@ -312,14 +344,33 @@ If no other configuration is done (e.g. over system properties or CLI parameters
 | Path of the JWT Token   | CONJUR_JWT_TOKEN_PATH   | Path of the JWT Token      | No      | Yes  |
 | Conjur authenticator ID | CONJUR_AUTHENTICATOR_ID | Conjur authenticator ID    | No      | Yes  |
 
-Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables
-to allow the user to specify the path to a certificate file or provide the certificate
-data directly in an environment variable.
+Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables to allow the user to specify the path to a certificate file or provide the certificate data directly in an environment variable.
+</details>
+	
+<details>
+	<summary><b>Conjur Cloud</b></summary>
 
-In Conjur Cloud , below environment variables are mapped to configuration variables by 
-prepending `CONJUR_` to the all-caps name of the configuration variable. 
+Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
+You can do this by setting Conjur Properties or [Environment variables](#environment-variables).
+
+#### CyberArk Conjur Configuration Properties
+The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
+
+| Parameter name           | Description                             |
+|:-------------------------|:----------------------------------------|
+| conjur.account           | CyberArk Conjur Account                 |
+| conjur.appliance-url     | CyberArk Conjur Appliance URL           |
+| conjur.authn-login       | CyberArk Conjur User /host identity     |
+| conjur.authn-api-key     | CyberArk Conjur API KEY of the host     |
+	
+<h4 id="environment-variables">
+ Environment Variables
+</h4>
+
+In Conjur, environment variables are mapped to configuration variables by prepending `CONJUR_` to the all-caps name of the configuration variable. 
 For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
 
+If no other configuration is done (e.g. over system properties or CLI parameters), include the following environment variables in the app's runtime environment to use the Spring Boot Plugin.
 
 | Name                    | Environment ID          | Description                | API KEY | JWT  |
 | ----------------------- | ----------------------- | -------------------------- | ------- | ---- |
@@ -327,10 +378,8 @@ For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCO
 | API key                 | CONJUR_AUTHN_API_KEY    | User/host API Key/password | Yes     | No   |
 | Connection url          | CONJUR_APPLIANCE_URL    | Conjur instance to connect | Yes     | Yes  |
 | User/host identity      | CONJUR_AUTHN_LOGIN      | User /host identity        | Yes     | No   |
-| Path of the JWT Token   | CONJUR_JWT_TOKEN_PATH   | Path of the JWT Token      | No      | Yes  |
-| Conjur authenticator ID | CONJUR_AUTHENTICATOR_ID | Conjur authenticator ID    | No      | Yes  |
 
-
+</details>
 
 ##### Set environment variables in the Eclipse IDE
 
