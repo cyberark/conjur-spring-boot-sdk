@@ -38,6 +38,7 @@ The Spring Cloud Config Conjur plugin does not support creating, updating or rem
 | Java              | 8+                |
 | Conjur OSS        | 1.9+              |
 | Conjur Enterprise | 12.5+             |
+| Conjur Cloud		|
 | ConjurSDK(Java)   | 4.0.0             |
 | Conjur API        | 5.1               |
 | Spring Cloud      | 2021.x and 2022.x |
@@ -52,7 +53,7 @@ The following are prerequisites to using the Spring Boot Plugin.
 ## Conjur setup
 
 Conjur (OSS or Enterprise) and the Conjur CLI are installed in the environment and running in the background.
-If you haven't yet done so, follow the instructions for installing [OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) or [Enterprise](https://www.conjur.org/get-started/quick-start/oss-environment/).
+If you haven't yet done so, follow the instructions for installing [OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) or [Enterprise](https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/HomeTilesLPs/LP-Tile2.htm?tocpath=Setup%7C_____0).
 
 Once Conjur and the Conjur CLI are running in the background, you can start setting up your Spring Boot application to work with our Conjur Spring Boot Plugin.
 
@@ -305,6 +306,22 @@ If no other configuration is done (e.g. over system properties or CLI parameters
 Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables
 to allow the user to specify the path to a certificate file or provide the certificate
 data directly in an environment variable.
+
+In Conjur Cloud , below environment variables are mapped to configuration variables by 
+prepending `CONJUR_` to the all-caps name of the configuration variable. 
+For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
+
+
+| Name                    | Environment ID          | Description                | API KEY | JWT  |
+| ----------------------- | ----------------------- | -------------------------- | ------- | ---- |
+| Conjur Account          | CONJUR_ACCOUNT          | Account to connect         | Yes     | Yes  |
+| API key                 | CONJUR_AUTHN_API_KEY    | User/host API Key/password | Yes     | No   |
+| Connection url          | CONJUR_APPLIANCE_URL    | Conjur instance to connect | Yes     | Yes  |
+| User/host identity      | CONJUR_AUTHN_LOGIN      | User /host identity        | Yes     | No   |
+| Path of the JWT Token   | CONJUR_JWT_TOKEN_PATH   | Path of the JWT Token      | No      | Yes  |
+| Conjur authenticator ID | CONJUR_AUTHENTICATOR_ID | Conjur authenticator ID    | No      | Yes  |
+
+
 
 ##### Set environment variables in the Eclipse IDE
 
