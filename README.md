@@ -262,6 +262,12 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
 
 ## Environment setup
 [Conjur OSS](#environment-variables)
+	
+<p>
+<a href="#environment-variables">Conjur OSS</a> |
+<a href="#environment-variables">Conjur Enterprise</a> |
+<a href="#environment-variables">Conjur Cloud</a>
+</p>
 
 Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
 
