@@ -5,7 +5,7 @@ The Spring boot conjur sdk plugin provides client-side support for externalized 
 - With **minimal code** change by annotating existing or new POJO/Class with @ConjurPropertySource
 - With **no code** change.
 
-The Authentication parameters to connect to Conjur Server can be configured either as the System Env variables(while using @ConjurPropertySource annotation) or through external property source[Spring Cloud Config Server](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/).
+The Authentication parameters to connect to Conjur Server can be configured either as the System Env variables(while using @ConjurPropertySource annotation) or through external property source [Spring Cloud Config Server](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/).
 
 ## Benefits of storing application secrets in [CyberArk's Vault](https://www.conjur.org/)
 
@@ -16,7 +16,9 @@ The Authentication parameters to connect to Conjur Server can be configured eith
 **Note for Kubernetes users**: Customers and users intending to run their Spring Boot based application in Kubernetes are encouraged to follow an alternative to the plugin solution described in this readme. Cyberark offers a Kubernetes native feature 'Push To File' described [here]( https://github.com/cyberark/secrets-provider-for-k8s/blob/main/PUSH_TO_FILE.md#example-custom-templates-spring-boot-configuration/). The documentation illustrates a process to assemble spring-boot application.properties files dynamically and avoids the need for any Java code changes in order to draw secrets directly from Conjur.
 
 ## Certification level
+![](https://img.shields.io/badge/Certification%20Level-Certified-28A745?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
 
+This repo is a **Certified** level project. It's a community contributed project that **has been reviewed and tested by CyberArk and is trusted to use with Conjur Open Source, Conjur Enterprise ,Conjur Cloud**. For more detailed information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#certified).
 
 ## Features
 
@@ -38,6 +40,7 @@ The Spring Cloud Config Conjur plugin does not support creating, updating or rem
 | Java              | 8+                |
 | Conjur OSS        | 1.9+              |
 | Conjur Enterprise | 12.5+             |
+| Conjur Cloud		|
 | ConjurSDK(Java)   | 4.0.0             |
 | Conjur API        | 5.1               |
 | Spring Cloud      | 2021.x and 2022.x |
@@ -52,7 +55,7 @@ The following are prerequisites to using the Spring Boot Plugin.
 ## Conjur setup
 
 Conjur (OSS or Enterprise) and the Conjur CLI are installed in the environment and running in the background.
-If you haven't yet done so, follow the instructions for installing [OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) or [Enterprise](https://www.conjur.org/get-started/quick-start/oss-environment/).
+If you haven't yet done so, follow the instructions for installing [OSS](https://www.conjur.org/get-started/quick-start/oss-environment/) or [Enterprise](https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/HomeTilesLPs/LP-Tile2.htm?tocpath=Setup%7C_____0).
 
 Once Conjur and the Conjur CLI are running in the background, you can start setting up your Spring Boot application to work with our Conjur Spring Boot Plugin.
 
@@ -257,15 +260,52 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
    </dependency>
    ```
 
-has context menu
-
-ComposeParagraph
-
 ## Environment setup
-
+	
+<details>
+	<summary><b>Conjur OSS</b></summary>
+	
 Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
+You can do this by setting Conjur Properties or [Environment variables](#environment-variables).
 
-You can do this by setting Conjur Properties or [environment variables](#environment-variables).
+#### CyberArk Conjur Configuration Properties
+The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
+
+| Parameter name           | Description                             |
+|:-------------------------|:----------------------------------------|
+| conjur.account           | CyberArk Conjur Account                 |
+| conjur.appliance-url     | CyberArk Conjur Appliance URL           |
+| conjur.authn-login       | CyberArk Conjur User /host identity     |
+| conjur.authn-api-key     | CyberArk Conjur API KEY of the host     |
+| conjur.auth-token-file   | CyberArk Conjur Token, stored in a file |
+| conjur.cert-file         | CyberArk Conjur SSL Certificate path    |
+| conjur.ssl-certificate   | CyberArk Conjur SSL Certificate Content |
+	
+<h4 id="environment-variables">
+ Environment Variables
+</h4>
+
+In Conjur,environment variables are mapped to configuration variables by prepending `CONJUR_` to the all-caps name of the configuration variable. 
+For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
+
+If no other configuration is done (e.g. over system properties or CLI parameters), include the following environment variables in the app's runtime environment to use the Spring Boot Plugin.
+
+| Name                    | Environment ID          | Description                | API KEY | JWT  |
+| ----------------------- | ----------------------- | -------------------------- | ------- | ---- |
+| Conjur Account          | CONJUR_ACCOUNT          | Account to connect         | Yes     | Yes  |
+| API key                 | CONJUR_AUTHN_API_KEY    | User/host API Key/password | Yes     | No   |
+| Connection url          | CONJUR_APPLIANCE_URL    | Conjur instance to connect | Yes     | Yes  |
+| User/host identity      | CONJUR_AUTHN_LOGIN      | User /host identity        | Yes     | No   |
+| SSL Certificate Path    | CONJUR_CERT_FILE        | Path to certificate file   | Yes     | Yes  |
+| SSL Certificate Content | CONJUR_SSL_CERTIFICATE  | Certificate content        | Yes     | Yes  |
+
+Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables to allow the user to specify the path to a certificate file or provide the certificate data directly in an environment variable.
+</details>
+
+<details>
+	<summary><b>Conjur Enterprise</b></summary>
+Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
+You can do this by setting Conjur Properties or [Environment variables](#environment-variables).
 
 #### CyberArk Conjur Configuration Properties
 The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
@@ -282,10 +322,12 @@ The following configuration properties can be set in the standard `spring-boot` 
 | conjur.authenticator-id  | CyberArk Conjur authenticator ID        |
 | conjur.jwt-token-path    | CyberArk Conjur Path of the JWT Token   |
 
+	
+<h4 id="environment-variables">
+ Environment Variables
+</h4>
 
-#### Environment variables
-
-In Conjur (both Open Source and Enterprise), environment variables are mapped to configuration variables
+In Conjur,environment variables are mapped to configuration variables
 by prepending `CONJUR_` to the all-caps name of the configuration variable. 
 For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
 
@@ -302,9 +344,42 @@ If no other configuration is done (e.g. over system properties or CLI parameters
 | Path of the JWT Token   | CONJUR_JWT_TOKEN_PATH   | Path of the JWT Token      | No      | Yes  |
 | Conjur authenticator ID | CONJUR_AUTHENTICATOR_ID | Conjur authenticator ID    | No      | Yes  |
 
-Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables
-to allow the user to specify the path to a certificate file or provide the certificate
-data directly in an environment variable.
+Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables to allow the user to specify the path to a certificate file or provide the certificate data directly in an environment variable.
+</details>
+	
+<details>
+	<summary><b>Conjur Cloud</b></summary>
+
+Once the setup steps are successfully run, define the variables needed to make the connection between the plugin and Conjur. 
+You can do this by setting Conjur Properties or [Environment variables](#environment-variables).
+
+#### CyberArk Conjur Configuration Properties
+The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
+
+| Parameter name           | Description                             |
+|:-------------------------|:----------------------------------------|
+| conjur.account           | CyberArk Conjur Account                 |
+| conjur.appliance-url     | CyberArk Conjur Appliance URL           |
+| conjur.authn-login       | CyberArk Conjur User /host identity     |
+| conjur.authn-api-key     | CyberArk Conjur API KEY of the host     |
+	
+<h4 id="environment-variables">
+ Environment Variables
+</h4>
+
+In Conjur, environment variables are mapped to configuration variables by prepending `CONJUR_` to the all-caps name of the configuration variable. 
+For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCOUNT`.
+
+If no other configuration is done (e.g. over system properties or CLI parameters), include the following environment variables in the app's runtime environment to use the Spring Boot Plugin.
+
+| Name                    | Environment ID          | Description                | API KEY | JWT  |
+| ----------------------- | ----------------------- | -------------------------- | ------- | ---- |
+| Conjur Account          | CONJUR_ACCOUNT          | Account to connect         | Yes     | Yes  |
+| API key                 | CONJUR_AUTHN_API_KEY    | User/host API Key/password | Yes     | No   |
+| Connection url          | CONJUR_APPLIANCE_URL    | Conjur instance to connect | Yes     | Yes  |
+| User/host identity      | CONJUR_AUTHN_LOGIN      | User /host identity        | Yes     | No   |
+
+</details>
 
 ##### Set environment variables in the Eclipse IDE
 
