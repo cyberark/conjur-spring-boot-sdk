@@ -29,6 +29,7 @@ pushd ./conjur-intro
   # Retrieve pem
   docker-compose  \
     run \
+    --no-deps \
     --rm \
     -w /src/cli \
     --entrypoint /bin/bash \

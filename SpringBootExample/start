@@ -6,8 +6,8 @@ rm -rf .env
 docker-compose down -v
 
 docker-compose build
-docker-compose up -d conjur
-docker-compose up -d proxy
+docker-compose up --no-deps conjur
+docker-compose up --no-deps proxy
 docker-compose exec -T conjur conjurctl wait -r 240
 
 admin_api_key=$(docker-compose exec -T conjur conjurctl role retrieve-key dev:user:admin | tr -d '\r')
