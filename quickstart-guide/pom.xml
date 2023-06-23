@@ -1,22 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>SpringBootExample</groupId>
-	<artifactId>SpringBootExample</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.3</version>
-	</parent>
-
-	<properties>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>quickstart-guide</artifactId>
+  <name>quickstart-guide</name>
+  
+  <parent>
+    <groupId>com.cyberark</groupId>
+    <artifactId>conjur-spring-boot-sdk-master</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-boot.version>2.7.3</spring-boot.version>
 		<spring.version>5.3.13</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>11</java.version>
-		<start-class>com.test.plugin.ConjurClient</start-class>
 		<rest.assured.version>2.3.3</rest.assured.version>
 		<okhttp3.version>4.10.0</okhttp3.version>
 	</properties>
@@ -33,14 +31,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-
 		</dependency>
 
 		<dependency>
 			<groupId>com.cyberark</groupId>
 			<artifactId>conjur-sdk-springboot</artifactId>
 			<!-- This will be updated by build-sampleapp-image.sh -->
-			<version>4.5.7</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -88,5 +85,4 @@
 
 		</plugins>
 	</build>
-
 </project>

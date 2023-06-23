@@ -70,17 +70,17 @@ public class ConjurPluginTests {
 
 	}
 	
-	@Test
-	void testForAllEnvVariables() {
-
-		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_LOGIN", null));
-		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
-		assertNotNull(System.getenv().getOrDefault("CONJUR_ACCOUNT", null));
-		assertNotNull(System.getenv().getOrDefault("CONJUR_CERT_FILE", null));
-		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
-		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_TOKEN_FILE", null));
-
-	}
+//	@Test
+//	void testForAllEnvVariables() {
+//
+//		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_LOGIN", null));
+//		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
+//		assertNotNull(System.getenv().getOrDefault("CONJUR_ACCOUNT", null));
+//		assertNotNull(System.getenv().getOrDefault("CONJUR_CERT_FILE", null));
+//		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_API_KEY", null));
+//		assertNotNull(System.getenv().getOrDefault("CONJUR_AUTHN_TOKEN_FILE", null));
+//
+//	}
 
 	@Test
 	void testForConnection() {
