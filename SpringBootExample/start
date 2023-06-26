@@ -6,7 +6,7 @@ rm -rf .env
 docker-compose down -v
 
 docker-compose build
-docker-compose up --no-deps conjur
+docker-compose up conjur
 docker-compose up --no-deps proxy
 docker-compose exec -T conjur conjurctl wait -r 240
 
