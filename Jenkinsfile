@@ -111,11 +111,10 @@ pipeline {
           sh './start'
         }
       }
-
       post {
         always {
+          archiveArtifacts 'SpringBootExample/logs/*'
           junit 'target/surefire-reports/*.xml'
- 
           dir ('SpringBootExample') {
             // Jenkins has already recorded these results
             // clean them out so they aren't recorded for
