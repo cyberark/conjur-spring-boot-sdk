@@ -114,6 +114,7 @@ pipeline {
 
       post {
         always {
+          archiveArtifacts 'SpringBootExample/logs/*'
           junit 'target/surefire-reports/*.xml'
  
           dir ('SpringBootExample') {
