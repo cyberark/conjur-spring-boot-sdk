@@ -1,13 +1,24 @@
 #!/bin/bash -ex
 
-set +x 
+set -x 
 
 rm -rf .env
-docker-compose down -v
 
+get_container_logs(){
+  mkdir -p logs
+  docker-compose ps --format json \
+    |jq -r  '.[]|.Name' \
+    |while read -r container; do \
+      docker logs "${container}" &> "logs/${container}.log"
+    done
+}
+
+trap get_container_logs EXIT
+
+docker-compose down -v
+docker-compose pull conjur pg proxy openssl
 docker-compose build
-docker-compose up -d conjur
-docker-compose up -d proxy
+docker-compose up -d proxy # Don't need to specify conjur here, as proxy depends on conjur
 docker-compose exec -T conjur conjurctl wait -r 240
 
 admin_api_key=$(docker-compose exec -T conjur conjurctl role retrieve-key dev:user:admin | tr -d '\r')
