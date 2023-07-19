@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.1] - 2023-07-19
 ### Added
+- Updated conjur-java-sdk to the version 4.1.0
+
 ## [2.0.0]
 - Plugin now supports Spring Cloud Configuration and to dynamically inject secrets to application.
 
