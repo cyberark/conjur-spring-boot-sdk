@@ -157,9 +157,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>11</java.version>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<okhttp3.version>4.10.0</okhttp3.version>
 	</properties>
 
@@ -172,7 +172,7 @@
 		<dependency>
 			<groupId>com.cyberark</groupId>
 			<artifactId>conjur-sdk-java</artifactId>
-			<version>4.0.0</version>
+			<version>4.1.0</version>
 		</dependency>
 
 		<dependency>
