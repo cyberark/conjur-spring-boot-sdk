@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [2.1.0] - 2023-07-28
+### Security
+- Upgraded Spring Boot Starter Parent to 2.7.12 and Junit to 5.9.3
+  [conjur-spring-boot-sdk#97](https://github.com/cyberark/conjur-spring-boot-sdk/pull/97)
+  
 ## [2.0.2] - 2023-07-24
 - Updated to support JDK version 1.8
   

@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-set -x
+set -x 
 
 rm -rf .env
 
