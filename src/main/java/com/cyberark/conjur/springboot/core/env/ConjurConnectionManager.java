@@ -108,7 +108,7 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
 
 			String authTokenFile = conjurProperties.getAuthTokenFile();
 			if (StringUtils.isNotEmpty(authTokenFile)) {
-				String apiKey = Files.readString(Paths.get(authTokenFile));
+				String apiKey = new String(Files.readAllBytes(Paths.get(authTokenFile)));
 				client.setApiKey(apiKey);
 			}
 

@@ -41,7 +41,7 @@ The Spring Cloud Config Conjur plugin does not support creating, updating or rem
 | Conjur OSS        | 1.9+              |
 | Conjur Enterprise | 12.5+             |
 | Conjur Cloud		|
-| ConjurSDK(Java)   | 4.0.0             |
+| ConjurSDK(Java)   | 4.1.0             |
 | Conjur API        | 5.1               |
 | Spring Cloud      | 2021.x and 2022.x |
 | Spring Boot       | 2.x and 3.x       |
