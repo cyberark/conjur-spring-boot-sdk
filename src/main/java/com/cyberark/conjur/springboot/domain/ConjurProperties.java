@@ -57,6 +57,11 @@ public class ConjurProperties{
 	private String authenticatorId;
 
 	/**
+	 * The Scan all values.
+	 */
+	private boolean scanAllValues;
+	
+	/**
 	 * Gets account.
 	 *
 	 * @return the account
@@ -218,6 +223,24 @@ public class ConjurProperties{
 		this.authenticatorId = authenticatorId;
 	}
 
+	/**
+	 * Is scan all values boolean.
+	 *
+	 * @return the boolean
+	 */
+	public boolean isScanAllValues() {
+		return scanAllValues;
+	}
+
+	/**
+	 * Sets scan all values.
+	 *
+	 * @param scanAllValues the scan all values
+	 */
+	public void setScanAllValues(boolean scanAllValues) {
+		this.scanAllValues = scanAllValues;
+	}
+
 	@Override
 	public String toString() {
 		return "ConjurProperties{" +
@@ -230,6 +253,7 @@ public class ConjurProperties{
 				", sslCertificate='" + sslCertificate + '\'' +
 				", jwtTokenPath='" + jwtTokenPath + '\'' +
 				", authenticatorId='" + authenticatorId + '\'' +
+				", scanAllValues=" + scanAllValues +
 				'}';
 	}
 }
