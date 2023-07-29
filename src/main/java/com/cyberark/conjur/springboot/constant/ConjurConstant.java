@@ -72,5 +72,9 @@ public class ConjurConstant {
 	 * The constant KUBERNETES_PREFIX.
 	 */
 	public static final String KUBERNETES_PREFIX = "kubernetes";
-	
+
+	/**
+	 * The constant CONJUR_SCAN_ALL_VALUES.
+	 */
+	public static final String CONJUR_SCAN_ALL_VALUES = "conjur.scan-all-values";
 }
