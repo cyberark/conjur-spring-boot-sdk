@@ -7,24 +7,24 @@
 # * @cyberark/conjur-core-team @conjurinc/conjur-core-team @conjurdemos/conjur-core-team
 
 # Changes to *.sh and *.yml files require Infrastructure team approval 
-*.sh and *.yml @cyberark/integrations-factory
+*.sh and *.yml @cyberark/integrations-factory @Conjur-Enterprise/integrations-factory
 
 # Changes to Jenkinsfile require Infrastructure team approval
-Jenkinsfile @cyberark/integrations-factory
+Jenkinsfile @cyberark/integrations-factory @Conjur-Enterprise/integrations-factory
 
 #Changes to Dockerfiles require Infrastructure team approval
-Dockerfile @cyberark/integrations-factory
+Dockerfile @cyberark/integrations-factory @Conjur-Enterprise/integrations-factory
 
 #Changes to start require Infrastructure team approval
-start @cyberark/integrations-factory
+start @cyberark/integrations-factory @Conjur-Enterprise/integrations-factory
 
 #Changes to stop require Infrastructure team approval
-stop @cyberark/integrations-factory
+stop @cyberark/integrations-factory @Conjur-Enterprise/integrations-factory
 
 
 
 # Changes to .trivyignore require Security Architect approval
-.trivyignore @cyberark/security-architects @conjurinc/security-architects @conjurdemos/security-architects
+.trivyignore @cyberark/security-architects @conjurinc/security-architects @conjurdemos/security-architects @conjur-enterprise/conjur-security
 
 # Changes to .codeclimate.yml require Quality Architect approval
-.codeclimate.yml @cyberark/quality-architects @conjurinc/quality-architects @conjurdemos/quality-architects
+.codeclimate.yml @cyberark/quality-architects @conjurinc/quality-architects @conjurdemos/quality-architects @conjur-enterprise/conjur-quality

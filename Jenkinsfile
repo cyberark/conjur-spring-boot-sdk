@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
+@Library("product-pipelines-shared-library") _
 
 // This is a template Jenkinsfile for builds and the automated release project
 
@@ -36,7 +37,7 @@ if (params.MODE == "PROMOTE") {
 }
 
 pipeline {
-  agent { label 'executor-v2' }
+  agent { label 'conjur-enterprise-common-agent' }
 
   options {
     timestamps()
@@ -67,91 +68,129 @@ pipeline {
         }
       }
     }
+
+    stage('Get InfraPool ExecutorV2 Agent') {
+      steps {
+        script {
+          // Request ExecutorV2 agents for 1 hour(s)
+          INFRAPOOL_EXECUTORV2_AGENT_0 = getInfraPoolAgent.connected(type: "ExecutorV2", quantity: 1, duration: 1)[0]
+          // Get submodules - can be removed when submodule is migrated to Github Enterprise
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh 'git submodule update --init --recursive'
+        }
+      }
+    }
+
     // Generates a VERSION file based on the current build number and latest version in CHANGELOG.md
     stage('Validate Changelog and set version') {
       steps {
-        updateVersion("CHANGELOG.md", "${BUILD_NUMBER}")
-        sh '''
-          cp VERSION VERSION.original
-          version="$(<VERSION)"
-          echo "${version}-SNAPSHOT" >> VERSION
-          cp VERSION VERSION.snapshot
-        '''
+        script {
+          updateVersion(INFRAPOOL_EXECUTORV2_AGENT_0, "CHANGELOG.md", "${BUILD_NUMBER}")
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh '''
+            cp VERSION VERSION.original
+            version="$(<VERSION)"
+            echo "${version}-SNAPSHOT" >> VERSION
+            cp VERSION VERSION.snapshot
+          '''
+        }
       }
     }
 
     stage('Build') {
       steps {
-        // Build Docker Image for tools (eg mvn)
-        sh './build-tools-image.sh'
+        script {
+          // Build Docker Image for tools (eg mvn)
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build-tools-image.sh'
 
-        // Run Docker Image to compile code and build jar
-        sh './build-package.sh'
+          // Run Docker Image to compile code and build jar
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build-package.sh'
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'api-docs', includes: 'target/apidocs/*'
+          unstash 'api-docs'
 
-        publishHTML (target : [allowMissing: false,
-          alwaysLinkToLastBuild: false,
-          keepAll: true,
-          reportDir: 'target/apidocs',
-          reportFiles: 'index.html',
-          reportName: 'Java Doc',
-          reportTitles: 'Conjur Spring Boot SDK'])
+          publishHTML (target : [allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: true,
+            reportDir: 'target/apidocs',
+            reportFiles: 'index.html',
+            reportName: 'Java Doc',
+            reportTitles: 'Conjur Spring Boot SDK'])
+        }
       }
     }
   // Unit tests are now running from start.sh
   //   stage('UnitTest') {
   //     steps {
-  //       sh './run-tests.sh'
+  //      script {
+  //       INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './run-tests.sh'
+  //      }
   //     }
   //   }
 
     stage('Functional Tests OSS') {
       steps {
-        dir ('SpringBootExample') {
-          sh './build-sampleapp-image.sh'
-          sh './start'
+        script {
+          dir ('SpringBootExample') {
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build-sampleapp-image.sh'
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './start'
+          }
         }
       }
       post {
         always {
-          archiveArtifacts 'SpringBootExample/logs/*'
-          junit 'target/surefire-reports/*.xml'
-          dir ('SpringBootExample') {
-            // Jenkins has already recorded these results
-            // clean them out so they aren't recorded for
-            // a second time after the Enterprise tests.
-            sh './clean_surefire_reports'
-            sh './stop'
+          script {
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentArchiveArtifacts artifacts: 'SpringBootExample/logs/*'
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'surefire-reports-oss', includes: 'target/surefire-reports/*.xml'
+            unstash 'surefire-reports-oss'
+            junit 'target/surefire-reports/*.xml'
+            dir ('SpringBootExample') {
+              // Jenkins has already recorded these results
+              // clean them out so they aren't recorded for
+              // a second time after the Enterprise tests.
+              INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './clean_surefire_reports'
+              INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './stop'
+            }
           }
         }
       }
     }
     stage('Functional Tests Enterprise') {
       steps {
-        dir ('SpringBootExample') {
-          sh './start_enterprise'
+        script {
+          dir ('SpringBootExample') {
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './start_enterprise'
+          }
         }
       }
       post {
         always {
-          junit 'target/surefire-reports/*.xml'
-          dir ('SpringBootExample') {
-            sh './stop_enterprise'
+          script {
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'surefire-reports-enterprise', includes: 'target/surefire-reports/*.xml'
+            unstash 'surefire-reports-enterprise'
+            junit 'target/surefire-reports/*.xml'
+            dir ('SpringBootExample') {
+              INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './stop_enterprise'
+            }
           }
         }
       }
     }
-    stage('Report Test Coverage to Code Climate'){
+    stage('Report Test Coverage to Codacy'){
       steps {
-        dir('src/main/java'){
-          ccCoverage('jacoco')
+        script {
+          dir('src/main/java'){
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'jacoco', includes: 'jacaco.xml'
+            unstash 'jacoco'
+            codacy action: 'reportCoverage', filePath: "jacoco.xml"
+          }
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'target-site-jacoco', includes: 'target/site/jacoco/*.xml'
+          unstash 'target-site-jacoco'
+          publishHTML (target : [allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: true,
+            reportDir: 'target/site/jacoco/',
+            reportFiles: 'index.html',
+            reportName: 'Coverage Report',
+            reportTitles: 'Conjur Spring Boot SDK Code Coverage Jacoco report'])
         }
-        publishHTML (target : [allowMissing: false,
-          alwaysLinkToLastBuild: false,
-          keepAll: true,
-          reportDir: 'target/site/jacoco/',
-          reportFiles: 'index.html',
-          reportName: 'Coverage Report',
-          reportTitles: 'Conjur Spring Boot SDK Code Coverage Jacoco report'])
       }
     }
 
@@ -163,12 +202,14 @@ pipeline {
       }
 
       steps {
-        // VERSION-SNAPSHOT is not valid for the release process.
-        sh 'cp VERSION.original VERSION'
-        release { billOfMaterialsDirectory, assetDirectory ->
-          // Publish release artifacts to all the appropriate locations
-          // Copy any artifacts to assetDirectory to attach them to the Github release
-          sh "ASSET_DIR=\"${assetDirectory}\" summon ./publish.sh"
+        script {
+          // VERSION-SNAPSHOT is not valid for the release process.
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh 'cp VERSION.original VERSION'
+          release(INFRAPOOL_EXECUTORV2_AGENT_0) { billOfMaterialsDirectory, assetDirectory ->
+            // Publish release artifacts to all the appropriate locations
+            // Copy any artifacts to assetDirectory to attach them to the Github release
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh "ASSET_DIR=\"${assetDirectory}\" summon ./publish.sh"
+          }
         }
       }
     }
@@ -176,7 +217,9 @@ pipeline {
 
   post {
     always {
-      cleanupAndNotify(currentBuild.currentResult)
+      script {
+        releaseInfraPoolAgent(".infrapool/release_agents")
+      }
     }
   }
 }
