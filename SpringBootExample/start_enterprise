@@ -16,7 +16,7 @@ pushd ./conjur-intro
 
   # Load policy required by SpringBootExample
   # conjur.yml must be in the conjur-intro folder for access
-  # via docker-compose exec
+  # via docker compose exec
   cp ../conjur.yml .
   ./bin/cli conjur policy load --replace root conjur.yml
 
@@ -27,7 +27,7 @@ pushd ./conjur-intro
   ./bin/cli conjur variable values add db/key 456789
 
   # Retrieve pem
-  docker-compose  \
+  docker compose  \
     run \
     --rm \
     -w /src/cli \
