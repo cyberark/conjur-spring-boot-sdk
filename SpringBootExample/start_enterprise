@@ -18,7 +18,8 @@ pushd ./conjur-intro
   # conjur.yml must be in the conjur-intro folder for access
   # via docker compose exec
   cp ../conjur.yml .
-  ./bin/cli conjur policy load --replace root conjur.yml
+  #./bin/cli conjur policy load --replace root conjur.yml
+  ./bin/cli conjur policy load -f conjur.yml -b root
 
   # # # Set variable values
   ./bin/cli conjur variable values add db/password secret
@@ -33,7 +34,7 @@ pushd ./conjur-intro
     -w /src/cli \
     --entrypoint /bin/bash \
     client \
-      -c "cp /root/conjur-demo.pem conjur-enterprise.pem"
+      -c "cp /root/conjur-server.pem conjur-enterprise.pem"
   cp conjur-enterprise.pem ../
 
   # Retrieve Admin API Key

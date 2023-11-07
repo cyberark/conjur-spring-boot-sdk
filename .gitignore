@@ -40,3 +40,4 @@ nginx.key
 api_key
 .settings/
 **/.settings/
+.DS_Store

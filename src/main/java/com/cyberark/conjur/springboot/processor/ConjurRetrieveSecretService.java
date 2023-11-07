@@ -27,16 +27,14 @@ public class ConjurRetrieveSecretService {
 	 * @param keys - query to vault.
 	 * @return secrets - output from the vault.
 	 */
-	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys) {
+	public byte[] retriveMultipleSecretsForCustomAnnotation(String[] keys) throws ApiException {
 
 		Object result = null;
 		StringBuilder kind = new StringBuilder();
-
-		for (int i = 0; i <= keys.length; i++) {
-			if (i < keys.length - 1) {
-				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + ",");
-			} else if (i == keys.length - 1) {
-				kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i] + "");
+		if (keys.length > 0) {
+			kind.append("" + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[0] + "");
+			for (int i = 1; i < keys.length; i++) {
+				kind.append("," + ConjurConstant.CONJUR_ACCOUNT + ":variable:" + keys[i]);
 			}
 		}
 		try {
@@ -45,6 +43,8 @@ public class ConjurRetrieveSecretService {
 			LOGGER.error("Status code: " + e.getCode());
 			LOGGER.error("Reason: " + e.getResponseBody());
 			LOGGER.error(e.getMessage());
+			throw new ApiException(e.getCode(), e.getMessage());
+
 		}
 		return processMultipleSecretResult(result);
 
@@ -56,18 +56,17 @@ public class ConjurRetrieveSecretService {
 	 * @param key - query to vault.
 	 * @return secrets - output from the vault.
 	 */
-	public byte[] retriveSingleSecretForCustomAnnotation(String key) {
+	public byte[] retriveSingleSecretForCustomAnnotation(String key) throws ApiException {
 		byte[] result = null;
 		try {
 			String account = ConjurConnectionManager.getAccount(secretsApi);
 			String secret = secretsApi.getSecret(account, ConjurConstant.CONJUR_KIND, key);
-			result = secret != null
-					? secret.getBytes()
-					: null;
+			result = secret != null ? secret.getBytes() : null;
 		} catch (ApiException e) {
 			LOGGER.error("Status code: " + e.getCode());
 			LOGGER.error("Reason: " + e.getResponseBody());
 			LOGGER.error(e.getMessage());
+			throw new ApiException(e.getCode(), e.getMessage());
 		}
 		return result;
 	}
