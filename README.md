@@ -7,7 +7,7 @@ The Spring boot conjur sdk plugin provides client-side support for externalized 
 
 The Authentication parameters to connect to Conjur Server can be configured either as the System Env variables(while using @ConjurPropertySource annotation) or through external property source [Spring Cloud Config Server](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/).
 
-## Benefits of storing application secrets in [CyberArk's Vault](https://www.conjur.org/)
+## Benefits of storing application secrets in [Conjur](https://www.conjur.org/)
 
 * Provides one central location to store and retrieve secrets for applications across all environments.
 * Supports the management of static and dynamic secrets such as username and password for remote applications and resources.
@@ -18,13 +18,13 @@ The Authentication parameters to connect to Conjur Server can be configured eith
 ## Certification level
 ![](https://img.shields.io/badge/Certification%20Level-Certified-28A745?link=https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md)
 
-This repo is a **Certified** level project. It's a community contributed project that **has been reviewed and tested by CyberArk and is trusted to use with Conjur Open Source, Conjur Enterprise ,Conjur Cloud**. For more detailed information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#certified).
+This repo is a **Certified** level project. It's a community contributed project that **has been reviewed and tested by CyberArk and is trusted to use with Conjur Open Source, Conjur Enterprise, and Conjur Cloud**. For more detailed information on our certification levels, see [our community guidelines](https://github.com/cyberark/community/blob/master/Conjur/conventions/certification-levels.md#certified).
 
 ## Features
 
 The following features are available with the Spring Boot Plugin:
 
-* Seamless integration of the spring boot conjur plugin to exisitng or new Spring Boot application to retireve secrets from CyberArk vault with miniaml code change by annotating with @ConjurPropertySource or no code change (dynamic mapping of secrets to credential variables annotated with @Value.
+* Seamless integration of the spring boot conjur plugin to exisitng or new Spring Boot application to retireve secrets from CyberArk Conjur with miniaml code change by annotating with @ConjurPropertySource or no code change (dynamic mapping of secrets to credential variables annotated with @Value.
 * Externalize the properties using the Spring cloud Config Server or as System Property
 * API authentication
 
@@ -125,7 +125,7 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
      property sources.
     \* Configuration can be managed across the enviornment while migrating from dev to test and to production, to make sure that applicaitons have\n
      everything they need to run when they migrate.
-    \* Default storage is the git ,so it easily supports labelled versions of configuration environment as well as being accessible to a wide range
+    \* Default storage is git, so it easily supports labeled versions of configuration environment as well as being accessible to a wide range
      of tooling for managing the content
     \* Support for configuration file security through the encryption/decryption mechanism
 
@@ -138,7 +138,7 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
 
    #### Git Backend setup
 
-   The Spring Cloud Config Server can be integrated with different storage mechanism like Git Hub,File System Backend, Vault Backend etc,to access Property files from.  The default implementation of the Spring Cloud Config Server uses Git.
+   The Spring Cloud Config Server can be integrated with different storage mechanism like GitHub, File System Backend, Conjur Backend etc,to access Property files from.  The default implementation of the Spring Cloud Config Server uses Git.
   In this documentation Git Backend has been used as an repository to store and acces the application properties. Below are the steps to follow to integrate   Spring Cloud Config Server with Git Repository.
 
    #### Configure Repository
@@ -149,13 +149,13 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
 
   
 
-  1. Check if git is installed in sytem with the below command, if not download the Git [here]https://git-scm.com/downloads
+  1. Check if git is installed on the sytem with the below command, if not download Git [here](https://git-scm.com/downloads)
 
 
    ```
    $ git --version
    ```
-   Should return the version of the Git ,if already installed.
+   Should return the version of the Git, if already installed.
 
   2. Create a folder in local environment, to store the <file-name>.properties file that will be used by the application
 
@@ -207,7 +207,7 @@ By default, Conjur  generates and uses self-signed SSL certificates. Without tru
    exampleService-uat.properties 
    exampleService-prod.properties
    
-  6. The local Git repository is created only for Dev/Test deployment. To work on the Production deployment , Repository needs to be more secured 
+  6. The local Git repository is created only for Dev/Test deployment. To work on the Production deployment, Repository needs to be more secured 
 
    and created in remote location.
    
@@ -410,9 +410,9 @@ There are two ways to use the plugin.
 
 #### Option 1: Spring Standard @Value annotation
 
-The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in the CyberArk Vault.
+The `@ConjurPropertySource` annotation allows you to specify the root of a policy to look up. The Spring Boot Plugin routes the look up to Conjur through the Conjur Spring Boot SDK and a REST API we expose. Using @ConjurPropertySource in conjunction with @Configuration classes is required. The names of secrets, passwords, and user IDs all remain as originally specified. You can fetch Conjur managed secrets using a standard @Value annotation. By adding an optional file with the name `conjur.properties` in a Spring Boot classloader discoverable location `(<a path>/resources/)`, you can map the names of secrets as specified in the application code to the names stored in CyberArk Conjur.
 
- Example use case: Given the following Vault path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
+ Example use case: Given the following Conjur path `policy/my-application` containing this configuration data pair `database.password=mysecretpassword`, the following `@Configuration` class uses `@ConjurPropertySource` to contribute `policy/my-application` to the environment's set of `PropertySources.`
 
 
 ----
@@ -451,7 +451,7 @@ Conjur Properties (conjur.properties)
 #### Option 2: Conjur native annotations (custom annotation)
 
 The `@ConjurValue` and `@ConjurValues` annotations are intended for new Spring Boot applications. Injecting `@ConjurValue`
-into your Spring Boot code allows you to retrieve a single secret from the CyberArk Vault. `@ConjurValues` allows you to retrieve multiple secrets from the CyberArk Vault.
+into your Spring Boot code allows you to retrieve a single secret from the CyberArk Conjur. `@ConjurValues` allows you to retrieve multiple secrets from the CyberArk Conjur.
 
 ----
 
@@ -503,16 +503,6 @@ into your Spring Boot code allows you to retrieve a single secret from the Cyber
 		logger.info("By Using Standard Spring annotation -->  " + new String(pass3) + "  " );
 	
 	}}
-
-# Benefits of storing application secrets in CyberArk's vault
-
-- Provides one central location to store and retrieve secrets for applications across all environments.
-- Supports the management of static and dynamic secrets such as username and password for remote applications and resources.
-- Provides credentials for external services like MySQL, PostgreSQL, Apache Cassandra, Couchbase, MongoDB, Consul, AWS, and more.
-
-**Note for Kubernetes users:** Customers and users intending to run their Spring Boot based application in Kubernetes are encouraged to follow an alternative to the plugin solution described in this readme. Cyberark offers a Kubernetes native feature 'Push To File' described here. The documentation illustrates a process to assemble spring-boot application.properties files dynamically and avoids the need for any Java code changes in order to draw secrets directly from Conjur.
-
-
 
 ## Contributing
 
