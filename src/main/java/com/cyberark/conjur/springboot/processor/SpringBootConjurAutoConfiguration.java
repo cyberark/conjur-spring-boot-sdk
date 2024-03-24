@@ -2,6 +2,7 @@ package com.cyberark.conjur.springboot.processor;
 
 import static com.cyberark.conjur.springboot.constant.ConjurConstant.CONJUR_PREFIX;
 
+import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -61,11 +62,16 @@ public class SpringBootConjurAutoConfiguration {
 
 	@ConditionalOnMissingBean(ConjurPropertySource.class)
 	@Bean
-	static ConjurCloudProcessor conjurCloudProcessor(SecretsApi secretsApi) {
+	static ConjurCloudProcessor conjurCloudProcessor(SecretsApi secretsApi, ConjurConfig conjurConfig) {
 
 		LOGGER.info("Creating ConjurCloudProcessor instance");
 
-		return new ConjurCloudProcessor(secretsApi);
+		return new ConjurCloudProcessor(secretsApi, conjurConfig);
 	}
-	
+
+	@ConditionalOnMissingBean
+	@Bean
+	static ConjurConfig conjurConfig() {
+		return new ConjurConfig();
+	}
 }

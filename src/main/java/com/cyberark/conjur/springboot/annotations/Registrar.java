@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
+import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -58,6 +59,7 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 				continue;
 			}
 			ps.setSecretsApi(beanFactory.getBean(SecretsApi.class));
+			ps.setConjurConfig(beanFactory.getBean(ConjurConfig.class));
 			propertySources.addLast(ps);
 		}
 	}

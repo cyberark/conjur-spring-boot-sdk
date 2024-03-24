@@ -24,6 +24,8 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 
 	private SecretsApi secretsApi;
 
+	private ConjurConfig conjurConfig;
+
 	public CustomPropertySourceChain(String name) {
 		super("customPropertySource");
 	
@@ -41,6 +43,10 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 		this.secretsApi = secretsApi;
 	}
 
+	public void setConjurConfig(ConjurConfig conjurConfig) {
+		this.conjurConfig = conjurConfig;
+	}
+
 	@Override
 	public String[] getPropertyNames() {
 
@@ -52,7 +58,7 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 
 		byte[] result = null;
 
-		key = ConjurConfig.getInstance().mapProperty(key);
+		key = conjurConfig.mapProperty(key);
 
 		if (!(key.startsWith(ConjurConstant.SPRING_VAR)) && !(key.startsWith(ConjurConstant.SERVER_VAR))
 				&& !(key.startsWith(ConjurConstant.ERROR)) && !(key.startsWith(ConjurConstant.SPRING_UTIL))

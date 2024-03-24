@@ -40,3 +40,16 @@ nginx.key
 api_key
 .settings/
 **/.settings/
+
+######################
+# Intellij
+######################
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+classes/
+out/
+.DS_Store

@@ -30,6 +30,8 @@ public class ConjurPropertySource extends EnumerablePropertySource<Object> {
 	private SecretsApi secretsApi;
 
 	private List<String> properties;
+	
+	private ConjurConfig conjurConfig;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurPropertySource.class);
 
@@ -73,7 +75,7 @@ public class ConjurPropertySource extends EnumerablePropertySource<Object> {
 			this.vaultPath = vaultPath.concat("/");
 		}
 		if (propertyExists(key)) {
-			key = ConjurConfig.getInstance().mapProperty(key);
+			key = conjurConfig.mapProperty(key);
 			try {
 				String account = ConjurConnectionManager.getAccount(secretsApi);
 				String secretValue = secretsApi.getSecret(account, ConjurConstant.CONJUR_KIND, vaultPath + key);
@@ -97,5 +99,9 @@ public class ConjurPropertySource extends EnumerablePropertySource<Object> {
 
 	private boolean propertyExists(String key) {
 		return properties.stream().anyMatch(property -> property.contains(key));
+	}
+
+	public void setConjurConfig(ConjurConfig conjurConfig) {
+		this.conjurConfig = conjurConfig;
 	}
 }
