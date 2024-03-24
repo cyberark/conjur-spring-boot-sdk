@@ -57,6 +57,11 @@ public class ConjurProperties{
 	private String authenticatorId;
 
 	/**
+	 * The Conjur mapping path.
+	 */
+	private String mappingPath;
+
+	/**
 	 * Gets account.
 	 *
 	 * @return the account
@@ -218,6 +223,24 @@ public class ConjurProperties{
 		this.authenticatorId = authenticatorId;
 	}
 
+	/**
+	 * Gets conjur mapping path.
+	 *
+	 * @return the conjur mapping path
+	 */
+	public String getMappingPath() {
+		return mappingPath;
+	}
+
+	/**
+	 * Sets conjur mapping path.
+	 *
+	 * @param mappingPath the conjur mapping path
+	 */
+	public void setMappingPath(String mappingPath) {
+		this.mappingPath = mappingPath;
+	}
+
 	@Override
 	public String toString() {
 		return "ConjurProperties{" +
@@ -230,6 +253,7 @@ public class ConjurProperties{
 				", sslCertificate='" + sslCertificate + '\'' +
 				", jwtTokenPath='" + jwtTokenPath + '\'' +
 				", authenticatorId='" + authenticatorId + '\'' +
+				", conjurMappingPath='" + mappingPath + '\'' +
 				'}';
 	}
 }
