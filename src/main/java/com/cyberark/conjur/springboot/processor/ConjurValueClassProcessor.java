@@ -69,6 +69,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 	}
 
 	@Nullable
+	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		return bean;
 	}
