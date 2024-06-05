@@ -7,6 +7,9 @@ package com.cyberark.conjur.springboot.constant;
  */
 public class ConjurConstant {
 
+private ConjurConstant() {
+}
+
 	/**
 	 * Generic extension for properties define at conjur.properties.
 	 */
