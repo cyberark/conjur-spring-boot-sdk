@@ -13,7 +13,7 @@ properties([
 
 // Performs release promotion.  No other stages will be run
 if (params.MODE == "PROMOTE") {
-  release.promote(params.VERSION_TO_PROMOTE) { sourceVersion, targetVersion, assetDirectory ->
+  release.promote(params.VERSION_TO_PROMOTE) { infrapool, sourceVersion, targetVersion, assetDirectory ->
     // Any assets from sourceVersion Github release are available in assetDirectory
     // Any version number updates from sourceVersion to targetVersion occur here
     // Any publishing of targetVersion artifacts occur here
@@ -22,8 +22,7 @@ if (params.MODE == "PROMOTE") {
     // Pass assetDirectory through to publish.sh as an env var.
     env.ASSET_DIR=assetDirectory
 
-    sh """
-      set -exuo pipefail
+    infrapool.agentSh """
       git checkout "v${sourceVersion}"
       echo -n "${targetVersion}" > VERSION
       cp VERSION VERSION.original
