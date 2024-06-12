@@ -5,9 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +13,6 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.test.context.TestPropertySource;
-
 import com.cyberark.conjur.sdk.AccessToken;
 import com.cyberark.conjur.sdk.Configuration;
 import com.cyberark.conjur.sdk.auth.ApiKeyAuth;
@@ -24,9 +21,7 @@ import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
 
 
 @TestPropertySource(properties = { "conjur.authenticator-id=demo-cluster", "conjur.jwt-token-path=/home/bnl/test" })
-
 @SpringBootTest(classes = { SpringBootConjurAutoConfiguration.class, com.cyberark.conjur.springboot.processor.ConjurCloudProcessorTest.ConjurCloudProcessorMockConfig.class })
-
 public class ConjurCloudProcessorTest {
 
 	
