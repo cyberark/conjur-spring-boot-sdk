@@ -23,6 +23,7 @@ if (params.MODE == "PROMOTE") {
     env.ASSET_DIR=assetDirectory
 
     infrapool.agentSh """
+
       git checkout "v${sourceVersion}"
       echo -n "${targetVersion}" > VERSION
       cp VERSION VERSION.original

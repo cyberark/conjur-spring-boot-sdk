@@ -30,11 +30,14 @@ import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 public class ConjurValueClassProcessor implements BeanPostProcessor {
 
 	private final ConjurRetrieveSecretService conjurRetrieveSecretService;
+	
+	private ConjurConfig conjurConfig;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConjurValueClassProcessor.class);
 
-	public ConjurValueClassProcessor(ConjurRetrieveSecretService conjurRetrieveSecretService) {
+	public ConjurValueClassProcessor(ConjurRetrieveSecretService conjurRetrieveSecretService,ConjurConfig conjurConfig) {
 		this.conjurRetrieveSecretService = conjurRetrieveSecretService;
+		this.conjurConfig= conjurConfig;
 
 	}
 
@@ -54,7 +57,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 			if (field.isAnnotationPresent(ConjurValue.class)) {
 				ReflectionUtils.makeAccessible(field);
 				String credentialId = field.getDeclaredAnnotation(ConjurValue.class).key();
-				String credentialToMap = ConjurConfig.getInstance().mapProperty(credentialId);
+				String credentialToMap = conjurConfig.mapProperty(credentialId);
 				if (StringUtils.isNotBlank(credentialToMap)) {
 					credentialId = credentialToMap;
 				}
@@ -80,7 +83,7 @@ public class ConjurValueClassProcessor implements BeanPostProcessor {
 				List<String> credentialsList = new ArrayList<>();
 				String credentialToMap = "";
 				for (String key : credentialsArr) {
-					credentialToMap = ConjurConfig.getInstance().mapProperty(key);
+					credentialToMap = conjurConfig.mapProperty(key);
 					if (StringUtils.isNotBlank(credentialToMap)) {
 						credentialsList.add(credentialToMap);
 					}

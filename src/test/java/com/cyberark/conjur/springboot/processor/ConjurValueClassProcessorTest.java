@@ -14,11 +14,13 @@ import org.springframework.test.context.ContextConfiguration;
 
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.springboot.ConjurPluginTests;
+import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 
 @SpringBootTest
 @ContextConfiguration(classes = { ConjurValueClassProcessorTest.TestConfig.class })
 class ConjurValueClassProcessorTest {
-
+	
+	private static ConjurConfig conjurConfig = new ConjurConfig();
 	@Configuration
 	static class TestConfig {
 		@Bean
@@ -29,7 +31,7 @@ class ConjurValueClassProcessorTest {
 		@Bean
 		public ConjurValueClassProcessor conjurValueClassProcessor(
 				ConjurRetrieveSecretService conjurRetrieveSecretService) {
-			return new ConjurValueClassProcessor(conjurRetrieveSecretService);
+			return new ConjurValueClassProcessor(conjurRetrieveSecretService,conjurConfig);
 		}
 
 		@Bean

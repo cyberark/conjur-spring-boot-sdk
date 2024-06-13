@@ -20,7 +20,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.MultiValueMap;
-
+import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 /**
  * 
  * This class helps to get all variables defined on the custom annotation side
@@ -58,6 +58,7 @@ public class Registrar implements ImportBeanDefinitionRegistrar, BeanFactoryPost
 				continue;
 			}
 			ps.setSecretsApi(beanFactory.getBean(SecretsApi.class));
+			ps.setConjurConfig(beanFactory.getBean(ConjurConfig.class));
 			propertySources.addLast(ps);
 		}
 	}
