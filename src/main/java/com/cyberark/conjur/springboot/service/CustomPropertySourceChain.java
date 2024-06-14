@@ -28,6 +28,8 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 
 	private SecretsApi secretsApi;
 	
+	private ConjurConfig conjurConfig;
+	
 	public CustomPropertySourceChain(String name) {
 		super("customPropertySource");
 		LOGGER.debug("Calling CustomPropertysource Chain ");
@@ -48,6 +50,10 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 		return new String[0];
 	}
 	
+	public void setConjurConfig(ConjurConfig conjurConfig) {
+		this.conjurConfig = conjurConfig;
+	}
+	
 	@Override
 	public Object getProperty(String key) {
 		StringBuilder kind = new StringBuilder();
@@ -55,7 +61,7 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 		Object secretValue = null;
 		
 		List<Object> list = new ArrayList<Object>();
-		key = ConjurConfig.getInstance().mapProperty(key);
+		key = conjurConfig.mapProperty(key);
 		if (!(key.startsWith(ConjurConstant.SPRING_VAR)) && !(key.startsWith(ConjurConstant.SERVER_VAR))
 				&& !(key.startsWith(ConjurConstant.ERROR)) && !(key.startsWith(ConjurConstant.SPRING_UTIL))
 				&& !(key.startsWith(ConjurConstant.CONJUR_PREFIX)) && !(key.startsWith(ConjurConstant.ACTUATOR_PREFIX))
@@ -71,10 +77,10 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 				String[] keys = key.split(",");
 				String credentialId = "";
 				if (keys.length > 0) {
-					credentialId = ConjurConfig.getInstance().mapProperty(keys[0]);
+					credentialId = key = conjurConfig.mapProperty(keys[0]);
 					kind.append(account + ":variable:" + credentialId); 
 					for (int i = 1; i < keys.length; i++) {
-						credentialId = ConjurConfig.getInstance().mapProperty(keys[i]);
+						credentialId = conjurConfig.mapProperty(keys[i]);
 						kind.append("," + account+ ":variable:" + keys[i]);
 					}
 				}
@@ -87,7 +93,7 @@ public class CustomPropertySourceChain extends PropertyProcessorChain {
 					if(ex.getCode() == 404 || ex.getMessage().equalsIgnoreCase("Not Found")) {
 					for (int i = 0; i < keys.length; i++) {
 						try {
-							credentialId = ConjurConfig.getInstance().mapProperty(keys[i]);
+							credentialId = conjurConfig.mapProperty(keys[i]);
 							secretValue = secretsApi.getSecret(account, ConjurConstant.CONJUR_KIND, credentialId);
 							if (secretValue != null) {
 								list.add(secretValue);

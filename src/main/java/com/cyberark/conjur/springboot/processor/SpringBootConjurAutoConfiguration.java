@@ -13,20 +13,21 @@ import org.springframework.context.annotation.Configuration;
 
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
+import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 import com.cyberark.conjur.springboot.core.env.ConjurPropertySource;
 import com.cyberark.conjur.springboot.domain.ConjurProperties;
-
+	
 
 @Configuration(proxyBeanMethods = false)
 public class SpringBootConjurAutoConfiguration {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(SpringBootConjurAutoConfiguration.class);
 
 	@ConditionalOnMissingBean
 	@Bean
-	ConjurValueClassProcessor conjurSecretValueClassProcessor(ConjurRetrieveSecretService conjurRetrieveSecretService) {
-		return new ConjurValueClassProcessor(conjurRetrieveSecretService);
+	ConjurValueClassProcessor conjurSecretValueClassProcessor(ConjurRetrieveSecretService conjurRetrieveSecretService, ConjurConfig conjurConfig) {
+		return new ConjurValueClassProcessor(conjurRetrieveSecretService,conjurConfig);
 	}
 
 	@ConditionalOnMissingBean
@@ -56,19 +57,24 @@ public class SpringBootConjurAutoConfiguration {
 	@ConditionalOnMissingBean
 	@ConfigurationProperties(prefix = CONJUR_PREFIX)
 	@Bean
-	ConjurProperties conjurProperties(){
+	ConjurProperties conjurProperties() {
 		return new ConjurProperties();
 	}
-	
 
 	@ConditionalOnMissingBean(ConjurPropertySource.class)
 	@ConditionalOnProperty(name = CONJUR_SCAN_ALL_VALUES)
 	@Bean
-	static ConjurCloudProcessor conjurCloudProcessor(SecretsApi secretsApi) {
+	static ConjurCloudProcessor conjurCloudProcessor(SecretsApi secretsApi, ConjurConfig conjurConfig) {
 
 		LOGGER.info("Creating ConjurCloudProcessor instance");
 
-		return new ConjurCloudProcessor(secretsApi);
+		return new ConjurCloudProcessor(secretsApi, conjurConfig);
 	}
 	
+	@ConditionalOnMissingBean
+	@Bean
+	static ConjurConfig conjurConfig() {
+		return new ConjurConfig();
+	}
+
 }

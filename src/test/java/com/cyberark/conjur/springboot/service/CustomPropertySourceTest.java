@@ -24,9 +24,11 @@ public class CustomPropertySourceTest {
 	
 	private SecretsApi secretsApi=mock(SecretsApi.class);
 	
+	private ConjurConfig conjurConfig = new ConjurConfig();
+	
 	ConjurConnectionManager conjurConnectionManager=mock(ConjurConnectionManager.class);
 	
-	String key=ConjurConfig.getInstance().mapProperty(toString());
+	String key=conjurConfig.mapProperty(toString());
 	
 	@Test
 	public void getPropertyTest() throws  ApiException {

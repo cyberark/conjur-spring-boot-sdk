@@ -11,6 +11,7 @@ import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.service.CustomPropertySourceChain;
 import com.cyberark.conjur.springboot.service.DefaultPropertySourceChain;
 import com.cyberark.conjur.springboot.service.PropertyProcessorChain;
+import com.cyberark.conjur.springboot.core.env.ConjurConfig;
 
 /**
  * The ValueProcess class will be invoked on boot strap of the applicaiton and
@@ -30,15 +31,20 @@ public class ConjurCloudProcessor implements BeanPostProcessor, InitializingBean
 	private final SecretsApi secretsApi;
 
 	private PropertyProcessorChain processorChain;
+	
+	private ConjurConfig conjurConfig;
+	
+	
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		return bean;
 	}
 
-	public ConjurCloudProcessor(SecretsApi secretsApi) {
+	public ConjurCloudProcessor(SecretsApi secretsApi,ConjurConfig conjurConfig) {
 		super();
 		this.secretsApi = secretsApi;
+		this.conjurConfig= conjurConfig;
 	}
 
 	@Override
@@ -48,6 +54,7 @@ public class ConjurCloudProcessor implements BeanPostProcessor, InitializingBean
 		CustomPropertySourceChain customPS = new CustomPropertySourceChain("CustomPropertySource");
 		processorChain.setNextChain(customPS);
 		customPS.setSecretsApi(secretsApi);
+		customPS.setConjurConfig(conjurConfig);
 		environment.getPropertySources().addLast(processorChain);
 
 	}

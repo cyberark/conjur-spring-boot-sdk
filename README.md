@@ -321,6 +321,7 @@ The following configuration properties can be set in the standard `spring-boot` 
 | conjur.ssl-certificate   | CyberArk Conjur SSL Certificate Content |
 | conjur.authenticator-id  | CyberArk Conjur authenticator ID        |
 | conjur.jwt-token-path    | CyberArk Conjur Path of the JWT Token   |
+| conjur.mapping-path      | CyberArk Conjur Mapping Path            |
 
 	
 <h4 id="environment-variables">
@@ -343,6 +344,7 @@ If no other configuration is done (e.g. over system properties or CLI parameters
 | SSL Certificate Content | CONJUR_SSL_CERTIFICATE  | Certificate content        | Yes     | Yes  |
 | Path of the JWT Token   | CONJUR_JWT_TOKEN_PATH   | Path of the JWT Token      | No      | Yes  |
 | Conjur authenticator ID | CONJUR_AUTHENTICATOR_ID | Conjur authenticator ID    | No      | Yes  |
+| Conjur MAPPING PATH     | CONJUR_MAPPING_PATH     | Conjur Mapping PATH        | Yes      | Yes  |
 
 Only one CONJUR_CERT_FILE and CONJUR_SSL_CERTIFICATE is required. There are two variables to allow the user to specify the path to a certificate file or provide the certificate data directly in an environment variable.
 </details>
