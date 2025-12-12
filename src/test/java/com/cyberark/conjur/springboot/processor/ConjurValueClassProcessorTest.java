@@ -1,6 +1,6 @@
 package com.cyberark.conjur.springboot.processor;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.when;
@@ -10,7 +10,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
@@ -99,9 +98,9 @@ public class ConjurValueClassProcessorTest {
         assertEquals("fallback-password", new String(test.getDbPasswordMap()));
         String secretMap = new String(test.getDbSecretsMap());
 
-        assertEquals(true, secretMap.contains("username=fallback-username"));
-        assertEquals(true, secretMap.contains("password=fallback-password"));
-        assertEquals(true, secretMap.contains("url=fallback-url"));
+        assertTrue(secretMap.contains("username=fallback-username"));
+        assertTrue(secretMap.contains("password=fallback-password"));
+        assertTrue(secretMap.contains("url=fallback-url"));
     }
 
     @Test
@@ -118,7 +117,7 @@ public class ConjurValueClassProcessorTest {
 
         Object result = conjurValueClassProcessor.postProcessBeforeInitialization(test, "testBean");
 
-        assertEquals(null, test.getDdbUserNameMap());
+        assertNull(test.getDdbUserNameMap());
     }
 
     @Test
@@ -160,8 +159,8 @@ public class ConjurValueClassProcessorTest {
         Object result = conjurValueClassProcessor.postProcessBeforeInitialization(test, "testBean");
 
         String secretMap = new String(test.getDbSecretsMap());
-        assertEquals(true, secretMap.contains("username=partial-user"));
-        assertEquals(true, secretMap.contains("url=partial-url"));
+        assertTrue(secretMap.contains("username=partial-user"));
+        assertTrue(secretMap.contains("url=partial-url"));
     }
 
     @Test
@@ -175,8 +174,8 @@ public class ConjurValueClassProcessorTest {
         String secretMap = new String(test.getDbSecretsMap());
 
         // Validate at least contains expected keys
-        assertEquals(true, secretMap.contains("username=mock-username"));
-        assertEquals(true, secretMap.contains("password=mock-password"));
-        assertEquals(true, secretMap.contains("url=mock-url"));
+        assertTrue(secretMap.contains("username=mock-username"));
+        assertTrue(secretMap.contains("password=mock-password"));
+        assertTrue(secretMap.contains("url=mock-url"));
     }
 }

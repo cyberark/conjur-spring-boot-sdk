@@ -1,9 +1,5 @@
 package com.cyberark.conjur.springboot.domain;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertAll;
-
 import java.lang.reflect.Field;
 import java.time.Duration;
 
@@ -14,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cyberark.conjur.sdk.ApiClient;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguration;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author bnasslahsen
