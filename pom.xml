@@ -1,357 +1,355 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.cyberark</groupId>
-	<artifactId>conjur-sdk-springboot</artifactId>
+    <groupId>com.cyberark</groupId>
+    <artifactId>conjur-sdk-springboot</artifactId>
 
-	<!--
-		DO NOT UPDATE THE VERSION HERE
-		The current version is stored in the changelog.
-		When the package is built this place holder
-		version will be replaced with the latest version
-		from the changelog.
+    <!--
+        DO NOT UPDATE THE VERSION HERE
+        The current version is stored in the changelog.
+        When the package is built this place holder
+        version will be replaced with the latest version
+        from the changelog.
 
-		See build-package.sh
-	-->
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+        See build-package.sh
+    -->
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<name>Conjur Spring Boot SDK</name>
-	<description>Conjur Credentials Provider for Spring Boot Applications</description>
+    <name>Conjur Spring Boot SDK</name>
+    <description>Conjur Credentials Provider for Spring Boot Applications</description>
 
-	<licenses>
-    <license>
-      <name>The Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-    </license>
-  </licenses>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
-	<developers>
-    <developer>
-      <name>Cyberark Conjur</name>
-      <email>conj_maintainers@cyberark.com</email>
-      <organization>Cyberark Software Ltd.</organization>
-      <organizationUrl>https://conjur.org</organizationUrl>
-    </developer>
-  </developers>
+    <developers>
+        <developer>
+            <name>Cyberark Conjur</name>
+            <email>conj_maintainers@cyberark.com</email>
+            <organization>Cyberark Software Ltd.</organization>
+            <organizationUrl>https://conjur.org</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/cyberark/conjur-spring-boot-sdk.git</connection>
+        <developerConnection>scm:git:ssh://github.com:cyberark/conjur-spring-boot-sdk.git</developerConnection>
+        <url>https://github.com/cyberark/conjur-spring-boot-sdk</url>
+    </scm>
 
-	<scm>
-    <connection>scm:git:git://github.com/cyberark/conjur-spring-boot-sdk.git</connection>
-    <developerConnection>scm:git:ssh://github.com:cyberark/conjur-spring-boot-sdk.git</developerConnection>
-    <url>https://github.com/cyberark/conjur-spring-boot-sdk</url>
-  </scm>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.7</version>
+    </parent>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
-	</parent>
+    <profiles>
+        <!-- Profile for activating Artifactory as our deployment goal -->
+        <profile>
+            <id>artifactory</id>
+            <distributionManagement>
+                <repository>
+                    <id>conjurinc-releases</id>
+                    <name>conjurinc-releases</name>
+                    <url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
+                </repository>
+                <snapshotRepository>
+                    <id>conjurinc-snapshots</id>
+                    <name>conjurinc-snapshots</name>
+                    <url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
 
-	<profiles>
-    <!-- Profile for activating Artifactory as our deployment goal -->
-    <profile>
-      <id>artifactory</id>
-      <distributionManagement>
-        <repository>
-          <id>conjurinc-releases</id>
-          <name>conjurinc-releases</name>
-          <url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
-        </repository>
-        <snapshotRepository>
-          <id>conjurinc-snapshots</id>
-          <name>conjurinc-snapshots</name>
-          <url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
-        </snapshotRepository>
-      </distributionManagement>
-    </profile>
+        <!-- Profile for deploying and releasing to Maven Central through Central Portal -->
+        <profile>
+            <id>central-portal</id>
 
-    <!-- Profile for deploying and releasing to Maven Central through Central Portal -->
-    <profile>
-		<id>central-portal</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.7.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.11.2</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-      <build>
-        <plugins>
-			<plugin>
-				<groupId>org.sonatype.central</groupId>
-				<artifactId>central-publishing-maven-plugin</artifactId>
-				<version>0.7.0</version>
-				<extensions>true</extensions>
-				<configuration>
-					<publishingServerId>central</publishingServerId>
-					<autoPublish>true</autoPublish>
-				</configuration>
-			</plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>2.2.1</version>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.9.1</version>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+        <!-- Profile for signing releases -->
+        <profile>
+            <id>sign</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.7</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- This is necessary for gpg to not try to use the pinentry programs -->
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                        <arg>--passphrase-file</arg>
+                                        <arg>/gpg_password</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
-    <!-- Profile for signing releases -->
-    <profile>
-      <id>sign</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.5</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <configuration>
-                  <!-- This is necessary for gpg to not try to use the pinentry programs -->
-                  <gpgArguments>
-                    <arg>--pinentry-mode</arg>
-                    <arg>loopback</arg>
-                    <arg>--passphrase-file</arg>
-                    <arg>/gpg_password</arg>
-                  </gpgArguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-	<properties>
-		<resilience4j.version>1.7.1</resilience4j.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<okhttp3.version>4.10.0</okhttp3.version>
-		<tomcat.version>9.0.104</tomcat.version>
-	</properties>
+        <resilience4j.version>2.3.0</resilience4j.version>
+        <okhttp3.version>4.12.0</okhttp3.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.7.18</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>com.cyberark</groupId>
-			<artifactId>conjur-sdk-java</artifactId>
-			<version>4.2.2</version>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>testcontainers</artifactId>
-			<version>1.16.3</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-inline</artifactId>
-            <version>4.5.1</version>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
-	        <groupId>io.github.resilience4j</groupId>
-	        <artifactId>resilience4j-spring-boot2</artifactId>
-	        <version>${resilience4j.version}</version>
-	    </dependency>
-	    <dependency>
-	        <groupId>io.github.resilience4j</groupId>
-	        <artifactId>resilience4j-core</artifactId>
-	        <version>${resilience4j.version}</version>
-	    </dependency>
-	    <dependency>
-	        <groupId>io.github.resilience4j</groupId>
-	        <artifactId>resilience4j-retry</artifactId>
-	        <version>${resilience4j.version}</version>
-	    </dependency>
-	    <dependency>
-	        <groupId>io.github.resilience4j</groupId>
-	        <artifactId>resilience4j-circuitbreaker</artifactId>
-	        <version>${resilience4j.version}</version>
-	    </dependency>
+            <groupId>com.cyberark</groupId>
+            <artifactId>conjur-sdk-java</artifactId>
+            <version>4.2.2</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
 
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>1.21.3</version>
+            <scope>test</scope>
+        </dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.junit</groupId>
-				<artifactId>junit-bom</artifactId>
-				<version>5.9.3</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				  </configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>springloaded</artifactId>
-						<version>1.2.8.RELEASE</version>
-					</dependency>
-				</dependencies>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-spring-boot3</artifactId>
+            <version>${resilience4j.version}</version>
+        </dependency>
+    </dependencies>
 
-			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
-				<configuration>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>1.28.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.18.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.11.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+                <dependencies>
+                </dependencies>
+
+            </plugin>
+
+            <!-- Surefire for tests -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
                     <!-- for jacoco -->
                     <!--suppress UnresolvedMavenProperty -->
                     <argLine>${argLine}</argLine>
                     <forkCount>1</forkCount>
                     <reuseForks>false</reuseForks>
                 </configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.7</version>
-			</plugin>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-		      <groupId>org.apache.maven.plugins</groupId>
-		      <artifactId>maven-resources-plugin</artifactId>
-		      <version>3.3.0</version>
-		      <executions>
-		        <execution>
-		          <id>copy-changelog-to-classes</id>
-		          <phase>process-resources</phase>
-		          <goals>
-		            <goal>copy-resources</goal>
-		          </goals>
-		          <configuration>
-		            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
-		            <resources>
-		              <resource>
-		                <directory>${project.basedir}</directory>
-		                <includes>
-		                  <include>CHANGELOG.md</include>
-		                </includes>
-		                <filtering>false</filtering>
-		              </resource>
-		            </resources>
-		          </configuration>
-		        </execution>
-		      </executions>
-		    </plugin>
-		</plugins>
-	</build>
-	<reporting>
-		<plugins>
-		  <plugin>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<reportSets>
-			  <reportSet>
-				<reports>
-				  <!-- select non-aggregate reports -->
-				  <report>report</report>
-				</reports>
-			  </reportSet>
-			</reportSets>
-		  </plugin>
-		</plugins>
-	  </reporting>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>conjurinc-snapshots</id>
-			<name>conjurinc-snapshots</name>
-			<url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
-			<uniqueVersion>false</uniqueVersion>
-		</snapshotRepository>
-		<repository>
-			<id>conjurinc-releases</id>
-			<name>conjurinc-releases</name>
-			<url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
-			<uniqueVersion>false</uniqueVersion>
-		</repository>
-	</distributionManagement>
-	<repositories>
-		<repository>
-			<name>Central Portal Snapshots</name>
-			<id>central-portal-snapshots</id>
-			<url>https://central.sonatype.com/repository/maven-snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+            <!-- JaCoCo -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+            </plugin>
+
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Resources -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-changelog-to-classes</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}</directory>
+                                    <includes>
+                                        <include>CHANGELOG.md</include>
+                                    </includes>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <!-- select non-aggregate reports -->
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>conjurinc-snapshots</id>
+            <name>conjurinc-snapshots</name>
+            <url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+        <repository>
+            <id>conjurinc-releases</id>
+            <name>conjurinc-releases</name>
+            <url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
+            <uniqueVersion>false</uniqueVersion>
+        </repository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <name>Central Portal Snapshots</name>
+            <id>central-portal-snapshots</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

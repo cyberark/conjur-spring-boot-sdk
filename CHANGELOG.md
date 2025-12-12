@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.3.0] - 2025-12-12
+
+### Updated
+- Major updates: Spring Boot 3.5.7, Java 17, Jakarta migration, Resilience4j 2.3.0
+- Other updates: maven-compiler-plugin 3.13.0, maven-surefire-plugin 3.2.5, maven-source-plugin 3.3.1, maven-javadoc-plugin 3.11.2, maven-gpg-plugin 3.2.7, okhttp3 4.12.0, junit-bom 5.11.4, jacoco-maven-plugin 0.8.12
+- Notes: Migrated from javax to jakarta namespaces for Spring Boot 3 compatibility
+
 ## [2.2.5] - 2025-11-18
 
 ### Added
