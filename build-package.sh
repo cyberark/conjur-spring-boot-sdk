@@ -28,4 +28,4 @@ docker run \
     --volume "${PWD}/maven_cache":/root/.m2 \
     --workdir "${PWD}" \
     tools \
-        mvn --batch-mode -f pom.xml package -Dmaven.test.skip
+        mvn --batch-mode -f pom.xml clean package -Dmaven.test.skip
