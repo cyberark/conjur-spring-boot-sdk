@@ -106,16 +106,6 @@ pipeline {
 
           // Run Docker Image to compile code and build jar
           INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build-package.sh'
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'api-docs', includes: 'target/site/apidocs/**'
-          unstash 'api-docs'
-
-          publishHTML (target : [allowMissing: false,
-            alwaysLinkToLastBuild: false,
-            keepAll: true,
-            reportDir: 'target/site/apidocs',
-            reportFiles: 'index.html',
-            reportName: 'Java Doc',
-            reportTitles: 'Conjur Spring Boot SDK'])
         }
       }
     }
