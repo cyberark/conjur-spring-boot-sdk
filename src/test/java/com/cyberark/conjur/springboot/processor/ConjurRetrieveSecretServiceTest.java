@@ -10,14 +10,9 @@ import com.cyberark.conjur.springboot.core.env.ConjurConnectionManager;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -25,7 +20,7 @@ import org.springframework.context.annotation.Primary;
 import com.cyberark.conjur.sdk.ApiException;
 import com.cyberark.conjur.sdk.endpoint.SecretsApi;
 import com.cyberark.conjur.springboot.annotations.ConjurValue;
-import com.cyberark.conjur.springboot.domain.ConjurProperties;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
@@ -37,13 +32,12 @@ import java.util.Map;
  * @author bnasslahsen
  */
 @SpringBootTest(classes = {ConjurRetrieveSecretServiceTest.class, SpringBootConjurAutoConfiguration.class, com.cyberark.conjur.springboot.processor.ConjurRetrieveSecretServiceTest.ConjurPropertySourceConfiguration.class})
-@RunWith(MockitoJUnitRunner.class)
 public class ConjurRetrieveSecretServiceTest {
 
-    @Mock
+    @MockitoBean
     private SecretsApi secretsApiMock;
 
-    @Mock
+    @MockitoBean
     private ConjurConfig conjurConfig;
 
 

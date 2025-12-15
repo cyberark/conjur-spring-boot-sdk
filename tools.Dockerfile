@@ -1,5 +1,5 @@
-ARG java_version
-ARG maven_version
+ARG java_version=17
+ARG maven_version=3.8.4
 
 #FROM  openjdk:$java_version
 #FROM maven:3.8.4-openjdk-11-slim

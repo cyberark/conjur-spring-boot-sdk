@@ -58,6 +58,6 @@ docker run \
 docker build \
     --no-cache \
     --build-arg maven_version=3.8.4 \
-    --build-arg java_version=11 \
+    --build-arg java_version=17 \
     -t sampleapp \
     .

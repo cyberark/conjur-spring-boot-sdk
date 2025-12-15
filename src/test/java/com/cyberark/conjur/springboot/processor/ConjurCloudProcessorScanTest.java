@@ -4,16 +4,16 @@ import com.cyberark.conjur.springboot.annotations.ConjurPropertySource;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
+import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ConjurCloudProcessorScanTest {
 
-	private final WebApplicationContextRunner contextRunner = new WebApplicationContextRunner()
+	private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(SampleApp.class);
 
-	private final WebApplicationContextRunner contextRunnerConjurPropertySource = new WebApplicationContextRunner()
+	private final ApplicationContextRunner contextRunnerConjurPropertySource = new ApplicationContextRunner()
 			.withUserConfiguration(SampleAppConjurPropertySource.class);
 	@Test
 	public void scanning_not_loaded_by_default() {
@@ -43,11 +43,11 @@ public class ConjurCloudProcessorScanTest {
 						.doesNotHaveBean("conjurCloudProcessor")
 				);
 	}
-	
+
 	@EnableAutoConfiguration
 	static class SampleApp {}
 
 	@EnableAutoConfiguration
 	@ConjurPropertySource(value = "test")
-	static class SampleAppConjurPropertySource {}	
+	static class SampleAppConjurPropertySource {}
 }
