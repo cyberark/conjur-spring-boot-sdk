@@ -106,13 +106,13 @@ pipeline {
 
           // Run Docker Image to compile code and build jar
           INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build-package.sh'
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'api-docs', includes: 'target/apidocs/*'
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'api-docs', includes: 'target/site/apidocs/**'
           unstash 'api-docs'
 
           publishHTML (target : [allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: true,
-            reportDir: 'target/apidocs',
+            reportDir: 'target/site/apidocs',
             reportFiles: 'index.html',
             reportName: 'Java Doc',
             reportTitles: 'Conjur Spring Boot SDK'])
@@ -180,7 +180,7 @@ pipeline {
       steps {
         script {
           dir('src/main/java'){
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'jacoco', includes: 'jacaco.xml'
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'jacoco', includes: 'jacoco.xml'
             unstash 'jacoco'
             codacy action: 'reportCoverage', filePath: "jacoco.xml"
           }
@@ -221,7 +221,14 @@ pipeline {
   post {
     always {
       script {
-        releaseInfraPoolAgent(".infrapool/release_agents")
+        echo "[DEBUG] Running InfraPool cleanup..."
+        try {
+            releaseInfraPoolAgent(".infrapool/release_agents")
+            echo "[DEBUG] Cleanup successful."
+        } catch (Exception e) {
+            echo "[ERROR] Cleanup failed: ${e}"
+            currentBuild.result = 'FAILURE'
+        }
       }
     }
   }
