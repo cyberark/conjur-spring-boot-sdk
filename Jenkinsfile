@@ -13,7 +13,7 @@ properties([
 
 // Performs release promotion.  No other stages will be run
 if (params.MODE == "PROMOTE") {
-  release.promote(params.VERSION_TO_PROMOTE) { infrapool, sourceVersion, targetVersion, assetDirectory ->
+  release.promote(params.VERSION_TO_PROMOTE) { sourceVersion, targetVersion, assetDirectory ->
     // Any assets from sourceVersion Github release are available in assetDirectory
     // Any version number updates from sourceVersion to targetVersion occur here
     // Any publishing of targetVersion artifacts occur here
@@ -22,7 +22,7 @@ if (params.MODE == "PROMOTE") {
     // Pass assetDirectory through to publish.sh as an env var.
     env.ASSET_DIR=assetDirectory
 
-    infrapool.agentSh """
+    sh """
       export ASSET_DIR="${env.ASSET_DIR}"
       export MODE="${params.MODE}"
       git checkout "v${sourceVersion}"
@@ -40,7 +40,7 @@ if (params.MODE == "PROMOTE") {
 }
 
 pipeline {
-  agent { label 'conjur-enterprise-common-agent' }
+  agent { label 'conjur-enterprise-AmznDocker' }
 
   options {
     timestamps()
@@ -72,23 +72,12 @@ pipeline {
       }
     }
 
-    stage('Get InfraPool ExecutorV2 Agent') {
-      steps {
-        script {
-          // Request ExecutorV2 agents for 1 hour(s)
-          INFRAPOOL_EXECUTORV2_AGENT_0 = getInfraPoolAgent.connected(type: "ExecutorV2", quantity: 1, duration: 1)[0]
-          // Get submodules - can be removed when submodule is migrated to Github Enterprise
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh 'git submodule update --init --recursive'
-        }
-      }
-    }
-
     // Generates a VERSION file based on the current build number and latest version in CHANGELOG.md
     stage('Validate Changelog and set version') {
       steps {
         script {
-          updateVersion(INFRAPOOL_EXECUTORV2_AGENT_0, "CHANGELOG.md", "${BUILD_NUMBER}")
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh '''
+          updateVersion("CHANGELOG.md", "${BUILD_NUMBER}")
+          sh '''
             cp VERSION VERSION.original
             version="$(<VERSION)"
             echo "${version}-SNAPSHOT" >> VERSION
@@ -101,11 +90,14 @@ pipeline {
     stage('Build') {
       steps {
         script {
+          // Initialize submodules
+          sh 'git submodule update --init --recursive'
+
           // Build Docker Image for tools (eg mvn)
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build-tools-image.sh'
+          sh './build-tools-image.sh'
 
           // Run Docker Image to compile code and build jar
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build-package.sh'
+          sh './build-package.sh'
         }
       }
     }
@@ -113,7 +105,7 @@ pipeline {
   //   stage('UnitTest') {
   //     steps {
   //      script {
-  //       INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './run-tests.sh'
+  //       sh './run-tests.sh'
   //      }
   //     }
   //   }
@@ -122,60 +114,56 @@ pipeline {
       steps {
         script {
           dir ('SpringBootExample') {
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build-sampleapp-image.sh'
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './start'
+            sh './build-sampleapp-image.sh'
+            sh './start'
           }
         }
       }
       post {
         always {
           script {
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentArchiveArtifacts artifacts: 'SpringBootExample/logs/*'
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'surefire-reports-oss', includes: 'target/surefire-reports/*.xml'
-            unstash 'surefire-reports-oss'
+            normalizeOwnership('target', 'SpringBootExample/logs')
+            archiveArtifacts artifacts: 'SpringBootExample/logs/*'
             junit 'target/surefire-reports/*.xml'
             dir ('SpringBootExample') {
               // Jenkins has already recorded these results
               // clean them out so they aren't recorded for
               // a second time after the Enterprise tests.
-              INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './clean_surefire_reports'
-              INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './stop'
+              sh './clean_surefire_reports'
+              sh './stop'
             }
           }
         }
       }
     }
+
     stage('Functional Tests Enterprise') {
       steps {
         script {
           dir ('SpringBootExample') {
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './start_enterprise'
+            sh './start_enterprise'
           }
         }
       }
       post {
         always {
           script {
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'surefire-reports-enterprise', includes: 'target/surefire-reports/*.xml'
-            unstash 'surefire-reports-enterprise'
+            normalizeOwnership('target')
             junit 'target/surefire-reports/*.xml'
             dir ('SpringBootExample') {
-              INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './stop_enterprise'
+              sh './stop_enterprise'
             }
           }
         }
       }
     }
+
     stage('Report Test Coverage to Codacy'){
       steps {
         script {
           dir('src/main/java'){
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'jacoco', includes: 'jacoco.xml'
-            unstash 'jacoco'
             codacy action: 'reportCoverage', filePath: "jacoco.xml"
           }
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'target-site-jacoco', includes: 'target/site/jacoco/*.xml'
-          unstash 'target-site-jacoco'
           publishHTML (target : [allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: true,
@@ -197,29 +185,31 @@ pipeline {
       steps {
         script {
           // VERSION-SNAPSHOT is not valid for the release process.
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh 'cp VERSION.original VERSION'
-          release(INFRAPOOL_EXECUTORV2_AGENT_0) { billOfMaterialsDirectory, assetDirectory ->
+          sh 'cp VERSION.original VERSION'
+          release { billOfMaterialsDirectory, assetDirectory ->
             // Publish release artifacts to all the appropriate locations
             // Copy any artifacts to assetDirectory to attach them to the Github release
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh "ASSET_DIR=\"${assetDirectory}\" summon ./publish.sh"
+            sh "ASSET_DIR=\"${assetDirectory}\" summon ./publish.sh"
           }
         }
       }
     }
   }
+}
 
-  post {
-    always {
-      script {
-        echo "[DEBUG] Running InfraPool cleanup..."
-        try {
-            releaseInfraPoolAgent(".infrapool/release_agents")
-            echo "[DEBUG] Cleanup successful."
-        } catch (Exception e) {
-            echo "[ERROR] Cleanup failed: ${e}"
-            currentBuild.result = 'FAILURE'
-        }
-      }
-    }
-  }
+// Fixes root ownership left behind by Docker volume mounts so that subsequent
+// Jenkins steps and re-runs can read and write the affected directories.
+void normalizeOwnership(String... dirs) {
+  sh """
+    if ! command -v sudo >/dev/null 2>&1; then
+      exit 0
+    fi
+    u="\$(id -u):\$(id -g)"
+    for d in ${dirs.join(' ')}; do
+      if [ -e "\$d" ]; then
+        sudo chown -R "\$u" "\$d" 2>/dev/null || true
+        sudo chmod -R u+rwX "\$d" 2>/dev/null || true
+      fi
+    done
+  """
 }
