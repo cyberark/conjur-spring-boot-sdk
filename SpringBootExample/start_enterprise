@@ -4,8 +4,10 @@ set -e
 
 # Script to run SpringBootExample against Conjur Enterprise (appliance)
 
-# Ensure conjur-intro submodule is checked out
-git submodule update --init --recursive
+# Ensure conjur-intro submodule is checked out, tracking its latest main commit
+# (not whatever SHA happens to be pinned in git) — see conjur-credentials-plugin's
+# scripts/util.sh ensure_submodules for the same pattern.
+git submodule update --init --remote --recursive
 
 pushd ./conjur-intro
   pwd

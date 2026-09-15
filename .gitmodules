@@ -1,3 +1,4 @@
 [submodule "SpringBootExample/conjur-intro"]
 	path = SpringBootExample/conjur-intro
 	url = https://github.com/conjurdemos/conjur-intro
+	branch = main
