@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.time.Duration;
 
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +28,8 @@ public class ConjurPropertiesTest {
 
     @Test
     public void testPropertyTest() throws IllegalAccessException {
+        Assumptions.assumeTrue(System.getenv("CONJUR_AUTHN_CERT_SERVICE_ID") == null,
+                "Skipping testPropertyTest in cert-auth mode: apiKey is not set when using mTLS");
         Field apiKeyField = FieldUtils.getDeclaredField(ApiClient.class, "apiKey", true);
         String apiKey = (String) apiKeyField.get(secretsApi.getApiClient());
         assertNotNull(apiKey);

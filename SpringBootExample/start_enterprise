@@ -25,16 +25,10 @@ pushd ./conjur-intro
   ./bin/cli conjur policy load -b root --file conjur.yml > demo_api.txt
   awk '/api_key/ {print}' demo_api.txt | awk '{print $2}' | sed 's/^"//' | sed 's/"$//'
 
-  # # # Set variable values
-  # ./bin/cli conjur variable set -i db/password -v "secret"
-  # ./bin/cli conjur variable set -i db/dbuserName -v 123456
-  # ./bin/cli conjur variable set -i db/dbpassWord -v 7890123
-  # ./bin/cli conjur variable set -i db/key -v 456789
-  # # # Set variable values
-  ./bin/cli conjur variable values add db/password "secret"
-  ./bin/cli conjur variable values add db/dbuserName 123456
-  ./bin/cli conjur variable values add db/dbpassWord 7890123
-  ./bin/cli conjur variable values add db/key 456789
+  ./bin/cli conjur variable set -i db/password   -v "secret"
+  ./bin/cli conjur variable set -i db/dbuserName -v "123456"
+  ./bin/cli conjur variable set -i db/dbpassWord -v "7890123"
+  ./bin/cli conjur variable set -i db/key        -v "456789"
   ./bin/cli conjur list
 
   docker compose version
@@ -42,7 +36,7 @@ pushd ./conjur-intro
   # Retrieve pem
   conjur_cid=$(docker compose ps -q conjur-master.mycompany.local)
   docker exec "$conjur_cid" cat /etc/ssl/certs/ca.pem > ../conjur-enterprise.pem
-  
+
   # Retrieve Admin API Key conjur user rotate-api-key
   # admin_api_key="$(./bin/cli conjur user rotate_api_key|tail -n 1| tr -d '\r')"
   admin_api_key="$(./bin/cli conjur user rotate-api-key|tail -n 1| tr -d '\r')"

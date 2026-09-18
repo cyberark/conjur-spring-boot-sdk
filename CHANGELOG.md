@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Added support for **client certificate authentication (`authn-cert` / mTLS)**
+  - New configuration properties:
+    - `conjur.authn-cert-service-id` / `CONJUR_AUTHN_CERT_SERVICE_ID` — service ID of the `authn-cert` authenticator (e.g. `acme-vm`)
+    - `conjur.client-cert-file` / `CONJUR_CLIENT_CERT_FILE` — path to the PEM-encoded X.509 client certificate
+    - `conjur.client-key-file` / `CONJUR_CLIENT_KEY_FILE` — path to the PEM-encoded PKCS#8 private key
+
 ## [2.3.0] - 2025-12-12
 
 ### Updated

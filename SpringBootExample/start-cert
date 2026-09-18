@@ -1,0 +1,104 @@
+#!/bin/bash -ex
+# start-cert — End-to-end test for authn-cert (mTLS / client certificate)
+# authentication in the conjur-spring-boot-sdk.
+#
+# IMPORTANT: authn-cert requires Conjur Enterprise or Conjur Cloud with
+# Secrets Manager Edge.  It is NOT supported in the public cyberark/conjur
+# OSS Docker image.
+
+set -x
+
+get_container_logs() {
+  mkdir -p logs
+  if [ -d conjur-intro ]; then
+    pushd conjur-intro > /dev/null
+      docker compose ps -q 2>/dev/null | while IFS= read -r cid; do
+        name=$(docker inspect --format '{{.Name}}' "$cid" 2>/dev/null | tr -d '/')
+        [[ -n "$name" ]] && docker logs "$cid" &> "../logs/${name}.log" 2>/dev/null || true
+      done
+    popd > /dev/null
+  fi
+}
+trap get_container_logs EXIT
+
+if ! docker image inspect sampleapp &>/dev/null; then
+  echo "[ERROR] 'sampleapp' Docker image not found."
+  echo "        Build it first: ./build-sampleapp-image.sh"
+  exit 1
+fi
+
+echo "[INFO] ========================================="
+echo "[INFO] Generating PKI (CA + client certificate)"
+echo "[INFO] ========================================="
+mkdir -p tmp logs
+rm -rf tmp/certs
+./generate-certs.sh
+
+echo "[INFO] ========================================="
+echo "[INFO] Initialising conjur-intro submodule"
+echo "[INFO] ========================================="
+git submodule update --init --recursive
+
+pushd ./conjur-intro
+
+  echo "[INFO] Provisioning Conjur Enterprise master + follower ..."
+  export CONJUR_AUTHENTICATORS="authn,authn-cert/spring-cert"
+  ./bin/dap --provision-master
+  ./bin/dap --import-custom-certificates
+
+  cp ../conjur.yml .
+  cp ../policy/authn-cert.yml .
+  cp ../tmp/certs/ca.crt .
+
+  echo "[INFO] Loading policies ..."
+  ./bin/cli conjur policy load -b root --file conjur.yml > demo_api.txt
+  ./bin/cli conjur policy load -b root --file authn-cert.yml
+
+  echo "[INFO] Seeding secrets ..."
+  ./bin/cli conjur variable set -i db/password   -v "secret"
+  ./bin/cli conjur variable set -i db/dbuserName -v "123456"
+  ./bin/cli conjur variable set -i db/dbpassWord -v "7890123"
+  ./bin/cli conjur variable set -i db/key        -v "456789"
+  docker compose run --rm -T -w /src/cli --entrypoint /bin/sh client -c "
+    if [ ! -e /root/conjur-server.pem ]; then
+      echo y | conjur init self-hosted \
+        -u https://conjur-master.mycompany.local -a demo --self-signed --force
+    fi
+    conjur login -i admin -p MySecretP@ss1
+    conjur variable set -i 'my var' -v othersecret
+  "
+  echo "[INFO] Uploading CA certificate to Conjur ..."
+  ./bin/cli conjur variable set -i conjur/authn-cert/spring-cert/ca-cert \
+    -v "$(cat ca.crt)"
+
+  conjur_cid=$(docker compose ps -q conjur-master.mycompany.local)
+  docker exec "$conjur_cid" cat /etc/ssl/certs/ca.pem > ../conjur-enterprise.pem
+
+popd
+echo "[INFO] ========================================="
+echo "[INFO] Running sample app with authn-cert (Enterprise)"
+echo "[INFO] ========================================="
+
+docker run \
+  --user root \
+  --network dap_net \
+  --volume "$(git rev-parse --show-toplevel):/home/appuser/repo" \
+  --volume "${PWD}/tmp/certs:/certs" \
+  --volume "${PWD}/maven_cache":/home/appuser/.m2 \
+  --volume "${PWD}/conjur-enterprise.pem:/home/appuser/conjur-enterprise.pem" \
+  -e CONJUR_APPLIANCE_URL=https://conjur-master.mycompany.local \
+  -e CONJUR_ACCOUNT=demo \
+  -e CONJUR_AUTHN_LOGIN=host/spring-cert-host \
+  -e CONJUR_AUTHN_CERT_SERVICE_ID=spring-cert \
+  -e CONJUR_CLIENT_CERT_FILE=/certs/client.crt \
+  -e CONJUR_CLIENT_KEY_FILE=/certs/client.key \
+  -e CONJUR_CERT_FILE=/home/appuser/conjur-enterprise.pem \
+  --workdir "/home/appuser/repo" \
+  --rm \
+  --entrypoint /bin/bash \
+  sampleapp \
+  -ec 'mvn --batch-mode -f pom.xml jacoco:prepare-agent test jacoco:report'
+
+echo ""
+echo "[DONE] authn-cert E2E tests passed (Conjur Enterprise)."
+echo "[INFO] Enterprise is still running — use ./stop-cert to tear down."

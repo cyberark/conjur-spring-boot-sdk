@@ -152,6 +152,30 @@ public class ConjurProperties{
 	 * The Authn-JWT authenticatorID.
 	 */
 	private String authenticatorId;
+
+	/**
+	 * The authn-cert service ID for client-certificate (mTLS) authentication.
+	 * Can be injected with CONJUR_AUTHN_CERT_SERVICE_ID environment variable
+	 * or spring boot property: conjur.authn-cert-service-id
+	 * Example value: "acme-vm"
+	 */
+	private String authnCertServiceId;
+
+	/**
+	 * Path to the PEM-encoded X.509 client certificate file used for authn-cert (mTLS) authentication.
+	 * Can be injected with CONJUR_CLIENT_CERT_FILE environment variable
+	 * or spring boot property: conjur.client-cert-file
+	 */
+	private String clientCertFile;
+
+	/**
+	 * Path to the PEM-encoded PKCS#8 private key file used for authn-cert (mTLS) authentication.
+	 * Must use "BEGIN PRIVATE KEY" PEM header (PKCS#8 format).
+	 * To convert a PKCS#1 key: openssl pkcs8 -topk8 -nocrypt -in key.pem -out key-pkcs8.pem
+	 * Can be injected with CONJUR_CLIENT_KEY_FILE environment variable
+	 * or spring boot property: conjur.client-key-file
+	 */
+	private String clientKeyFile;
 	
 	/**
 	 * The Scan all values.
@@ -341,6 +365,60 @@ public class ConjurProperties{
 	 */
 	public void setAuthenticatorId(String authenticatorId) {
 		this.authenticatorId = authenticatorId;
+	}
+
+	/**
+	 * Gets the authn-cert service ID.
+	 *
+	 * @return the authn-cert service ID
+	 */
+	public String getAuthnCertServiceId() {
+		return authnCertServiceId;
+	}
+
+	/**
+	 * Sets the authn-cert service ID.
+	 *
+	 * @param authnCertServiceId the authn-cert service ID
+	 */
+	public void setAuthnCertServiceId(String authnCertServiceId) {
+		this.authnCertServiceId = authnCertServiceId;
+	}
+
+	/**
+	 * Gets the path to the PEM client certificate file.
+	 *
+	 * @return the client cert file path
+	 */
+	public String getClientCertFile() {
+		return clientCertFile;
+	}
+
+	/**
+	 * Sets the path to the PEM client certificate file.
+	 *
+	 * @param clientCertFile the client cert file path
+	 */
+	public void setClientCertFile(String clientCertFile) {
+		this.clientCertFile = clientCertFile;
+	}
+
+	/**
+	 * Gets the path to the PEM PKCS#8 private key file.
+	 *
+	 * @return the client key file path
+	 */
+	public String getClientKeyFile() {
+		return clientKeyFile;
+	}
+
+	/**
+	 * Sets the path to the PEM PKCS#8 private key file.
+	 *
+	 * @param clientKeyFile the client key file path
+	 */
+	public void setClientKeyFile(String clientKeyFile) {
+		this.clientKeyFile = clientKeyFile;
 	}
 	
 	/**

@@ -26,7 +26,17 @@ import com.cyberark.conjur.springboot.core.env.AccessTokenProvider;
 
 
 
-@TestPropertySource(properties = { "conjur.authenticator-id=demo-cluster", "conjur.jwt-token-path=/home/bnl/test" })
+@TestPropertySource(properties = {
+        "conjur.authenticator-id=demo-cluster",
+        "conjur.jwt-token-path=/home/bnl/test",
+        // Prevent CONJUR_AUTHN_CERT_SERVICE_ID / CONJUR_CLIENT_* env vars (set in
+        // the cert-auth E2E Docker run) from overriding the JWT auth test path.
+        // @TestPropertySource has higher priority than OS environment variables in
+        // the Spring test context, so explicit empty values here win.
+        "conjur.authn-cert-service-id=",
+        "conjur.client-cert-file=",
+        "conjur.client-key-file="
+})
 @SpringBootTest(classes = { SpringBootConjurAutoConfiguration.class, com.cyberark.conjur.springboot.processor.ConjurCloudProcessorTest.ConjurCloudProcessorMockConfig.class })
 public class ConjurCloudProcessorTest {
 
