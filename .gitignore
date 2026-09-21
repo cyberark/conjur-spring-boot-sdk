@@ -38,6 +38,8 @@ conjur-enterprise.pem
 nginx.crt
 nginx.key
 api_key
+SpringBootExample/tmp/certs/
+SpringBootExample/logs/
 .settings/
 **/.settings/
 .DS_Store

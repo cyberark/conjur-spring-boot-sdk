@@ -135,12 +135,42 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
       String authenticatorId = conjurProperties.getAuthenticatorId();
       String authnLogin = conjurProperties.getAuthnLogin();
       String authApiKey = conjurProperties.getAuthnApiKey();
+      String authnCertServiceId = conjurProperties.getAuthnCertServiceId();
+      String clientCertFile = conjurProperties.getClientCertFile();
+      String clientKeyFile = conjurProperties.getClientKeyFile();
 
       // If jwtTokenPath and authenticatorId are present, the we assume it's JWT
       // Authentication
       boolean resilienceEnabled = conjurProperties.getResilienceEnabled();
 
-      if (resilienceEnabled && resilientAuthenticator != null) {
+      if (StringUtils.isNotEmpty(authnCertServiceId)) {
+        // ── authn-cert (mTLS / client certificate) authentication ──
+        LOGGER.debug("Using Certificate (authn-cert) Authentication");
+        if (resilienceEnabled && resilientAuthenticator != null) {
+          LOGGER.debug("Using resilient authentication with retries (cert)");
+          final String _authnCertServiceId = authnCertServiceId;
+          final String _authnLogin = authnLogin;
+          final String _clientCertFile = clientCertFile;
+          final String _clientKeyFile = clientKeyFile;
+          accessToken = resilientAuthenticator.execute(() -> {
+            try {
+              return accessTokenProvider.getCertAccessToken(client, _authnCertServiceId, _authnLogin,
+                  _clientCertFile, _clientKeyFile);
+            } catch (IOException | java.security.GeneralSecurityException e) {
+              LOGGER.error("Failed to get cert access token in resilient auth: {}", e.getMessage(), e);
+              throw new RuntimeException(e);
+            }
+          });
+        } else {
+          try {
+            accessToken = accessTokenProvider.getCertAccessToken(client, authnCertServiceId, authnLogin,
+                clientCertFile, clientKeyFile);
+          } catch (IOException | java.security.GeneralSecurityException e) {
+            LOGGER.error("Failed to get cert access token: {}", e.getMessage(), e);
+            accessToken = null;
+          }
+        }
+      } else if (resilienceEnabled && resilientAuthenticator != null) {
         LOGGER.debug("Using resilient authentication with retries");
         if (StringUtils.isNotEmpty(jwtTokenPath) && StringUtils.isNotEmpty(authenticatorId)) {
           accessToken = resilientAuthenticator.execute(() -> {
@@ -204,6 +234,15 @@ public class ConjurConnectionManager implements EnvironmentAware, BeanFactoryPos
         }
         if (StringUtils.isNotEmpty(authenticatorId)) {
           LOGGER.debug("Using Authenticator ID: " + obfuscateString(authenticatorId));
+        }
+        if (StringUtils.isNotEmpty(authnCertServiceId)) {
+          LOGGER.debug("Using Authn Cert Service ID: " + obfuscateString(authnCertServiceId));
+        }
+        if (StringUtils.isNotEmpty(clientCertFile)) {
+          LOGGER.debug("Using Client Cert File: " + obfuscateString(clientCertFile));
+        }
+        if (StringUtils.isNotEmpty(clientKeyFile)) {
+          LOGGER.debug("Using Client Key File: " + obfuscateString(clientKeyFile));
         }
         LOGGER.error("Access token is null, Please enter proper environment variables.");
       } else {

@@ -158,6 +158,27 @@ pipeline {
       }
     }
 
+    stage('Functional Tests Cert Auth (Enterprise)') {
+      steps {
+        script {
+          dir ('SpringBootExample') {
+            sh './start-cert'
+          }
+        }
+      }
+      post {
+        always {
+          script {
+            normalizeOwnership('target', 'SpringBootExample/logs')
+            archiveArtifacts artifacts: 'SpringBootExample/logs/*', allowEmptyArchive: true
+            dir ('SpringBootExample') {
+              sh './stop-cert'
+            }
+          }
+        }
+      }
+    }
+
     stage('Report Test Coverage to Codacy'){
       steps {
         script {

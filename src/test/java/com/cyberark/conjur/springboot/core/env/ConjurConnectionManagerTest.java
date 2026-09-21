@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.security.GeneralSecurityException;
 import java.time.Duration;
 import java.util.Base64;
 
@@ -40,7 +41,17 @@ import com.cyberark.conjur.springboot.processor.SpringBootConjurAutoConfiguratio
 /**
  * @author bnasslahsen
  */
-@TestPropertySource(properties = {"conjur.authenticator-id=demo-cluster", "conjur.jwt-token-path=/home/bnl/test"})
+@TestPropertySource(properties = {
+        "conjur.authenticator-id=demo-cluster",
+        "conjur.jwt-token-path=/home/bnl/test",
+        // Prevent CONJUR_AUTHN_CERT_SERVICE_ID / CONJUR_CLIENT_* env vars (set in
+        // the cert-auth E2E Docker run) from overriding the JWT auth test path.
+        // @TestPropertySource has higher priority than OS environment variables in
+        // the Spring test context, so an explicit empty value here wins.
+        "conjur.authn-cert-service-id=",
+        "conjur.client-cert-file=",
+        "conjur.client-key-file="
+})
 @SpringBootTest(classes = {SpringBootConjurAutoConfiguration.class, ConjurConnectionManagerMockConfig.class})
 public class ConjurConnectionManagerTest {
 
@@ -63,11 +74,12 @@ public class ConjurConnectionManagerTest {
 
         @Bean
         @Primary
-        public AccessTokenProvider accessTokenProviderMock() throws IOException {
+        public AccessTokenProvider accessTokenProviderMock() throws IOException, GeneralSecurityException {
             AccessTokenProvider accessTokenProviderMock = mock(AccessTokenProvider.class);
             JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
             String SAMPLE_TOKEN = Base64.getEncoder().encodeToString(jsonObject.toString().getBytes(StandardCharsets.UTF_8));
             when(accessTokenProviderMock.getJwtAccessToken(any(), any(), any())).thenReturn(AccessToken.fromEncodedToken(SAMPLE_TOKEN));
+            when(accessTokenProviderMock.getCertAccessToken(any(), any(), any(), any(), any())).thenReturn(null);
             return accessTokenProviderMock;
         }
 
@@ -144,4 +156,34 @@ public class ConjurConnectionManagerTest {
         when(accessTokenProviderMock.getNewAccessToken(Configuration.getDefaultApiClient())).thenReturn(AccessToken.fromEncodedToken(SAMPLE_TOKEN));
     }
 
+    @Test
+    void testGetConnection_certAuth() throws Exception {
+        ApiClient spyClient = Mockito.spy(new ApiClient());
+
+        try (MockedStatic<Configuration> mockedConfig = mockStatic(Configuration.class)) {
+            mockedConfig.when(Configuration::getDefaultApiClient).thenReturn(spyClient);
+
+            when(conjurProperties.getAccount()).thenReturn("demo-account");
+            when(conjurProperties.getApplianceUrl()).thenReturn("https://conjur.example.com");
+            when(conjurProperties.getResilienceEnabled()).thenReturn(false);
+            when(conjurProperties.getAuthnCertServiceId()).thenReturn("acme-vm");
+            when(conjurProperties.getAuthnLogin()).thenReturn("host/vm-workloads/vm-01");
+            when(conjurProperties.getClientCertFile()).thenReturn("/path/to/cert.pem");
+            when(conjurProperties.getClientKeyFile()).thenReturn("/path/to/key.pem");
+
+            AccessToken token = mock(AccessToken.class);
+            when(token.getHeaderValue()).thenReturn("Bearer cert-token");
+            when(accessTokenProviderMock.getCertAccessToken(any(), eq("acme-vm"),
+                    eq("host/vm-workloads/vm-01"), eq("/path/to/cert.pem"), eq("/path/to/key.pem")))
+                    .thenReturn(token);
+
+            Method method = ConjurConnectionManager.class.getDeclaredMethod("getConnection", ConjurProperties.class);
+            method.setAccessible(true);
+            method.invoke(connectionManager, conjurProperties);
+
+            verify(accessTokenProviderMock).getCertAccessToken(any(), eq("acme-vm"),
+                    eq("host/vm-workloads/vm-01"), eq("/path/to/cert.pem"), eq("/path/to/key.pem"));
+            verify(spyClient).setAccessToken("Bearer cert-token");
+        }
+    }
 }

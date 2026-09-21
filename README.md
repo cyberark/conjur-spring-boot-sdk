@@ -280,18 +280,21 @@ You can do this by setting Conjur Properties or [Environment variables](#environ
 #### CyberArk Conjur Configuration Properties
 The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
 
-| Parameter name                 | Description                             |
-|:-------------------------------|:----------------------------------------|
-| conjur.account                 | CyberArk Conjur Account                 |
-| conjur.appliance-url           | CyberArk Conjur Appliance URL           |
-| conjur.authn-login             | CyberArk Conjur User /host identity     |
-| conjur.authn-api-key           | CyberArk Conjur API KEY of the host     |
-| conjur.auth-token-file         | CyberArk Conjur Token, stored in a file |
-| conjur.cert-file               | CyberArk Conjur SSL Certificate path    |
-| conjur.ssl-certificate         | CyberArk Conjur SSL Certificate Content |
-| conjur.resilience-enabled      | CyberArk Conjur Resilience Enabled flag |
-| conjur.resilience-max-attempts | CyberArk Conjur max retry attempts      |
-| conjur.resilience-wait-duration| CyberArk Conjur wait duration to retry  |       
+| Parameter name                    | Description                                                      |
+|:----------------------------------|:-----------------------------------------------------------------|
+| conjur.account                    | CyberArk Conjur Account                                          |
+| conjur.appliance-url              | CyberArk Conjur Appliance URL                                    |
+| conjur.authn-login                | CyberArk Conjur User /host identity                              |
+| conjur.authn-api-key              | CyberArk Conjur API KEY of the host                              |
+| conjur.auth-token-file            | CyberArk Conjur Token, stored in a file                          |
+| conjur.cert-file                  | CyberArk Conjur SSL Certificate path (server CA cert)            |
+| conjur.ssl-certificate            | CyberArk Conjur SSL Certificate Content (server CA cert)         |
+| conjur.resilience-enabled         | CyberArk Conjur Resilience Enabled flag                          |
+| conjur.resilience-max-attempts    | CyberArk Conjur max retry attempts                               |
+| conjur.resilience-wait-duration   | CyberArk Conjur wait duration to retry                           |
+| conjur.authn-cert-service-id      | Service ID of the `authn-cert` authenticator (e.g. `acme-vm`)   |
+| conjur.client-cert-file           | Path to the PEM client certificate file (for authn-cert / mTLS) |
+| conjur.client-key-file            | Path to the PEM PKCS#8 private key file (for authn-cert / mTLS) |       
 	
 <h4 id="environment-variables">
  Environment Variables
@@ -380,12 +383,34 @@ You can do this by setting Conjur Properties or [Environment variables](#environ
 #### CyberArk Conjur Configuration Properties
 The following configuration properties can be set in the standard `spring-boot` configuration files, `application.properties` or `application.yml`:
 
-| Parameter name           | Description                             |
-|:-------------------------|:----------------------------------------|
-| conjur.account           | CyberArk Conjur Account                 |
-| conjur.appliance-url     | CyberArk Conjur Appliance URL           |
-| conjur.authn-login       | CyberArk Conjur User /host identity     |
-| conjur.authn-api-key     | CyberArk Conjur API KEY of the host     |
+| Parameter name                    | Description                                                      |
+|:----------------------------------|:-----------------------------------------------------------------|
+| conjur.account                    | CyberArk Conjur Account (use `conjur` for Conjur Cloud)          |
+| conjur.appliance-url              | CyberArk Conjur Appliance URL                                    |
+| conjur.authn-login                | CyberArk Conjur User /host identity                              |
+| conjur.authn-api-key              | CyberArk Conjur API KEY of the host                              |
+| conjur.authn-cert-service-id      | Service ID of the `authn-cert` authenticator (e.g. `acme-vm`)   |
+| conjur.client-cert-file           | Path to the PEM client certificate file (for authn-cert / mTLS) |
+| conjur.client-key-file            | Path to the PEM PKCS#8 private key file (for authn-cert / mTLS) |
+
+> **authn-cert with Conjur Cloud (Secrets Manager SaaS)**
+>
+> Client certificate authentication on Conjur Cloud is routed through **Secrets Manager Edge**.
+> The Edge API exposes endpoints under the `/api/` path prefix.  
+> To match the Edge URL format (`https://<edge-url>/api/authn-cert/...`), set
+> `conjur.appliance-url` to the Edge base URL **including the `/api` suffix**:
+>
+> ```properties
+> conjur.appliance-url=https://us-edge.acme.dev/api
+> conjur.account=conjur
+> conjur.authn-cert-service-id=acme-vm
+> conjur.authn-login=host/data/vm-workloads/vm-01
+> conjur.client-cert-file=/etc/conjur/client.crt
+> conjur.client-key-file=/etc/conjur/client-pkcs8.key
+> ```
+>
+> The private key must be in **PKCS#8 PEM format** (`-----BEGIN PRIVATE KEY-----`).  
+> To convert a PKCS#1 key: `openssl pkcs8 -topk8 -nocrypt -in key.pem -out key-pkcs8.pem`
 	
 <h4 id="environment-variables">
  Environment Variables
@@ -396,12 +421,15 @@ For example:`appliance_url` is `CONJUR_APPLIANCE_URL`, `account` is `CONJUR_ACCO
 
 If no other configuration is done (e.g. over system properties or CLI parameters), include the following environment variables in the app's runtime environment to use the Spring Boot Plugin.
 
-| Name                    | Environment ID          | Description                | API KEY | JWT  |
-| ----------------------- | ----------------------- | -------------------------- | ------- | ---- |
-| Conjur Account          | CONJUR_ACCOUNT          | Account to connect         | Yes     | Yes  |
-| API key                 | CONJUR_AUTHN_API_KEY    | User/host API Key/password | Yes     | No   |
-| Connection url          | CONJUR_APPLIANCE_URL    | Conjur instance to connect | Yes     | Yes  |
-| User/host identity      | CONJUR_AUTHN_LOGIN      | User /host identity        | Yes     | No   |
+| Name                    | Environment ID                  | Description                                      | API KEY | JWT | authn-cert |
+| ----------------------- | ------------------------------- | ------------------------------------------------ | ------- | --- | ---------- |
+| Conjur Account          | CONJUR_ACCOUNT                  | Account to connect (`conjur` for Conjur Cloud)   | Yes     | Yes | Yes        |
+| API key                 | CONJUR_AUTHN_API_KEY            | User/host API Key/password                       | Yes     | No  | No         |
+| Connection url          | CONJUR_APPLIANCE_URL            | Conjur / Edge API URL (include `/api` for Edge)  | Yes     | Yes | Yes        |
+| User/host identity      | CONJUR_AUTHN_LOGIN              | User /host identity (workload ID for authn-cert) | Yes     | No  | Yes        |
+| Cert service ID         | CONJUR_AUTHN_CERT_SERVICE_ID    | authn-cert authenticator service ID              | No      | No  | Yes        |
+| Client certificate file | CONJUR_CLIENT_CERT_FILE         | Path to PEM client certificate (authn-cert)      | No      | No  | Yes        |
+| Client private key file | CONJUR_CLIENT_KEY_FILE          | Path to PEM PKCS#8 private key (authn-cert)      | No      | No  | Yes        |
 
 </details>
 

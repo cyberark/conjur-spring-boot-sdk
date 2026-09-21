@@ -1,0 +1,7 @@
+#!/bin/bash -e
+# stop-cert — tears down the Conjur Enterprise environment started by start-cert.
+
+rm -rf .env conjur-enterprise.pem
+pushd conjur-intro
+  docker compose down -v
+popd
