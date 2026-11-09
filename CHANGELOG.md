@@ -8,11 +8,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- Added support for **client certificate authentication (`authn-cert` / mTLS)**
-  - New configuration properties:
-    - `conjur.authn-cert-service-id` / `CONJUR_AUTHN_CERT_SERVICE_ID` — service ID of the `authn-cert` authenticator (e.g. `acme-vm`)
-    - `conjur.client-cert-file` / `CONJUR_CLIENT_CERT_FILE` — path to the PEM-encoded X.509 client certificate
-    - `conjur.client-key-file` / `CONJUR_CLIENT_KEY_FILE` — path to the PEM-encoded PKCS#8 private key
+- Added support for client certificate authentication (`authn-cert` / mTLS)
+  - `conjur.authn-cert-service-id` / `CONJUR_AUTHN_CERT_SERVICE_ID`
+  - `conjur.client-cert-file` / `CONJUR_CLIENT_CERT_FILE`
+  - `conjur.client-key-file` / `CONJUR_CLIENT_KEY_FILE`
+
+### Changed
+- Migrated CI Maven builds to internal Artifactory (`cyberark.jfrog.io`) via `artifactoryAuth.withCreds()` from the shared pipeline library
+- Updated Jenkinsfile Build, PROMOTE, and Release stages to use `artifactoryAuth.withCreds()`
+- Added `mvn-settings.xml.dist` as a fallback settings template for external contributors
+
+### Removed
+- Removed `utils.sh` (unused JFrog CLI wrapper) and its orphaned `secrets.yml` entries
+- Removed `jcenter.bintray.com` repository (Bintray shut down 2021)
 
 ## [2.3.0] - 2025-12-12
 

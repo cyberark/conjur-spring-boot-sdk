@@ -22,17 +22,19 @@ if (params.MODE == "PROMOTE") {
     // Pass assetDirectory through to publish.sh as an env var.
     env.ASSET_DIR=assetDirectory
 
-    sh """
-      export ASSET_DIR="${env.ASSET_DIR}"
-      export MODE="${params.MODE}"
-      git checkout "v${sourceVersion}"
-      echo -n "${targetVersion}" > VERSION
-      cp VERSION VERSION.original
-      ./build-tools-image.sh
-      ./build-package.sh
-      summon ./publish.sh
-      cp target/*.jar "${assetDirectory}"
-    """
+    artifactoryAuth.withCreds(null, "auto") {
+      sh """
+        export ASSET_DIR="${env.ASSET_DIR}"
+        export MODE="${params.MODE}"
+        git checkout "v${sourceVersion}"
+        echo -n "${targetVersion}" > VERSION
+        cp VERSION VERSION.original
+        ./build-tools-image.sh
+        ./build-package.sh
+        summon ./publish.sh
+        cp target/*.jar "${assetDirectory}"
+      """
+    }
   }
 
   release.copyEnterpriseRelease(params.VERSION_TO_PROMOTE)
@@ -97,7 +99,9 @@ pipeline {
           sh './build-tools-image.sh'
 
           // Run Docker Image to compile code and build jar
-          sh './build-package.sh'
+          artifactoryAuth.withCreds(null, "reader") {
+            sh './build-package.sh'
+          }
         }
       }
     }
@@ -210,7 +214,9 @@ pipeline {
           release { billOfMaterialsDirectory, assetDirectory ->
             // Publish release artifacts to all the appropriate locations
             // Copy any artifacts to assetDirectory to attach them to the Github release
-            sh "ASSET_DIR=\"${assetDirectory}\" summon ./publish.sh"
+            artifactoryAuth.withCreds(null, "auto") {
+              sh "ASSET_DIR=\"${assetDirectory}\" summon ./publish.sh"
+            }
           }
         }
       }

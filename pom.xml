@@ -55,12 +55,12 @@
                 <repository>
                     <id>conjurinc-releases</id>
                     <name>conjurinc-releases</name>
-                    <url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
+                    <url>https://${env.ARTIFACTORY_HOST}/artifactory/libs-release-local</url>
                 </repository>
                 <snapshotRepository>
                     <id>conjurinc-snapshots</id>
                     <name>conjurinc-snapshots</name>
-                    <url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
+                    <url>https://${env.ARTIFACTORY_HOST}/artifactory/libs-snapshot-local</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>
@@ -303,20 +303,7 @@
             </plugin>
         </plugins>
     </reporting>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>conjurinc-snapshots</id>
-            <name>conjurinc-snapshots</name>
-            <url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
-        <repository>
-            <id>conjurinc-releases</id>
-            <name>conjurinc-releases</name>
-            <url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
-            <uniqueVersion>false</uniqueVersion>
-        </repository>
-    </distributionManagement>
+
     <repositories>
         <repository>
             <name>Central Portal Snapshots</name>
