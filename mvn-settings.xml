@@ -1,7 +1,4 @@
 <settings>
-  <pluginGroups>
-    <pluginGroup>org.jenkins-ci.tools</pluginGroup>
-  </pluginGroups>
   <servers>
     <server>
       <id>conjurinc-releases</id>
@@ -35,13 +32,6 @@
     <profile>
       <repositories>
         <repository>
-          <id>central</id>
-          <url>https://repo1.maven.org/maven2</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-        </repository>
-        <repository>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
@@ -72,13 +62,6 @@
           <id>snapshots</id>
           <name>plugins-snapshots</name>
           <url>https://${env.ARTIFACTORY_HOST}/artifactory/plugins-snapshot</url>
-        </pluginRepository>
-        <pluginRepository>
-          <id>central</id>
-          <url>https://repo1.maven.org/maven2</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
         </pluginRepository>
       </pluginRepositories>
       <id>artifactory</id>
