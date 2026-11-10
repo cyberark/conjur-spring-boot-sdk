@@ -99,7 +99,16 @@ the version. At this time, we are targeting compatibility with Java 11:
   </properties>
 ```
 
-Run `mvn install -DskipTests` in this repository's directory to install the Spring Boot Plugin into your local Maven repository.
+Run the following in this repository's directory to install the Spring Boot Plugin into your local Maven repository:
+
+```sh
+# External contributors only — if you do not have CyberArk Artifactory access:
+cp mvn-settings.xml.dist mvn-settings.xml
+
+mvn install -DskipTests
+```
+
+> Skip the `cp` step if you already have a configured `mvn-settings.xml`. The `.dist` file is a public fallback that fetches all dependencies from Maven Central with no credentials required.
 
 #### Using the Jarfile
 

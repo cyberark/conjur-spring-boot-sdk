@@ -14,8 +14,18 @@ For general contribution and community guidelines, please see the [community rep
 
 ## Development
 
-TODO:
-[What development tools are required to start working on this project?]
+Requirements: Java 17, Maven 3.x, Docker (for integration tests only).
+
+To build the SDK locally:
+
+```sh
+# External contributors only — if you do not have internal Artifactory access:
+cp mvn-settings.xml.dist mvn-settings.xml
+
+mvn install -DskipTests
+```
+
+`mvn-settings.xml.dist` fetches all dependencies from Maven Central with no credentials required. Skip the `cp` step if you already have a configured `mvn-settings.xml` (CI uses the full version which mirrors through internal Artifactory).
 
 ## Testing
 
