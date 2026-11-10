@@ -5,20 +5,32 @@
   <servers>
     <server>
       <id>conjurinc-releases</id>
-      <username>${env.JFROG_USERNAME}</username>
-      <password>${env.JFROG_APIKEY}</password>
+      <username>${env.ARTIFACTORY_USERNAME}</username>
+      <password>${env.ARTIFACTORY_PASSWORD}</password>
     </server>
     <server>
       <id>conjurinc-snapshots</id>
-      <username>${env.JFROG_USERNAME}</username>
-      <password>${env.JFROG_APIKEY}</password>
+      <username>${env.ARTIFACTORY_USERNAME}</username>
+      <password>${env.ARTIFACTORY_PASSWORD}</password>
     </server>
     <server>
       <id>central</id>
       <username>${env.CENTRAL_PORTAL_USERNAME}</username>
       <password>${env.CENTRAL_PORTAL_TOKEN}</password>
     </server>
+    <server>
+      <id>artifactory</id>
+      <username>${env.ARTIFACTORY_USERNAME}</username>
+      <password>${env.ARTIFACTORY_PASSWORD}</password>
+    </server>
   </servers>
+  <mirrors>
+    <mirror>
+      <id>artifactory</id>
+      <mirrorOf>central</mirrorOf>
+      <url>https://${env.ARTIFACTORY_HOST}/artifactory/mavencentral-remote</url>
+    </mirror>
+  </mirrors>
   <profiles>
     <profile>
       <repositories>
@@ -30,16 +42,12 @@
           </releases>
         </repository>
         <repository>
-          <id>jcenter</id>
-          <url>https://jcenter.bintray.com/</url>
-        </repository>
-        <repository>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
           <id>conjurinc-releases</id>
           <name>conjurinc-releases</name>
-          <url>https://conjurinc.jfrog.io/artifactory/libs-release-local</url>
+          <url>https://${env.ARTIFACTORY_HOST}/artifactory/libs-release-local</url>
         </repository>
         <repository>
           <snapshots>
@@ -47,7 +55,7 @@
           </snapshots>
           <id>conjurinc-snapshots</id>
           <name>conjurinc-snapshots</name>
-          <url>https://conjurinc.jfrog.io/artifactory/libs-snapshot-local</url>
+          <url>https://${env.ARTIFACTORY_HOST}/artifactory/libs-snapshot-local</url>
         </repository>
       </repositories>
       <pluginRepositories>
@@ -57,13 +65,13 @@
           </snapshots>
           <id>plugins-release</id>
           <name>plugins-release</name>
-          <url>https://conjurinc.jfrog.io/artifactory/plugins-release</url>
+          <url>https://${env.ARTIFACTORY_HOST}/artifactory/plugins-release</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
           <id>snapshots</id>
           <name>plugins-snapshots</name>
-          <url>https://conjurinc.jfrog.io/artifactory/plugins-snapshot</url>
+          <url>https://${env.ARTIFACTORY_HOST}/artifactory/plugins-snapshot</url>
         </pluginRepository>
         <pluginRepository>
           <id>central</id>
