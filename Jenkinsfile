@@ -82,7 +82,7 @@ pipeline {
           sh '''
             cp VERSION VERSION.original
             version="$(<VERSION)"
-            echo "${version}-SNAPSHOT" >> VERSION
+            echo "${version}-SNAPSHOT" > VERSION
             cp VERSION VERSION.snapshot
           '''
         }
