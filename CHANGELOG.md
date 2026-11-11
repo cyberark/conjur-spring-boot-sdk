@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Migrated CI Maven builds to internal Artifactory (`cyberark.jfrog.io`) via `artifactoryAuth.withCreds()` from the shared pipeline library
 - Updated Jenkinsfile Build, PROMOTE, and Release stages to use `artifactoryAuth.withCreds()`
 - Added `mvn-settings.xml.dist` as a fallback settings template for external contributors
+- Fixed GPG artifact signing in headless Docker by configuring `allow-loopback-pinentry`
+  in `gpg-agent.conf` so `maven-gpg-plugin` 3.x can sign without a pinentry program
 
 ### Removed
 - Removed `utils.sh` (unused JFrog CLI wrapper) and its orphaned `secrets.yml` entries

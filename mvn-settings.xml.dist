@@ -1,10 +1,8 @@
 <settings>
   <!--
-    Public fallback for external contributors.
-    Copy this file to mvn-settings.xml and run:
-      mvn --settings mvn-settings.xml <goal>
-    Fetches dependencies directly from Maven Central (no Artifactory credentials needed).
-    CyberArk CI uses the full mvn-settings.xml which mirrors through internal Artifactory.
+    Public fallback for external contributors — fetches directly from Maven Central.
+    Usage: mvn --settings mvn-settings.xml.dist <goal>
+    No Artifactory credentials needed.
   -->
   <profiles>
     <profile>

@@ -102,13 +102,9 @@ the version. At this time, we are targeting compatibility with Java 11:
 Run the following in this repository's directory to install the Spring Boot Plugin into your local Maven repository:
 
 ```sh
-# External contributors only — if you do not have CyberArk Artifactory access:
-cp mvn-settings.xml.dist mvn-settings.xml
-
-mvn install -DskipTests
+# External contributors — fetches directly from Maven Central, no credentials needed:
+mvn --settings mvn-settings.xml.dist install -DskipTests
 ```
-
-> Skip the `cp` step if you already have a configured `mvn-settings.xml`. The `.dist` file is a public fallback that fetches all dependencies from Maven Central with no credentials required.
 
 #### Using the Jarfile
 

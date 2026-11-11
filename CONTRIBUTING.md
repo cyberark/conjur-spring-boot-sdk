@@ -19,13 +19,19 @@ Requirements: Java 17, Maven 3.x, Docker (for integration tests only).
 To build the SDK locally:
 
 ```sh
-# External contributors only — if you do not have internal Artifactory access:
-cp mvn-settings.xml.dist mvn-settings.xml
-
-mvn install -DskipTests
+# External contributors — fetches directly from Maven Central, no credentials needed:
+mvn --settings mvn-settings.xml.dist install -DskipTests
 ```
 
-`mvn-settings.xml.dist` fetches all dependencies from Maven Central with no credentials required. Skip the `cp` step if you already have a configured `mvn-settings.xml` (CI uses the full version which mirrors through internal Artifactory).
+**Internal developers:** `mvn-settings.xml` mirrors dependencies through internal Artifactory.
+Set the following environment variables before running `mvn install -DskipTests`:
+
+```sh
+export ARTIFACTORY_HOST=<your-artifactory-host>
+export ARTIFACTORY_USERNAME=<your-username>
+export ARTIFACTORY_PASSWORD=<your-api-key>
+mvn install -DskipTests
+```
 
 ## Testing
 

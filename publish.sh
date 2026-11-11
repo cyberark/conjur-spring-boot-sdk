@@ -39,5 +39,13 @@ docker run \
     --volume "$GPG_PRIVATE_KEY:/gpg_key" \
     --workdir "${PWD}" \
     tools \
-        /bin/bash -ec "gpg --batch --passphrase-file /gpg_password --trust-model always --import /gpg_key
+        /bin/bash -ec "
+                       # maven-gpg-plugin 3.x uses GnuPG's agent model. In a headless Docker
+                       # environment the agent refuses --pinentry-mode loopback unless
+                       # allow-loopback-pinentry is set in gpg-agent.conf. Configure it
+                       # first, then kill any existing agent so it reloads with the new config.
+                       mkdir -p /root/.gnupg && chmod 700 /root/.gnupg
+                       echo 'allow-loopback-pinentry' > /root/.gnupg/gpg-agent.conf
+                       gpgconf --kill gpg-agent
+                       gpg --batch --passphrase-file /gpg_password --trust-model always --import /gpg_key
                        mvn --batch-mode  --settings mvn-settings.xml --file pom.xml deploy -Dmaven.test.skip -P ${maven_profiles}"
