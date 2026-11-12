@@ -1,16 +1,6 @@
 <settings>
   <servers>
     <server>
-      <id>conjurinc-releases</id>
-      <username>${env.ARTIFACTORY_USERNAME}</username>
-      <password>${env.ARTIFACTORY_PASSWORD}</password>
-    </server>
-    <server>
-      <id>conjurinc-snapshots</id>
-      <username>${env.ARTIFACTORY_USERNAME}</username>
-      <password>${env.ARTIFACTORY_PASSWORD}</password>
-    </server>
-    <server>
       <id>central</id>
       <username>${env.CENTRAL_PORTAL_USERNAME}</username>
       <password>${env.CENTRAL_PORTAL_TOKEN}</password>
@@ -30,24 +20,6 @@
   </mirrors>
   <profiles>
     <profile>
-      <repositories>
-        <repository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>conjurinc-releases</id>
-          <name>conjurinc-releases</name>
-          <url>https://${env.ARTIFACTORY_HOST}/artifactory/libs-release-local</url>
-        </repository>
-        <repository>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-          <id>conjurinc-snapshots</id>
-          <name>conjurinc-snapshots</name>
-          <url>https://${env.ARTIFACTORY_HOST}/artifactory/libs-snapshot-local</url>
-        </repository>
-      </repositories>
       <pluginRepositories>
         <pluginRepository>
           <snapshots>

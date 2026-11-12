@@ -48,23 +48,6 @@
     </parent>
 
     <profiles>
-        <!-- Profile for activating Artifactory as our deployment goal -->
-        <profile>
-            <id>artifactory</id>
-            <distributionManagement>
-                <repository>
-                    <id>conjurinc-releases</id>
-                    <name>conjurinc-releases</name>
-                    <url>https://${env.ARTIFACTORY_HOST}/artifactory/libs-release-local</url>
-                </repository>
-                <snapshotRepository>
-                    <id>conjurinc-snapshots</id>
-                    <name>conjurinc-snapshots</name>
-                    <url>https://${env.ARTIFACTORY_HOST}/artifactory/libs-snapshot-local</url>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-
         <!-- Profile for deploying and releasing to Maven Central through Central Portal -->
         <profile>
             <id>central-portal</id>
