@@ -132,8 +132,6 @@
                                     <gpgArguments>
                                         <arg>--pinentry-mode</arg>
                                         <arg>loopback</arg>
-                                        <arg>--passphrase-file</arg>
-                                        <arg>/gpg_password</arg>
                                     </gpgArguments>
                                 </configuration>
                             </execution>
